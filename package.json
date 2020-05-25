@@ -1,0 +1,28 @@
+{
+  "name": "next-material-ui-firebase-starter",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Zach Scroggins",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "latest",
+    "clsx": "latest",
+    "firebase": "latest",
+    "next": "latest",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "export": "next build && next export",
+    "deploy": "next build && next export && firebase deploy",
+    "start": "next start"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-plugin-react": "^7.20.0"
+  }
+}
