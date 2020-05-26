@@ -8,7 +8,10 @@ export default class MyDocument extends Document {
     return (
       <html lang='en'>
         <Head>
-          <meta name='description' content='Your description' />
+          <meta
+            name='description'
+            content='Explore public data from The National Aeronautics and Space Administration'
+          />
           <meta
             name='viewport'
             content='minimum-scale=1, initial-scale=1, width=device-width'

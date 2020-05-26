@@ -1,11 +1,11 @@
 import { Typography } from '@material-ui/core';
 
-const Index = () => {
+const images = () => {
   return (
     <>
       <Typography variant='h3'>
-        HOOOMMEEE Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-        do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
+        IMAGES Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
         dolor purus non enim praesent elementum facilisis leo vel. Risus at
         ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
         quisque non tellus. Convallis convallis tellus id interdum velit laoreet
@@ -35,4 +35,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default images;
