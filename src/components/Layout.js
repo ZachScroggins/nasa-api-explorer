@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from './Link';
+import { Type } from './Type';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
@@ -94,13 +95,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function HideOnScroll(props) {
-  const { children } = props;
+  const { children, direction } = props;
   // const { children, window } = props;
   const trigger = useScrollTrigger();
   // const trigger = useScrollTrigger({ target: window ? window() : undefined });
 
   return (
-    <Slide appear={false} direction='up' in={!trigger}>
+    <Slide appear={false} direction={direction} in={!trigger}>
       {children}
     </Slide>
   );
@@ -165,6 +166,76 @@ const Layout = props => {
     !seen && setSeen(true);
   };
 
+  const pushHome = () => {
+    router.push('/');
+  };
+
+  const TempDrawerList = () => {
+    return (
+      <>
+        <List>
+          <ListItem button component={Link} naked href='/'>
+            <ListItemIcon>
+              <HomeRoundedIcon
+                color={router.pathname === '/' ? 'inherit' : 'primary'}
+              />
+            </ListItemIcon>
+            <ListItemText disableTypography>
+              <Type color={router.pathname === '/' ? 'white' : 'primary.light'}>
+                Home
+              </Type>
+            </ListItemText>
+          </ListItem>
+          <ListItem button component={Link} naked href='/images'>
+            <ListItemIcon>
+              <ImageSearchRoundedIcon
+                color={router.pathname === '/images' ? 'inherit' : 'primary'}
+              />
+            </ListItemIcon>
+            <ListItemText disableTypography>
+              <Type
+                color={
+                  router.pathname === '/images' ? 'white' : 'primary.light'
+                }
+              >
+                NASA Image and Video Library
+              </Type>
+            </ListItemText>
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem
+            button
+            component={Link}
+            naked
+            href='https://github.com/ZachScroggins/nasa-api-explorer'
+          >
+            <ListItemIcon>
+              <GitHubIcon color='primary' />
+            </ListItemIcon>
+            <ListItemText disableTypography>
+              <Type color='primary.light'>Github</Type>
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            naked
+            href='https://github.com/ZachScroggins'
+          >
+            <ListItemIcon>
+              <ArrowBackRoundedIcon color='primary' />
+            </ListItemIcon>
+            <ListItemText disableTypography>
+              <Type color='primary.light'>My Work</Type>
+            </ListItemText>
+          </ListItem>
+        </List>
+      </>
+    );
+  };
+
   return (
     <>
       <CssBaseline />
@@ -181,7 +252,7 @@ const Layout = props => {
               >
                 <MenuRoundedIcon />
               </IconButton>
-              <Typography variant='h5' component='h2' noWrap>
+              <Typography variant='h5' component='h1' noWrap>
                 {appBarTitle}
               </Typography>
             </Toolbar>
@@ -209,12 +280,12 @@ const Layout = props => {
               >
                 <Grid item container direction='column' alignItems='center'>
                   <HomeRoundedIcon color='primary' fontSize='large' />
-                  <Typography
+                  <Type
                     variant='body2'
-                    color={router.pathname === '/' ? 'initial' : 'primary'}
+                    color={router.pathname === '/' ? 'white' : 'primary.light'}
                   >
                     Home
-                  </Typography>
+                  </Type>
                 </Grid>
               </Button>
               <Button
@@ -225,14 +296,14 @@ const Layout = props => {
               >
                 <Grid item container direction='column' alignItems='center'>
                   <ImageSearchRoundedIcon color='primary' fontSize='large' />
-                  <Typography
+                  <Type
                     variant='body2'
                     color={
-                      router.pathname === '/images' ? 'initial' : 'primary'
+                      router.pathname === '/images' ? 'white' : 'primary.light'
                     }
                   >
                     Images
-                  </Typography>
+                  </Type>
                 </Grid>
               </Button>
               <Box pb={1}>
@@ -246,9 +317,9 @@ const Layout = props => {
               >
                 <Grid item container direction='column' alignItems='center'>
                   <GitHubIcon color='primary' fontSize='large' />
-                  <Typography variant='body2' color='primary'>
+                  <Type variant='body2' color='primary.light'>
                     Github
-                  </Typography>
+                  </Type>
                 </Grid>
               </Button>
               <Button
@@ -259,9 +330,9 @@ const Layout = props => {
               >
                 <Grid item container direction='column' alignItems='center'>
                   <ArrowBackRoundedIcon color='primary' fontSize='large' />
-                  <Typography variant='body2' color='primary'>
+                  <Type variant='body2' color='primary.light'>
                     My Work
-                  </Typography>
+                  </Type>
                 </Grid>
               </Button>
             </Grid>
@@ -287,68 +358,7 @@ const Layout = props => {
             </div>
             <Divider />
             <div onClick={handleLeftDrawerClose}>
-              <List>
-                <ListItem button component={Link} naked href='/'>
-                  <ListItemIcon>
-                    <HomeRoundedIcon
-                      color={router.pathname === '/' ? 'inherit' : 'primary'}
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary='Home'
-                    primaryTypographyProps={{
-                      color: router.pathname === '/' ? 'initial' : 'primary',
-                    }}
-                  />
-                </ListItem>
-                <ListItem button component={Link} naked href='/images'>
-                  <ListItemIcon>
-                    <ImageSearchRoundedIcon
-                      color={
-                        router.pathname === '/images' ? 'inherit' : 'primary'
-                      }
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary='NASA Image and Video Library'
-                    primaryTypographyProps={{
-                      color:
-                        router.pathname === '/images' ? 'initial' : 'primary',
-                    }}
-                  />
-                </ListItem>
-              </List>
-              <Divider />
-              <List>
-                <ListItem
-                  button
-                  component={Link}
-                  naked
-                  href='https://github.com/ZachScroggins/nasa-api-explorer'
-                >
-                  <ListItemIcon>
-                    <GitHubIcon color='primary' />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary='Github'
-                    primaryTypographyProps={{ color: 'primary' }}
-                  />
-                </ListItem>
-                <ListItem
-                  button
-                  component={Link}
-                  naked
-                  href='https://github.com/ZachScroggins'
-                >
-                  <ListItemIcon>
-                    <ArrowBackRoundedIcon color='primary' />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary='My Work'
-                    primaryTypographyProps={{ color: 'primary' }}
-                  />
-                </ListItem>
-              </List>
+              <TempDrawerList />
             </div>
           </Drawer>
           <main className={classes.content}>
@@ -359,7 +369,25 @@ const Layout = props => {
       </Hidden>
 
       <Hidden mdUp>
-        <HideOnScroll {...props}>
+        <Hidden smUp>
+          <HideOnScroll {...props} direction='down'>
+            <AppBar
+              position='fixed'
+              color='secondary'
+              className={classes.appBarTop}
+            >
+              <Toolbar
+                className={classes.topToolBar}
+                style={{ paddingLeft: '1.5rem' }}
+              >
+                <Typography variant='h5' component='h1' noWrap>
+                  {appBarTitle}
+                </Typography>
+              </Toolbar>
+            </AppBar>
+          </HideOnScroll>
+        </Hidden>
+        <HideOnScroll {...props} direction='up'>
           <AppBar
             position='fixed'
             color='primary'
@@ -375,7 +403,7 @@ const Layout = props => {
                 <MenuRoundedIcon />
               </IconButton>
               <Hidden xsDown>
-                <Typography variant='h5' component='h2' noWrap>
+                <Typography variant='h5' component='h1' noWrap>
                   {appBarTitle}
                 </Typography>
               </Hidden>
@@ -415,13 +443,27 @@ const Layout = props => {
                   </ClickAwayListener>
                 )}
               </Popper>
-              <IconButton color='inherit' component={Link} naked href='/'>
+              <IconButton
+                color='inherit'
+                aria-label='navigate-home'
+                onClick={pushHome}
+              >
+                {/* <IconButton color='inherit' component={Link} naked href='/' > */}
                 <HomeRoundedIcon />
               </IconButton>
-              <IconButton color='inherit' onClick={handlePreviousPage}>
+              <IconButton
+                color='inherit'
+                aria-label='previous-api'
+                onClick={handlePreviousPage}
+              >
                 <NavigateBeforeRoundedIcon fontSize='large' />
               </IconButton>
-              <IconButton edge='end' color='inherit' onClick={handleNextPage}>
+              <IconButton
+                edge='end'
+                color='inherit'
+                aria-label='next-api'
+                onClick={handleNextPage}
+              >
                 <NavigateNextRoundedIcon fontSize='large' />
               </IconButton>
             </Toolbar>
@@ -434,70 +476,12 @@ const Layout = props => {
           onClose={handleBottomDrawerClose}
         >
           <div onClick={handleBottomDrawerClose}>
-            <List>
-              <ListItem button component={Link} naked href='/'>
-                <ListItemIcon>
-                  <HomeRoundedIcon
-                    color={router.pathname === '/' ? 'inherit' : 'primary'}
-                  />
-                </ListItemIcon>
-                <ListItemText
-                  primary='Home'
-                  primaryTypographyProps={{
-                    color: router.pathname === '/' ? 'initial' : 'primary',
-                  }}
-                />
-              </ListItem>
-              <ListItem button component={Link} naked href='/images'>
-                <ListItemIcon>
-                  <ImageSearchRoundedIcon
-                    color={
-                      router.pathname === '/images' ? 'inherit' : 'primary'
-                    }
-                  />
-                </ListItemIcon>
-                <ListItemText
-                  primary='NASA Image and Video Library'
-                  primaryTypographyProps={{
-                    color:
-                      router.pathname === '/images' ? 'initial' : 'primary',
-                  }}
-                />
-              </ListItem>
-            </List>
-            <Divider />
-            <List>
-              <ListItem
-                button
-                component={Link}
-                naked
-                href='https://github.com/ZachScroggins/nasa-api-explorer'
-              >
-                <ListItemIcon>
-                  <GitHubIcon color='primary' />
-                </ListItemIcon>
-                <ListItemText
-                  primary='Github'
-                  primaryTypographyProps={{ color: 'primary' }}
-                />
-              </ListItem>
-              <ListItem
-                button
-                component={Link}
-                naked
-                href='https://github.com/ZachScroggins'
-              >
-                <ListItemIcon>
-                  <ArrowBackRoundedIcon color='primary' />
-                </ListItemIcon>
-                <ListItemText
-                  primary='My Work'
-                  primaryTypographyProps={{ color: 'primary' }}
-                />
-              </ListItem>
-            </List>
+            <TempDrawerList />
           </div>
         </Drawer>
+        <Hidden smUp>
+          <Box pb={6} />
+        </Hidden>
         <main className={classes.content}>{props.children}</main>
       </Hidden>
     </>

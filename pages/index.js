@@ -1,9 +1,9 @@
-import { Typography } from '@material-ui/core';
+import { Type } from '../src/components/Type';
 
 const Index = () => {
   return (
     <>
-      <Typography variant='h3'>
+      <Type variant='h3'>
         HOOOMMEEE Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
         do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
         dolor purus non enim praesent elementum facilisis leo vel. Risus at
@@ -16,8 +16,8 @@ const Index = () => {
         tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue
         eget arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper
         morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
-      </Typography>
-      <Typography variant='h3'>
+      </Type>
+      <Type variant='h3'>
         Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
         ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum
         integer enim neque volutpat ac tincidunt. Ornare suspendisse sed nisi
@@ -30,7 +30,7 @@ const Index = () => {
         Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra
         maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin
         aliquam ultrices sagittis orci a.
-      </Typography>
+      </Type>
     </>
   );
 };
