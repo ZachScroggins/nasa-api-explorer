@@ -109,6 +109,7 @@ function HideOnScroll(props) {
 
 const titles = ['NASA API Explorer', 'NASA Image and Video Library'];
 const routes = ['/', '/images'];
+const regex = RegExp(/^\/images/, 'i');
 
 const Layout = props => {
   const classes = useStyles();
@@ -125,7 +126,8 @@ const Layout = props => {
   useEffect(() => {
     if (router.pathname === '/') {
       setCurrentIndex(0);
-    } else if (router.pathname === '/images') {
+    } else if (regex.test(router.pathname)) {
+      // } else if (router.pathname === '/images') {
       setCurrentIndex(1);
     }
   }, [router.pathname]);
@@ -189,14 +191,12 @@ const Layout = props => {
           <ListItem button component={Link} naked href='/images'>
             <ListItemIcon>
               <ImageSearchRoundedIcon
-                color={router.pathname === '/images' ? 'inherit' : 'primary'}
+                color={regex.test(router.pathname) ? 'inherit' : 'primary'}
               />
             </ListItemIcon>
             <ListItemText disableTypography>
               <Type
-                color={
-                  router.pathname === '/images' ? 'white' : 'primary.light'
-                }
+                color={regex.test(router.pathname) ? 'white' : 'primary.light'}
               >
                 NASA Image and Video Library
               </Type>
@@ -282,6 +282,7 @@ const Layout = props => {
                   <HomeRoundedIcon color='primary' fontSize='large' />
                   <Type
                     variant='body2'
+                    // color={currentIndex === 0 ? 'white' : 'primary.light'}
                     color={router.pathname === '/' ? 'white' : 'primary.light'}
                   >
                     Home
@@ -299,7 +300,8 @@ const Layout = props => {
                   <Type
                     variant='body2'
                     color={
-                      router.pathname === '/images' ? 'white' : 'primary.light'
+                      // currentIndex === 1 ? 'white' : 'primary.light'
+                      regex.test(router.pathname) ? 'white' : 'primary.light'
                     }
                   >
                     Images

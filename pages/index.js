@@ -1,36 +1,88 @@
 import { Type } from '../src/components/Type';
+import Link from '../src/components/Link';
+import { Container, Box, Button, makeStyles, Grid } from '@material-ui/core';
+
+const useStyles = makeStyles(theme => ({
+  nasaLink: {
+    // fontWeight: '300',
+    // textDecoration: 'underline',
+  },
+}));
 
 const Index = () => {
+  const classes = useStyles();
+
   return (
     <>
-      <Type variant='h3'>
-        HOOOMMEEE Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-        do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-        dolor purus non enim praesent elementum facilisis leo vel. Risus at
-        ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-        quisque non tellus. Convallis convallis tellus id interdum velit laoreet
-        id donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing.
-        Amet nisl suscipit adipiscing bibendum est ultricies integer quis.
-        Cursus euismod quis viverra nibh cras. Metus vulputate eu scelerisque
-        felis imperdiet proin fermentum leo. Mauris commodo quis imperdiet massa
-        tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue
-        eget arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper
-        morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
-      </Type>
-      <Type variant='h3'>
-        Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-        ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum
-        integer enim neque volutpat ac tincidunt. Ornare suspendisse sed nisi
-        lacus sed viverra tellus. Purus sit amet volutpat consequat mauris.
-        Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-        vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra
-        accumsan in. In hendrerit gravida rutrum quisque non tellus orci ac.
-        Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique
-        senectus et. Adipiscing elit duis tristique sollicitudin nibh sit.
-        Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra
-        maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin
-        aliquam ultrices sagittis orci a.
-      </Type>
+      <Container maxWidth='xs'>
+        <Box py={{ xs: 1 }}>
+          <Grid container direction='column' spacing={2}>
+            <Grid item>
+              <Type
+                variant='h2'
+                align='center'
+                fontWeight='fontWeightBold'
+                fontSize='2.8rem'
+              >
+                Explore NASA Imagery and Data
+              </Type>
+            </Grid>
+            <Grid item>
+              <Type
+                variant='h4'
+                align='center'
+                fontWeight='fontWeightLight'
+                color='textSecondary'
+              >
+                A free and open source project, built with REST APIs from{' '}
+                <Box fontWeight='fontWeightLight'>
+                  <Link
+                    href='https://api.nasa.gov'
+                    color='textPrimary'
+                    className={classes.nasaLink}
+                    underline='hover'
+                  >
+                    api.nasa.gov
+                  </Link>
+                </Box>
+              </Type>
+            </Grid>
+            <Grid item>
+              <Button
+                variant='contained'
+                color='primary'
+                fullWidth
+                size='large'
+                component={Link}
+                href='/images'
+              >
+                Start Exploring
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant='outlined' color='primary' fullWidth size='large'>
+                Learn More
+              </Button>
+            </Grid>
+            <Grid item>
+              <Type>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam
+                facilis est obcaecati nobis aperiam atque suscipit. Magni dolor,
+                officia dignissimos repellendus unde iusto inventore voluptatem
+                reiciendis. Accusamus, voluptates. Fugit, perspiciatis. Lorem
+                ipsum dolor, sit amet consectetur adipisicing elit. Nam facilis
+                est obcaecati nobis aperiam atque suscipit. Magni dolor, officia
+                dignissimos repellendus unde iusto inventore voluptatem
+                reiciendis. Accusamus, voluptates. Fugit, perspiciatis. Lorem
+                ipsum dolor, sit amet consectetur adipisicing elit. Nam facilis
+                est obcaecati nobis aperiam atque suscipit. Magni dolor, officia
+                dignissimos repellendus unde iusto inventore voluptatem
+                reiciendis. Accusamus, voluptates. Fugit, perspiciatis.
+              </Type>
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
     </>
   );
 };

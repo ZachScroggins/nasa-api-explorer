@@ -5,11 +5,11 @@
   "author": "Zach Scroggins",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "latest",
+    "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "latest",
-    "clsx": "latest",
-    "firebase": "latest",
-    "next": "latest",
+    "clsx": "^1.1.1",
+    "firebase": "^7.14.6",
+    "next": "^9.4.4",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest"
@@ -22,7 +22,7 @@
     "start": "next start"
   },
   "devDependencies": {
-    "eslint": "^7.1.0",
-    "eslint-plugin-react": "^7.20.0"
+    "eslint": "latest",
+    "eslint-plugin-react": "latest"
   }
 }

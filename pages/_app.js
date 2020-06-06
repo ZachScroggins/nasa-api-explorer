@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import Layout from '../src/components/Layout';
+import ImageState from '../src/context/images/ImageState';
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -25,7 +26,9 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Layout>
-          <Component {...pageProps} />
+          <ImageState>
+            <Component {...pageProps} />
+          </ImageState>
         </Layout>
       </ThemeProvider>
     </React.Fragment>
