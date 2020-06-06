@@ -1,6 +1,7 @@
 import { useRef, useContext } from 'react';
 import ImageContext from '../../context/images/imageContext';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import UndoRoundedIcon from '@material-ui/icons/UndoRounded';
 import { TextField, InputAdornment, IconButton } from '@material-ui/core';
 
 const Search = () => {
@@ -13,6 +14,11 @@ const Search = () => {
       getResults(query);
       inputRef.current.blur();
     }
+  };
+
+  const handleReset = () => {
+    setQuery('Nebula');
+    getResults('Nebula');
   };
 
   return (
@@ -32,6 +38,9 @@ const Search = () => {
         InputProps={{
           endAdornment: (
             <InputAdornment position='end'>
+              <IconButton aria-label='reset' edge='end' onClick={handleReset}>
+                <UndoRoundedIcon />
+              </IconButton>
               <IconButton
                 aria-label='search'
                 edge='end'

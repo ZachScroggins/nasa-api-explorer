@@ -21,7 +21,9 @@ const ImageState = props => {
   const [state, dispatch] = useReducer(ImageReducer, initialState);
 
   useEffect(() => {
-    getResults('Nebula');
+    if (typeof window !== 'undefined') {
+      getResults('Nebula');
+    }
   }, []);
 
   const setQuery = input => {
