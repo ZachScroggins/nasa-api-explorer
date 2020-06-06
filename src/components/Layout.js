@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 import Link from './Link';
 import { Type } from './Type';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -34,7 +35,6 @@ import {
   Grow,
   Paper,
 } from '@material-ui/core';
-import { useRouter } from 'next/router';
 
 const drawerWidth = '20rem';
 

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
 import ImageContext from '../../context/images/imageContext';
 import { Type } from '../Type';
-import Link from '../Link';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -50,12 +50,14 @@ const useStyles = makeStyles(theme => ({
 
 const Results = ({ results }) => {
   const classes = useStyles();
+  const router = useRouter();
   const imageContext = useContext(ImageContext);
   const { setCurrent } = imageContext;
   let delay = 0;
 
   const handleClick = currentItem => {
     setCurrent(currentItem);
+    router.push('/images/imageItem');
   };
 
   return (
@@ -72,41 +74,33 @@ const Results = ({ results }) => {
                 variant='outlined'
                 onClick={() => handleClick(item)}
               >
-                <Box
-                  component={Link}
-                  naked
-                  href='/images/imageItem'
-                  className={classes.boxLink}
-                  as={`images/${item.data[0].nasa_id}`}
-                >
-                  <CardHeader
-                    className={classes.cardHeader}
-                    avatar={
-                      <Avatar aria-label='center' className={classes.avatar}>
-                        <Type variant='button' color='primary.contrastText'>
-                          {item.data[0].center === 'Select'
-                            ? ''
-                            : item.data[0].center}
-                        </Type>
-                      </Avatar>
-                    }
-                    title={item.data[0].title}
-                    titleTypographyProps={{ color: 'textPrimary' }}
-                    subheader={item.data[0].date_created.slice(0, 10)}
-                  />
-                  <CardMedia
-                    className={classes.media}
-                    image={item.links[0].href}
-                    title={item.data[0].title}
-                  />
-                  <CardActions disableSpacing>
-                    <Box color='primary.light'>
-                      <Button color='inherit' onClick={() => handleClick(item)}>
-                        Learn More
-                      </Button>
-                    </Box>
-                  </CardActions>
-                </Box>
+                <CardHeader
+                  className={classes.cardHeader}
+                  avatar={
+                    <Avatar aria-label='center' className={classes.avatar}>
+                      <Type variant='button' color='primary.contrastText'>
+                        {item.data[0].center === 'Select'
+                          ? ''
+                          : item.data[0].center}
+                      </Type>
+                    </Avatar>
+                  }
+                  title={item.data[0].title}
+                  titleTypographyProps={{ color: 'textPrimary' }}
+                  subheader={item.data[0].date_created.slice(0, 10)}
+                />
+                <CardMedia
+                  className={classes.media}
+                  image={item.links[0].href}
+                  title={item.data[0].title}
+                />
+                <CardActions disableSpacing>
+                  <Box color='primary.light'>
+                    <Button color='inherit' onClick={() => handleClick(item)}>
+                      Learn More
+                    </Button>
+                  </Box>
+                </CardActions>
               </Card>
             </Zoom>
           </Grid>
