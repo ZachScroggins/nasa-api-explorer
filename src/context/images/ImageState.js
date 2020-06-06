@@ -13,7 +13,7 @@ const ImageState = props => {
   const initialState = {
     query: 'Nebula',
     results: [],
-    current: {},
+    current: null,
     loading: false,
     error: { status: false, message: '' },
   };
@@ -54,6 +54,10 @@ const ImageState = props => {
 
   const setCurrent = currentItem => {
     dispatch({ type: SET_CURRENT, payload: currentItem });
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('current', JSON.stringify(currentItem));
+    }
   };
 
   const setLoading = () => dispatch({ type: SET_LOADING });

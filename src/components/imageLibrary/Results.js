@@ -63,8 +63,8 @@ const Results = ({ results }) => {
   return (
     <Grid container spacing={2} justify='center'>
       {results.map(item => {
-        if (delay < 500) {
-          delay = delay + 50;
+        if (delay < 300) {
+          delay = delay + 25;
         }
         return (
           <Grid item key={item.data[0].nasa_id}>
