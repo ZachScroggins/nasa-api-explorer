@@ -64,11 +64,12 @@ const Results = ({ results }) => {
     <Grid container spacing={2} justify='center'>
       {results.map(item => {
         if (delay < 300) {
-          delay = delay + 25;
+          delay = delay + 30;
         }
         return (
           <Grid item key={item.data[0].nasa_id}>
-            <Zoom in={true} style={{ transitionDelay: `${delay}ms` }}>
+            <Zoom in={true}>
+              {/* <Zoom in={true} style={{ transitionDelay: `${delay}ms` }}> */}
               <Card
                 className={classes.root}
                 variant='outlined'
