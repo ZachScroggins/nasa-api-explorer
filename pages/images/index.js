@@ -1,4 +1,5 @@
 import { useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
 import ImageContext from '../../src/context/images/imageContext';
 import ScrollTop from '../../src/components/ScrollTop';
 import Search from '../../src/components/imageLibrary/Search';
@@ -18,8 +19,23 @@ const useStyles = makeStyles(theme => ({
 
 const index = () => {
   const classes = useStyles();
+  const router = useRouter();
   const imageContext = useContext(ImageContext);
-  const { getResults, results, loading, query } = imageContext;
+  const { getResults, results, loading, query, setQuery } = imageContext;
+
+  useEffect(() => {
+    router.replace({
+      pathname: '/images',
+      query: { query: `${query}` },
+    });
+  }, []);
+
+  useEffect(() => {
+    if (router.query.query !== undefined && router.query.query !== query) {
+      setQuery(router.query.query);
+      getResults(router.query.query);
+    }
+  }, [router.query.query]);
 
   return (
     <>
