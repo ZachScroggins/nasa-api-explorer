@@ -57,7 +57,7 @@ const Results = ({ results }) => {
 
   const handleClick = currentItem => {
     setCurrent(currentItem);
-    router.push('/images/imageItem');
+    router.push('/imageItem');
   };
 
   return (

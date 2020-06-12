@@ -13,7 +13,10 @@ import {
 const ImageState = props => {
   const router = useRouter();
   const initialState = {
-    query: router.asPath.slice(14) || 'Nebula',
+    query:
+      process.env.NODE_ENV === 'development'
+        ? router.asPath.slice(14) || 'Nebula'
+        : router.asPath.slice(15) || 'Nebula',
     results: [],
     current: null,
     loading: false,
@@ -22,15 +25,8 @@ const ImageState = props => {
 
   const [state, dispatch] = useReducer(ImageReducer, initialState);
 
-  const pathWithQuery = RegExp(/^\/images\?/, 'i');
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // if (pathWithQuery.test(router.asPath)) {
-      //   getResults(router.asPath.slice(14));
-      // } else {
-      //   getResults('Nebula');
-      // }
       getResults(initialState.query);
     }
   }, []);

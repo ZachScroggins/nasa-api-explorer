@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import ImageContext from '../../src/context/images/imageContext';
-import { Type } from '../../src/components/Type';
+import ImageContext from '../src/context/images/imageContext';
+import { Type } from '../src/components/Type';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid } from '@material-ui/core';
 

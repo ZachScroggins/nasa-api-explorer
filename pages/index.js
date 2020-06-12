@@ -32,13 +32,13 @@ const Index = () => {
                 variant='h4'
                 align='center'
                 fontWeight='fontWeightLight'
-                color='textSecondary'
+                color='text.secondary'
               >
                 A free and open source project, built with REST APIs from{' '}
                 <Box fontWeight='fontWeightLight'>
                   <Link
                     href='https://api.nasa.gov'
-                    color='textPrimary'
+                    color='textSecondary'
                     className={classes.nasaLink}
                     underline='hover'
                   >
@@ -60,9 +60,16 @@ const Index = () => {
               </Button>
             </Grid>
             <Grid item>
-              <Button variant='outlined' color='primary' fullWidth size='large'>
-                Learn More
-              </Button>
+              <Box color='primary.light'>
+                <Button
+                  variant='outlined'
+                  color='inherit'
+                  fullWidth
+                  size='large'
+                >
+                  Learn More
+                </Button>
+              </Box>
             </Grid>
             <Grid item>
               <Type>

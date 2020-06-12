@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
           <link
             rel='preconnect'
             href='https://fonts.googleapis.com'
-            crossOrigin
+            crossOrigin='true'
           />
           <link rel='dns-prefetch' href='https://fonts.googleapis.com' />
           <link

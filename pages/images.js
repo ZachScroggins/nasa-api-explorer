@@ -1,9 +1,9 @@
 import { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
-import ImageContext from '../../src/context/images/imageContext';
-import ScrollTop from '../../src/components/ScrollTop';
-import Search from '../../src/components/imageLibrary/Search';
-import Results from '../../src/components/imageLibrary/Results';
+import ImageContext from '../src/context/images/imageContext';
+import ScrollTop from '../src/components/ScrollTop';
+import Search from '../src/components/imageLibrary/Search';
+import Results from '../src/components/imageLibrary/Results';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, LinearProgress } from '@material-ui/core';
 
