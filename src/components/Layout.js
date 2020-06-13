@@ -109,7 +109,7 @@ function HideOnScroll(props) {
 
 const titles = ['NASA API Explorer', 'NASA Image and Video Library'];
 const routes = ['/', '/images'];
-const regex = RegExp(/^\/images/, 'i');
+const regex = RegExp(/^\/image/, 'i');
 
 const Layout = props => {
   const classes = useStyles();
