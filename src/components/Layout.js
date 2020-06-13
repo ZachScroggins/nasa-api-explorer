@@ -154,13 +154,15 @@ const Layout = props => {
 
   const handlePreviousPage = () => {
     if (currentIndex !== 0) {
-      router.push(routes[currentIndex - 1]);
+      // router.push(routes[currentIndex - 1]);
+      window.history.back();
     }
   };
   const handleNextPage = () => {
-    if (currentIndex !== routes.length - 1) {
-      router.push(routes[currentIndex + 1]);
-    }
+    // if (currentIndex !== routes.length - 1) {
+    //   router.push(routes[currentIndex + 1]);
+    // }
+    window.history.forward();
   };
 
   const handleToggleNotifications = () => {
@@ -410,7 +412,7 @@ const Layout = props => {
                 </Typography>
               </Hidden>
               <div className={classes.grow} />
-              <IconButton
+              {/* <IconButton
                 color='inherit'
                 ref={anchorRef}
                 aria-label='toggle-notifications'
@@ -444,7 +446,7 @@ const Layout = props => {
                     </Grow>
                   </ClickAwayListener>
                 )}
-              </Popper>
+              </Popper> */}
               <IconButton
                 color='inherit'
                 aria-label='navigate-home'
@@ -455,7 +457,7 @@ const Layout = props => {
               </IconButton>
               <IconButton
                 color='inherit'
-                aria-label='previous-api'
+                aria-label='previous-api' // change to previous page
                 onClick={handlePreviousPage}
               >
                 <NavigateBeforeRoundedIcon fontSize='large' />
@@ -463,7 +465,7 @@ const Layout = props => {
               <IconButton
                 edge='end'
                 color='inherit'
-                aria-label='next-api'
+                aria-label='next-api' // change to next page
                 onClick={handleNextPage}
               >
                 <NavigateNextRoundedIcon fontSize='large' />

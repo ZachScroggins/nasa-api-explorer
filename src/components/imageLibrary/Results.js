@@ -19,6 +19,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 320,
     minWidth: 320,
+    [theme.breakpoints.only('sm')]: {
+      maxWidth: 300,
+      minWidth: 300,
+    },
     '&:hover': {
       cursor: 'pointer',
       border: `1px solid ${theme.palette.primary.main}`,
@@ -35,6 +39,9 @@ const useStyles = makeStyles(theme => ({
   },
   cardHeader: {
     height: 90,
+    [theme.breakpoints.only('sm')]: {
+      height: 100,
+    },
     '@media (max-width: 350px)': {
       height: 100,
     },
