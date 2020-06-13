@@ -6,6 +6,7 @@ import {
   SET_QUERY,
   GET_RESULTS,
   SET_CURRENT,
+  GET_CURRENT_MANIFEST,
   SET_LOADING,
   SET_ERROR,
 } from '../types';
@@ -15,14 +16,14 @@ const ImageState = props => {
   const initialState = {
     query:
       process.env.NODE_ENV === 'development'
-        ? router.asPath.slice(14) || 'Nebula'
-        : router.asPath.slice(15) || 'Nebula',
+        ? router.asPath.slice(14) || 'Supernova'
+        : router.asPath.slice(15) || 'Supernova',
     results: [],
     current: null,
+    currentManifest: null,
     loading: false,
     error: { status: false, message: '' },
   };
-
   const [state, dispatch] = useReducer(ImageReducer, initialState);
 
   useEffect(() => {
@@ -65,6 +66,14 @@ const ImageState = props => {
     }
   };
 
+  const getCurrentManifest = async nasa_id => {
+    let res = await fetch(`https://images-api.nasa.gov/asset/${nasa_id}`);
+
+    let data = await res.json();
+
+    dispatch({ type: GET_CURRENT_MANIFEST, payload: data.collection.items });
+  };
+
   const setLoading = () => dispatch({ type: SET_LOADING });
 
   return (
@@ -73,11 +82,13 @@ const ImageState = props => {
         query: state.query,
         results: state.results,
         current: state.current,
+        currentManifest: state.currentManifest,
         loading: state.loading,
         error: state.error,
         setQuery,
         getResults,
         setCurrent,
+        getCurrentManifest,
         setLoading,
       }}
     >

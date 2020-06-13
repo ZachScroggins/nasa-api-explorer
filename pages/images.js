@@ -24,16 +24,20 @@ const index = () => {
   const { getResults, results, loading, query, setQuery } = imageContext;
 
   useEffect(() => {
-    router.replace({
-      pathname: '/images',
-      query: { query: `${query}` },
-    });
+    if (router.asPath.slice(14) === '') {
+      router.replace({
+        pathname: '/images',
+        query: { query: `${query}` },
+      });
+      console.log('route replaced... query:' + query);
+    }
   }, []);
 
   useEffect(() => {
     if (router.query.query !== undefined && router.query.query !== query) {
       setQuery(router.query.query);
       getResults(router.query.query);
+      console.log('setQuery & getResults ran with:' + router.query.query);
     }
   }, [router.query.query]);
 

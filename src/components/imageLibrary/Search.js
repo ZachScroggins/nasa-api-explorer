@@ -32,11 +32,11 @@ const Search = () => {
   };
 
   const handleReset = () => {
-    setQuery('Nebula');
-    getResults('Nebula');
+    setQuery('Supernova');
+    getResults('Supernova');
     router.push({
       pathname: '/images',
-      query: { query: 'Nebula' },
+      query: { query: 'Supernova' },
     });
   };
 
@@ -83,8 +83,8 @@ const Search = () => {
 //   };
 
 //   const handleReset = () => {
-//     setQuery('Nebula');
-//     getResults('Nebula');
+//     setQuery('Supernova');
+//     getResults('Supernova');
 //   };
 
 //   return (

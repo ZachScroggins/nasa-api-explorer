@@ -2,6 +2,7 @@ import {
   SET_QUERY,
   GET_RESULTS,
   SET_CURRENT,
+  GET_CURRENT_MANIFEST,
   SET_LOADING,
   SET_ERROR,
 } from '../types';
@@ -24,6 +25,11 @@ export default (state, action) => {
       return {
         ...state,
         current: action.payload,
+      };
+    case GET_CURRENT_MANIFEST:
+      return {
+        ...state,
+        currentManifest: action.payload,
       };
     case SET_LOADING:
       return {
