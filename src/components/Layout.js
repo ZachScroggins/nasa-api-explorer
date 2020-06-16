@@ -153,10 +153,10 @@ const Layout = props => {
   };
 
   const handlePreviousPage = () => {
-    if (currentIndex !== 0) {
-      // router.push(routes[currentIndex - 1]);
-      window.history.back();
-    }
+    // if (currentIndex !== 0) {
+    // router.push(routes[currentIndex - 1]);
+    window.history.back();
+    // }
   };
   const handleNextPage = () => {
     // if (currentIndex !== routes.length - 1) {
@@ -279,6 +279,7 @@ const Layout = props => {
                 component={Link}
                 naked
                 href='/'
+                scroll={false}
               >
                 <Grid item container direction='column' alignItems='center'>
                   <HomeRoundedIcon color='primary' fontSize='large' />
@@ -296,6 +297,7 @@ const Layout = props => {
                 component={Link}
                 naked
                 href='/images'
+                scroll={false}
               >
                 <Grid item container direction='column' alignItems='center'>
                   <ImageSearchRoundedIcon color='primary' fontSize='large' />
@@ -449,18 +451,18 @@ const Layout = props => {
               </Popper> */}
               <IconButton
                 color='inherit'
+                aria-label='previous-api' // change to previous page
+                onClick={handlePreviousPage}
+              >
+                <NavigateBeforeRoundedIcon fontSize='large' />
+              </IconButton>
+              <IconButton
+                color='inherit'
                 aria-label='navigate-home'
                 onClick={pushHome}
               >
                 {/* <IconButton color='inherit' component={Link} naked href='/' > */}
                 <HomeRoundedIcon />
-              </IconButton>
-              <IconButton
-                color='inherit'
-                aria-label='previous-api' // change to previous page
-                onClick={handlePreviousPage}
-              >
-                <NavigateBeforeRoundedIcon fontSize='large' />
               </IconButton>
               <IconButton
                 edge='end'

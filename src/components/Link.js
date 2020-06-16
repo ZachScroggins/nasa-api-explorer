@@ -5,10 +5,10 @@ import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
-  const { as, href, passHref, ...other } = props;
+  const { as, href, passHref, scroll, ...other } = props;
 
   return (
-    <NextLink href={href} as={as} passHref={passHref}>
+    <NextLink href={href} as={as} passHref={passHref} scroll={scroll}>
       <a ref={ref} {...other} />
     </NextLink>
   );
@@ -31,6 +31,7 @@ function Link(props) {
     naked,
     passHref,
     role: roleProp,
+    scroll,
     ...other
   } = props;
 
@@ -66,6 +67,7 @@ function Link(props) {
         passHref={passHref}
         ref={innerRef}
         role={role}
+        scroll={scroll}
         {...other}
       />
     );
@@ -79,6 +81,7 @@ function Link(props) {
       passHref={passHref}
       ref={innerRef}
       role={role}
+      scroll={scroll}
       {...other}
     />
   );

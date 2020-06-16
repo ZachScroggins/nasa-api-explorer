@@ -6,6 +6,7 @@ import Search from '../src/components/imageLibrary/Search';
 import Results from '../src/components/imageLibrary/Results';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, LinearProgress } from '@material-ui/core';
+import { motion } from 'framer-motion';
 
 const useStyles = makeStyles(theme => ({
   progress: {
@@ -29,7 +30,6 @@ const index = () => {
         pathname: '/images',
         query: { query: `${query}` },
       });
-      console.log('route replaced... query:' + query);
     }
   }, []);
 
@@ -42,7 +42,11 @@ const index = () => {
   }, [router.query.query]);
 
   return (
-    <>
+    <motion.div
+      // initial={{ opacity: 0, y: 200 }}
+      // animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
+    >
       <Grid container justify='center'>
         <Grid item xs={12} sm={7}>
           <Search />
@@ -71,7 +75,7 @@ const index = () => {
         )}
       </Grid>
       <ScrollTop />
-    </>
+    </motion.div>
   );
 };
 

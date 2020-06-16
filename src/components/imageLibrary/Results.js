@@ -14,6 +14,7 @@ import {
   Box,
   Zoom,
 } from '@material-ui/core';
+import { motion } from 'framer-motion';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -61,60 +62,140 @@ const Results = ({ results }) => {
   const imageContext = useContext(ImageContext);
   const { setCurrent } = imageContext;
   let delay = 0;
+  const resultsBeginning = results.slice(0, 20);
+  const resultsEnd = results.slice(20);
 
   const handleClick = currentItem => {
     setCurrent(currentItem);
     router.push('/imageItem');
   };
 
+  const beginningContainer = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: 'beforeChildren',
+        staggerChildren: 0.05,
+      },
+    },
+  };
+  // const beginningContainer = {
+  //   hidden: { opacity: 1, scale: 1 },
+  //   visible: {
+  //     opacity: 1,
+  //     scale: 1,
+  //     transition: {
+  //       when: 'beforeChildren',
+  //       staggerChildren: 0.05,
+  //     },
+  //   },
+  // };
+
+  const framerItem = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   return (
-    <Grid container spacing={2} justify='center'>
-      {results.map(item => {
-        if (delay < 300) {
-          delay = delay + 30;
-        }
-        return (
-          <Grid item key={item.data[0].nasa_id}>
-            <Zoom in={true}>
-              {/* <Zoom in={true} style={{ transitionDelay: `${delay}ms` }}> */}
-              <Card
-                className={classes.root}
-                variant='outlined'
-                onClick={() => handleClick(item)}
-              >
-                <CardHeader
-                  className={classes.cardHeader}
-                  avatar={
-                    <Avatar aria-label='center' className={classes.avatar}>
-                      <Type variant='button' color='primary.contrastText'>
-                        {item.data[0].center === 'Select'
-                          ? ''
-                          : item.data[0].center}
-                      </Type>
-                    </Avatar>
-                  }
-                  title={item.data[0].title}
-                  titleTypographyProps={{ color: 'textPrimary' }}
-                  subheader={item.data[0].date_created.slice(0, 10)}
-                />
-                <CardMedia
-                  className={classes.media}
-                  image={item.links[0].href}
-                  title={item.data[0].title}
-                />
-                <CardActions disableSpacing>
-                  <Box color='primary.light'>
-                    <Button color='inherit' onClick={() => handleClick(item)}>
-                      Learn More
-                    </Button>
-                  </Box>
-                </CardActions>
-              </Card>
-            </Zoom>
-          </Grid>
-        );
-      })}
-    </Grid>
+    <>
+      <motion.div
+        variants={beginningContainer}
+        initial='hidden'
+        animate='visible'
+      >
+        <Grid container spacing={2} justify='center'>
+          {resultsBeginning.map(item => {
+            return (
+              <Grid item key={item.data[0].nasa_id}>
+                <motion.div variants={framerItem} whileHover={{ scale: 1.08 }}>
+                  <Card
+                    className={classes.root}
+                    onClick={() => handleClick(item)}
+                  >
+                    <CardHeader
+                      className={classes.cardHeader}
+                      avatar={
+                        <Avatar aria-label='center' className={classes.avatar}>
+                          <Type variant='button' color='primary.contrastText'>
+                            {item.data[0].center === 'Select'
+                              ? ''
+                              : item.data[0].center}
+                          </Type>
+                        </Avatar>
+                      }
+                      title={item.data[0].title}
+                      titleTypographyProps={{ color: 'textPrimary' }}
+                      subheader={item.data[0].date_created.slice(0, 10)}
+                    />
+                    <CardMedia
+                      className={classes.media}
+                      image={item.links[0].href}
+                      title={item.data[0].title}
+                    />
+                    <CardActions disableSpacing>
+                      <Box color='primary.light'>
+                        <Button
+                          color='inherit'
+                          onClick={() => handleClick(item)}
+                        >
+                          Learn More
+                        </Button>
+                      </Box>
+                    </CardActions>
+                  </Card>
+                </motion.div>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </motion.div>
+      <Grid container spacing={2} justify='center'>
+        {resultsEnd.map(item => {
+          return (
+            <Grid item key={item.data[0].nasa_id}>
+              <motion.div variants={framerItem} whileHover={{ scale: 1.08 }}>
+                <Card
+                  className={classes.root}
+                  onClick={() => handleClick(item)}
+                >
+                  <CardHeader
+                    className={classes.cardHeader}
+                    avatar={
+                      <Avatar aria-label='center' className={classes.avatar}>
+                        <Type variant='button' color='primary.contrastText'>
+                          {item.data[0].center === 'Select'
+                            ? ''
+                            : item.data[0].center}
+                        </Type>
+                      </Avatar>
+                    }
+                    title={item.data[0].title}
+                    titleTypographyProps={{ color: 'textPrimary' }}
+                    subheader={item.data[0].date_created.slice(0, 10)}
+                  />
+                  <CardMedia
+                    className={classes.media}
+                    image={item.links[0].href}
+                    title={item.data[0].title}
+                  />
+                  <CardActions disableSpacing>
+                    <Box color='primary.light'>
+                      <Button color='inherit' onClick={() => handleClick(item)}>
+                        Learn More
+                      </Button>
+                    </Box>
+                  </CardActions>
+                </Card>
+              </motion.div>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </>
   );
 };
 

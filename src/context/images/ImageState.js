@@ -19,7 +19,9 @@ const ImageState = props => {
         ? router.asPath.slice(14) || 'Supernova'
         : router.asPath.slice(15) || 'Supernova',
     results: [],
-    current: null,
+    current:
+      typeof window !== 'undefined' &&
+      JSON.parse(localStorage.getItem('current')),
     currentManifest: null,
     loading: false,
     error: { status: false, message: '' },

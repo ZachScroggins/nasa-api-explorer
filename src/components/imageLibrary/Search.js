@@ -1,14 +1,14 @@
-import { useRef, useContext, useState } from 'react';
+import { useRef, useContext } from 'react';
 import { useRouter } from 'next/router';
 import ImageContext from '../../context/images/imageContext';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import UndoRoundedIcon from '@material-ui/icons/UndoRounded';
+import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import { TextField, InputAdornment, IconButton } from '@material-ui/core';
 
 const Search = () => {
   const imageContext = useContext(ImageContext);
   const { query, setQuery, getResults, error } = imageContext;
-  const [input, setInput] = useState(query);
   const router = useRouter();
   const inputRef = useRef(null);
 
@@ -40,6 +40,10 @@ const Search = () => {
     });
   };
 
+  const handleClear = () => {
+    setQuery('');
+  };
+
   return (
     <>
       <TextField
@@ -57,6 +61,9 @@ const Search = () => {
         InputProps={{
           endAdornment: (
             <InputAdornment position='end'>
+              <IconButton aria-label='clear' edge='end' onClick={handleClear}>
+                <ClearRoundedIcon color='disabled' />
+              </IconButton>
               <IconButton aria-label='reset' edge='end' onClick={handleReset}>
                 <UndoRoundedIcon />
               </IconButton>

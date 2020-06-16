@@ -9,6 +9,7 @@
     "@material-ui/icons": "latest",
     "clsx": "^1.1.1",
     "firebase": "^7.14.6",
+    "framer-motion": "^1.11.1",
     "next": "^9.4.4",
     "prop-types": "latest",
     "react": "latest",
