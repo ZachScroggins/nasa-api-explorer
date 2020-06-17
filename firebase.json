@@ -25,7 +25,8 @@
       "./src",
       "./pages",
       "./firebase",
-      ".env.local"
+      ".env.local",
+      "./public"
     ]
   }
 }

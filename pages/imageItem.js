@@ -121,77 +121,133 @@ const imageItem = () => {
                   />
                   {/* </CardActionArea> */}
                   <CardContent className={classes.cardContent}>
-                    <Type variant='h4'>{current.data[0].title}</Type>
-                    <Type
-                      variant='subtitle1'
-                      color='text.secondary'
-                      fontWeight='fontWeightLight'
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        delay: 0.15,
+                      }}
                     >
-                      {current.data[0].date_created.slice(0, 10)}
-                    </Type>
+                      <Type variant='h4'>{current.data[0].title}</Type>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        delay: 0.3,
+                      }}
+                    >
+                      <Type
+                        variant='subtitle1'
+                        color='text.secondary'
+                        fontWeight='fontWeightLight'
+                      >
+                        {current.data[0].date_created.slice(0, 10)}
+                      </Type>
+                    </motion.div>
                     <Box pb={2} pt={1}>
                       <Divider />
                     </Box>
-                    <Type
-                      variant='body1'
-                      fontWeight='fontWeightBold'
-                      display='inline'
-                      mr={1}
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        delay: 0.45,
+                      }}
                     >
-                      Keywords:
-                    </Type>
-                    <Box className={classes.chipRoot}>
-                      {current.data[0].keywords.map((keyword, index) => (
-                        <Box clone key={index}>
-                          <Chip
-                            label={keyword}
-                            size='small'
-                            color='secondary'
-                            onClick={() => chipSearch(keyword)}
-                          />
-                        </Box>
-                      ))}
-                    </Box>
+                      <Type
+                        variant='body1'
+                        fontWeight='fontWeightBold'
+                        display='inline'
+                        mr={1}
+                      >
+                        Keywords:
+                      </Type>
+                      <Box className={classes.chipRoot}>
+                        {current.data[0].keywords.map((keyword, index) => (
+                          <Box clone key={index}>
+                            <Chip
+                              label={keyword}
+                              size='small'
+                              color='secondary'
+                              onClick={() => chipSearch(keyword)}
+                            />
+                          </Box>
+                        ))}
+                      </Box>
+                    </motion.div>
                     <Box py={2}>
-                      <Type
-                        variant='body1'
-                        fontWeight='fontWeightBold'
-                        display='inline'
+                      <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: 0.6,
+                        }}
                       >
-                        Secondary Creator:{' '}
-                      </Type>
-                      <Type variant='body1' display='inline'>
-                        {current.data[0].secondary_creator}
-                      </Type>
+                        <Type
+                          variant='body1'
+                          fontWeight='fontWeightBold'
+                          display='inline'
+                        >
+                          Secondary Creator:{' '}
+                        </Type>
+                        <Type variant='body1' display='inline'>
+                          {current.data[0].secondary_creator}
+                        </Type>
+                      </motion.div>
                     </Box>
                     <Box pb={2}>
-                      <Type
-                        variant='body1'
-                        fontWeight='fontWeightBold'
-                        display='inline'
+                      <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: 0.75,
+                        }}
                       >
-                        NASA ID:{' '}
-                      </Type>
-                      <Type variant='body1' display='inline'>
-                        {current.data[0].nasa_id}
-                      </Type>
+                        <Type
+                          variant='body1'
+                          fontWeight='fontWeightBold'
+                          display='inline'
+                        >
+                          NASA ID:{' '}
+                        </Type>
+                        <Type variant='body1' display='inline'>
+                          {current.data[0].nasa_id}
+                        </Type>
+                      </motion.div>
                     </Box>
                     <Box pb={2}>
-                      <Type
-                        variant='body1'
-                        fontWeight='fontWeightBold'
-                        display='inline'
+                      <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: 0.9,
+                        }}
                       >
-                        Center:{' '}
-                      </Type>
-                      <Type variant='body1' display='inline'>
-                        {current.data[0].center}
-                      </Type>
+                        <Type
+                          variant='body1'
+                          fontWeight='fontWeightBold'
+                          display='inline'
+                        >
+                          Center:{' '}
+                        </Type>
+                        <Type variant='body1' display='inline'>
+                          {current.data[0].center}
+                        </Type>
+                      </motion.div>
                     </Box>
                     <Box pb={2}>
                       <Divider />
                     </Box>
-                    <Type variant='body1'>{current.data[0].description}</Type>
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        delay: 1.05,
+                      }}
+                    >
+                      <Type variant='body1'>{current.data[0].description}</Type>
+                    </motion.div>
                   </CardContent>
                 </Card>
               </Box>

@@ -106,20 +106,36 @@ const apod = () => {
               <Grid item>
                 <Card>
                   {mediaType === 'video' ? (
-                    <CardMedia
-                      src={url}
-                      title={title}
-                      component='iframe'
-                      className={classes.vid}
-                    />
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{
+                        duration: 2,
+                      }}
+                    >
+                      <CardMedia
+                        src={url}
+                        title={title}
+                        component='iframe'
+                        className={classes.vid}
+                      />
+                    </motion.div>
                   ) : (
-                    <CardMedia
-                      src={url}
-                      title={title}
-                      component='img'
-                      className={classes.img}
-                      onClick={handleOpen}
-                    />
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{
+                        duration: 2,
+                      }}
+                    >
+                      <CardMedia
+                        src={url}
+                        title={title}
+                        component='img'
+                        className={classes.img}
+                        onClick={handleOpen}
+                      />
+                    </motion.div>
                   )}
                   <CardContent className={classes.cardContent}>
                     <Grid container>
@@ -131,7 +147,15 @@ const apod = () => {
                         xs={12}
                         md={6}
                       >
-                        <Type variant='h5'>{title}</Type>
+                        <motion.div
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{
+                            delay: 0.5,
+                          }}
+                        >
+                          <Type variant='h5'>{title}</Type>
+                        </motion.div>
                       </Grid>
                       <Grid
                         item
@@ -141,15 +165,34 @@ const apod = () => {
                         xs={12}
                         md={6}
                       >
-                        <Type color='text.secondary' fontSize={{ md: '20px' }}>
-                          {date}
-                        </Type>
+                        <motion.div
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{
+                            delay: 0.75,
+                          }}
+                        >
+                          <Type
+                            color='text.secondary'
+                            fontSize={{ md: '20px' }}
+                          >
+                            {date}
+                          </Type>
+                        </motion.div>
                       </Grid>
                     </Grid>
                     <Box py={2}>
                       <Divider />
                     </Box>
-                    <Type>{explanation}</Type>
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        delay: 1,
+                      }}
+                    >
+                      <Type>{explanation}</Type>
+                    </motion.div>
                   </CardContent>
                 </Card>
               </Grid>
