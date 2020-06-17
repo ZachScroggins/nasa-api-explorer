@@ -24,7 +24,8 @@
       "next.config.js",
       "./src",
       "./pages",
-      "./firebase"
+      "./firebase",
+      ".env.local"
     ]
   }
 }

@@ -8,7 +8,7 @@ export default (state, action) => {
         date: action.payload.date,
         explanation: action.payload.explanation,
         hdurl: action.payload.hdurl,
-        mediaType: action.payload.mediaType,
+        mediaType: action.payload.media_type,
         title: action.payload.title,
         url: action.payload.url,
         copyright: action.payload.copyright,
