@@ -13,15 +13,21 @@ import {
 
 const ImageState = props => {
   const router = useRouter();
+  let tryGetCurrent;
+  try {
+    tryGetCurrent =
+      typeof window !== 'undefined' &&
+      JSON.parse(localStorage.getItem('current'));
+  } catch (err) {
+    tryGetCurrent = null;
+  }
   const initialState = {
     query:
       process.env.NODE_ENV === 'development'
         ? router.asPath.slice(14) || 'Supernova'
         : router.asPath.slice(15) || 'Supernova',
     results: [],
-    current:
-      typeof window !== 'undefined' &&
-      JSON.parse(localStorage.getItem('current')),
+    current: tryGetCurrent,
     currentManifest: null,
     loading: false,
     error: { status: false, message: '' },

@@ -14,7 +14,7 @@ import {
   Box,
   Zoom,
 } from '@material-ui/core';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -80,25 +80,23 @@ const Results = ({ results }) => {
       },
     },
   };
-  // const beginningContainer = {
-  //   hidden: { opacity: 1, scale: 1 },
-  //   visible: {
-  //     opacity: 1,
-  //     scale: 1,
-  //     transition: {
-  //       when: 'beforeChildren',
-  //       staggerChildren: 0.05,
-  //     },
-  //   },
-  // };
 
   const framerItem = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { opacity: 0 },
     visible: {
-      y: 0,
       opacity: 1,
     },
   };
+
+  if (results.length === 0) {
+    return (
+      <Grid container spacing={2} justify='center'>
+        <Grid item>
+          <Type>No results... Please search again</Type>
+        </Grid>
+      </Grid>
+    );
+  }
 
   return (
     <>

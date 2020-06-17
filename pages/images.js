@@ -37,36 +37,22 @@ const index = () => {
     if (router.query.query !== undefined && router.query.query !== query) {
       setQuery(router.query.query);
       getResults(router.query.query);
-      console.log('setQuery & getResults ran with:' + router.query.query);
     }
   }, [router.query.query]);
 
   return (
-    <motion.div
-      // initial={{ opacity: 0, y: 200 }}
-      // animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-    >
+    <motion.div initial={{ opacity: 0, y: 200 }} animate={{ opacity: 1, y: 0 }}>
       <Grid container justify='center'>
         <Grid item xs={12} sm={7}>
           <Search />
         </Grid>
         {loading ? (
-          // <Box display='flex' justifyContent='center' width={300}>
-          // <Box className={classes.progress}>
-          //   <LinearProgress />
-          // </Box>
           <Grid item xs={12} sm={7}>
             <Box pt={0.5}>
               <LinearProgress />
             </Box>
           </Grid>
         ) : (
-          // <Grid item xs={12} sm={7}>
-          //   <Box pt={1}>
-          //     <LinearProgress className={classes.progress} />
-          //   </Box>
-          // </Grid>
           <Grid item xs={12}>
             <Box pt={2}>
               <Results results={results} />

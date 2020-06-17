@@ -22,17 +22,7 @@ const Index = () => {
   const classes = useStyles();
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      // initial={{ opacity: 0, y: 200 }}
-      // animate={{ opacity: 1, y: 0 }}
-      // exit={{ opacity: 0 }}
-
-      // animate={{ opacity: 1, y: 0 }}
-      // exit={{ opacity: 0 }}
-    >
+    <motion.div initial={{ opacity: 0, y: 200 }} animate={{ opacity: 1, y: 0 }}>
       <Box>
         <Container maxWidth='xs' className={classes.root}>
           <Box py={{ xs: 1 }}>

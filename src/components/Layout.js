@@ -279,13 +279,11 @@ const Layout = props => {
                 component={Link}
                 naked
                 href='/'
-                scroll={false}
               >
                 <Grid item container direction='column' alignItems='center'>
                   <HomeRoundedIcon color='primary' fontSize='large' />
                   <Type
                     variant='body2'
-                    // color={currentIndex === 0 ? 'white' : 'primary.light'}
                     color={router.pathname === '/' ? 'white' : 'primary.light'}
                   >
                     Home
@@ -297,14 +295,12 @@ const Layout = props => {
                 component={Link}
                 naked
                 href='/images'
-                scroll={false}
               >
                 <Grid item container direction='column' alignItems='center'>
                   <ImageSearchRoundedIcon color='primary' fontSize='large' />
                   <Type
                     variant='body2'
                     color={
-                      // currentIndex === 1 ? 'white' : 'primary.light'
                       regex.test(router.pathname) ? 'white' : 'primary.light'
                     }
                   >
