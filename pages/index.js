@@ -1,6 +1,13 @@
 import { Type } from '../src/components/Type';
 import Link from '../src/components/Link';
-import { Container, Box, Button, makeStyles, Grid } from '@material-ui/core';
+import {
+  Container,
+  Box,
+  Button,
+  makeStyles,
+  Grid,
+  Hidden,
+} from '@material-ui/core';
 import { motion } from 'framer-motion';
 
 const useStyles = makeStyles(theme => ({
@@ -14,7 +21,9 @@ const useStyles = makeStyles(theme => ({
   heroImg: {
     width: '15rem',
     height: 'auto',
-    '@media (min-width: 350px)': {},
+    '@media (min-width: 960px)': {
+      // width: '23rem',
+    },
   },
 }));
 
@@ -24,7 +33,7 @@ const Index = () => {
   return (
     <motion.div initial={{ opacity: 0, y: 200 }} animate={{ opacity: 1, y: 0 }}>
       <Box>
-        <Container maxWidth='xs' className={classes.root}>
+        <Container maxWidth='sm' className={classes.root}>
           <Box py={{ xs: 1 }}>
             <Grid container spacing={2} justify='center' alignItems='center'>
               <Grid item container xs={12} justify='center' alignItems='center'>
@@ -90,24 +99,20 @@ const Index = () => {
                   </Button>
                 </Box>
               </Grid>
+            </Grid>
+            {/* <Grid container>
               <Grid item>
                 <Type>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam
-                  facilis est obcaecati nobis aperiam atque suscipit. Magni
-                  dolor, officia dignissimos repellendus unde iusto inventore
-                  voluptatem reiciendis. Accusamus, voluptates. Fugit,
-                  perspiciatis. Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Nam facilis est obcaecati nobis aperiam
-                  atque suscipit. Magni dolor, officia dignissimos repellendus
-                  unde iusto inventore voluptatem reiciendis. Accusamus,
-                  voluptates. Fugit, perspiciatis. Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Nam facilis est obcaecati nobis
-                  aperiam atque suscipit. Magni dolor, officia dignissimos
-                  repellendus unde iusto inventore voluptatem reiciendis.
-                  Accusamus, voluptates. Fugit, perspiciatis.
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Distinctio quam, ea consequuntur reiciendis dolores provident
+                  natus pariatur delectus maxime quidem asperiores vitae sunt
+                  iure perspiciatis voluptatum porro ab harum dignissimos ad
+                  ipsa, rem dolore quae consectetur. Enim explicabo officiis ab
+                  tempora, non distinctio dicta eius. Nisi aliquam pariatur
+                  corrupti velit.
                 </Type>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
         </Container>
       </Box>
