@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import Layout from '../src/components/Layout';
 import ImageState from '../src/context/images/ImageState';
+import ApodState from '../src/context/apod/ApodState';
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -27,7 +28,9 @@ export default function MyApp(props) {
         <CssBaseline />
         <Layout>
           <ImageState>
-            <Component {...pageProps} />
+            <ApodState>
+              <Component {...pageProps} />
+            </ApodState>
           </ImageState>
         </Layout>
       </ThemeProvider>
