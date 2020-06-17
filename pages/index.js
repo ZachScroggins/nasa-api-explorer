@@ -38,66 +38,96 @@ const Index = () => {
             <Grid container spacing={2} justify='center' alignItems='center'>
               <Grid item container xs={12} justify='center' alignItems='center'>
                 <Grid item>
-                  <img
-                    src='/rocket-orig.svg'
-                    alt='rocket'
-                    className={classes.heroImg}
-                  />
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                  >
+                    <img
+                      src='/rocket-orig.svg'
+                      alt='rocket'
+                      className={classes.heroImg}
+                    />
+                  </motion.div>
                 </Grid>
               </Grid>
               <Grid item xs={12}>
-                <Type
-                  variant='h2'
-                  align='center'
-                  fontWeight='fontWeightBold'
-                  // fontSize='2.8rem'
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 3 }}
                 >
-                  Explore NASA Imagery and Data
-                </Type>
+                  <Type
+                    variant='h2'
+                    align='center'
+                    fontWeight='fontWeightBold'
+                    // fontSize='2.8rem'
+                  >
+                    Explore NASA Imagery and Data
+                  </Type>
+                </motion.div>
               </Grid>
               <Grid item xs={12}>
-                <Type
-                  variant='h4'
-                  align='center'
-                  fontWeight='fontWeightLight'
-                  color='text.secondary'
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 4 }}
                 >
-                  A free and open source project, built with REST APIs from{' '}
-                  <Box fontWeight='fontWeightLight' component='span'>
-                    <Link
-                      href='https://api.nasa.gov'
-                      color='textSecondary'
-                      className={classes.nasaLink}
-                      underline='hover'
-                    >
-                      api.nasa.gov
-                    </Link>
-                  </Box>
-                </Type>
+                  <Type
+                    variant='h4'
+                    align='center'
+                    fontWeight='fontWeightLight'
+                    color='text.secondary'
+                  >
+                    A free and open source project, built with REST APIs from{' '}
+                    <Box fontWeight='fontWeightLight' component='span'>
+                      <Link
+                        href='https://api.nasa.gov'
+                        color='textSecondary'
+                        className={classes.nasaLink}
+                        underline='hover'
+                      >
+                        api.nasa.gov
+                      </Link>
+                    </Box>
+                  </Type>
+                </motion.div>
               </Grid>
               <Grid item xs={12}>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  fullWidth
-                  size='large'
-                  component={Link}
-                  href='/images'
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 4 }}
                 >
-                  Start Exploring
-                </Button>
-              </Grid>
-              <Grid item xs={12}>
-                <Box color='primary.light'>
                   <Button
-                    variant='outlined'
-                    color='inherit'
+                    variant='contained'
+                    color='primary'
                     fullWidth
                     size='large'
+                    component={Link}
+                    href='/images'
                   >
-                    Learn More
+                    Start Exploring
                   </Button>
-                </Box>
+                </motion.div>
+              </Grid>
+              <Grid item xs={12}>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 4 }}
+                >
+                  <Box color='primary.light'>
+                    <Button
+                      variant='outlined'
+                      color='inherit'
+                      fullWidth
+                      size='large'
+                    >
+                      Learn More
+                    </Button>
+                  </Box>
+                </motion.div>
               </Grid>
             </Grid>
             {/* <Grid container>

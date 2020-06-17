@@ -11,6 +11,7 @@ import ImageSearchRoundedIcon from '@material-ui/icons/ImageSearchRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded';
+import WallpaperRoundedIcon from '@material-ui/icons/WallpaperRounded';
 import {
   AppBar,
   CssBaseline,
@@ -107,8 +108,12 @@ function HideOnScroll(props) {
   );
 }
 
-const titles = ['NASA API Explorer', 'NASA Image and Video Library'];
-const routes = ['/', '/images'];
+const titles = [
+  'NASA API Explorer',
+  'NASA Image and Video Library',
+  'Astronomy Picture of the Day',
+];
+const routes = ['/', '/images', '/apod'];
 const regex = RegExp(/^\/image/, 'i');
 
 const Layout = props => {
@@ -129,6 +134,8 @@ const Layout = props => {
     } else if (regex.test(router.pathname)) {
       // } else if (router.pathname === '/images') {
       setCurrentIndex(1);
+    } else if (router.pathname === '/apod') {
+      setCurrentIndex(2);
     }
   }, [router.pathname]);
 
@@ -201,6 +208,20 @@ const Layout = props => {
                 color={regex.test(router.pathname) ? 'white' : 'primary.light'}
               >
                 NASA Image and Video Library
+              </Type>
+            </ListItemText>
+          </ListItem>
+          <ListItem button component={Link} naked href='/apod'>
+            <ListItemIcon>
+              <WallpaperRoundedIcon
+                color={router.pathname === '/apod' ? 'inherit' : 'primary'}
+              />
+            </ListItemIcon>
+            <ListItemText disableTypography>
+              <Type
+                color={router.pathname === '/apod' ? 'white' : 'primary.light'}
+              >
+                Astronomy Picture of the Day
               </Type>
             </ListItemText>
           </ListItem>
@@ -305,6 +326,24 @@ const Layout = props => {
                     }
                   >
                     Images
+                  </Type>
+                </Grid>
+              </Button>
+              <Button
+                className={classes.miniDrawerButton}
+                component={Link}
+                naked
+                href='/apod'
+              >
+                <Grid item container direction='column' alignItems='center'>
+                  <WallpaperRoundedIcon color='primary' fontSize='large' />
+                  <Type
+                    variant='body2'
+                    color={
+                      router.pathname === '/apod' ? 'white' : 'primary.light'
+                    }
+                  >
+                    APOD
                   </Type>
                 </Grid>
               </Button>
