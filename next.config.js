@@ -6,7 +6,6 @@ module.exports = (phase, { defaultConfig }) => {
       exportTrailingSlash: false,
       env: {
         API_KEY: 'TMPIAgk3w2dmusy4we1dVN4RXyUjK68YJrZEHsFy',
-        PIXABAY_API_KEY: '17085228-31945392bfa96a62f3ad936e4',
       },
     };
   }
@@ -15,7 +14,6 @@ module.exports = (phase, { defaultConfig }) => {
     exportTrailingSlash: true,
     env: {
       API_KEY: 'TMPIAgk3w2dmusy4we1dVN4RXyUjK68YJrZEHsFy',
-      PIXABAY_API_KEY: '17085228-31945392bfa96a62f3ad936e4',
     },
   };
 };

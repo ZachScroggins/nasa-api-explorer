@@ -14,16 +14,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     padding: 0,
   },
-  nasaLink: {
-    // fontWeight: '300',
-    // textDecoration: 'underline',
-  },
   heroImg: {
     width: '15rem',
     height: 'auto',
-    '@media (min-width: 960px)': {
-      // width: '23rem',
-    },
   },
 }));
 
@@ -84,7 +77,6 @@ const Index = () => {
                       <Link
                         href='https://api.nasa.gov'
                         color='textSecondary'
-                        className={classes.nasaLink}
                         underline='hover'
                       >
                         api.nasa.gov
@@ -105,6 +97,7 @@ const Index = () => {
                     fullWidth
                     size='large'
                     component={Link}
+                    naked
                     href='/images'
                   >
                     Start Exploring
@@ -123,6 +116,9 @@ const Index = () => {
                       color='inherit'
                       fullWidth
                       size='large'
+                      component={Link}
+                      naked
+                      href='#description'
                     >
                       Learn More
                     </Button>
@@ -130,9 +126,9 @@ const Index = () => {
                 </motion.div>
               </Grid>
             </Grid>
-            {/* <Grid container>
-              <Grid item>
-                <Type>
+            <Grid container>
+              {/* <Grid item>
+                <Type variant='h1' id='description'>
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Distinctio quam, ea consequuntur reiciendis dolores provident
                   natus pariatur delectus maxime quidem asperiores vitae sunt
@@ -141,8 +137,8 @@ const Index = () => {
                   tempora, non distinctio dicta eius. Nisi aliquam pariatur
                   corrupti velit.
                 </Type>
-              </Grid>
-            </Grid> */}
+              </Grid> */}
+            </Grid>
           </Box>
         </Container>
       </Box>

@@ -204,7 +204,6 @@ const apod = () => {
           open={open}
           onClose={handleClose}
           aria-label='image-modal'
-          closeAfterTransition
         >
           <motion.div
             initial={{ opacity: 0, scale: 0, x: '-50%', y: '-50%' }}

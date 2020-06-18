@@ -275,9 +275,11 @@ const Layout = props => {
               >
                 <MenuRoundedIcon />
               </IconButton>
-              <Typography variant='h5' component='h1' noWrap>
-                {appBarTitle}
-              </Typography>
+              <Box width='100vw' clone>
+                <Typography variant='h4' component='h1' noWrap align='center'>
+                  {appBarTitle}
+                </Typography>
+              </Box>
             </Toolbar>
           </AppBar>
           <Drawer
@@ -417,13 +419,12 @@ const Layout = props => {
               color='secondary'
               className={classes.appBarTop}
             >
-              <Toolbar
-                className={classes.topToolBar}
-                style={{ paddingLeft: '1.5rem' }}
-              >
-                <Typography variant='h5' component='h1' noWrap>
-                  {appBarTitle}
-                </Typography>
+              <Toolbar>
+                <Box width='100vw' clone>
+                  <Typography variant='h5' component='h1' noWrap align='center'>
+                    {appBarTitle}
+                  </Typography>
+                </Box>
               </Toolbar>
             </AppBar>
           </HideOnScroll>

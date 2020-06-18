@@ -21,6 +21,20 @@ let theme = createMuiTheme({
       fontWeight: 400,
     },
   },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        html: {
+          scrollBehavior: 'smooth',
+        },
+        body: {
+          '@media (min-width: 960px)': {
+            overscrollBehavior: 'none',
+          },
+        },
+      },
+    },
+  },
 });
 
 theme = responsiveFontSizes(theme);

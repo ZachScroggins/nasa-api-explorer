@@ -111,7 +111,6 @@ const imageItem = () => {
                 maxHeight={{ md: '70vh' }}
               >
                 <Card>
-                  {/* <CardActionArea> */}
                   <CardMedia
                     className={classes.img}
                     component='img'
@@ -119,7 +118,6 @@ const imageItem = () => {
                     title={current.data[0].title}
                     onClick={handleOpen}
                   />
-                  {/* </CardActionArea> */}
                   <CardContent className={classes.cardContent}>
                     <motion.div
                       initial={{ opacity: 0, y: -20 }}
@@ -258,7 +256,6 @@ const imageItem = () => {
             open={open}
             onClose={handleClose}
             aria-label='image-modal'
-            closeAfterTransition
           >
             <motion.div
               initial={{ opacity: 0, scale: 0, x: '-50%', y: '-50%' }}
