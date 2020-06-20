@@ -26,7 +26,8 @@
       "./pages",
       "./firebase",
       ".env.local",
-      "./public"
+      "./public",
+      ".vscode"
     ]
   }
 }

@@ -12,6 +12,7 @@ export default (state, action) => {
         title: action.payload.title,
         url: action.payload.url,
         copyright: action.payload.copyright,
+        statusCode: action.payload.code,
       };
     case SET_LOADING:
       return {

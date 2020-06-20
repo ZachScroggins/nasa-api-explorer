@@ -24,9 +24,6 @@ let theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
-        html: {
-          scrollBehavior: 'smooth',
-        },
         body: {
           '@media (min-width: 960px)': {
             overscrollBehavior: 'none',

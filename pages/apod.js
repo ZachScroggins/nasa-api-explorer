@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import ApodContext from '../src/context/apod/apodContext';
 import { Type } from '../src/components/Type';
 import { motion } from 'framer-motion';
@@ -15,11 +14,12 @@ import {
   Modal,
   makeStyles,
   CircularProgress,
+  LinearProgress,
 } from '@material-ui/core';
-import { useEffect } from 'react';
 
 const useStyles = makeStyles(theme => ({
   img: {
+    maxHeight: '70vh',
     '&:hover': {
       cursor: 'pointer',
     },
@@ -44,20 +44,72 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
     },
   },
-  progress: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    // marginTop: -50,
-    // marginLeft: -100,
-  },
 }));
+
+const containerVariant = {
+  hidden: {
+    opacity: 0,
+    y: 200,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const imgVariant = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 2,
+    },
+  },
+};
+
+const modalLoaderVariant = {
+  visible: {
+    opacity: 1,
+    x: '-50%',
+    y: '-50%',
+  },
+  hidden: {
+    opacity: 0,
+  },
+};
+
+const modalVariant = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    x: '-50%',
+    y: '-50%',
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      delay: 0.5,
+    },
+  },
+};
+
+const errorVariant = {
+  hidden: {
+    y: -200,
+  },
+  visible: {
+    y: 0,
+  },
+};
 
 const apod = () => {
   const classes = useStyles();
   const matches = useMediaQuery('(min-width:960px)');
   const [open, setOpen] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [modalLoaded, setModalLoaded] = useState(false);
   const apodContext = useContext(ApodContext);
   const {
     date,
@@ -68,7 +120,14 @@ const apod = () => {
     url,
     copyright,
     loading,
+    statusCode,
   } = apodContext;
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scroll(0, 0);
+    }
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);
@@ -80,17 +139,39 @@ const apod = () => {
 
   if (loading) {
     return (
-      <div className={classes.progress}>
-        <CircularProgress size={100} />
-      </div>
+      <>
+        <LinearProgress />
+      </>
+    );
+  } else if (statusCode === 500) {
+    return (
+      <Grid container justify='center' alignContent='center'>
+        <Grid item>
+          <motion.div
+            variants={errorVariant}
+            initial='hidden'
+            animate='visible'
+          >
+            <Type variant='h2' align='center'>
+              Sorry, there was an error with NASA's servers...
+            </Type>
+          </motion.div>
+        </Grid>
+      </Grid>
     );
   } else if (copyright) {
     return (
       <Grid container justify='center' alignContent='center'>
         <Grid item>
-          <Type variant='h2' align='center'>
-            Sorry, today's image is copyrighted...
-          </Type>
+          <motion.div
+            variants={errorVariant}
+            initial='hidden'
+            animate='visible'
+          >
+            <Type variant='h2' align='center'>
+              Sorry, today's image is copyrighted...
+            </Type>
+          </motion.div>
         </Grid>
       </Grid>
     );
@@ -99,8 +180,9 @@ const apod = () => {
       <>
         <Container maxWidth='lg'>
           <motion.div
-            initial={{ opacity: 0, y: 200 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={containerVariant}
+            initial='hidden'
+            animate={loaded && 'visible'}
           >
             <Grid container justify='center' alignContent='center'>
               <Grid item>
@@ -118,15 +200,21 @@ const apod = () => {
                         title={title}
                         component='iframe'
                         className={classes.vid}
+                        onLoad={() => setLoaded(true)}
                       />
                     </motion.div>
                   ) : (
+                    // <motion.div
+                    //   initial={{ opacity: 0 }}
+                    //   animate={{ opacity: 1 }}
+                    //   transition={{
+                    //     duration: 2,
+                    //   }}
+                    // >
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{
-                        duration: 2,
-                      }}
+                      // initial='hidden'
+                      // animate={loaded && 'visible'}
+                      variants={imgVariant}
                     >
                       <CardMedia
                         src={url}
@@ -134,6 +222,7 @@ const apod = () => {
                         component='img'
                         className={classes.img}
                         onClick={handleOpen}
+                        onLoad={() => setLoaded(true)}
                       />
                     </motion.div>
                   )}
@@ -205,14 +294,29 @@ const apod = () => {
           onClose={handleClose}
           aria-label='image-modal'
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0, x: '-50%', y: '-50%' }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className={classes.modalAnimation}
-          >
-            <img src={hdurl} title={title} className={classes.modalImg} />
-          </motion.div>
+          <>
+            <motion.div
+              variants={modalLoaderVariant}
+              initial='visible'
+              animate={!modalLoaded && 'hidden'}
+              className={classes.modalAnimation}
+            >
+              <CircularProgress size={150} />
+            </motion.div>
+            <motion.div
+              initial='hidden'
+              animate={modalLoaded && 'visible'}
+              variants={modalVariant}
+              className={classes.modalAnimation}
+            >
+              <img
+                src={hdurl}
+                title={title}
+                className={classes.modalImg}
+                onLoad={() => setModalLoaded(true)}
+              />
+            </motion.div>
+          </>
         </Modal>
       </>
     );

@@ -21,6 +21,8 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "react/jsx-no-duplicate-props": "off"
+    "react/jsx-no-duplicate-props": "off",
+    "no-unused-vars": "off",
+    "react/no-unescaped-entities": "off"
   }
 }

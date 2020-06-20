@@ -1,14 +1,9 @@
 import { Type } from '../src/components/Type';
 import Link from '../src/components/Link';
-import {
-  Container,
-  Box,
-  Button,
-  makeStyles,
-  Grid,
-  Hidden,
-} from '@material-ui/core';
+import RocketSvg from '../src/components/RocketSvg';
+import { Container, Box, Button, makeStyles, Grid } from '@material-ui/core';
 import { motion } from 'framer-motion';
+import { useRef } from 'react';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,129 +15,157 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const buttonVariant = {
+  hidden: {
+    scale: 0,
+    y: -40,
+  },
+  visible: {
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+  whileHover: { scale: 1.03 },
+};
+
 const Index = () => {
   const classes = useStyles();
+  const scrollRef = useRef(null);
+
+  const handleLearnMore = () => {
+    scrollRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center', // or 'start'
+    });
+  };
 
   return (
-    <motion.div initial={{ opacity: 0, y: 200 }} animate={{ opacity: 1, y: 0 }}>
-      <Box>
-        <Container maxWidth='sm' className={classes.root}>
-          <Box py={{ xs: 1 }}>
-            <Grid container spacing={2} justify='center' alignItems='center'>
-              <Grid item container xs={12} justify='center' alignItems='center'>
-                <Grid item>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
-                  >
-                    <img
-                      src='/rocket-orig.svg'
-                      alt='rocket'
-                      className={classes.heroImg}
-                    />
-                  </motion.div>
-                </Grid>
+    <Box>
+      <Container maxWidth='sm' className={classes.root}>
+        <Box py={{ xs: 1 }} mb={50}>
+          <Grid container spacing={2} justify='center' alignItems='center'>
+            <Grid item container xs={12} justify='center' alignItems='center'>
+              <Grid item>
+                <RocketSvg />
               </Grid>
-              <Grid item xs={12}>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 3 }}
+            </Grid>
+            <Grid item xs={12}>
+              <Type variant='h2' align='center' fontWeight='fontWeightBold'>
+                Explore NASA Imagery and Data
+              </Type>
+            </Grid>
+            <Grid item xs={12}>
+              <Type
+                variant='h4'
+                align='center'
+                fontWeight='fontWeightLight'
+                color='text.secondary'
+              >
+                A free and open source project, built with REST APIs from{' '}
+                <Box fontWeight='fontWeightLight' component='span'>
+                  <Link
+                    href='https://api.nasa.gov'
+                    color='textSecondary'
+                    underline='hover'
+                  >
+                    api.nasa.gov
+                  </Link>
+                </Box>
+              </Type>
+            </Grid>
+            <Grid item xs={12}>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.1,
+                }}
+              >
+                <Button
+                  variant='contained'
+                  color='primary'
+                  fullWidth
+                  size='large'
+                  component={Link}
+                  naked
+                  href='/images'
                 >
-                  <Type
-                    variant='h2'
-                    align='center'
-                    fontWeight='fontWeightBold'
-                    // fontSize='2.8rem'
-                  >
-                    Explore NASA Imagery and Data
-                  </Type>
-                </motion.div>
-              </Grid>
-              <Grid item xs={12}>
+                  Start Exploring
+                </Button>
+              </motion.div>
+            </Grid>
+            <Grid item xs={12}>
+              <Box color='primary.light'>
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 4 }}
-                >
-                  <Type
-                    variant='h4'
-                    align='center'
-                    fontWeight='fontWeightLight'
-                    color='text.secondary'
-                  >
-                    A free and open source project, built with REST APIs from{' '}
-                    <Box fontWeight='fontWeightLight' component='span'>
-                      <Link
-                        href='https://api.nasa.gov'
-                        color='textSecondary'
-                        underline='hover'
-                      >
-                        api.nasa.gov
-                      </Link>
-                    </Box>
-                  </Type>
-                </motion.div>
-              </Grid>
-              <Grid item xs={12}>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 4 }}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: 0.3,
+                  }}
                 >
                   <Button
-                    variant='contained'
-                    color='primary'
+                    variant='outlined'
+                    color='inherit'
                     fullWidth
                     size='large'
-                    component={Link}
-                    naked
-                    href='/images'
+                    onClick={handleLearnMore}
                   >
-                    Start Exploring
+                    Learn More
                   </Button>
                 </motion.div>
-              </Grid>
-              <Grid item xs={12}>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 4 }}
-                >
-                  <Box color='primary.light'>
-                    <Button
-                      variant='outlined'
-                      color='inherit'
-                      fullWidth
-                      size='large'
-                      component={Link}
-                      naked
-                      href='#description'
-                    >
-                      Learn More
-                    </Button>
-                  </Box>
-                </motion.div>
-              </Grid>
+              </Box>
             </Grid>
-            <Grid container>
-              {/* <Grid item>
-                <Type variant='h1' id='description'>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Distinctio quam, ea consequuntur reiciendis dolores provident
-                  natus pariatur delectus maxime quidem asperiores vitae sunt
-                  iure perspiciatis voluptatum porro ab harum dignissimos ad
-                  ipsa, rem dolore quae consectetur. Enim explicabo officiis ab
-                  tempora, non distinctio dicta eius. Nisi aliquam pariatur
-                  corrupti velit.
-                </Type>
-              </Grid> */}
-            </Grid>
-          </Box>
-        </Container>
-      </Box>
-    </motion.div>
+          </Grid>
+        </Box>
+        <Grid container>
+          <Grid item>
+            <Type variant='h4' id='description'>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Distinctio quam, ea consequuntur reiciendis dolores provident
+              natus pariatur delectus maxime quidem asperiores vitae sunt iure
+              perspiciatis voluptatum porro ab harum dignissimos ad ipsa, rem
+              dolore quae consectetur. Enim explicabo officiis ab tempora, non
+              distinctio dicta eius. Nisi aliquam pariatur corrupti velit.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Distinctio quam, ea consequuntur reiciendis dolores provident
+              natus pariatur delectus maxime quidem asperiores vitae sunt iure
+              perspiciatis voluptatum porro ab harum dignissimos ad ipsa, rem
+              dolore quae consectetur. Enim explicabo officiis ab tempora, non
+              distinctio dicta eius. Nisi aliquam pariatur corrupti velit.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Distinctio quam, ea consequuntur reiciendis dolores provident
+              natus pariatur delectus maxime quidem asperiores vitae sunt iure
+              perspiciatis voluptatum porro ab harum dignissimos ad ipsa, rem
+              dolore quae consectetur. Enim explicabo officiis ab tempora, non
+              distinctio dicta eius. Nisi aliquam pariatur corrupti velit.
+            </Type>
+            <p ref={scrollRef}>eyy</p>
+            <Type variant='h4'>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Distinctio quam, ea consequuntur reiciendis dolores provident
+              natus pariatur delectus maxime quidem asperiores vitae sunt iure
+              perspiciatis voluptatum porro ab harum dignissimos ad ipsa, rem
+              dolore quae consectetur. Enim explicabo officiis ab tempora, non
+              distinctio dicta eius. Nisi aliquam pariatur corrupti velit.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Distinctio quam, ea consequuntur reiciendis dolores provident
+              natus pariatur delectus maxime quidem asperiores vitae sunt iure
+              perspiciatis voluptatum porro ab harum dignissimos ad ipsa, rem
+              dolore quae consectetur. Enim explicabo officiis ab tempora, non
+              distinctio dicta eius. Nisi aliquam pariatur corrupti velit.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Distinctio quam, ea consequuntur reiciendis dolores provident
+              natus pariatur delectus maxime quidem asperiores vitae sunt iure
+              perspiciatis voluptatum porro ab harum dignissimos ad ipsa, rem
+              dolore quae consectetur. Enim explicabo officiis ab tempora, non
+              distinctio dicta eius. Nisi aliquam pariatur corrupti velit.
+            </Type>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 

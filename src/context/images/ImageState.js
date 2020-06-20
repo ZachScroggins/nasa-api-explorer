@@ -36,7 +36,7 @@ const ImageState = props => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      getResults(initialState.query);
+      // getResults(initialState.query);
     }
   }, []);
 
@@ -70,7 +70,11 @@ const ImageState = props => {
     dispatch({ type: SET_CURRENT, payload: currentItem });
 
     if (typeof window !== 'undefined') {
-      localStorage.setItem('current', JSON.stringify(currentItem));
+      try {
+        localStorage.setItem('current', JSON.stringify(currentItem));
+      } catch (err) {
+        return;
+      }
     }
   };
 

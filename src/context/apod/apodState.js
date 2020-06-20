@@ -13,6 +13,7 @@ const ApodState = props => {
     url: '',
     copyright: '',
     loading: true,
+    statusCode: undefined,
   };
   const [state, dispatch] = useReducer(ApodReducer, initialState);
 
@@ -24,10 +25,12 @@ const ApodState = props => {
 
   const getApod = async () => {
     let res = await fetch(
-      `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`
+      `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}&date=2002-03-04` // remove date
     );
 
     let data = await res.json();
+
+    console.log(data.code === 500);
 
     setLoading();
 
@@ -48,6 +51,7 @@ const ApodState = props => {
         title: state.title,
         url: state.url,
         copyright: state.copyright,
+        statusCode: state.statusCode,
         getApod,
         setLoading,
       }}

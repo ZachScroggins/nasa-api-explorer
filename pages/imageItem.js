@@ -5,11 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Box,
   Grid,
-  Paper,
   Card,
   CardContent,
   CardMedia,
-  CardActionArea,
   Chip,
   Divider,
   Modal,
@@ -24,6 +22,9 @@ const useStyles = makeStyles(theme => ({
   },
   cardContent: {
     overflow: 'auto',
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '50vw',
+    },
   },
   chipRoot: {
     display: 'inline',
@@ -107,7 +108,7 @@ const imageItem = () => {
               <Box
                 clone
                 display={{ xs: 'block', md: 'flex' }}
-                maxWidth={{ xs: '90vw', xl: '75%' }}
+                maxWidth={{ xs: '90vw', xl: '70vw' }}
                 maxHeight={{ md: '70vh' }}
               >
                 <Card>

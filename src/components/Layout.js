@@ -127,6 +127,7 @@ const Layout = props => {
   const anchorRef = useRef(null);
   const [appBarTitle, setAppBarTitle] = useState(titles[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  let matchesHomePage = currentIndex === 0 ? true : false;
 
   useEffect(() => {
     if (router.pathname === '/') {
@@ -302,6 +303,7 @@ const Layout = props => {
                 component={Link}
                 naked
                 href='/'
+                scroll={false}
               >
                 <Grid item container direction='column' alignItems='center'>
                   <HomeRoundedIcon color='primary' fontSize='large' />
@@ -318,6 +320,7 @@ const Layout = props => {
                 component={Link}
                 naked
                 href='/images'
+                scroll={false}
               >
                 <Grid item container direction='column' alignItems='center'>
                   <ImageSearchRoundedIcon color='primary' fontSize='large' />
@@ -416,12 +419,17 @@ const Layout = props => {
           <HideOnScroll {...props} direction='down'>
             <AppBar
               position='fixed'
-              color='secondary'
+              color='primary'
               className={classes.appBarTop}
             >
               <Toolbar>
                 <Box width='100vw' clone>
-                  <Typography variant='h5' component='h1' noWrap align='center'>
+                  <Typography
+                    variant={matchesHomePage ? 'h4' : 'h5'}
+                    component='h1'
+                    noWrap
+                    align='center'
+                  >
                     {appBarTitle}
                   </Typography>
                 </Box>
