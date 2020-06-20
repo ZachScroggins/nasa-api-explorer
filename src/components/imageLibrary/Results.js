@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 import ImageContext from '../../context/images/imageContext';
 import { Type } from '../Type';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,9 +13,7 @@ import {
   Grid,
   Button,
   Box,
-  Zoom,
 } from '@material-ui/core';
-import { motion, useAnimation } from 'framer-motion';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,36 +55,35 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const beginningContainer = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+const framerItem = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+  },
+};
+
 const Results = ({ results }) => {
   const classes = useStyles();
   const router = useRouter();
   const imageContext = useContext(ImageContext);
   const { setCurrent } = imageContext;
-  let delay = 0;
   const resultsBeginning = results.slice(0, 20);
   const resultsEnd = results.slice(20);
 
   const handleClick = currentItem => {
     setCurrent(currentItem);
     router.push('/imageItem');
-  };
-
-  const beginningContainer = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        when: 'beforeChildren',
-        staggerChildren: 0.05,
-      },
-    },
-  };
-
-  const framerItem = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-    },
   };
 
   if (results.length === 0) {

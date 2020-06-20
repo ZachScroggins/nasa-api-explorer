@@ -204,18 +204,7 @@ const apod = () => {
                       />
                     </motion.div>
                   ) : (
-                    // <motion.div
-                    //   initial={{ opacity: 0 }}
-                    //   animate={{ opacity: 1 }}
-                    //   transition={{
-                    //     duration: 2,
-                    //   }}
-                    // >
-                    <motion.div
-                      // initial='hidden'
-                      // animate={loaded && 'visible'}
-                      variants={imgVariant}
-                    >
+                    <motion.div variants={imgVariant}>
                       <CardMedia
                         src={url}
                         title={title}

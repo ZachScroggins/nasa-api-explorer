@@ -77,56 +77,5 @@ const Search = () => {
     </>
   );
 };
-// const Search = () => {
-//   const imageContext = useContext(ImageContext);
-//   const { query, setQuery, getResults, error } = imageContext;
-//   const inputRef = useRef(null);
-
-//   const handleEnter = e => {
-//     if (e.keyCode === 13) {
-//       getResults(query);
-//       inputRef.current.blur();
-//     }
-//   };
-
-//   const handleReset = () => {
-//     setQuery('Supernova');
-//     getResults('Supernova');
-//   };
-
-//   return (
-//     <>
-//       <TextField
-//         label='Search'
-//         value={query}
-//         id='search'
-//         variant='outlined'
-//         fullWidth
-//         type='text'
-//         error={error.status}
-//         helperText={error.message}
-//         onChange={e => setQuery(e.target.value)}
-//         onKeyDown={handleEnter}
-//         inputProps={{ ref: inputRef }}
-//         InputProps={{
-//           endAdornment: (
-//             <InputAdornment position='end'>
-//               <IconButton aria-label='reset' edge='end' onClick={handleReset}>
-//                 <UndoRoundedIcon />
-//               </IconButton>
-//               <IconButton
-//                 aria-label='search'
-//                 edge='end'
-//                 onClick={() => getResults(query)}
-//               >
-//                 <SearchRoundedIcon />
-//               </IconButton>
-//             </InputAdornment>
-//           ),
-//         }}
-//       />
-//     </>
-//   );
-// };
 
 export default Search;

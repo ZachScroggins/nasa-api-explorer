@@ -36,7 +36,7 @@ const ImageState = props => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // getResults(initialState.query);
+      getResults(initialState.query);
     }
   }, []);
 

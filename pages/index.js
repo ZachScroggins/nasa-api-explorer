@@ -1,9 +1,9 @@
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Type } from '../src/components/Type';
 import Link from '../src/components/Link';
 import RocketSvg from '../src/components/RocketSvg';
 import { Container, Box, Button, makeStyles, Grid } from '@material-ui/core';
-import { motion } from 'framer-motion';
-import { useRef } from 'react';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,21 +14,6 @@ const useStyles = makeStyles(theme => ({
     height: 'auto',
   },
 }));
-
-const buttonVariant = {
-  hidden: {
-    scale: 0,
-    y: -40,
-  },
-  visible: {
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-  whileHover: { scale: 1.03 },
-};
 
 const Index = () => {
   const classes = useStyles();

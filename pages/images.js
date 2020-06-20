@@ -1,25 +1,22 @@
 import { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 import ImageContext from '../src/context/images/imageContext';
 import ScrollTop from '../src/components/ScrollTop';
 import Search from '../src/components/imageLibrary/Search';
 import Results from '../src/components/imageLibrary/Results';
-// import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, LinearProgress } from '@material-ui/core';
-import { motion } from 'framer-motion';
 
-// const useStyles = makeStyles(theme => ({
-//   progress: {
-//     position: 'absolute',
-//     top: 0,
-//     left: 0,
-//     width: '100%',
-//     zIndex: '10000',
-//   },
-// }));
+const searchVariant = {
+  hidden: {
+    y: -200,
+  },
+  visible: {
+    y: 0,
+  },
+};
 
 const index = () => {
-  // const classes = useStyles();
   const router = useRouter();
   const imageContext = useContext(ImageContext);
   const { getResults, results, loading, query, setQuery } = imageContext;
@@ -40,15 +37,6 @@ const index = () => {
     }
   }, [router.query.query]);
 
-  const searchXYZ = {
-    hidden: {
-      y: -200,
-    },
-    visible: {
-      y: 0,
-    },
-  };
-
   return (
     <>
       {loading ? (
@@ -60,7 +48,7 @@ const index = () => {
               <motion.div
                 initial='hidden'
                 animate='visible'
-                variants={searchXYZ}
+                variants={searchVariant}
               >
                 <Search />
               </motion.div>

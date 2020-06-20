@@ -25,7 +25,7 @@ const ApodState = props => {
 
   const getApod = async () => {
     let res = await fetch(
-      `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}&date=2002-03-04` // remove date
+      `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`
     );
 
     let data = await res.json();

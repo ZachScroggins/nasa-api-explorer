@@ -298,36 +298,6 @@ function RocketSvg() {
         opacity='0.1'
         transform='translate(-32.41 -42.89)'
       ></path>
-
-      {/* <motion.path
-        variants={pathVariant}
-        strokeDasharray='0 1'
-        fill='url(#f1ea05b4-3102-498a-ab85-05d222a08540)'
-        d='M457.27 692.54h-.65A11.54 11.54 0 01445.08 681v-52.86h23.73V681a11.54 11.54 0 01-11.54 11.54z'
-        // transform='translate(-32.41 -42.89)'
-      ></motion.path>
-      <motion.path
-        variants={pathVariant}
-        strokeDasharray='0 1'
-        fill='url(#a65a9945-4cea-45de-8969-2abf9ed9c602)'
-        d='M534.38 692.54h-.66A11.54 11.54 0 01522.19 681v-52.86h23.72V681a11.54 11.54 0 01-11.53 11.54z'
-        // transform='translate(-32.41 -42.89)'
-      ></motion.path>
-      <motion.path
-        variants={pathVariant}
-        strokeDasharray='0 1'
-        fill='url(#e83da883-60d3-4fc8-a1fc-2d21e84cc652)'
-        d='M582.67 692.54H582A11.54 11.54 0 01570.49 681v-52.86h23.72V681a11.54 11.54 0 01-11.54 11.54z'
-        // transform='translate(-32.41 -42.89)'
-      ></motion.path>
-      <motion.path
-        variants={pathVariant}
-        strokeDasharray='0 1'
-        fill='url(#e7319a41-e0d4-4be9-9de6-9ff87ed2cc66)'
-        d='M660.63 692.54H660A11.54 11.54 0 01648.44 681v-52.86h23.72V681a11.54 11.54 0 01-11.53 11.54z'
-        // transform='translate(-32.41 -42.89)'
-      ></motion.path> */}
-
       <path
         fill='#eee'
         d='M566.34 49.64a13.2 13.2 0 00-20.21 0c-7 7.88-13.4 18.29-19 29.37-16.46 32.84-24.82 70.12-24.82 107.92v418.61h107V185.25c0-36.73-8-73-23.64-105.1-7.35-15.23-14.12-24.7-19.33-30.51z'

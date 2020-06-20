@@ -1,4 +1,6 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 import ImageContext from '../src/context/images/imageContext';
 import { Type } from '../src/components/Type';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,9 +14,6 @@ import {
   Divider,
   Modal,
 } from '@material-ui/core';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
 
 const useStyles = makeStyles(theme => ({
   root: {
