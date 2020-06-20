@@ -29,7 +29,7 @@ const Index = () => {
   return (
     <Box>
       <Container maxWidth='sm' className={classes.root}>
-        <Box py={{ xs: 1 }} mb={50}>
+        <Box py={{ xs: 1 }} mb={45}>
           <Grid container spacing={2} justify='center' alignItems='center'>
             <Grid item container xs={12} justify='center' alignItems='center'>
               <Grid item>
