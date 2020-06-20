@@ -49,7 +49,11 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: '24px 0px 24px 0px',
+    [theme.breakpoints.up('md')]: {
+      padding: '24px 24px 24px 0px',
+    },
+    overflowX: 'hidden',
   },
   drawer: {
     width: drawerWidth,

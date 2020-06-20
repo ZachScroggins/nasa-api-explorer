@@ -44,6 +44,9 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
     },
   },
+  glow: {
+    textShadow: `2px 8px 30px ${theme.palette.primary.main}`,
+  },
 }));
 
 const containerVariant = {
@@ -152,7 +155,7 @@ const apod = () => {
             initial='hidden'
             animate='visible'
           >
-            <Type variant='h2' align='center'>
+            <Type variant='h2' align='center' className={classes.glow}>
               Sorry, there was an error with NASA's servers...
             </Type>
           </motion.div>
@@ -168,7 +171,7 @@ const apod = () => {
             initial='hidden'
             animate='visible'
           >
-            <Type variant='h2' align='center'>
+            <Type variant='h2' align='center' className={classes.glow}>
               Sorry, today's image is copyrighted...
             </Type>
           </motion.div>

@@ -30,8 +30,6 @@ const ApodState = props => {
 
     let data = await res.json();
 
-    console.log(data.code === 500);
-
     setLoading();
 
     dispatch({ type: GET_APOD, payload: data });

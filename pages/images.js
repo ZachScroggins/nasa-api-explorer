@@ -5,7 +5,7 @@ import ImageContext from '../src/context/images/imageContext';
 import ScrollTop from '../src/components/ScrollTop';
 import Search from '../src/components/imageLibrary/Search';
 import Results from '../src/components/imageLibrary/Results';
-import { Box, Grid, LinearProgress } from '@material-ui/core';
+import { Box, Grid, LinearProgress, Container } from '@material-ui/core';
 
 const searchVariant = {
   hidden: {
@@ -39,29 +39,31 @@ const index = () => {
 
   return (
     <>
-      {loading ? (
-        <LinearProgress />
-      ) : (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <Grid container justify='center'>
-            <Grid item xs={12} sm={7}>
-              <motion.div
-                initial='hidden'
-                animate='visible'
-                variants={searchVariant}
-              >
-                <Search />
-              </motion.div>
+      <Container maxWidth='xl'>
+        {loading ? (
+          <LinearProgress />
+        ) : (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <Grid container justify='center'>
+              <Grid item xs={12} sm={7}>
+                <motion.div
+                  initial='hidden'
+                  animate='visible'
+                  variants={searchVariant}
+                >
+                  <Search />
+                </motion.div>
+              </Grid>
+              <Grid item xs={12}>
+                <Box pt={2}>
+                  <Results results={results} />
+                </Box>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <Box pt={2}>
-                <Results results={results} />
-              </Box>
-            </Grid>
-          </Grid>
-          <ScrollTop />
-        </motion.div>
-      )}
+            <ScrollTop />
+          </motion.div>
+        )}
+      </Container>
     </>
   );
 };

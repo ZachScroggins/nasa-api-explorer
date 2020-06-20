@@ -53,23 +53,34 @@ const useStyles = makeStyles(theme => ({
   boxLink: {
     textDecoration: 'none',
   },
+  glow: {
+    textShadow: `2px 8px 15px ${theme.palette.primary.main}`,
+  },
 }));
 
-const beginningContainer = {
+const containerVariant = {
   hidden: { opacity: 1 },
   visible: {
     opacity: 1,
     transition: {
       when: 'beforeChildren',
-      staggerChildren: 0.05,
+      staggerChildren: 0.005,
     },
   },
 };
 
-const framerItem = {
+const resultVariant = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
+  },
+};
+
+const noResultVariant = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { delay: 0.5 },
   },
 };
 
@@ -78,8 +89,6 @@ const Results = ({ results }) => {
   const router = useRouter();
   const imageContext = useContext(ImageContext);
   const { setCurrent } = imageContext;
-  const resultsBeginning = results.slice(0, 20);
-  const resultsEnd = results.slice(20);
 
   const handleClick = currentItem => {
     setCurrent(currentItem);
@@ -90,7 +99,17 @@ const Results = ({ results }) => {
     return (
       <Grid container spacing={2} justify='center'>
         <Grid item>
-          <Type>No results... Please search again</Type>
+          <Box pt={2}>
+            <motion.div
+              variants={noResultVariant}
+              initial='hidden'
+              animate='visible'
+            >
+              <Type variant='h4' className={classes.glow}>
+                No results...
+              </Type>
+            </motion.div>
+          </Box>
         </Grid>
       </Grid>
     );
@@ -99,15 +118,18 @@ const Results = ({ results }) => {
   return (
     <>
       <motion.div
-        variants={beginningContainer}
+        variants={containerVariant}
         initial='hidden'
         animate='visible'
       >
         <Grid container spacing={2} justify='center'>
-          {resultsBeginning.map(item => {
+          {results.map(item => {
             return (
               <Grid item key={item.data[0].nasa_id}>
-                <motion.div variants={framerItem} whileHover={{ scale: 1.08 }}>
+                <motion.div
+                  variants={resultVariant}
+                  whileHover={{ scale: 1.08 }}
+                >
                   <Card
                     className={classes.root}
                     onClick={() => handleClick(item)}
@@ -149,48 +171,6 @@ const Results = ({ results }) => {
           })}
         </Grid>
       </motion.div>
-      <Grid container spacing={2} justify='center'>
-        {resultsEnd.map(item => {
-          return (
-            <Grid item key={item.data[0].nasa_id}>
-              <motion.div variants={framerItem} whileHover={{ scale: 1.08 }}>
-                <Card
-                  className={classes.root}
-                  onClick={() => handleClick(item)}
-                >
-                  <CardHeader
-                    className={classes.cardHeader}
-                    avatar={
-                      <Avatar aria-label='center' className={classes.avatar}>
-                        <Type variant='button' color='primary.contrastText'>
-                          {item.data[0].center === 'Select'
-                            ? ''
-                            : item.data[0].center}
-                        </Type>
-                      </Avatar>
-                    }
-                    title={item.data[0].title}
-                    titleTypographyProps={{ color: 'textPrimary' }}
-                    subheader={item.data[0].date_created.slice(0, 10)}
-                  />
-                  <CardMedia
-                    className={classes.media}
-                    image={item.links[0].href}
-                    title={item.data[0].title}
-                  />
-                  <CardActions disableSpacing>
-                    <Box color='primary.light'>
-                      <Button color='inherit' onClick={() => handleClick(item)}>
-                        Learn More
-                      </Button>
-                    </Box>
-                  </CardActions>
-                </Card>
-              </motion.div>
-            </Grid>
-          );
-        })}
-      </Grid>
     </>
   );
 };

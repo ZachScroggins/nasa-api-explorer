@@ -3,33 +3,72 @@ import { motion } from 'framer-motion';
 import { Type } from '../src/components/Type';
 import Link from '../src/components/Link';
 import RocketSvg from '../src/components/RocketSvg';
-import { Container, Box, Button, makeStyles, Grid } from '@material-ui/core';
+import MotionGalaxy from '../src/components/MotionGalaxy';
+import {
+  Container,
+  Box,
+  Button,
+  makeStyles,
+  Grid,
+  useTheme,
+} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    padding: 0,
+  glow: {
+    textShadow: `2px 8px 30px ${theme.palette.primary.main}`,
   },
-  heroImg: {
-    width: '15rem',
+  firstSection: {
+    width: '100vw',
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      paddingRight: '8rem',
+    },
+  },
+  m81: {
+    width: '100%',
     height: 'auto',
   },
 }));
 
+// const galaxyContainer = {
+//   hidden: {
+
+//   }
+// }
+
+const galaxyVariant = {
+  hidden: {
+    y: 0,
+    scale: 1.005,
+    skew: 1,
+  },
+  visible: {
+    y: 10,
+    scale: 1,
+    transition: {
+      yoyo: Infinity,
+      duration: 1,
+      ease: 'easeInOut',
+    },
+  },
+};
+
 const Index = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const scrollRef = useRef(null);
 
   const handleLearnMore = () => {
     scrollRef.current.scrollIntoView({
       behavior: 'smooth',
-      block: 'center', // or 'start'
+      block: 'start', // or 'start'
     });
   };
 
   return (
     <Box>
-      <Container maxWidth='sm' className={classes.root}>
-        <Box py={{ xs: 1 }} mb={45}>
+      <Container maxWidth='sm'>
+        <Box>
           <Grid container spacing={2} justify='center' alignItems='center'>
             <Grid item container xs={12} justify='center' alignItems='center'>
               <Grid item>
@@ -37,7 +76,12 @@ const Index = () => {
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <Type variant='h2' align='center' fontWeight='fontWeightBold'>
+              <Type
+                variant='h2'
+                align='center'
+                fontWeight='fontWeightBold'
+                className={classes.glow}
+              >
                 Explore NASA Imagery and Data
               </Type>
             </Grid>
@@ -104,33 +148,42 @@ const Index = () => {
             </Grid>
           </Grid>
         </Box>
+      </Container>
+      <Box
+        bgcolor='background.paper'
+        my={2}
+        pb={2}
+        className={classes.firstSection}
+        ref={scrollRef}
+      >
+        <Container maxWidth='sm'>
+          <motion.img
+            src='/M81.png'
+            title='M81 Galaxy'
+            className={classes.m81}
+            width='795'
+            height='614'
+            variants={galaxyVariant}
+            initial='hidden'
+            animate='visible'
+          />
+          {/* <MotionGalaxy /> */}
+          <Type variant='h4'>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio
+            quam, ea consequuntur reiciends dolores provident natus pariatur
+            delectus maxime quidem asperiores vitae sunt iure perspiciatis
+            voluptatum porro ab harum dignissimos ad ipsa, rem dolore quae
+            consectetur. Enim explicabo officiis ab tempora, non distinctio
+          </Type>
+        </Container>
+      </Box>
+      <Container maxWidth='lg'>
         <Grid container>
           <Grid item>
             <Type variant='h4' id='description'>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Distinctio quam, ea consequuntur reiciendis dolores provident
-              natus pariatur delectus maxime quidem asperiores vitae sunt iure
-              perspiciatis voluptatum porro ab harum dignissimos ad ipsa, rem
-              dolore quae consectetur. Enim explicabo officiis ab tempora, non
-              distinctio dicta eius. Nisi aliquam pariatur corrupti velit.
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Distinctio quam, ea consequuntur reiciendis dolores provident
-              natus pariatur delectus maxime quidem asperiores vitae sunt iure
-              perspiciatis voluptatum porro ab harum dignissimos ad ipsa, rem
-              dolore quae consectetur. Enim explicabo officiis ab tempora, non
-              distinctio dicta eius. Nisi aliquam pariatur corrupti velit.
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Distinctio quam, ea consequuntur reiciendis dolores provident
-              natus pariatur delectus maxime quidem asperiores vitae sunt iure
-              perspiciatis voluptatum porro ab harum dignissimos ad ipsa, rem
-              dolore quae consectetur. Enim explicabo officiis ab tempora, non
-              distinctio dicta eius. Nisi aliquam pariatur corrupti velit.
-            </Type>
-            <p ref={scrollRef}>eyy</p>
-            <Type variant='h4'>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Distinctio quam, ea consequuntur reiciendis dolores provident
-              natus pariatur delectus maxime quidem asperiores vitae sunt iure
+              Distinctio quam, ea consequuntur reiciends dolores provident natus
+              pariatur delectus maxime quidem asperiores vitae sunt iure
               perspiciatis voluptatum porro ab harum dignissimos ad ipsa, rem
               dolore quae consectetur. Enim explicabo officiis ab tempora, non
               distinctio dicta eius. Nisi aliquam pariatur corrupti velit.
