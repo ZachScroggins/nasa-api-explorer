@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
   },
   glow: {
-    textShadow: `2px 8px 15px ${theme.palette.primary.main}`,
+    textShadow: `2px 4px 15px ${theme.palette.primary.main}`,
   },
 }));
 

@@ -40,15 +40,20 @@ const galaxyVariant = {
   hidden: {
     y: 0,
     scale: 1.005,
-    skew: 1,
   },
   visible: {
-    y: 10,
+    y: 1,
     scale: 1,
+    rotate: -360,
     transition: {
       yoyo: Infinity,
-      duration: 1,
+      duration: 2,
       ease: 'easeInOut',
+      rotate: {
+        loop: Infinity,
+        duration: 120,
+        ease: 'linear',
+      },
     },
   },
 };
@@ -157,7 +162,7 @@ const Index = () => {
         ref={scrollRef}
       >
         <Container maxWidth='sm'>
-          <motion.img
+          {/* <motion.img
             src='/M81.png'
             title='M81 Galaxy'
             className={classes.m81}
@@ -166,8 +171,8 @@ const Index = () => {
             variants={galaxyVariant}
             initial='hidden'
             animate='visible'
-          />
-          {/* <MotionGalaxy /> */}
+          /> */}
+          <MotionGalaxy />
           <Type variant='h4'>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio
             quam, ea consequuntur reiciends dolores provident natus pariatur

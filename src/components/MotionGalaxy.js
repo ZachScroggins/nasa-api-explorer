@@ -11,11 +11,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const containerVariant = {
-  hidden: {
-    opacity: 0,
-  },
+  hidden: { opacity: 1 },
   visible: {
     opacity: 1,
+    transition: {
+      duration: 2,
+    },
   },
 };
 
@@ -23,15 +24,20 @@ const galaxyVariant = {
   hidden: {
     y: 0,
     scale: 1.005,
-    // skew: 1,
   },
   visible: {
-    y: 10,
+    y: 1,
     scale: 1,
+    rotate: -360,
     transition: {
       yoyo: Infinity,
-      duration: 1,
+      duration: 2,
       ease: 'easeInOut',
+      rotate: {
+        loop: Infinity,
+        duration: 120,
+        ease: 'linear',
+      },
     },
   },
 };
