@@ -12,6 +12,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded';
 import WallpaperRoundedIcon from '@material-ui/icons/WallpaperRounded';
+import PublicRoundedIcon from '@material-ui/icons/PublicRounded';
 import {
   AppBar,
   CssBaseline,
@@ -37,7 +38,7 @@ import {
   Paper,
 } from '@material-ui/core';
 
-const drawerWidth = '20rem';
+const drawerWidth = '22rem';
 
 const useStyles = makeStyles(theme => ({
   appBarBottom: {
@@ -116,8 +117,9 @@ const titles = [
   'NASA API Explorer',
   'NASA Image and Video Library',
   'Astronomy Picture of the Day',
+  'Earth Polychromatic Imaging Camera',
 ];
-const routes = ['/', '/images', '/apod'];
+const routes = ['/', '/images', '/apod', '/epic'];
 const regex = RegExp(/^\/image/, 'i');
 
 const Layout = props => {
@@ -141,6 +143,8 @@ const Layout = props => {
       setCurrentIndex(1);
     } else if (router.pathname === '/apod') {
       setCurrentIndex(2);
+    } else if (router.pathname === '/epic') {
+      setCurrentIndex(3);
     }
   }, [router.pathname]);
 
@@ -227,6 +231,20 @@ const Layout = props => {
                 color={router.pathname === '/apod' ? 'white' : 'primary.light'}
               >
                 Astronomy Picture of the Day
+              </Type>
+            </ListItemText>
+          </ListItem>
+          <ListItem button component={Link} naked href='/epic'>
+            <ListItemIcon>
+              <PublicRoundedIcon
+                color={router.pathname === '/epic' ? 'inherit' : 'primary'}
+              />
+            </ListItemIcon>
+            <ListItemText disableTypography>
+              <Type
+                color={router.pathname === '/epic' ? 'white' : 'primary.light'}
+              >
+                Earth Polychromatic Imaging Camera
               </Type>
             </ListItemText>
           </ListItem>
@@ -356,6 +374,24 @@ const Layout = props => {
                   </Type>
                 </Grid>
               </Button>
+              <Button
+                className={classes.miniDrawerButton}
+                component={Link}
+                naked
+                href='/epic'
+              >
+                <Grid item container direction='column' alignItems='center'>
+                  <PublicRoundedIcon color='primary' fontSize='large' />
+                  <Type
+                    variant='body2'
+                    color={
+                      router.pathname === '/epic' ? 'white' : 'primary.light'
+                    }
+                  >
+                    EPIC
+                  </Type>
+                </Grid>
+              </Button>
               <Box pb={1}>
                 <Divider />
               </Box>
@@ -429,7 +465,7 @@ const Layout = props => {
               <Toolbar>
                 <Box width='100vw' clone>
                   <Typography
-                    variant={matchesHomePage ? 'h4' : 'h5'}
+                    variant={matchesHomePage ? 'h4' : 'h6'}
                     component='h1'
                     noWrap
                     align='center'

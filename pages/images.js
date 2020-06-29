@@ -16,7 +16,7 @@ const searchVariant = {
   },
 };
 
-const index = () => {
+const images = () => {
   const router = useRouter();
   const imageContext = useContext(ImageContext);
   const { getResults, results, loading, query, setQuery } = imageContext;
@@ -68,4 +68,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default images;
