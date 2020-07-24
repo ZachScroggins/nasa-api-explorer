@@ -173,13 +173,6 @@ const Index = () => {
             animate='visible'
           /> */}
           <MotionGalaxy />
-          <Type variant='h4'>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-            quam, ea consequuntur reiciends dolores provident natus pariatur
-            delectus maxime quidem asperiores vitae sunt iure perspiciatis
-            voluptatum porro ab harum dignissimos ad ipsa, rem dolore quae
-            consectetur. Enim explicabo officiis ab tempora, non distinctio
-          </Type>
         </Container>
       </Box>
       <Container maxWidth='lg'>
