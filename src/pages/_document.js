@@ -5,10 +5,7 @@ export default class MyDocument extends Document {
     return (
       <html lang='en'>
         <Head>
-          <meta
-            name='description'
-            content='NASA API Explorer v2 with Tailwind CSS'
-          />
+          <meta name='description' content='NASA API Explorer' />
         </Head>
         <body>
           <Main />

@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>NASA API Explorer Tailwind</title>
+        <title>NASA API Explorer</title>
       </Head>
       <Layout>
         <ImageState>

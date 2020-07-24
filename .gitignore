@@ -6,7 +6,6 @@
 # Next.js
 /.next
 /out/
-next.config.js
 
 # testing
 /coverage
