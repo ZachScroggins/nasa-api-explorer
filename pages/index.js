@@ -66,7 +66,7 @@ const Index = () => {
   const handleLearnMore = () => {
     scrollRef.current.scrollIntoView({
       behavior: 'smooth',
-      block: 'start', // or 'start'
+      block: 'center', // or 'start'
     });
   };
 
