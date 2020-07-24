@@ -1,139 +1,121 @@
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Link from './Link';
-import { Type } from './Type';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import NavigateBeforeRoundedIcon from '@material-ui/icons/NavigateBeforeRounded';
-import NavigateNextRoundedIcon from '@material-ui/icons/NavigateNextRounded';
-import ImageSearchRoundedIcon from '@material-ui/icons/ImageSearchRounded';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
-import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded';
-import WallpaperRoundedIcon from '@material-ui/icons/WallpaperRounded';
-import PublicRoundedIcon from '@material-ui/icons/PublicRounded';
+import useClickAway from '../utils/useClickAway';
+import { motion } from 'framer-motion';
 import {
-  AppBar,
-  CssBaseline,
-  Toolbar,
-  IconButton,
-  useScrollTrigger,
-  Slide,
-  Hidden,
-  Typography,
-  Drawer,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Box,
-  Grid,
-  Button,
-  Badge,
-  Popper,
-  ClickAwayListener,
-  Grow,
-  Paper,
-} from '@material-ui/core';
-
-const drawerWidth = '22rem';
-
-const useStyles = makeStyles(theme => ({
-  appBarBottom: {
-    top: 'auto',
-    bottom: 0,
-  },
-  appBarTop: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  content: {
-    flexGrow: 1,
-    padding: '24px 0px 24px 0px',
-    [theme.breakpoints.up('md')]: {
-      padding: '24px 24px 24px 0px',
-    },
-    overflowX: 'hidden',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-  },
-  drawerOpen: {
-    width: drawerWidth,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: '2.625rem',
-  },
-  miniDrawer: {
-    width: '5rem',
-  },
-  miniDrawerButton: {
-    width: '100%',
-    textTransform: 'none',
-  },
-  root: {
-    display: 'flex',
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-  },
-  topButton: {
-    height: '5rem',
-  },
-  topToolBar: {
-    paddingLeft: '1.688rem',
-  },
-  typography: {
-    padding: theme.spacing(2),
-    backgroundColor: theme.palette.secondary.main,
-  },
-}));
-
-function HideOnScroll(props) {
-  const { children, direction } = props;
-  // const { children, window } = props;
-  const trigger = useScrollTrigger();
-  // const trigger = useScrollTrigger({ target: window ? window() : undefined });
-
-  return (
-    <Slide appear={false} direction={direction} in={!trigger}>
-      {children}
-    </Slide>
-  );
-}
+  FiMenu,
+  FiArrowLeft,
+  FiHome,
+  FiArrowRight,
+  FiImage,
+  FiGithub,
+  FiCode,
+  FiChevronsLeft,
+} from 'react-icons/fi';
 
 const titles = [
   'NASA API Explorer',
-  'NASA Image and Video Library',
+  'NASA Image Library',
   'Astronomy Picture of the Day',
   'Earth Polychromatic Imaging Camera',
 ];
 const routes = ['/', '/images', '/apod', '/epic'];
 const regex = RegExp(/^\/image/, 'i');
 
+const topNavVariant = {
+  visible: {
+    y: 0,
+    transition: {
+      damping: 5,
+      delay: 0.3,
+    },
+  },
+  hidden: {
+    y: -100,
+    transition: {
+      delay: 0.3,
+    },
+  },
+};
+
+const bottomNavVariant = {
+  visible: {
+    y: 0,
+    transition: {
+      damping: 5,
+      delay: 0.3,
+    },
+  },
+  hidden: {
+    y: 100,
+    transition: {
+      delay: 0.3,
+    },
+  },
+};
+
+const navMenuVariant = {
+  hidden: {
+    y: '100vh',
+    transition: {
+      damping: 5,
+      duration: 1,
+    },
+  },
+  visible: {
+    y: 0,
+    transition: {
+      damping: 5,
+    },
+  },
+};
+const navMenuLgVariant = {
+  hidden: {
+    x: '-100vw',
+    transition: {
+      damping: 5,
+      duration: 1,
+    },
+  },
+  visible: {
+    x: 0,
+    transition: {
+      damping: 5,
+    },
+  },
+};
+
 const Layout = props => {
-  const classes = useStyles();
-  const theme = useTheme();
   const router = useRouter();
-  const [open, setOpen] = useState(false);
-  const [bottomOpen, setBottomOpen] = useState(false);
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
-  const [seen, setSeen] = useState(false);
-  const anchorRef = useRef(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [appBarTitle, setAppBarTitle] = useState(titles[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [navVariant, setNavVariant] = useState(navMenuVariant);
   let matchesHomePage = currentIndex === 0 ? true : false;
+  const navRef = useRef(null);
+  useClickAway(navRef, setDrawerOpen);
+
+  const prevScrollY = useRef(0);
+  const [goingUp, setGoingUp] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (prevScrollY.current < currentScrollY) {
+        setGoingUp(true);
+      }
+      if (prevScrollY.current > currentScrollY) {
+        setGoingUp(false);
+      }
+
+      prevScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [goingUp]);
 
   useEffect(() => {
     if (router.pathname === '/') {
@@ -152,428 +134,191 @@ const Layout = props => {
     setAppBarTitle(titles[currentIndex]);
   }, [currentIndex]);
 
-  const handleLeftDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleLeftDrawerClose = () => {
-    setOpen(false);
-  };
+  useEffect(() => {
+    const size = window.matchMedia('(min-width: 1024px)');
+    size.matches === true
+      ? setNavVariant(navMenuLgVariant)
+      : setNavVariant(navMenuVariant);
+  }, []);
 
   const handleBottomDrawerOpen = () => {
-    setBottomOpen(true);
+    setDrawerOpen(true);
   };
 
   const handleBottomDrawerClose = () => {
-    setBottomOpen(false);
+    setDrawerOpen(false);
   };
 
   const handlePreviousPage = () => {
-    // if (currentIndex !== 0) {
-    // router.push(routes[currentIndex - 1]);
     window.history.back();
-    // }
   };
   const handleNextPage = () => {
-    // if (currentIndex !== routes.length - 1) {
-    //   router.push(routes[currentIndex + 1]);
-    // }
     window.history.forward();
   };
 
-  const handleToggleNotifications = () => {
-    setNotificationsOpen(!notificationsOpen);
-    !seen && setSeen(true);
-  };
-
-  const pushHome = () => {
-    router.push('/');
-  };
-
-  const TempDrawerList = () => {
+  const Menu = () => {
     return (
-      <>
-        <List>
-          <ListItem button component={Link} naked href='/'>
-            <ListItemIcon>
-              <HomeRoundedIcon
-                color={router.pathname === '/' ? 'inherit' : 'primary'}
-              />
-            </ListItemIcon>
-            <ListItemText disableTypography>
-              <Type color={router.pathname === '/' ? 'white' : 'primary.light'}>
-                Home
-              </Type>
-            </ListItemText>
-          </ListItem>
-          <ListItem button component={Link} naked href='/images'>
-            <ListItemIcon>
-              <ImageSearchRoundedIcon
-                color={regex.test(router.pathname) ? 'inherit' : 'primary'}
-              />
-            </ListItemIcon>
-            <ListItemText disableTypography>
-              <Type
-                color={regex.test(router.pathname) ? 'white' : 'primary.light'}
-              >
-                NASA Image and Video Library
-              </Type>
-            </ListItemText>
-          </ListItem>
-          <ListItem button component={Link} naked href='/apod'>
-            <ListItemIcon>
-              <WallpaperRoundedIcon
-                color={router.pathname === '/apod' ? 'inherit' : 'primary'}
-              />
-            </ListItemIcon>
-            <ListItemText disableTypography>
-              <Type
-                color={router.pathname === '/apod' ? 'white' : 'primary.light'}
-              >
-                Astronomy Picture of the Day
-              </Type>
-            </ListItemText>
-          </ListItem>
-          <ListItem button component={Link} naked href='/epic'>
-            <ListItemIcon>
-              <PublicRoundedIcon
-                color={router.pathname === '/epic' ? 'inherit' : 'primary'}
-              />
-            </ListItemIcon>
-            <ListItemText disableTypography>
-              <Type
-                color={router.pathname === '/epic' ? 'white' : 'primary.light'}
-              >
-                Earth Polychromatic Imaging Camera
-              </Type>
-            </ListItemText>
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem
-            button
-            component={Link}
-            naked
-            href='https://github.com/ZachScroggins/nasa-api-explorer'
+      <motion.div
+        className='fixed inset-x-0 bottom-0 lg:inset-x-auto lg:inset-y-0 lg:left-0 lg:pt-20 bg-black p-6 z-10'
+        initial='hidden'
+        animate={drawerOpen ? 'visible' : 'hidden'}
+        variants={navVariant}
+        ref={navRef}
+      >
+        <nav>
+          <ul
+            className='text-primary-light'
+            onClick={() => setDrawerOpen(false)}
           >
-            <ListItemIcon>
-              <GitHubIcon color='primary' />
-            </ListItemIcon>
-            <ListItemText disableTypography>
-              <Type color='primary.light'>Github</Type>
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            button
-            component={Link}
-            naked
-            href='https://github.com/ZachScroggins'
-          >
-            <ListItemIcon>
-              <ArrowBackRoundedIcon color='primary' />
-            </ListItemIcon>
-            <ListItemText disableTypography>
-              <Type color='primary.light'>My Work</Type>
-            </ListItemText>
-          </ListItem>
-        </List>
-      </>
+            <li
+              className={`py-2 text-lg lg:text-xl ${
+                currentIndex === 0 && 'text-white'
+              }`}
+            >
+              <Link href='/'>
+                <a className='flex items-center'>
+                  <FiHome className='inline mr-4' /> Home
+                </a>
+              </Link>
+            </li>
+            <li
+              className={`py-2 text-lg lg:text-xl ${
+                currentIndex === 1 && 'text-white'
+              }`}
+            >
+              <Link href='/images'>
+                <a className='flex items-center'>
+                  <FiImage className='inline mr-4' /> NASA Image Library
+                </a>
+              </Link>
+            </li>
+            <li>
+              <hr className='border-gray-900 my-2 -mx-6' />
+            </li>
+            <li className='py-2 text-lg lg:text-xl'>
+              <a
+                href='https://github.com/ZachScroggins/nasa-api-explorer'
+                className='flex items-center'
+              >
+                <FiGithub className='inline mr-4' /> GitHub
+              </a>
+            </li>
+            <li className='py-2 text-lg lg:text-xl'>
+              <a
+                href='https://github.com/ZachScroggins'
+                className='flex items-center'
+              >
+                <FiCode className='inline mr-4' /> My Work
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </motion.div>
     );
   };
 
   return (
     <>
-      <CssBaseline />
-      <Hidden smDown>
-        <div className={classes.root}>
-          <AppBar position='fixed' className={classes.appBarTop}>
-            <Toolbar className={classes.topToolBar}>
-              <IconButton
-                color='inherit'
-                aria-label='open drawer'
-                onClick={handleLeftDrawerOpen}
-                edge='start'
-                className={classes.menuButton}
-              >
-                <MenuRoundedIcon />
-              </IconButton>
-              <Box width='100vw' clone>
-                <Typography variant='h4' component='h1' noWrap align='center'>
-                  {appBarTitle}
-                </Typography>
-              </Box>
-            </Toolbar>
-          </AppBar>
-          <Drawer
-            id='miniDrawer'
-            variant='permanent'
-            className={classes.miniDrawer}
-            classes={{
-              paper: classes.miniDrawer,
-            }}
+      <motion.div
+        className='fixed top-0 left-0 py-3 bg-primary w-full z-20 sm:hidden'
+        initial='visible'
+        animate={goingUp ? 'hidden' : 'visible'}
+        variants={topNavVariant}
+      >
+        <h1 className='text-center text-2xl'>{appBarTitle}</h1>
+      </motion.div>
+      <div className='fixed top-0 left-0 py-3 bg-primary w-full z-20 hidden lg:block'>
+        <div className='absolute py-4 top-0 left-0 cursor-pointer'>
+          <div
+            className='flex justify-center items-center w-20'
+            title='Open Navigation Menu'
+            onClick={handleBottomDrawerOpen}
           >
-            <div className={classes.toolbar} />
-            <Grid
-              container
-              direction='column'
-              alignItems='center'
-              justify='center'
-            >
-              <Button
-                className={`${classes.miniDrawerButton} ${classes.topButton}`}
-                component={Link}
-                naked
-                href='/'
-                scroll={false}
-              >
-                <Grid item container direction='column' alignItems='center'>
-                  <HomeRoundedIcon color='primary' fontSize='large' />
-                  <Type
-                    variant='body2'
-                    color={router.pathname === '/' ? 'white' : 'primary.light'}
-                  >
-                    Home
-                  </Type>
-                </Grid>
-              </Button>
-              <Button
-                className={classes.miniDrawerButton}
-                component={Link}
-                naked
-                href='/images'
-                scroll={false}
-              >
-                <Grid item container direction='column' alignItems='center'>
-                  <ImageSearchRoundedIcon color='primary' fontSize='large' />
-                  <Type
-                    variant='body2'
-                    color={
-                      regex.test(router.pathname) ? 'white' : 'primary.light'
-                    }
-                  >
-                    Images
-                  </Type>
-                </Grid>
-              </Button>
-              <Button
-                className={classes.miniDrawerButton}
-                component={Link}
-                naked
-                href='/apod'
-              >
-                <Grid item container direction='column' alignItems='center'>
-                  <WallpaperRoundedIcon color='primary' fontSize='large' />
-                  <Type
-                    variant='body2'
-                    color={
-                      router.pathname === '/apod' ? 'white' : 'primary.light'
-                    }
-                  >
-                    APOD
-                  </Type>
-                </Grid>
-              </Button>
-              <Button
-                className={classes.miniDrawerButton}
-                component={Link}
-                naked
-                href='/epic'
-              >
-                <Grid item container direction='column' alignItems='center'>
-                  <PublicRoundedIcon color='primary' fontSize='large' />
-                  <Type
-                    variant='body2'
-                    color={
-                      router.pathname === '/epic' ? 'white' : 'primary.light'
-                    }
-                  >
-                    EPIC
-                  </Type>
-                </Grid>
-              </Button>
-              <Box pb={1}>
-                <Divider />
-              </Box>
-              <Button
-                className={classes.miniDrawerButton}
-                component={Link}
-                naked
-                href='https://github.com/ZachScroggins/nasa-api-explorer'
-              >
-                <Grid item container direction='column' alignItems='center'>
-                  <GitHubIcon color='primary' fontSize='large' />
-                  <Type variant='body2' color='primary.light'>
-                    Github
-                  </Type>
-                </Grid>
-              </Button>
-              <Button
-                className={classes.miniDrawerButton}
-                component={Link}
-                naked
-                href='https://github.com/ZachScroggins'
-              >
-                <Grid item container direction='column' alignItems='center'>
-                  <ArrowBackRoundedIcon color='primary' fontSize='large' />
-                  <Type variant='body2' color='primary.light'>
-                    My Work
-                  </Type>
-                </Grid>
-              </Button>
-            </Grid>
-          </Drawer>
-
-          <Drawer
-            id='temp-drawer'
-            anchor='left'
-            open={open}
-            onClose={handleLeftDrawerClose}
-            className={classes.drawer}
-            classes={{
-              paper: classes.drawerOpen,
-            }}
-          >
-            <div
-              className={classes.toolbar}
-              style={{ backgroundColor: theme.palette.primary.main }}
-            >
-              <IconButton onClick={handleLeftDrawerClose}>
-                <NavigateBeforeRoundedIcon fontSize='large' />
-              </IconButton>
-            </div>
-            <Divider />
-            <div onClick={handleLeftDrawerClose}>
-              <TempDrawerList />
-            </div>
-          </Drawer>
-          <main className={classes.content}>
-            <div className={classes.toolbar} />
-            {props.children}
-          </main>
-        </div>
-      </Hidden>
-
-      <Hidden mdUp>
-        <Hidden smUp>
-          <HideOnScroll {...props} direction='down'>
-            <AppBar
-              position='fixed'
-              color='primary'
-              className={classes.appBarTop}
-            >
-              <Toolbar>
-                <Box width='100vw' clone>
-                  <Typography
-                    variant={matchesHomePage ? 'h4' : 'h6'}
-                    component='h1'
-                    noWrap
-                    align='center'
-                  >
-                    {appBarTitle}
-                  </Typography>
-                </Box>
-              </Toolbar>
-            </AppBar>
-          </HideOnScroll>
-        </Hidden>
-        <HideOnScroll {...props} direction='up'>
-          <AppBar
-            position='fixed'
-            color='primary'
-            className={classes.appBarBottom}
-          >
-            <Toolbar>
-              <IconButton
-                edge='start'
-                color='inherit'
-                aria-label='open drawer'
-                onClick={handleBottomDrawerOpen}
-              >
-                <MenuRoundedIcon />
-              </IconButton>
-              <Hidden xsDown>
-                <Typography variant='h5' component='h1' noWrap>
-                  {appBarTitle}
-                </Typography>
-              </Hidden>
-              <div className={classes.grow} />
-              {/* <IconButton
-                color='inherit'
-                ref={anchorRef}
-                aria-label='toggle-notifications'
-                onClick={handleToggleNotifications}
-              >
-                <Badge color='secondary' badgeContent={!seen ? 1 : 0}>
-                  <NotificationsRoundedIcon />
-                </Badge>
-              </IconButton>
-              <Popper
-                id='notifications-popup'
-                anchorEl={anchorRef.current}
-                open={notificationsOpen}
-                placement='top-end'
-                transition
-                disablePortal
-                role={undefined}
-              >
-                {({ TransitionProps }) => (
-                  <ClickAwayListener
-                    onClickAway={() => {
-                      setNotificationsOpen(false);
-                    }}
-                  >
-                    <Grow in={notificationsOpen} {...TransitionProps}>
-                      <Paper>
-                        <Typography className={classes.typography}>
-                          Use the arrows to navigate between APIs
-                        </Typography>
-                      </Paper>
-                    </Grow>
-                  </ClickAwayListener>
-                )}
-              </Popper> */}
-              <IconButton
-                color='inherit'
-                aria-label='previous-api' // change to previous page
-                onClick={handlePreviousPage}
-              >
-                <NavigateBeforeRoundedIcon fontSize='large' />
-              </IconButton>
-              <IconButton
-                color='inherit'
-                aria-label='navigate-home'
-                onClick={pushHome}
-              >
-                {/* <IconButton color='inherit' component={Link} naked href='/' > */}
-                <HomeRoundedIcon />
-              </IconButton>
-              <IconButton
-                edge='end'
-                color='inherit'
-                aria-label='next-api' // change to next page
-                onClick={handleNextPage}
-              >
-                <NavigateNextRoundedIcon fontSize='large' />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-        </HideOnScroll>
-        <Drawer
-          id='temp-drawer'
-          anchor='bottom'
-          open={bottomOpen}
-          onClose={handleBottomDrawerClose}
-        >
-          <div onClick={handleBottomDrawerClose}>
-            <TempDrawerList />
+            {drawerOpen ? (
+              <FiChevronsLeft size='1.7em' />
+            ) : (
+              <FiMenu size='1.5em' />
+            )}
           </div>
-        </Drawer>
-        <Hidden smUp>
-          <Box pb={6} />
-        </Hidden>
-        <main className={classes.content}>{props.children}</main>
-      </Hidden>
+        </div>
+        <h1 className='text-center text-2xl pl-20'>{appBarTitle}</h1>
+      </div>
+      <div className='py-20 sm:py-0 sm:pt-10 sm:pb-20 lg:py-20 lg:pl-20'>
+        <main>{props.children}</main>
+      </div>
+      <motion.div
+        className='lg:hidden fixed flex bottom-0 left-0 px-4 bg-primary w-full py-4'
+        initial='visible'
+        animate={goingUp ? 'hidden' : 'visible'}
+        variants={bottomNavVariant}
+      >
+        <div
+          className='flex justify-center items-center'
+          aria-label='open navigation menu'
+          onClick={handleBottomDrawerOpen}
+        >
+          <FiMenu size='1.5em' />
+        </div>
+        <h1 className='hidden sm:block ml-4 text-lg'>{appBarTitle}</h1>
+        <div className='flex-grow'></div>
+        <div className='flex justify-center items-center'>
+          <div className='ml-6' onClick={handlePreviousPage}>
+            <FiArrowLeft size='1.5em' />
+          </div>
+          <Link href='/'>
+            <a aria-label='Home'>
+              <div className='ml-6'>
+                <FiHome size='1.5em' />
+              </div>
+            </a>
+          </Link>
+          <div className='ml-6' onClick={handleNextPage}>
+            <FiArrowRight size='1.5em' />
+          </div>
+        </div>
+      </motion.div>
+      <Menu />
+      <div className='hidden lg:block fixed inset-y-0 left-0 bg-black pt-16 px-2'>
+        <ul className='text-primary-light'>
+          <li className={`py-2 ${currentIndex === 0 && 'text-white'}`}>
+            <Link href='/'>
+              <a className='flex flex-col items-center'>
+                <FiHome className='text-2xl' />
+                <div>Home</div>
+              </a>
+            </Link>
+          </li>
+          <li className={`py-2 ${currentIndex === 1 && 'text-white'}`}>
+            <Link href='/images'>
+              <a className='flex flex-col items-center'>
+                <FiImage className='text-2xl' />
+                <div>Images</div>
+              </a>
+            </Link>
+          </li>
+          <li>
+            <hr className='border-gray-900 my-2' />
+          </li>
+          <li className='py-2'>
+            <a
+              href='https://github.com/ZachScroggins/nasa-api-explorer'
+              className='flex flex-col items-center'
+            >
+              <FiGithub className='text-2xl' />
+              <div>GitHub</div>
+            </a>
+          </li>
+          <li className='py-2'>
+            <a
+              href='https://github.com/ZachScroggins'
+              className='flex flex-col items-center'
+            >
+              <FiCode className='text-2xl' />
+              <div>My Work</div>
+            </a>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };

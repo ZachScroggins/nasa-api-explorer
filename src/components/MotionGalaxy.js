@@ -1,14 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { makeStyles } from '@material-ui/core';
-import { useState } from 'react';
-
-const useStyles = makeStyles(theme => ({
-  m81: {
-    width: '100%',
-    height: 'auto',
-  },
-}));
+// import { useState } from 'react';
 
 const containerVariant = {
   hidden: { opacity: 1 },
@@ -43,23 +35,23 @@ const galaxyVariant = {
 };
 
 const MotionGalaxy = () => {
-  const classes = useStyles();
-  const [loaded, setLoaded] = useState(false);
+  // const [loaded, setLoaded] = useState(false);
 
   return (
     <motion.div
       variants={containerVariant}
       initial='hidden'
-      animate={loaded && 'visible'}
+      // animate={loaded && 'visible'}
+      animate='visible'
     >
       <motion.img
         src='/M81.png'
         title='M81 Galaxy'
-        className={classes.m81}
+        className=''
         width='795'
         height='614'
         variants={galaxyVariant}
-        onLoad={() => setLoaded(true)}
+        // onLoad={() => setLoaded(true)}
       />
     </motion.div>
   );

@@ -1,0 +1,15 @@
+@tailwind base;
+
+*:focus {
+  outline: none !important;
+}
+
+body {
+  background-color: #111111;
+  background-image: url('/topography.svg');
+  color: white;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@tailwind components;
+@tailwind utilities;

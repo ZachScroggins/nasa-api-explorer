@@ -1,62 +1,8 @@
 import { useContext } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import ImageContext from '../../context/images/imageContext';
-import { Type } from '../Type';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  Card,
-  CardHeader,
-  CardMedia,
-  CardActions,
-  Avatar,
-  Grid,
-  Button,
-  Box,
-} from '@material-ui/core';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    maxWidth: 320,
-    minWidth: 320,
-    [theme.breakpoints.only('sm')]: {
-      maxWidth: 300,
-      minWidth: 300,
-    },
-    '&:hover': {
-      cursor: 'pointer',
-      border: `1px solid ${theme.palette.primary.main}`,
-      boxShadow:
-        '0px 3px 5px -1px rgba(112, 93, 207,0.2),0px 5px 8px 0px rgba(112, 93, 207,0.14),0px 1px 14px 0px rgba(112, 93, 207,0.12)',
-    },
-    '@media (max-width: 350px)': {
-      maxWidth: 300,
-      minWidth: 300,
-    },
-  },
-  avatar: {
-    backgroundColor: theme.palette.primary.main,
-  },
-  cardHeader: {
-    height: 90,
-    [theme.breakpoints.only('sm')]: {
-      height: 100,
-    },
-    '@media (max-width: 350px)': {
-      height: 100,
-    },
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  boxLink: {
-    textDecoration: 'none',
-  },
-  glow: {
-    textShadow: `2px 4px 15px ${theme.palette.primary.main}`,
-  },
-}));
 
 const containerVariant = {
   hidden: { opacity: 1 },
@@ -85,7 +31,6 @@ const noResultVariant = {
 };
 
 const Results = ({ results }) => {
-  const classes = useStyles();
   const router = useRouter();
   const imageContext = useContext(ImageContext);
   const { setCurrent } = imageContext;
@@ -97,21 +42,15 @@ const Results = ({ results }) => {
 
   if (results.length === 0) {
     return (
-      <Grid container spacing={2} justify='center'>
-        <Grid item>
-          <Box pt={2}>
-            <motion.div
-              variants={noResultVariant}
-              initial='hidden'
-              animate='visible'
-            >
-              <Type variant='h4' className={classes.glow}>
-                No results...
-              </Type>
-            </motion.div>
-          </Box>
-        </Grid>
-      </Grid>
+      <>
+        <motion.div
+          variants={noResultVariant}
+          initial='hidden'
+          animate='visible'
+        >
+          <p>No results...</p>
+        </motion.div>
+      </>
     );
   }
 
@@ -122,55 +61,57 @@ const Results = ({ results }) => {
         initial='hidden'
         animate='visible'
       >
-        <Grid container spacing={2} justify='center'>
+        <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
           {results.map(item => {
             return (
-              <Grid item key={item.data[0].nasa_id}>
-                <motion.div
-                  variants={resultVariant}
-                  whileHover={{ scale: 1.08 }}
+              <motion.div
+                key={item.data[0].nasa_id}
+                variants={resultVariant}
+                whileHover={{ scale: 1.08 }}
+              >
+                <div
+                  className='bg-black root cursor-pointer hover:border border-primary rounded-lg'
+                  onClick={() => handleClick(item)}
                 >
-                  <Card
-                    className={classes.root}
-                    onClick={() => handleClick(item)}
-                  >
-                    <CardHeader
-                      className={classes.cardHeader}
-                      avatar={
-                        <Avatar aria-label='center' className={classes.avatar}>
-                          <Type variant='button' color='primary.contrastText'>
-                            {item.data[0].center === 'Select'
-                              ? ''
-                              : item.data[0].center}
-                          </Type>
-                        </Avatar>
-                      }
-                      title={item.data[0].title}
-                      titleTypographyProps={{ color: 'textPrimary' }}
-                      subheader={item.data[0].date_created.slice(0, 10)}
-                    />
-                    <CardMedia
-                      className={classes.media}
-                      image={item.links[0].href}
-                      title={item.data[0].title}
-                    />
-                    <CardActions disableSpacing>
-                      <Box color='primary.light'>
-                        <Button
-                          color='inherit'
-                          onClick={() => handleClick(item)}
-                        >
-                          Learn More
-                        </Button>
-                      </Box>
-                    </CardActions>
-                  </Card>
-                </motion.div>
-              </Grid>
+                  <div
+                    style={{ backgroundImage: `url(${item.links[0].href})` }}
+                    title={item.data[0].title}
+                    className='h-0 img block bg-cover bg-no-repeat bg-center rounded-t-lg'
+                  ></div>
+                  <div className='p-4'>
+                    <p className='h-20'>{item.data[0].title}</p>
+                    <div className='flex justify-between items-center mt-2'>
+                      <p className='text-gray-500'>
+                        {item.data[0].date_created.slice(0, 10)}
+                      </p>
+                      <Link href='/imageItem'>
+                        <a className='text-primary-light hover:underline'>
+                          LEARN MORE
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             );
           })}
-        </Grid>
+        </div>
       </motion.div>
+      <style jsx>{`
+        .root {
+          width: 300px;
+        }
+
+        .root:hover {
+          box-shadow: 0px 3px 5px -1px rgba(112, 93, 207, 0.2),
+            0px 5px 8px 0px rgba(112, 93, 207, 0.14),
+            0px 1px 14px 0px rgba(112, 93, 207, 0.12);
+        }
+
+        .img {
+          padding-top: 56.25%;
+        }
+      `}</style>
     </>
   );
 };
