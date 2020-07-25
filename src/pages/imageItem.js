@@ -182,7 +182,12 @@ const imageItem = () => {
                 transition={{ duration: 1 }}
               >
                 <img
-                  src={currentManifest && currentManifest[0].href}
+                  src={
+                    currentManifest &&
+                    currentManifest[0].href.slice(0, 4) +
+                      's' +
+                      currentManifest[0].href.slice(4)
+                  }
                   title={current.data[0].title}
                   className='w-full h-auto'
                   style={{ maxWidth: '90vw', maxHeight: '90vh' }}

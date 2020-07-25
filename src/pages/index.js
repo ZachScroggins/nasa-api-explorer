@@ -10,7 +10,6 @@ export default function IndexPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
           className='grid mx-auto lg:grid-cols-2 lg:px-5 xl:px-20 pb-10'
           style={{ maxWidth: '2000px' }}
         >
@@ -50,7 +49,6 @@ export default function IndexPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
             className='grid mx-auto py-10 lg:grid-cols-2 lg:px-5 xl:px-20'
             style={{ maxWidth: '2000px' }}
           >
@@ -62,23 +60,24 @@ export default function IndexPage() {
             </div>
             {/* <div className='flex justify-center items-center'> */}
             <div className='mt-4 text-center lg:text-left lg:mt-0'>
-              <h2 className='text-4xl text-primary font-bold xl:text-5xl'>
+              <h2 className='text-4xl text-primary glow font-bold xl:text-5xl'>
                 Features
               </h2>
               <h2 className='text-2xl font-bold mt-4 xl:text-3xl'>JAMstack</h2>
               <h3 className='text-xl font-light text-opacity-75 text-white mt-2 lg:w-2/3 xl:text-2xl'>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Veritatis aliquam delectus,
+                Built with JavaScript, APIs, and markup.
               </h3>
-              <h2 className='text-2xl font-bold mt-4 xl:text-3xl'>Next.js</h2>
+              <h2 className='text-2xl font-bold mt-4 xl:text-3xl'>
+                Full Stack
+              </h2>
               <h3 className='text-xl font-light text-opacity-75 text-white mt-2 lg:w-2/3 xl:text-2xl'>
-                deleniti aliquid sequi assumenda repellendus. Dolore, corrupti
-                maxime fugit voluptatibus libero!
+                Serverless Node.js REST API for fetching data from NASA.
               </h3>
-              <h2 className='text-2xl font-bold mt-4 xl:text-3xl'>REST API</h2>
+              <h2 className='text-2xl font-bold mt-4 xl:text-3xl'>
+                Live Project
+              </h2>
               <h3 className='text-xl font-light text-opacity-75 text-white mt-2 lg:w-2/3 xl:text-2xl'>
-                consectetur esse earum Maxime totam at ipsum doloribus dolorum
-                consectetur dolor facilis,
+                New features and API integrations in development.
               </h3>
             </div>
             {/* </div> */}

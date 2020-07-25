@@ -86,7 +86,7 @@ const Results = ({ results }) => {
                       </p>
                       <Link href='/imageItem'>
                         <a className='text-primary-light hover:underline'>
-                          LEARN MORE
+                          DETAILS
                         </a>
                       </Link>
                     </div>
