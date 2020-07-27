@@ -1,23 +1,55 @@
-import { GET_APOD, SET_LOADING } from '../types';
+import {
+  GET_MOST_RECENT_NATURAL_METADATA,
+  GET_MOST_RECENT_ENHANCED_METADATA,
+  SET_LOADING,
+  SET_TYPE,
+  GET_NATURAL_METADATA_BY_DATE,
+  GET_ENHANCED_METADATA_BY_DATE,
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
-    case GET_APOD:
+    case GET_MOST_RECENT_NATURAL_METADATA:
       return {
         ...state,
-        date: action.payload.date,
-        explanation: action.payload.explanation,
-        hdurl: action.payload.hdurl,
-        mediaType: action.payload.media_type,
-        title: action.payload.title,
-        url: action.payload.url,
-        copyright: action.payload.copyright,
-        statusCode: action.payload.code,
+        naturalMetadata: action.payload.data,
+        currentMetadata: action.payload.data,
+        error: action.payload.error.status,
+        errorMessage: action.payload.error.message,
+      };
+    case GET_MOST_RECENT_ENHANCED_METADATA:
+      return {
+        ...state,
+        enhancedMetadata: action.payload.data,
+        currentMetadata: action.payload.data,
+        error: action.payload.error.status,
+        errorMessage: action.payload.error.message,
+      };
+    case GET_NATURAL_METADATA_BY_DATE:
+      return {
+        ...state,
+        naturalMetadata: action.payload.data,
+        currentMetadata: action.payload.data,
+        error: action.payload.error.status,
+        errorMessage: action.payload.error.message,
+      };
+    case GET_ENHANCED_METADATA_BY_DATE:
+      return {
+        ...state,
+        enhancedMetadata: action.payload.data,
+        currentMetadata: action.payload.data,
+        error: action.payload.error.status,
+        errorMessage: action.payload.error.message,
       };
     case SET_LOADING:
       return {
         ...state,
-        loading: false,
+        loading: !state.loading,
+      };
+    case SET_TYPE:
+      return {
+        ...state,
+        type: action.payload,
       };
     default:
       return state;

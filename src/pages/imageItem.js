@@ -57,7 +57,7 @@ const imageItem = () => {
           <div className='px-4'>
             <div className='flex justify-center items-center'>
               <div className='max-w-full bg-black rounded-lg lg:flex lg:bg-transparent'>
-                <div className='lg:w-1/2' style={{ maxHeight: '90vh' }}>
+                <div className='lg:w-1/2'>
                   <img
                     src={current.links[0].href}
                     title={current.data[0].title}

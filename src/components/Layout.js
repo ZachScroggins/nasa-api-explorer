@@ -12,16 +12,8 @@ import {
   FiGithub,
   FiCode,
   FiChevronsLeft,
+  FiGlobe,
 } from 'react-icons/fi';
-
-const titles = [
-  'NASA API Explorer',
-  'NASA Image Library',
-  'Astronomy Picture of the Day',
-  'Earth Polychromatic Imaging Camera',
-];
-const routes = ['/', '/images', '/apod', '/epic'];
-const regex = RegExp(/^\/image/, 'i');
 
 const topNavVariant = {
   visible: {
@@ -85,6 +77,15 @@ const navMenuLgVariant = {
     },
   },
 };
+
+const titles = [
+  'NASA API Explorer',
+  'NASA Image Library',
+  'Astronomy Picture of the Day',
+  'EPIC',
+];
+const routes = ['/', '/images', '/apod', '/epic'];
+const regex = RegExp(/^\/image/, 'i');
 
 const Layout = props => {
   const router = useRouter();
@@ -192,6 +193,18 @@ const Layout = props => {
                 </a>
               </Link>
             </li>
+            <li
+              className={`py-2 text-lg lg:text-xl ${
+                currentIndex === 3 && 'text-white'
+              }`}
+            >
+              <Link href='/epic'>
+                <a className='flex items-center'>
+                  <FiGlobe className='inline mr-4' /> Earth Polychromatic
+                  Imaging Camera
+                </a>
+              </Link>
+            </li>
             <li>
               <hr className='border-gray-900 my-2 -mx-6' />
             </li>
@@ -220,7 +233,8 @@ const Layout = props => {
   return (
     <>
       <motion.div
-        className='fixed top-0 left-0 py-3 bg-primary w-full z-20 sm:hidden'
+        id='mobile-top-app-bar'
+        className='fixed top-0 left-0 py-3 bg-primary w-full z-20 rounded-b-lg sm:hidden'
         initial='visible'
         animate={goingUp ? 'hidden' : 'visible'}
         variants={topNavVariant}
@@ -247,7 +261,8 @@ const Layout = props => {
         <main>{props.children}</main>
       </div>
       <motion.div
-        className='lg:hidden fixed flex bottom-0 left-0 px-4 bg-primary w-full py-4'
+        id='bottom-app-bar'
+        className='lg:hidden fixed flex bottom-0 left-0 px-4 rounded-t-lg bg-primary w-full py-4'
         initial='visible'
         animate={goingUp ? 'hidden' : 'visible'}
         variants={bottomNavVariant}
@@ -293,6 +308,14 @@ const Layout = props => {
               <a className='flex flex-col items-center'>
                 <FiImage className='text-2xl' />
                 <div>Images</div>
+              </a>
+            </Link>
+          </li>
+          <li className={`py-2 ${currentIndex === 3 && 'text-white'}`}>
+            <Link href='/epic'>
+              <a className='flex flex-col items-center'>
+                <FiGlobe className='text-2xl' />
+                <div>EPIC</div>
               </a>
             </Link>
           </li>

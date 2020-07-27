@@ -10,7 +10,7 @@ export default function IndexPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className='grid mx-auto lg:grid-cols-2 lg:px-5 xl:px-20 pb-10'
+          className='grid mx-auto sm:px-32 lg:grid-cols-2 lg:px-5 xl:px-20 pb-10'
           style={{ maxWidth: '2000px' }}
         >
           <div className='flex justify-center items-center lg:justify-end'>
