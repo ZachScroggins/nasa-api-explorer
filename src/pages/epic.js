@@ -3,11 +3,11 @@ import Calendar from 'react-calendar';
 import EpicContext from '../context/epic/epicContext';
 import LinearProgress from '../components/LinearProgress';
 
-const epic = ({ data }) => {
+const epic = () => {
   const epicContext = useContext(EpicContext);
   const {
-    naturalMetadata,
-    enhancedMetadata,
+    // naturalMetadata,
+    // enhancedMetadata,
     currentMetadata,
     type,
     getMostRecentNatural,
@@ -21,15 +21,15 @@ const epic = ({ data }) => {
   } = epicContext;
   const [naturalInput, setNaturalInput] = useState('');
   const [enhancedInput, setEnhancedInput] = useState('');
-  const [dateInput, setDateInput] = useState(new Date());
+  // const [dateInput, setDateInput] = useState(new Date());
 
-  const test = new Date('2020-05-15');
+  // const test = new Date('2020-05-15');
 
   useEffect(() => {
     // getMostRecentNatural();
   }, []);
 
-  const handleDateChange = (value, event) => {
+  const handleDateChange = value => {
     if (type === 'natural') {
       getNaturalByDate(value.toISOString().slice(0, 10));
     } else {
@@ -84,14 +84,14 @@ const epic = ({ data }) => {
               onChange={e => setNaturalInput(e.target.value)}
             />
             <div>
-              <input
+              {/* <input
                 type='date'
                 className='rounded-lg bg-primary appearance-none cursor-pointer'
                 defaultValue='2017-06-01'
                 min='2017-01-01'
                 max='2018-12-31'
                 onChange={e => setDateInput(e.target.value)}
-              />
+              /> */}
             </div>
             <div className=''>
               <Calendar

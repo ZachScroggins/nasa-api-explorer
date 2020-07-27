@@ -1,5 +1,5 @@
 export default async (req, res) => {
-  const { cookies, method, query } = req;
+  const { cookies, method } = req;
 
   let status = 401;
   const response = {
