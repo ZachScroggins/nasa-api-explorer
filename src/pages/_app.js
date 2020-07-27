@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import EpicState from '../context/epic/EpicState.js';
+import EpicState from '../context/epic/epicState';
 import ImageState from '../context/images/ImageState';
 
 import '../styles/index.css';
