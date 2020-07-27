@@ -13,38 +13,38 @@ export default (state, action) => {
     case GET_MOST_RECENT_NATURAL_METADATA:
       return {
         ...state,
-        naturalMetadata: action.payload.data,
-        currentMetadata: action.payload.data,
-        error: action.payload.error.status,
-        errorMessage: action.payload.error.message,
-        date: new Date(action.payload.data[0].date.slice(0, 10)),
+        naturalMetadata: action.payload.json.data,
+        currentMetadata: action.payload.json.data,
+        error: action.payload.json.error.status,
+        errorMessage: action.payload.json.error.message,
+        date: action.payload.currentDate,
       };
     case GET_MOST_RECENT_ENHANCED_METADATA:
       return {
         ...state,
-        enhancedMetadata: action.payload.data,
-        currentMetadata: action.payload.data,
-        error: action.payload.error.status,
-        errorMessage: action.payload.error.message,
-        date: new Date(action.payload.data[0].date.slice(0, 10)),
+        enhancedMetadata: action.payload.json.data,
+        currentMetadata: action.payload.json.data,
+        error: action.payload.json.error.status,
+        errorMessage: action.payload.json.error.message,
+        date: action.payload.currentDate,
       };
     case GET_NATURAL_METADATA_BY_DATE:
       return {
         ...state,
-        naturalMetadata: action.payload.data,
-        currentMetadata: action.payload.data,
-        error: action.payload.error.status,
-        errorMessage: action.payload.error.message,
-        date: new Date(action.payload.data[0].date.slice(0, 10)),
+        naturalMetadata: action.payload.json.data,
+        currentMetadata: action.payload.json.data,
+        error: action.payload.json.error.status,
+        errorMessage: action.payload.json.error.message,
+        date: action.payload.currentDate,
       };
     case GET_ENHANCED_METADATA_BY_DATE:
       return {
         ...state,
-        enhancedMetadata: action.payload.data,
-        currentMetadata: action.payload.data,
-        error: action.payload.error.status,
-        errorMessage: action.payload.error.message,
-        date: new Date(action.payload.data[0].date.slice(0, 10)),
+        enhancedMetadata: action.payload.json.data,
+        currentMetadata: action.payload.json.data,
+        error: action.payload.json.error.status,
+        errorMessage: action.payload.json.error.message,
+        date: action.payload.currentDate,
       };
     case SET_LOADING:
       return {

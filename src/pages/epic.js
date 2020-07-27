@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import EpicContext from '../context/epic/epicContext';
 import LinearProgress from '../components/LinearProgress';
+import ImageSlider from '../components/epic/ImageSlider';
 
 const epic = () => {
   const epicContext = useContext(EpicContext);
@@ -21,13 +22,6 @@ const epic = () => {
   } = epicContext;
   const [naturalInput, setNaturalInput] = useState('');
   const [enhancedInput, setEnhancedInput] = useState('');
-  // const [dateInput, setDateInput] = useState(new Date());
-
-  // const test = new Date('2020-05-15');
-
-  useEffect(() => {
-    // getMostRecentNatural();
-  }, []);
 
   const handleDateChange = value => {
     if (type === 'natural') {
@@ -36,6 +30,10 @@ const epic = () => {
       getEnhancedByDate(value.toISOString().slice(0, 10));
     }
   };
+
+  useEffect(() => {
+    // console.log(date);
+  }, [date]);
 
   return (
     <>
@@ -106,6 +104,17 @@ const epic = () => {
                 tileClassName=''
               />
             </div>
+          </div>
+        </div>
+        <div
+          className='overflow-hidden flex justify-center items-center'
+          style={{ width: '501px', height: '501px' }}
+        >
+          <div
+            style={{ width: '501px', height: '501px' }}
+            className='relative flex items-center justify-center'
+          >
+            <ImageSlider current={currentMetadata} type={type} />
           </div>
         </div>
         <div className='flex flex-wrap'>

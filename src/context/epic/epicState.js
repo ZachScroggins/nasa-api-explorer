@@ -32,7 +32,7 @@ const EpicState = props => {
     } else {
       document.cookie = 'visited=true; max-age=604800; samesite=strict; secure';
     }
-    // getMostRecentNatural();
+    getMostRecentNatural();
   }, []);
 
   const setType = type => {
@@ -50,23 +50,12 @@ const EpicState = props => {
 
     const json = await res.json();
 
-    const test = () => {
-      // console.log(new Date(json.data[0].date.slice(0, 11)));
-      console.log(json.data[0].date.slice(0, 4));
-      console.log(json.data[0].date.slice(5, 7));
-      console.log(json.data[0].date.slice(8, 10));
-    };
-
-    try {
-      test();
-    } catch (err) {
-      console.log(err);
-    }
-
-    // console.log();
-
     if (res.status === 200) {
-      dispatch({ type: GET_MOST_RECENT_NATURAL_METADATA, payload: json });
+      const currentDate = new Date(json.data[0].date);
+      dispatch({
+        type: GET_MOST_RECENT_NATURAL_METADATA,
+        payload: { json, currentDate },
+      });
     } else {
       setError(json.error);
     }
@@ -84,7 +73,11 @@ const EpicState = props => {
     const json = await res.json();
 
     if (res.status === 200) {
-      dispatch({ type: GET_NATURAL_METADATA_BY_DATE, payload: json });
+      const currentDate = new Date(json.data[0].date);
+      dispatch({
+        type: GET_NATURAL_METADATA_BY_DATE,
+        payload: { json, currentDate },
+      });
     } else {
       setError(json.error);
     }
@@ -102,7 +95,11 @@ const EpicState = props => {
     const json = await res.json();
 
     if (res.status === 200) {
-      dispatch({ type: GET_MOST_RECENT_ENHANCED_METADATA, payload: json });
+      const currentDate = new Date(json.data[0].date);
+      dispatch({
+        type: GET_MOST_RECENT_ENHANCED_METADATA,
+        payload: { json, currentDate },
+      });
     } else {
       setError(json.error);
     }
@@ -120,7 +117,11 @@ const EpicState = props => {
     const json = await res.json();
 
     if (res.status === 200) {
-      dispatch({ type: GET_ENHANCED_METADATA_BY_DATE, payload: json });
+      const currentDate = new Date(json.data[0].date);
+      dispatch({
+        type: GET_ENHANCED_METADATA_BY_DATE,
+        payload: { json, currentDate },
+      });
     } else {
       setError(json.error);
     }
