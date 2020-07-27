@@ -19,6 +19,7 @@ const epic = ({ data }) => {
   } = epicContext;
   const [naturalInput, setNaturalInput] = useState('');
   const [enhancedInput, setEnhancedInput] = useState('');
+  const [dateInput, setDateInput] = useState(null);
 
   useEffect(() => {
     // getMostRecentNatural();
@@ -71,22 +72,14 @@ const epic = ({ data }) => {
               onChange={e => setNaturalInput(e.target.value)}
             />
             <div>
-              <form
-                onSubmit={e => {
-                  e.preventDefault();
-                  console.log(e.target.value);
-                }}
-              >
-                <input
-                  type='date'
-                  className='rounded-lg bg-primary appearance-none cursor-pointer'
-                  defaultValue='2017-06-01'
-                  min='2017-01-01'
-                  max='2018-12-31'
-                  onChange={e => console.log(e.target.value)}
-                  onSelect={() => console.log('select')}
-                />
-              </form>
+              <input
+                type='date'
+                className='rounded-lg bg-primary appearance-none cursor-pointer'
+                defaultValue='2017-06-01'
+                min='2017-01-01'
+                max='2018-12-31'
+                onChange={e => setDateInput(e.target.value)}
+              />
             </div>
           </div>
         </div>
