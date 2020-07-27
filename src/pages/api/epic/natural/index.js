@@ -14,10 +14,20 @@ export default async (req, res) => {
       const results = await fetch(
         `https://api.nasa.gov/EPIC/api/natural?api_key=${process.env.NASA_API_KEY}`
       );
-      const json = await results.json();
-      status = 200;
-      response.error = { status: false, message: null };
-      response.data = json;
+      if (results?.status !== 200) {
+        status = 502;
+        response.error.message = 'There was an error fetching data from NASA';
+      } else {
+        const json = await results.json();
+        if (json.length === 0) {
+          status = 400;
+          response.error.message = 'Sorry, there is no data for this date.';
+        } else {
+          status = 200;
+          response.error = { status: false, message: null };
+          response.data = json;
+        }
+      }
     }
   }
 

@@ -3,6 +3,7 @@ import {
   GET_MOST_RECENT_ENHANCED_METADATA,
   SET_LOADING,
   SET_TYPE,
+  SET_ERROR,
   GET_NATURAL_METADATA_BY_DATE,
   GET_ENHANCED_METADATA_BY_DATE,
 } from '../types';
@@ -16,6 +17,7 @@ export default (state, action) => {
         currentMetadata: action.payload.data,
         error: action.payload.error.status,
         errorMessage: action.payload.error.message,
+        date: new Date(action.payload.data[0].date.slice(0, 11)),
       };
     case GET_MOST_RECENT_ENHANCED_METADATA:
       return {
@@ -24,6 +26,7 @@ export default (state, action) => {
         currentMetadata: action.payload.data,
         error: action.payload.error.status,
         errorMessage: action.payload.error.message,
+        date: new Date(action.payload.data[0].date.slice(0, 11)),
       };
     case GET_NATURAL_METADATA_BY_DATE:
       return {
@@ -32,6 +35,7 @@ export default (state, action) => {
         currentMetadata: action.payload.data,
         error: action.payload.error.status,
         errorMessage: action.payload.error.message,
+        date: new Date(action.payload.data[0].date.slice(0, 11)),
       };
     case GET_ENHANCED_METADATA_BY_DATE:
       return {
@@ -40,6 +44,7 @@ export default (state, action) => {
         currentMetadata: action.payload.data,
         error: action.payload.error.status,
         errorMessage: action.payload.error.message,
+        date: new Date(action.payload.data[0].date.slice(0, 11)),
       };
     case SET_LOADING:
       return {
@@ -50,6 +55,12 @@ export default (state, action) => {
       return {
         ...state,
         type: action.payload,
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        error: action.payload.status,
+        errorMessage: action.payload.message,
       };
     default:
       return state;

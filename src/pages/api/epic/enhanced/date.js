@@ -25,9 +25,14 @@ export default async (req, res) => {
           response.error.message = 'There was an error fetching data from NASA';
         } else {
           const json = await results.json();
-          status = 200;
-          response.error = { status: false, message: null };
-          response.data = json;
+          if (json.length === 0) {
+            status = 400;
+            response.error.message = 'Sorry, there is no data for this date.';
+          } else {
+            status = 200;
+            response.error = { status: false, message: null };
+            response.data = json;
+          }
         }
       }
     }

@@ -9,11 +9,12 @@ import {
   SET_CURRENT_METADATA,
   GET_NATURAL_METADATA_BY_DATE,
   GET_ENHANCED_METADATA_BY_DATE,
+  SET_ERROR,
 } from '../types';
 
 const EpicState = props => {
   const initialState = {
-    date: '',
+    date: new Date(),
     type: '',
     naturalMetadata: [],
     enhancedMetadata: [],
@@ -25,11 +26,11 @@ const EpicState = props => {
   };
   const [state, dispatch] = useReducer(EpicReducer, initialState);
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     getMostRecentNatural();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      getMostRecentNatural();
+    }
+  }, []);
 
   const setType = type => {
     dispatch({ type: SET_TYPE, payload: type });
@@ -46,7 +47,11 @@ const EpicState = props => {
 
     const json = await res.json();
 
-    dispatch({ type: GET_MOST_RECENT_NATURAL_METADATA, payload: json });
+    if (res.status === 200) {
+      dispatch({ type: GET_MOST_RECENT_NATURAL_METADATA, payload: json });
+    } else {
+      setError(json.error);
+    }
 
     setType('natural');
 
@@ -60,7 +65,11 @@ const EpicState = props => {
 
     const json = await res.json();
 
-    dispatch({ type: GET_NATURAL_METADATA_BY_DATE, payload: json });
+    if (res.status === 200) {
+      dispatch({ type: GET_NATURAL_METADATA_BY_DATE, payload: json });
+    } else {
+      setError(json.error);
+    }
 
     setType('natural');
 
@@ -74,7 +83,11 @@ const EpicState = props => {
 
     const json = await res.json();
 
-    dispatch({ type: GET_MOST_RECENT_ENHANCED_METADATA, payload: json });
+    if (res.status === 200) {
+      dispatch({ type: GET_MOST_RECENT_ENHANCED_METADATA, payload: json });
+    } else {
+      setError(json.error);
+    }
 
     setType('enhanced');
 
@@ -88,7 +101,11 @@ const EpicState = props => {
 
     const json = await res.json();
 
-    dispatch({ type: GET_ENHANCED_METADATA_BY_DATE, payload: json });
+    if (res.status === 200) {
+      dispatch({ type: GET_ENHANCED_METADATA_BY_DATE, payload: json });
+    } else {
+      setError(json.error);
+    }
 
     setType('enhanced');
 
@@ -96,6 +113,8 @@ const EpicState = props => {
   };
 
   const setLoading = () => dispatch({ type: SET_LOADING });
+
+  const setError = error => dispatch({ type: SET_ERROR, payload: error });
 
   return (
     <EpicContext.Provider
@@ -115,6 +134,7 @@ const EpicState = props => {
         getEnhancedByDate,
         setLoading,
         setType,
+        setError,
       }}
     >
       {props.children}

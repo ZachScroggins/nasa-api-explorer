@@ -5,6 +5,7 @@ import ImageState from '../context/images/ImageState';
 import EpicState from '../context/epic/EpicState';
 
 import '../styles/index.css';
+import 'react-calendar/dist/Calendar.css';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {

@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
+import Calendar from 'react-calendar';
 import EpicContext from '../context/epic/epicContext';
 import LinearProgress from '../components/LinearProgress';
 
@@ -16,14 +17,25 @@ const epic = ({ data }) => {
     error,
     errorMessage,
     loading,
+    date,
   } = epicContext;
   const [naturalInput, setNaturalInput] = useState('');
   const [enhancedInput, setEnhancedInput] = useState('');
-  const [dateInput, setDateInput] = useState(null);
+  const [dateInput, setDateInput] = useState(new Date());
+
+  const test = new Date('2020-05-15');
 
   useEffect(() => {
     // getMostRecentNatural();
   }, []);
+
+  const handleDateChange = (value, event) => {
+    if (type === 'natural') {
+      getNaturalByDate(value.toISOString().slice(0, 10));
+    } else {
+      getEnhancedByDate(value.toISOString().slice(0, 10));
+    }
+  };
 
   return (
     <>
@@ -81,6 +93,19 @@ const epic = ({ data }) => {
                 onChange={e => setDateInput(e.target.value)}
               />
             </div>
+            <div className=''>
+              <Calendar
+                // onChange={setDateInput}
+                onChange={(value, event) => handleDateChange(value, event)}
+                // defaultValue={new Date(date)}
+                value={date}
+                // value={dateInput}
+                minDate={new Date('2015-06-13')}
+                maxDate={new Date()}
+                className='text-black'
+                tileClassName=''
+              />
+            </div>
           </div>
         </div>
         <div className='flex flex-wrap'>
@@ -99,6 +124,7 @@ const epic = ({ data }) => {
                   height='120px'
                   // className='m-4'
                 />
+                <p>{item?.date}</p>
               </div>
             );
           })}
