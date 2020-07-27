@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import ImageState from '../context/images/ImageState';
 import EpicState from '../context/epic/EpicState';
+import ImageState from '../context/images/ImageState';
 
 import '../styles/index.css';
 import 'react-calendar/dist/Calendar.css';
