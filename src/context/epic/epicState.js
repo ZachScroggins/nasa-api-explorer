@@ -27,9 +27,12 @@ const EpicState = props => {
   const [state, dispatch] = useReducer(EpicReducer, initialState);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      getMostRecentNatural();
+    if (process.env.NODE_ENV === 'development') {
+      document.cookie = 'visited=true; max-age=604800; samesite=strict';
+    } else {
+      document.cookie = 'visited=true; max-age=604800; samesite=strict; secure';
     }
+    getMostRecentNatural();
   }, []);
 
   const setType = type => {
