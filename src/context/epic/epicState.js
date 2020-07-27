@@ -32,7 +32,7 @@ const EpicState = props => {
     } else {
       document.cookie = 'visited=true; max-age=604800; samesite=strict; secure';
     }
-    getMostRecentNatural();
+    // getMostRecentNatural();
   }, []);
 
   const setType = type => {
@@ -49,6 +49,21 @@ const EpicState = props => {
     const res = await fetch('/api/epic/natural');
 
     const json = await res.json();
+
+    const test = () => {
+      // console.log(new Date(json.data[0].date.slice(0, 11)));
+      console.log(json.data[0].date.slice(0, 4));
+      console.log(json.data[0].date.slice(5, 7));
+      console.log(json.data[0].date.slice(8, 10));
+    };
+
+    try {
+      test();
+    } catch (err) {
+      console.log(err);
+    }
+
+    // console.log();
 
     if (res.status === 200) {
       dispatch({ type: GET_MOST_RECENT_NATURAL_METADATA, payload: json });

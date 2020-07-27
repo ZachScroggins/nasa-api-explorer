@@ -103,7 +103,7 @@ const Layout = props => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (prevScrollY.current < currentScrollY) {
+      if (prevScrollY.current < currentScrollY && currentScrollY > 50) {
         setGoingUp(true);
       }
       if (prevScrollY.current > currentScrollY) {

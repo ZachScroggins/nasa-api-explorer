@@ -39,7 +39,7 @@ const epic = () => {
 
   return (
     <>
-      <div className='container'>
+      <div className='container mx-auto'>
         {loading && <LinearProgress />}
         <p>{`error status: ${error}`}</p>
         <p>error message: {errorMessage}</p>
@@ -85,13 +85,13 @@ const epic = () => {
             />
             <div>
               {/* <input
-                type='date'
-                className='rounded-lg bg-primary appearance-none cursor-pointer'
-                defaultValue='2017-06-01'
-                min='2017-01-01'
-                max='2018-12-31'
-                onChange={e => setDateInput(e.target.value)}
-              /> */}
+                  type='date'
+                  className='rounded-lg bg-primary appearance-none cursor-pointer'
+                  defaultValue='2017-06-01'
+                  min='2017-01-01'
+                  max='2018-12-31'
+                  onChange={e => setDateInput(e.target.value)}
+                /> */}
             </div>
             <div className=''>
               <Calendar

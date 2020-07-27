@@ -17,7 +17,7 @@ export default (state, action) => {
         currentMetadata: action.payload.data,
         error: action.payload.error.status,
         errorMessage: action.payload.error.message,
-        date: new Date(action.payload.data[0].date.slice(0, 11)),
+        date: new Date(action.payload.data[0].date.slice(0, 10)),
       };
     case GET_MOST_RECENT_ENHANCED_METADATA:
       return {
@@ -26,7 +26,7 @@ export default (state, action) => {
         currentMetadata: action.payload.data,
         error: action.payload.error.status,
         errorMessage: action.payload.error.message,
-        date: new Date(action.payload.data[0].date.slice(0, 11)),
+        date: new Date(action.payload.data[0].date.slice(0, 10)),
       };
     case GET_NATURAL_METADATA_BY_DATE:
       return {
@@ -35,7 +35,7 @@ export default (state, action) => {
         currentMetadata: action.payload.data,
         error: action.payload.error.status,
         errorMessage: action.payload.error.message,
-        date: new Date(action.payload.data[0].date.slice(0, 11)),
+        date: new Date(action.payload.data[0].date.slice(0, 10)),
       };
     case GET_ENHANCED_METADATA_BY_DATE:
       return {
@@ -44,7 +44,7 @@ export default (state, action) => {
         currentMetadata: action.payload.data,
         error: action.payload.error.status,
         errorMessage: action.payload.error.message,
-        date: new Date(action.payload.data[0].date.slice(0, 11)),
+        date: new Date(action.payload.data[0].date.slice(0, 10)),
       };
     case SET_LOADING:
       return {
