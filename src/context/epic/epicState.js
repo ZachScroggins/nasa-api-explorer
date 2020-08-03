@@ -15,7 +15,7 @@ import {
 const EpicState = props => {
   const initialState = {
     date: new Date(),
-    type: '',
+    type: 'natural',
     naturalMetadata: [],
     enhancedMetadata: [],
     currentMetadata: [],
@@ -50,8 +50,13 @@ const EpicState = props => {
 
     const json = await res.json();
 
+    // console.log(json.data[0].date.slice(0, 10) + 'T03:24:00');
+
     if (res.status === 200) {
-      const currentDate = new Date(json.data[0].date);
+      const year = parseInt(json.data[0].date.slice(0, 4));
+      const month = json.data[0].date.slice(5, 7) - 1;
+      const day = parseInt(json.data[0].date.slice(8, 10));
+      const currentDate = new Date(year, month, day);
       dispatch({
         type: GET_MOST_RECENT_NATURAL_METADATA,
         payload: { json, currentDate },
@@ -59,8 +64,6 @@ const EpicState = props => {
     } else {
       setError(json.error);
     }
-
-    setType('natural');
 
     setLoading();
   };
@@ -72,8 +75,11 @@ const EpicState = props => {
 
     const json = await res.json();
 
+    // console.log(json.data[0].date.slice(0, 10) + 'T03:24:00');
+
     if (res.status === 200) {
-      const currentDate = new Date(json.data[0].date);
+      const tempDate = `${json.data[0].date.slice(0, 10)}T03:24:00`;
+      const currentDate = new Date(tempDate);
       dispatch({
         type: GET_NATURAL_METADATA_BY_DATE,
         payload: { json, currentDate },
@@ -81,8 +87,6 @@ const EpicState = props => {
     } else {
       setError(json.error);
     }
-
-    setType('natural');
 
     setLoading();
   };
@@ -95,7 +99,10 @@ const EpicState = props => {
     const json = await res.json();
 
     if (res.status === 200) {
-      const currentDate = new Date(json.data[0].date);
+      const year = parseInt(json.data[0].date.slice(0, 4));
+      const month = json.data[0].date.slice(5, 7) - 1;
+      const day = parseInt(json.data[0].date.slice(8, 10));
+      const currentDate = new Date(year, month, day);
       dispatch({
         type: GET_MOST_RECENT_ENHANCED_METADATA,
         payload: { json, currentDate },
@@ -103,8 +110,6 @@ const EpicState = props => {
     } else {
       setError(json.error);
     }
-
-    setType('enhanced');
 
     setLoading();
   };
@@ -117,7 +122,10 @@ const EpicState = props => {
     const json = await res.json();
 
     if (res.status === 200) {
-      const currentDate = new Date(json.data[0].date);
+      const year = parseInt(json.data[0].date.slice(0, 4));
+      const month = json.data[0].date.slice(5, 7) - 1;
+      const day = parseInt(json.data[0].date.slice(8, 10));
+      const currentDate = new Date(year, month, day);
       dispatch({
         type: GET_ENHANCED_METADATA_BY_DATE,
         payload: { json, currentDate },
@@ -125,8 +133,6 @@ const EpicState = props => {
     } else {
       setError(json.error);
     }
-
-    setType('enhanced');
 
     setLoading();
   };

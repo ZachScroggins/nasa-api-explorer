@@ -20,8 +20,6 @@ const epic = () => {
     loading,
     date,
   } = epicContext;
-  const [naturalInput, setNaturalInput] = useState('');
-  const [enhancedInput, setEnhancedInput] = useState('');
 
   const handleDateChange = value => {
     if (type === 'natural') {
@@ -31,16 +29,13 @@ const epic = () => {
     }
   };
 
-  useEffect(() => {
-    // console.log(date);
-  }, [date]);
-
   return (
     <>
       <div className='container mx-auto'>
         {loading && <LinearProgress />}
         <p>{`error status: ${error}`}</p>
         <p>error message: {errorMessage}</p>
+        <p>date: {date.toISOString().slice(0, 10)}</p>
         <div>
           <button
             className='px-4 py-2 m-2 bg-primary'
@@ -55,68 +50,17 @@ const epic = () => {
             Natural
           </button>
         </div>
-        <div>
-          <div>
-            <button
-              className='px-4 py-2 m-2 bg-primary'
-              onClick={() => getEnhancedByDate(enhancedInput)}
-            >
-              Enhanced By Date
-            </button>
-            <input
-              className='text-black'
-              type='text'
-              onChange={e => setEnhancedInput(e.target.value)}
-            />
-          </div>
-          <div>
-            <button
-              className='px-4 py-2 m-2 bg-primary'
-              onClick={() => getNaturalByDate(naturalInput)}
-            >
-              Natural By Date
-            </button>
-            <input
-              className='text-black'
-              type='text'
-              onChange={e => setNaturalInput(e.target.value)}
-            />
-            <div>
-              {/* <input
-                  type='date'
-                  className='rounded-lg bg-primary appearance-none cursor-pointer'
-                  defaultValue='2017-06-01'
-                  min='2017-01-01'
-                  max='2018-12-31'
-                  onChange={e => setDateInput(e.target.value)}
-                /> */}
-            </div>
-            <div className=''>
-              <Calendar
-                // onChange={setDateInput}
-                onChange={(value, event) => handleDateChange(value, event)}
-                // defaultValue={new Date(date)}
-                value={date}
-                // value={dateInput}
-                minDate={new Date('2015-06-13')}
-                maxDate={new Date()}
-                className='text-black'
-                tileClassName=''
-              />
-            </div>
-          </div>
+        <div className=''>
+          <Calendar
+            onChange={(value, event) => handleDateChange(value, event)}
+            value={date}
+            minDate={new Date('2015-06-13')}
+            maxDate={new Date()}
+            className='text-black'
+            tileClassName=''
+          />
         </div>
-        <div
-          className='overflow-hidden flex justify-center items-center'
-          style={{ width: '501px', height: '501px' }}
-        >
-          <div
-            style={{ width: '501px', height: '501px' }}
-            className='relative flex items-center justify-center'
-          >
-            <ImageSlider current={currentMetadata} type={type} />
-          </div>
-        </div>
+        <ImageSlider current={currentMetadata} type={type} />
         <div className='flex flex-wrap'>
           {currentMetadata?.map(item => {
             const year = item?.date.slice(0, 4);
@@ -153,19 +97,5 @@ const epic = () => {
     </>
   );
 };
-
-// // This gets called on every request
-// export async function getServerSideProps(req) {
-//   // Fetch data from external API
-//   const res = await fetch(
-//     `https://api.nasa.gov/EPIC/api/natural?api_key=${process.env.NASA_API_KEY}`
-//   );
-//   const data = await res.json();
-
-//   console.log(req.query);
-
-//   // Pass data to the page via props
-//   return { props: { data } };
-// }
 
 export default epic;

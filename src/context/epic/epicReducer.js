@@ -18,6 +18,7 @@ export default (state, action) => {
         error: action.payload.json.error.status,
         errorMessage: action.payload.json.error.message,
         date: action.payload.currentDate,
+        type: 'natural',
       };
     case GET_MOST_RECENT_ENHANCED_METADATA:
       return {
@@ -27,6 +28,7 @@ export default (state, action) => {
         error: action.payload.json.error.status,
         errorMessage: action.payload.json.error.message,
         date: action.payload.currentDate,
+        type: 'enhanced',
       };
     case GET_NATURAL_METADATA_BY_DATE:
       return {
@@ -36,6 +38,7 @@ export default (state, action) => {
         error: action.payload.json.error.status,
         errorMessage: action.payload.json.error.message,
         date: action.payload.currentDate,
+        type: 'natural',
       };
     case GET_ENHANCED_METADATA_BY_DATE:
       return {
@@ -45,6 +48,7 @@ export default (state, action) => {
         error: action.payload.json.error.status,
         errorMessage: action.payload.json.error.message,
         date: action.payload.currentDate,
+        type: 'enhanced',
       };
     case SET_LOADING:
       return {

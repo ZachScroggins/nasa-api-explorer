@@ -24,6 +24,7 @@ export default async (req, res) => {
           response.error.message = 'Sorry, there is no data for this date.';
         } else {
           status = 200;
+          // console.log(new Date(json[0].date.slice(0, 10)));
           response.error = { status: false, message: null };
           response.data = json;
         }

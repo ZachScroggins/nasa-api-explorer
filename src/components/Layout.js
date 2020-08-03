@@ -234,7 +234,7 @@ const Layout = props => {
     <>
       <motion.div
         id='mobile-top-app-bar'
-        className='fixed top-0 left-0 py-3 bg-primary w-full z-20 rounded-b-lg sm:hidden'
+        className='fixed top-0 left-0 py-3 bg-primary w-full z-20 sm:hidden'
         initial='visible'
         animate={goingUp ? 'hidden' : 'visible'}
         variants={topNavVariant}
@@ -262,7 +262,7 @@ const Layout = props => {
       </div>
       <motion.div
         id='bottom-app-bar'
-        className='lg:hidden fixed flex bottom-0 left-0 px-4 rounded-t-lg bg-primary w-full py-4'
+        className='lg:hidden fixed flex bottom-0 left-0 z-20 px-4 bg-primary w-full py-4'
         initial='visible'
         animate={goingUp ? 'hidden' : 'visible'}
         variants={bottomNavVariant}

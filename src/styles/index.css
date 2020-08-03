@@ -11,5 +11,10 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+.size {
+  width: 17rem;
+  height: 17rem;
+}
+
 @tailwind components;
 @tailwind utilities;
