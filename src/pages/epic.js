@@ -5,12 +5,12 @@ import EpicContext from '../context/epic/epicContext';
 import LinearProgress from '../components/LinearProgress';
 import ImageSlider from '../components/epic/ImageSlider';
 
-// distance = sqrt(x^2 + y^2 + z^2)
+// Calculus vector magnitude - distance = sqrt(x^2 + y^2 + z^2)
 const getDistance = (x, y, z) => {
   return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
 };
 
-// Angle between 3d vectors
+// Calculus/Trig - Angle between 3d vectors - sun earth vehicle angle
 const getSev = (sun, dscovr) => {
   const dotProduct = sun.x * dscovr.x + sun.y * dscovr.y + sun.z * dscovr.z;
   const magnitudeA = Math.sqrt(
@@ -54,7 +54,7 @@ const epic = () => {
   };
   const sunDistance = getDistance(sun.x, sun.y, sun.z);
   const sevAngle = getSev(sun, dscovr);
-  // Law of cosines
+  // Trig - Law of cosines - c = sqrt(a^2 + b^2 - 2ab * cos(y))
   const distanceToSun = Math.sqrt(
     Math.pow(sunDistance, 2) +
       Math.pow(dscovrDistance, 2) -
