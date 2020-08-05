@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import Calendar from 'react-calendar';
 import { FiCalendar } from 'react-icons/fi';
 import EpicContext from '../context/epic/epicContext';
