@@ -16,7 +16,10 @@ export default async (req, res) => {
       );
       if (results?.status !== 200) {
         status = 502;
+        // response.error.message = 'There was an error fetching data from NASA';
         response.error.message = 'There was an error fetching data from NASA';
+        response.response = results;
+        response.json = await results.json();
       } else {
         const json = await results.json();
         if (json.length === 0) {
