@@ -19,7 +19,7 @@ const epic = () => {
     errorMessage,
     setError,
     loading,
-    date,
+    // date,
   } = epicContext;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [calendarOpen, setCalendarOpen] = useState(false);

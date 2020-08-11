@@ -34,7 +34,7 @@ const lawOfCosines = (distance1, distance2, angle) => {
 
 const Data = ({
   currentIndex,
-  setCurrentIndex,
+  // setCurrentIndex,
   calendarOpen,
   setCalendarOpen,
   imageOpen,

@@ -12,7 +12,7 @@ const ThumbnailSlider = props => {
 
   useEffect(() => {
     thumbRefs.current = [];
-    currentMetadata.map((item, index) => {
+    currentMetadata.map(() => {
       thumbRefs.current.push(createRef());
     });
   }, [currentMetadata]);
