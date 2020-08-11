@@ -52,7 +52,7 @@ const EpicState = props => {
 
     // console.log(json.data[0].date.slice(0, 10) + 'T03:24:00');
 
-    if (res.status === 200) {
+    if (res.status === 200 && json.data.length > 0) {
       const year = parseInt(json.data[0].date.slice(0, 4));
       const month = json.data[0].date.slice(5, 7) - 1;
       const day = parseInt(json.data[0].date.slice(8, 10));
@@ -77,7 +77,7 @@ const EpicState = props => {
 
     // console.log(json.data[0].date.slice(0, 10) + 'T03:24:00');
 
-    if (res.status === 200) {
+    if (res.status === 200 && json.data.length > 0) {
       const tempDate = `${json.data[0].date.slice(0, 10)}T03:24:00`;
       const currentDate = new Date(tempDate);
       dispatch({
@@ -98,7 +98,7 @@ const EpicState = props => {
 
     const json = await res.json();
 
-    if (res.status === 200) {
+    if (res.status === 200 && json.data.length > 0) {
       const year = parseInt(json.data[0].date.slice(0, 4));
       const month = json.data[0].date.slice(5, 7) - 1;
       const day = parseInt(json.data[0].date.slice(8, 10));
@@ -121,7 +121,7 @@ const EpicState = props => {
 
     const json = await res.json();
 
-    if (res.status === 200) {
+    if (res.status === 200 && json.data.length > 0) {
       const year = parseInt(json.data[0].date.slice(0, 4));
       const month = json.data[0].date.slice(5, 7) - 1;
       const day = parseInt(json.data[0].date.slice(8, 10));

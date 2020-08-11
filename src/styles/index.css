@@ -16,5 +16,9 @@ body {
   height: 17rem;
 }
 
+.glow {
+  text-shadow: 2px 8px 30px #705dcf;
+}
+
 @tailwind components;
 @tailwind utilities;

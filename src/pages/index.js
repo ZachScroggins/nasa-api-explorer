@@ -54,7 +54,6 @@ export default function IndexPage() {
           >
             <div className='flex justify-center items-center lg:justify-start'>
               <div className='w-64 max-w-screen-md lg:w-3/4'>
-                {/* <img src='/M81.png' title='M81 Galaxy' /> */}
                 <MotionGalaxy />
               </div>
             </div>
@@ -84,11 +83,6 @@ export default function IndexPage() {
           </motion.div>
         </div>
       </div>
-      <style jsx>{`
-        .glow {
-          text-shadow: 2px 8px 30px #705dcf;
-        }
-      `}</style>
     </>
   );
 }

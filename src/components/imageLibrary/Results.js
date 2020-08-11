@@ -76,6 +76,7 @@ const Results = ({ results }) => {
                   <div
                     style={{ backgroundImage: `url(${item.links[0].href})` }}
                     title={item.data[0].title}
+                    alt={item.data[0].title}
                     className='h-0 img block bg-cover bg-no-repeat bg-center rounded-t-lg'
                   ></div>
                   <div className='p-4'>

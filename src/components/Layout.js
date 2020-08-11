@@ -160,7 +160,7 @@ const Layout = props => {
   const Menu = () => {
     return (
       <motion.div
-        className='fixed inset-x-0 bottom-0 lg:inset-x-auto lg:inset-y-0 lg:left-0 lg:pt-20 bg-black p-6 z-10'
+        className='fixed inset-x-0 bottom-0 lg:inset-x-auto lg:inset-y-0 lg:left-0 lg:pt-20 bg-black p-6 z-30'
         initial='hidden'
         animate={drawerOpen ? 'visible' : 'hidden'}
         variants={navVariant}

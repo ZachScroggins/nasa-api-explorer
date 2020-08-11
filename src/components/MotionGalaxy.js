@@ -47,6 +47,7 @@ const MotionGalaxy = () => {
       <motion.img
         src='/M81.png'
         title='M81 Galaxy'
+        alt='M81 Galaxy'
         className=''
         width='795'
         height='614'

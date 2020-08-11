@@ -189,6 +189,7 @@ const imageItem = () => {
                       currentManifest[0].href.slice(4)
                   }
                   title={current.data[0].title}
+                  alt={current.data[0].title}
                   className='w-full h-auto'
                   style={{ maxWidth: '90vw', maxHeight: '90vh' }}
                 />
