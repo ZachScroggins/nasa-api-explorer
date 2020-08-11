@@ -1,5 +1,12 @@
 @tailwind base;
 
+:root {
+  --color-primary-main: #705dcf;
+  --color-primary-light: #8c7dd8;
+  --color-primary-dark: #4e4190;
+  --color-bg: #111111;
+}
+
 *:focus {
   outline: none !important;
 }
