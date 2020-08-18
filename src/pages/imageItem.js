@@ -208,6 +208,11 @@ const imageItem = () => {
             max-width: 90vw;
           }
         `}</style>
+        <style jsx global>{`
+          body {
+            overflow: ${open ? 'hidden' : 'visible'};
+          }
+        `}</style>
       </>
     );
   } catch (err) {

@@ -1,5 +1,6 @@
 @tailwind base;
 
+/* try @apply / using tailwind values for variables */
 :root {
   --color-primary-main: #705dcf;
   --color-primary-light: #8c7dd8;
@@ -16,6 +17,12 @@ body {
   background-image: url('/topography.svg');
   color: white;
   -webkit-tap-highlight-color: transparent;
+}
+
+@screen lg {
+  body {
+    overscroll-behavior: none;
+  }
 }
 
 .size {

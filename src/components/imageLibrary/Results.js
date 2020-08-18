@@ -70,7 +70,7 @@ const Results = ({ results }) => {
                 whileHover={{ scale: 1.08 }}
               >
                 <div
-                  className='bg-black root cursor-pointer hover:border border-primary rounded-lg'
+                  className='bg-black root cursor-pointer lg:hover:border border-primary rounded-lg'
                   onClick={() => handleClick(item)}
                 >
                   <div
@@ -86,7 +86,7 @@ const Results = ({ results }) => {
                         {item.data[0].date_created.slice(0, 10)}
                       </p>
                       <Link href='/imageItem'>
-                        <a className='text-primary-light hover:underline'>
+                        <a className='text-primary-light lg:hover:underline'>
                           DETAILS
                         </a>
                       </Link>
@@ -103,10 +103,12 @@ const Results = ({ results }) => {
           width: 300px;
         }
 
-        .root:hover {
-          box-shadow: 0px 3px 5px -1px rgba(112, 93, 207, 0.2),
-            0px 5px 8px 0px rgba(112, 93, 207, 0.14),
-            0px 1px 14px 0px rgba(112, 93, 207, 0.12);
+        @media (min-width: 1024px) {
+          .root:hover {
+            box-shadow: 0px 3px 5px -1px rgba(112, 93, 207, 0.2),
+              0px 5px 8px 0px rgba(112, 93, 207, 0.14),
+              0px 1px 14px 0px rgba(112, 93, 207, 0.12);
+          }
         }
 
         .img {

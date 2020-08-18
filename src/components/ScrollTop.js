@@ -44,7 +44,7 @@ const ScrollTop = () => {
   return (
     <>
       <motion.div
-        className='cursor-pointer rounded-full w-12 h-12 fixed bottom-0 right-0 bg-primary flex items-center justify-center mb-4 mr-4'
+        className='cursor-pointer rounded-full w-12 h-12 fixed bottom-0 right-0 bg-primary flex items-center justify-center mb-16 lg:mb-4 mr-4'
         onClick={handleClick}
         initial='hidden'
         animate={goingUp ? 'visible' : 'hidden'}

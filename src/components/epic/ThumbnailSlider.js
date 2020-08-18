@@ -5,7 +5,6 @@ import { useRef, createRef, useEffect } from 'react';
 const ThumbnailSlider = props => {
   const { currentMetadata, currentIndex, setCurrentIndex, type } = props;
   const containerRef = useRef();
-  const scrollXRef = useRef(0);
   let adjustedWidth =
     containerRef?.current?.scrollWidth - containerRef?.current?.clientWidth;
   const thumbRefs = useRef([]);
@@ -30,26 +29,12 @@ const ThumbnailSlider = props => {
   }, [currentIndex]);
 
   const scroll = direction => {
-    adjustedWidth =
-      containerRef?.current?.scrollWidth - containerRef?.current?.clientWidth;
-
-    if (direction === 'right') {
-      if (scrollXRef.current + Math.abs(adjustedWidth / 3) > adjustedWidth) {
-        scrollXRef.current = adjustedWidth;
-      } else {
-        scrollXRef.current = scrollXRef.current + Math.abs(adjustedWidth / 3);
-      }
-    }
-    if (direction === 'left') {
-      if (scrollXRef.current - Math.abs(adjustedWidth / 3) + 1 < 0) {
-        scrollXRef.current = 0;
-      } else {
-        scrollXRef.current = scrollXRef.current - Math.abs(adjustedWidth / 3);
-      }
-    }
-    containerRef.current.scroll({
+    containerRef?.current.scrollBy({
       top: 0,
-      left: scrollXRef.current,
+      left:
+        direction === 'left'
+          ? -containerRef?.current?.clientWidth + 40
+          : containerRef?.current?.clientWidth - 40,
       behavior: 'smooth',
     });
   };
@@ -66,8 +51,8 @@ const ThumbnailSlider = props => {
       >
         <div
           className={`${
-            adjustedWidth === 0 ? 'hidden' : 'flex'
-          } sticky inset-y-0 left-0 flex items-center justify-center bg-primary cursor-pointer lg:hover:text-black`}
+            adjustedWidth === 0 ? 'sm:hidden' : 'flex'
+          } hidden sm:flex sticky inset-y-0 left-0 items-center justify-center cursor-pointer bg-primary lg:hover:text-black`}
           style={{ zIndex: 1 }}
           onClick={() => scroll('left')}
           aria-label='scroll-left-button'
@@ -108,8 +93,8 @@ const ThumbnailSlider = props => {
         })}
         <div
           className={`${
-            adjustedWidth === 0 ? 'hidden' : 'flex'
-          } sticky inset-y-0 right-0 flex items-center justify-center bg-primary cursor-pointer lg:hover:text-black`}
+            adjustedWidth === 0 ? 'sm:hidden' : 'flex'
+          }  hidden sticky inset-y-0 right-0 sm:flex items-center justify-center cursor-pointer bg-primary lg:hover:text-black`}
           onClick={() => scroll('right')}
           aria-label='scroll-right-button'
           role='button'

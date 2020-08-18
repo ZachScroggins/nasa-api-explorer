@@ -2,8 +2,19 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import RocketSvg from '../components/RocketSvg';
 import MotionGalaxy from '../components/MotionGalaxy';
+import { useRef } from 'react';
 
 export default function IndexPage() {
+  const featuresRef = useRef();
+
+  const handleLearnMore = () => {
+    featuresRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      // inline: 'nearest',
+    });
+  };
+
   return (
     <>
       <div className='root px-4'>
@@ -25,7 +36,7 @@ export default function IndexPage() {
               </h2>
               <h3 className='text-2xl font-light text-opacity-75 text-white mt-2 lg:mt-4 lg:w-2/3 xl:w-3/5 xl:mt-6 xl:text-3xl'>
                 A free and open source project, built with REST APIs from{' '}
-                <a href='https://api.nasa.gov' className='hover:underline'>
+                <a href='https://api.nasa.gov' className='lg:hover:underline'>
                   api.nasa.gov
                 </a>
               </h3>
@@ -35,12 +46,14 @@ export default function IndexPage() {
                     START EXPLORING
                   </a>
                 </Link>
-                <a
-                  href='#about'
+                <div
                   className='block border border-primary rounded px-4 py-2 text-primary-light mt-4 text-center lg:w-64 lg:ml-4'
+                  onClick={handleLearnMore}
+                  role='button'
+                  aria-label='scroll-to-features'
                 >
                   LEARN MORE
-                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -59,7 +72,10 @@ export default function IndexPage() {
             </div>
             {/* <div className='flex justify-center items-center'> */}
             <div className='mt-4 text-center lg:text-left lg:mt-0'>
-              <h2 className='text-4xl text-primary glow font-bold xl:text-5xl'>
+              <h2
+                className='text-4xl text-primary glow font-bold xl:text-5xl'
+                ref={featuresRef}
+              >
                 Features
               </h2>
               <h2 className='text-2xl font-bold mt-4 xl:text-3xl'>JAMstack</h2>
@@ -70,7 +86,10 @@ export default function IndexPage() {
                 Full Stack
               </h2>
               <h3 className='text-xl font-light text-opacity-75 text-white mt-2 lg:w-2/3 xl:text-2xl'>
-                Serverless Node.js REST API for fetching data from NASA.
+                <ul>
+                  <li>React SSG for speed and SEO.</li>
+                  <li>Serverless functions for fetching data from NASA.</li>
+                </ul>
               </h3>
               <h2 className='text-2xl font-bold mt-4 xl:text-3xl'>
                 Live Project

@@ -51,6 +51,11 @@ const ImageModal = ({ imageOpen, setImageOpen, currentIndex }) => {
           </div>
         </div>
       )}
+      <style jsx global>{`
+        body {
+          overflow: ${imageOpen ? 'hidden' : 'visible'};
+        }
+      `}</style>
     </>
   );
 };

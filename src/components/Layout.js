@@ -82,7 +82,8 @@ const titles = [
   'NASA API Explorer',
   'NASA Image Library',
   'Astronomy Picture of the Day',
-  'EPIC',
+  // 'EPIC',
+  'Earth Polychromatic Imaging Camera',
 ];
 const routes = ['/', '/images', '/apod', '/epic'];
 const regex = RegExp(/^\/image/, 'i');
@@ -160,7 +161,7 @@ const Layout = props => {
   const Menu = () => {
     return (
       <motion.div
-        className='fixed inset-x-0 bottom-0 lg:inset-x-auto lg:inset-y-0 lg:left-0 lg:pt-20 bg-black p-6 z-30'
+        className='fixed inset-x-0 bottom-0 lg:inset-x-auto lg:inset-y-0 lg:left-0 lg:pt-20 bg-black p-6 pb-20 z-10'
         initial='hidden'
         animate={drawerOpen ? 'visible' : 'hidden'}
         variants={navVariant}
@@ -236,10 +237,10 @@ const Layout = props => {
         id='mobile-top-app-bar'
         className='fixed top-0 left-0 py-3 bg-primary w-full z-20 sm:hidden'
         initial='visible'
-        animate={goingUp ? 'hidden' : 'visible'}
+        // animate={goingUp ? 'hidden' : 'visible'}
         variants={topNavVariant}
       >
-        <h1 className='text-center text-2xl'>{appBarTitle}</h1>
+        <h1 className='text-center text-2xl truncate px-4'>{appBarTitle}</h1>
       </motion.div>
       <div className='fixed top-0 left-0 py-3 bg-primary w-full z-20 hidden lg:block'>
         <div className='absolute py-4 top-0 left-0 cursor-pointer'>
@@ -257,14 +258,14 @@ const Layout = props => {
         </div>
         <h1 className='text-center text-2xl pl-20'>{appBarTitle}</h1>
       </div>
-      <div className='py-20 sm:py-0 sm:pt-10 sm:pb-20 lg:py-20 lg:pl-20'>
+      <div className='py-20 sm:py-0 sm:pt-10 sm:pb-20 lg:pt-20 lg:pb-0 lg:pl-20'>
         <main>{props.children}</main>
       </div>
       <motion.div
         id='bottom-app-bar'
         className='lg:hidden fixed flex bottom-0 left-0 z-20 px-4 bg-primary w-full py-4'
         initial='visible'
-        animate={goingUp ? 'hidden' : 'visible'}
+        // animate={goingUp ? 'hidden' : 'visible'}
         variants={bottomNavVariant}
       >
         <div

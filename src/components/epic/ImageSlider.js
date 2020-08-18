@@ -1,9 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight, FiPlay, FiPause } from 'react-icons/fi';
 
-const ImageSlider = ({ current, type, currentIndex, setCurrentIndex }) => {
+const ImageSlider = ({
+  current,
+  type,
+  currentIndex,
+  setCurrentIndex,
+  imageHeight,
+  setImageHeight,
+}) => {
   // const [currentIndex, setCurrentIndex] = useState(0);
-  const [imageHeight, setImageHeight] = useState(1080);
+  // const [imageHeight, setImageHeight] = useState(1080);
   const [playing, setPlaying] = useState(false);
   const imageRef = useRef();
   const timerIdRef = useRef(null);
@@ -86,13 +93,13 @@ const ImageSlider = ({ current, type, currentIndex, setCurrentIndex }) => {
           {currentIndex + 1}/{images.length}
         </div>
         <FiChevronLeft
-          className='rounded-full cursor-pointer absolute left-0 z-10 text-4xl'
+          className='rounded-full cursor-pointer absolute left-0 z-10 text-4xl lg:hover:text-primary'
           style={{ top: '50%' }}
           onClick={handleDecrement}
           title='Previous Image'
         />
         <FiChevronRight
-          className='rounded-full cursor-pointer absolute right-0 z-10 text-4xl'
+          className='rounded-full cursor-pointer absolute right-0 z-10 text-4xl lg:hover:text-primary'
           style={{ top: '50%' }}
           onClick={handleIncrement}
           title='Next Image'
@@ -100,13 +107,13 @@ const ImageSlider = ({ current, type, currentIndex, setCurrentIndex }) => {
         <div className='absolute bottom-0 z-10 w-full flex justify-center'>
           {playing ? (
             <FiPause
-              className='rounded-full cursor-pointer text-2xl mb-2'
+              className='rounded-full cursor-pointer text-2xl mb-2 lg:hover:text-primary'
               onClick={handlePause}
               title='Play/Pause Slideshow'
             />
           ) : (
             <FiPlay
-              className='rounded-full cursor-pointer text-2xl mb-2'
+              className='rounded-full cursor-pointer text-2xl mb-2 lg:hover:text-primary'
               onClick={handlePlay}
               title='Play/Pause Slideshow'
             />
@@ -118,6 +125,7 @@ const ImageSlider = ({ current, type, currentIndex, setCurrentIndex }) => {
               key={index}
               src={item}
               alt='earth'
+              title='Earth'
               ref={imageRef}
               width='1080px'
               height='1080px'

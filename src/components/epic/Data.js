@@ -1,6 +1,16 @@
 import { useContext, useState } from 'react';
-import { FiCalendar, FiZoomIn } from 'react-icons/fi';
+import {
+  FiCalendar,
+  FiZoomIn,
+  FiArrowRight,
+  FiSun,
+  FiMoon,
+  FiStar,
+} from 'react-icons/fi';
 import { RiRulerLine } from 'react-icons/ri';
+import { BsClipboardData } from 'react-icons/bs';
+import { GiEarthAmerica } from 'react-icons/gi';
+import { FaSatellite } from 'react-icons/fa';
 import EpicContext from '../../context/epic/epicContext';
 
 // Calculus vector magnitude/distance = sqrt(x^2 + y^2 + z^2)
@@ -39,9 +49,10 @@ const Data = ({
   setCalendarOpen,
   imageOpen,
   setImageOpen,
+  imageHeight,
 }) => {
   const epicContext = useContext(EpicContext);
-  const { currentMetadata, date } = epicContext;
+  const { currentMetadata, date, getNaturalByDate } = epicContext;
   const [km, setKm] = useState(true);
   const dscovr = {
     x: currentMetadata[currentIndex]?.dscovr_j2000_position.x,
@@ -86,84 +97,175 @@ const Data = ({
   };
 
   return (
-    <div className='border border-gray-700 bg-black rounded-lg h-full'>
-      <div
-        className='flex items-center justify-center text-primary text-2xl p-1 mt-1 cursor-pointer hover:underline'
-        onClick={() => setCalendarOpen(!calendarOpen)}
-      >
-        <FiCalendar className='mr-2' />
-        <p className='flex-shrink'>{date.toISOString().slice(0, 10)}</p>
-      </div>
-      <div className='flex items-center justify-between text-primary text-xl bg-opacity-50 rounded-t-lg p-2'>
+    <>
+      <div className='data-container border border-gray-700 bg-black rounded-lg h-full overflow-auto'>
         <div
-          className='flex items-center justify-center w-full border-r border-gray-700 cursor-pointer hover:underline'
-          onClick={() => setImageOpen(!imageOpen)}
+          className='flex items-center justify-center text-primary-light text-2xl p-1 mt-1 cursor-pointer lg:hover:underline'
+          onClick={() => setCalendarOpen(!calendarOpen)}
         >
-          <FiZoomIn className='mr-2' />
-          <p className='flex-shrink'>Zoom</p>
+          <FiCalendar className='mr-2' />
+          <p className='flex-shrink'>{date.toISOString().slice(0, 10)}</p>
         </div>
-        <div
-          className='flex items-center justify-center w-full cursor-pointer lg:hover:underline'
-          onClick={() => setKm(!km)}
-        >
-          <RiRulerLine className='mr-2' />
-          <p className='flex-shrink'>km/mi</p>
+        <div className='flex items-center justify-between text-primary-light text-xl bg-opacity-50 rounded-t-lg p-2'>
+          <div
+            className='flex items-center justify-center w-full border-r border-gray-700 cursor-pointer lg:hover:underline'
+            onClick={() => setImageOpen(!imageOpen)}
+          >
+            <FiZoomIn className='mr-2' />
+            <p className='flex-shrink'>Zoom</p>
+          </div>
+          <div
+            className='flex items-center justify-center w-full cursor-pointer lg:hover:underline'
+            onClick={() => setKm(!km)}
+          >
+            <RiRulerLine className='mr-2' />
+            <p className='flex-shrink'>km/mi</p>
+          </div>
+        </div>
+        <div className='p-4'>
+          <h2 className='flex items-center pb-2 text-2xl font-bold glow'>
+            <BsClipboardData className='mr-2 text-primary' /> Image Data
+          </h2>
+          <p className='pb-4 text-lg text-gray-300'>
+            This image was taken by NASA's EPIC camera onboard the NOAA DSCOVR
+            spacecraft.
+          </p>
+          <div className='grid grid-cols-2 grid-rows-3'>
+            <div className='my-4'>
+              <div className='flex text-xl text-primary pb-1'>
+                <GiEarthAmerica className='mr-3' />
+                <FiArrowRight className='mr-3' />
+                <FiSun />
+              </div>
+              <h3 className='text-lg font-bold pb-1'>Earth to Sun</h3>
+              <p className='text-gray-300'>
+                {km
+                  ? `${Math.round(earthToSunDistance).toLocaleString()} km`
+                  : `${miles.earthToSun} mi`}
+              </p>
+            </div>
+            <div className='my-4'>
+              <div className='flex text-xl text-primary pb-1'>
+                <GiEarthAmerica className='mr-3' />
+                <FiArrowRight className='mr-3' />
+                <FiMoon />
+              </div>
+              <h3 className='text-lg font-bold pb-1'>Earth to Moon</h3>
+              <p className='text-gray-300'>
+                {km
+                  ? `${Math.round(earthToMoonDistance).toLocaleString()} km`
+                  : `${miles.earthToMoon} mi`}
+              </p>
+            </div>
+            <div className='my-4'>
+              <div className='flex text-xl text-primary pb-1'>
+                <FaSatellite className='mr-3' />
+                <FiArrowRight className='mr-3' />
+                <FiSun />
+              </div>
+              <h3 className='text-lg font-bold pb-1'>EPIC to Sun</h3>
+              <p className='text-gray-300'>
+                {km
+                  ? `${Math.round(dscovrToSunDistance).toLocaleString()} km`
+                  : `${miles.dscovrToSunDistance} mi`}
+              </p>
+            </div>
+            <div className='my-4'>
+              <div className='flex text-xl text-primary pb-1'>
+                <FaSatellite className='mr-3' />
+                <FiArrowRight className='mr-3' />
+                <FiMoon />
+              </div>
+              <h3 className='text-lg font-bold pb-1'>EPIC to Moon</h3>
+              <p className='text-gray-300'>
+                {km
+                  ? `${Math.round(dscovrToMoonDistance).toLocaleString()} km`
+                  : `${miles.dscovrToMoonDistance} mi`}
+              </p>
+            </div>
+            <div className='my-4'>
+              <div className='flex text-xl text-primary pb-1'>
+                <GiEarthAmerica className='mr-3' />
+                <FiArrowRight className='mr-3' />
+                <FaSatellite />
+              </div>
+              <h3 className='text-lg font-bold pb-1'>Earth to EPIC</h3>
+              <p className='text-gray-300'>
+                {km
+                  ? `${Math.round(earthToDscovrDistance).toLocaleString()} km`
+                  : `${miles.earthToDscovr} mi`}
+              </p>
+            </div>
+            <div className='my-4'>
+              <div className='flex text-xl text-primary pb-1'>
+                <FiSun className='mr-3' />
+                <GiEarthAmerica className='mr-3' />
+                <FaSatellite />
+              </div>
+              <h3 className='text-lg font-bold pb-1'>SEV Angle</h3>
+              <p className='text-gray-300'>{sevAngle.toFixed(2)}&deg;</p>
+            </div>
+          </div>
+          <div className='mt-4'>
+            <h2 className='flex items-center pb-2 text-2xl font-bold glow'>
+              <FiStar className='mr-2 text-primary' /> Notable Events
+            </h2>
+            <ul className='list-disc list-inside pl-2 text-lg'>
+              <li
+                className='text-primary-light cursor-pointer lg:hover:underline mb-2'
+                onClick={() => getNaturalByDate('2020-06-18')}
+              >
+                Saharan Dust Storm 2020
+              </li>
+              <li
+                className='text-primary-light cursor-pointer lg:hover:underline mb-2'
+                onClick={() => getNaturalByDate('2017-08-21')}
+              >
+                Total Solar Eclipse 2017
+              </li>
+              <li
+                className='text-primary-light cursor-pointer lg:hover:underline mb-2'
+                onClick={() => getNaturalByDate('2017-02-26')}
+              >
+                Annular Solar Eclipse 2017
+              </li>
+              <li
+                className='text-primary-light cursor-pointer lg:hover:underline mb-2'
+                onClick={() => getNaturalByDate('2016-03-09')}
+              >
+                Solar Eclipse 2016
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div className='p-4'>
-        <p className='pb-2 text-2xl font-bold glow'>Image Data</p>
-        <p className='pb-4 text-lg text-gray-300'>
-          This image was taken by NASA's EPIC camera onboard the NOAA DSCOVR
-          spacecraft.
-        </p>
-        <div className='grid grid-cols-2 grid-rows-3'>
-          <div className='my-4'>
-            <p className='text-lg font-bold pb-1'>Earth to Sun</p>
-            <p className='text-gray-300'>
-              {km
-                ? `${Math.round(earthToSunDistance).toLocaleString()} km`
-                : `${miles.earthToSun} mi`}
-            </p>
-          </div>
-          <div className='my-4'>
-            <p className='text-lg font-bold pb-1'>Earth to Moon</p>
-            <p className='text-gray-300'>
-              {km
-                ? `${Math.round(earthToMoonDistance).toLocaleString()} km`
-                : `${miles.earthToMoon} mi`}
-            </p>
-          </div>
-          <div className='my-4'>
-            <p className='text-lg font-bold pb-1'>EPIC to Sun</p>
-            <p className='text-gray-300'>
-              {km
-                ? `${Math.round(dscovrToSunDistance).toLocaleString()} km`
-                : `${miles.dscovrToSunDistance} mi`}
-            </p>
-          </div>
-          <div className='my-4'>
-            <p className='text-lg font-bold pb-1'>EPIC to Moon</p>
-            <p className='text-gray-300'>
-              {km
-                ? `${Math.round(dscovrToMoonDistance).toLocaleString()} km`
-                : `${miles.dscovrToMoonDistance} mi`}
-            </p>
-          </div>
-          <div className='my-4'>
-            <p className='text-lg font-bold pb-1'>Earth to EPIC</p>
-            <p className='text-gray-300'>
-              {km
-                ? `${Math.round(earthToDscovrDistance).toLocaleString()} km`
-                : `${miles.earthToDscovr} mi`}
-            </p>
-          </div>
-          <div className='my-4'>
-            <p className='text-lg font-bold pb-1'>SEV Angle</p>
-            <p className='text-gray-300'>{sevAngle.toFixed(2)}&deg;</p>
-          </div>
-        </div>
-      </div>
-    </div>
+      <style jsx>{`
+        .data-container {
+          scrollbar-color: #2d3748 #1a202c;
+        }
+        .data-container::-webkit-scrollbar {
+          width: 10px;
+          height: 10px;
+        }
+        .data-container::-webkit-scrollbar-thumb {
+          background: #2d3748;
+          border-radius: 10px;
+          box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
+            inset -2px -2px 2px rgba(0, 0, 0, 0.25);
+        }
+        .data-container::-webkit-scrollbar-track {
+          background: #1a202c;
+        }
+        /*
+        @media (min-width: 640px) {
+          max-height: ${imageHeight}px;
+        }
+        */
+        @media (min-width: 640px) {
+          max-height: 90vh;
+        }
+      `}</style>
+    </>
   );
 };
 

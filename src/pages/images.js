@@ -39,7 +39,7 @@ const images = () => {
 
   return (
     <>
-      <div className='px-4'>
+      <div className='px-4 pb-4'>
         {loading && <LinearProgress />}
         <div className='grid gap-4'>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>

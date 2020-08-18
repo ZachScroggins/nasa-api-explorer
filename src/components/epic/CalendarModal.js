@@ -55,6 +55,11 @@ const CalendarModal = ({ calendarOpen, setCalendarOpen }) => {
           </div>
         </div>
       )}
+      <style jsx global>{`
+        body {
+          overflow: ${calendarOpen ? 'hidden' : 'visible'};
+        }
+      `}</style>
     </>
   );
 };
