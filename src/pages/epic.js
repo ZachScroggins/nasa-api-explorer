@@ -31,7 +31,7 @@ const epic = () => {
 
     const y = await x.json();
 
-    console.log({ responseUrl: x.url, reqeustUrl: y.data });
+    console.log({ urlResponseIsFrom: x.url, urlRequestIsFrom: y.data });
   };
 
   return (

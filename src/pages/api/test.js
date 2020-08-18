@@ -27,8 +27,8 @@ export default async (req, res) => {
   const { cookies, method, query } = req;
 
   let status = 200;
-  const response = { data: req.headers.host + req.url };
-  // console.log(req.headers.host);
+  const response = { data: req.headers.referer };
+  console.log(req.headers.referer);
 
   res.status(status).json(response);
 };
