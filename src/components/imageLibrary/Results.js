@@ -79,7 +79,7 @@ const Results = ({ results }) => {
                     className='h-0 img block bg-cover bg-no-repeat bg-center rounded-t-lg'
                   ></div>
                   <div className='p-4'>
-                    <p className='h-20'>{item.data[0].title}</p>
+                    <p className='h-20 overflow-hidden'>{item.data[0].title}</p>
                     <div className='flex justify-between items-center mt-2'>
                       <p className='text-gray-500'>
                         {item.data[0].date_created.slice(0, 10)}

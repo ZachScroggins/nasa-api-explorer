@@ -47,22 +47,26 @@ const ImageState = props => {
   const getResults = async query => {
     setLoading();
 
-    let res = await fetch(
-      `https://images-api.nasa.gov/search?q=${query}&media_type=image`
-    );
-
-    let data = await res.json();
-
     try {
-      dispatch({
-        type: GET_RESULTS,
-        payload: data.collection.items,
-      });
+      let res = await fetch(
+        `https://images-api.nasa.gov/search?q=${query}&media_type=image`
+      );
+
+      let data = await res.json();
+
+      try {
+        dispatch({
+          type: GET_RESULTS,
+          payload: data.collection.items,
+        });
+      } catch (e) {
+        dispatch({
+          type: SET_ERROR,
+          payload: data.reason,
+        });
+      }
     } catch (e) {
-      dispatch({
-        type: SET_ERROR,
-        payload: data.reason,
-      });
+      console.log(e);
     }
   };
 

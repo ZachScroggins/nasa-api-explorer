@@ -5,6 +5,7 @@
   "author": "Zach Scroggins",
   "private": true,
   "dependencies": {
+    "browserslist": "^4.16.3",
     "firebase": "^7.15.5",
     "framer-motion": "^1.11.1",
     "next": "^9.4.4",

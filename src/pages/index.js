@@ -45,7 +45,7 @@ export default function IndexPage() {
             </div>
           </div>
         </motion.div>
-        <div className='bg-black bg-opacity-50 -mx-4 px-4'>
+        <div className='bg-black bg-opacity-50 -mx-4 px-4 -mb-20'>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -210,7 +210,7 @@ const imageItem = () => {
       </>
     );
   } catch (err) {
-    return <p>Search again or enable cookies</p>;
+    return <p>Image not available</p>;
   }
 };
 
