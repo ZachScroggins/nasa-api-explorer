@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>NASA API Explorer</title>
       </Head>
-      <div className='px-4 root'>
+      <div className='px-4 pt-6'>
         <div
           className='grid pb-10 mx-auto sm:px-32 lg:grid-cols-2 lg:px-5 xl:px-20'
           style={{ maxWidth: '2000px' }}
