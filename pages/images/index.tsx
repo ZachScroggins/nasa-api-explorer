@@ -9,7 +9,7 @@ export default function images({ data, error }) {
       <Head>
         <title>Images | NASA API Explorer</title>
       </Head>
-      <div className='flex h-screen overflow-hidden'>
+      <div className='flex min-h-screen overflow-hidden'>
         <div className='flex flex-col flex-1 overflow-hidden'>
           <Search />
           <Results data={data} error={error} />

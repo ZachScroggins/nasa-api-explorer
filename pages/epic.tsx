@@ -52,7 +52,7 @@ export default function epic({ data, type, error }) {
   }
 
   return (
-    <div>
+    <div className='h-screen'>
       <Head>
         <title>Earth Polychromatic Imaging Camera | NASA API Explorer</title>
       </Head>

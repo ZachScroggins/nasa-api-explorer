@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 export default function apod() {
   return (
-    <div>
+    <div className='h-screen'>
       <Head>
         <title>Astronomy Picture of the Day | NASA API Explorer</title>
       </Head>

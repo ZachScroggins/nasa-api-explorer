@@ -4,8 +4,10 @@
 
 @layer base {
   @screen lg {
+    html,
     body {
       /* overscroll-y-behavior: none; */
+      min-height: 100vh;
     }
   }
 }

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function MobileHeader({ setIsOpen }) {
   return (
-    <div className='lg:hidden'>
+    <div className='fixed top-0 left-0 z-10 w-full lg:hidden'>
       <div className='flex items-center justify-between px-4 py-2 bg-black border-b border-black'>
         <Link href='/'>
           <a className='flex items-center flex-shrink-0 text-2xl font-medium'>
