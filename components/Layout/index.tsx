@@ -6,6 +6,8 @@ import StaticSidebar from './StaticSidebar';
 import RocketIcon from 'components/RocketIcon';
 import { useRouter } from 'next/router';
 
+const regex = RegExp(/^\/images/, 'i');
+
 export default function Layout({ children }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +17,7 @@ export default function Layout({ children }) {
     if (router.pathname === '/') {
       setCurrentIndex(0);
     }
-    if (router.pathname === '/images') {
+    if (regex.test(router.pathname)) {
       setCurrentIndex(1);
     }
     if (router.pathname === '/epic') {
