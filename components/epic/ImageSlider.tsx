@@ -1,0 +1,43 @@
+import React from 'react';
+import Image from 'next/image';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+export default function ImageSlider({
+  data,
+  type,
+  year,
+  month,
+  day,
+  setCurrentIndex,
+}) {
+  return (
+    <Carousel
+      infiniteLoop
+      renderItem={(
+        item: React.ReactNode,
+        options?: { isSelected: boolean }
+      ) => (
+        <a
+          href={React.isValidElement(item) && item.props.children.props.src}
+          className='cursor-zoom-in'
+          tabIndex={-1}
+        >
+          {item}
+        </a>
+      )}
+      onChange={index => setCurrentIndex(index)}
+    >
+      {data?.map((image, index) => (
+        <div key={index}>
+          <img
+            src={`https://epic.gsfc.nasa.gov/archive/${type}/${year}/${month}/${day}/png/${image.image}.png`}
+            alt={image.caption}
+            className='rounded-lg'
+          />
+        </div>
+      ))}
+    </Carousel>
+  );
+}
