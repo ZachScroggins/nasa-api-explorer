@@ -1,4 +1,4 @@
-function RocketSvg() {
+export default function Rocket(props) {
   return (
     <>
       <svg
@@ -6,7 +6,7 @@ function RocketSvg() {
         xmlnsXlink='http://www.w3.org/1999/xlink'
         data-name='Layer 1'
         viewBox='0 0 1135.18 814.22'
-        className='svg'
+        {...props}
       >
         <defs>
           <linearGradient
@@ -313,14 +313,6 @@ function RocketSvg() {
         <path fill='none' d='M837.69 539.42L859.49 551.02 842.47 570.06'></path>
         <circle cx='954.9' cy='428.23' r='1.84' fill='#fff'></circle>
       </svg>
-      <style jsx>{`
-        .svg {
-          width: 15rem;
-          height: auto;
-        }
-      `}</style>
     </>
   );
 }
-
-export default RocketSvg;

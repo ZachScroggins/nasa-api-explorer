@@ -39,8 +39,9 @@ export default function Layout({ children }) {
           <MobileHeader setIsOpen={setIsOpen} />
           <div className='relative z-0 flex flex-1 overflow-hidden'>
             <main
-              className='relative z-0 flex-1 overflow-y-auto focus:outline-none xl:order-last'
+              className='relative z-0 flex-1 overflow-y-auto text-white bg-background focus:outline-none xl:order-last'
               tabIndex={0}
+              style={{ backgroundImage: 'url(/topography.svg)' }}
             >
               {children}
             </main>

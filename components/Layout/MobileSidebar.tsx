@@ -40,7 +40,7 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
           leaveFrom='translate-x-0'
           leaveTo='-translate-x-full'
         >
-          <div className='relative flex flex-col flex-1 h-screen max-w-xs bg-white focus:outline-none'>
+          <div className='relative flex flex-col flex-1 h-screen max-w-xs bg-black focus:outline-none'>
             <Transition.Child
               enter='ease-in-out duration-300'
               enterFrom='opacity-0'
@@ -78,7 +78,7 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
             <div className='flex-1 h-0 pt-5 pb-4 overflow-y-auto'>
               <div className='flex items-center flex-shrink-0 px-2 text-2xl'>
                 <RocketIcon className='w-10 h-10' />
-                <span className='ml-3 text-gray-700'>NASA API Explorer</span>
+                <span className='ml-3 text-primary'>NASA API Explorer</span>
               </div>
               <nav aria-label='Sidebar' className='mt-5'>
                 <div className='px-2 space-y-1'>
@@ -88,22 +88,22 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
                         currentIndex === 0
                           ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                          : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
                       )}
                       onClick={() => setIsOpen(false)}
                     >
                       {/* Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" */}
-                      <FiHome className='flex-shrink-0 w-6 h-6 mr-4 text-gray-500' />
+                      <FiHome className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
                       Home
                     </a>
                   </Link>
-                  <Link href='/images'>
+                  <Link href='/images?q=Supernova'>
                     <a
                       className={classNames(
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
                         currentIndex === 1
                           ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                          : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
                       )}
                       onClick={() => setIsOpen(false)}
                     >
@@ -117,7 +117,7 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
                         currentIndex === 2
                           ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                          : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
                       )}
                       onClick={() => setIsOpen(false)}
                     >
@@ -131,7 +131,7 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
                         currentIndex === 3
                           ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                          : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
                       )}
                       onClick={() => setIsOpen(false)}
                     >
@@ -141,13 +141,13 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
                   </Link>
                 </div>
                 <hr
-                  className='my-5 border-t border-gray-200'
+                  className='my-5 border-t border-gray-800'
                   aria-hidden='true'
                 />
                 <div className='px-2 space-y-1'>
                   <a
                     href='https://github.com/ZachScroggins/nasa-api-explorer'
-                    className='flex items-center px-2 py-2 text-base font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900 group'
+                    className='flex items-center px-2 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-50 hover:text-gray-900 group'
                     onClick={() => setIsOpen(false)}
                   >
                     <FiGithub className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
@@ -155,7 +155,7 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
                   </a>
                   <a
                     href='https://zachscroggins.com'
-                    className='flex items-center px-2 py-2 text-base font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900 group'
+                    className='flex items-center px-2 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-50 hover:text-gray-900 group'
                     onClick={() => setIsOpen(false)}
                   >
                     <FiCode className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />

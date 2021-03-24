@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @screen lg {
+    body {
+      overscroll-behavior: none;
+    }
+  }
+}
+
+@layer utilities {
+  .glow {
+    text-shadow: 2px 8px 30px #705dcf;
+  }
+}
