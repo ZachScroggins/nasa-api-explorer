@@ -52,44 +52,46 @@ export default function epic({ data, type, error }) {
   }
 
   return (
-    <div className='h-screen'>
-      <Head>
-        <title>Earth Polychromatic Imaging Camera | NASA API Explorer</title>
-      </Head>
-      <div className='container grid grid-cols-1 p-4 mx-auto lg:grid-cols-2 lg:gap-4'>
-        <ImageSlider
-          data={data}
-          type={type}
-          year={year}
-          month={month}
-          day={day}
-          setCurrentIndex={setCurrentIndex}
-        />
-        <div>
-          <div className='flex justify-center pb-2'>
-            <button
-              type='button'
-              className='px-6 py-3 mr-2 text-lg rounded-lg bg-primary'
-              onClick={() => switchTypes('natural')}
-            >
-              Natural
-            </button>
-            <button
-              type='button'
-              className='px-6 py-3 text-lg border rounded-lg border-primary text-primary-light'
-              onClick={() => switchTypes('enhanced')}
-            >
-              Enhanced
-            </button>
+    <div className='min-h-screen'>
+      <div>
+        <Head>
+          <title>Earth Polychromatic Imaging Camera | NASA API Explorer</title>
+        </Head>
+        <div className='container grid grid-cols-1 p-4 mx-auto lg:grid-cols-2 lg:gap-4'>
+          <ImageSlider
+            data={data}
+            type={type}
+            year={year}
+            month={month}
+            day={day}
+            setCurrentIndex={setCurrentIndex}
+          />
+          <div>
+            <div className='flex justify-center pb-2'>
+              <button
+                type='button'
+                className='px-6 py-3 mr-2 text-lg rounded-lg bg-primary'
+                onClick={() => switchTypes('natural')}
+              >
+                Natural
+              </button>
+              <button
+                type='button'
+                className='px-6 py-3 text-lg border rounded-lg border-primary text-primary-light'
+                onClick={() => switchTypes('enhanced')}
+              >
+                Enhanced
+              </button>
+            </div>
+            <Data data={data} type={type} currentIndex={currentIndex} />
           </div>
-          <Data data={data} type={type} currentIndex={currentIndex} />
-        </div>
-        {/* {relatedProducts && (
+          {/* {relatedProducts && (
           <div className='mt-16 overflow-hidden lg:col-span-2'>
             <h2 className='text-3xl text-center underline'>Related Products</h2>
             <RelatedProducts relatedProducts={relatedProducts} />
           </div>
         )} */}
+        </div>
       </div>
     </div>
   );

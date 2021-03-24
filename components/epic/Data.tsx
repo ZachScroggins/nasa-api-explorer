@@ -106,7 +106,7 @@ export default function Data({ data, type, currentIndex }) {
 
   return (
     <>
-      <div className='h-full overflow-auto bg-black border border-gray-700 rounded-lg data-container'>
+      <div className='overflow-auto bg-black border border-gray-700 rounded-lg data-container'>
         <div
           className='flex items-center justify-center p-1 mt-1 text-2xl cursor-pointer text-primary-light lg:hover:underline'
           // onClick={() => setCalendarOpen(!calendarOpen)}
