@@ -121,19 +121,23 @@ export default function RocketIcon(props) {
       />
       <path
         d='M184.93 482.4h-.47a8.23 8.23 0 01-8.22-8.23v-37.69h16.92v37.69a8.24 8.24 0 01-8.23 8.23z'
-        fill='url(#a)'
+        // fill='url(#a)'
+        className='text-yellow-500 fill-current'
       />
       <path
         d='M239.91 482.4h-.47a8.23 8.23 0 01-8.22-8.23v-37.69h16.91v37.69a8.23 8.23 0 01-8.22 8.23z'
-        fill='url(#c)'
+        // fill='url(#c)'
+        className='text-yellow-500 fill-current'
       />
       <path
         d='M274.34 482.4h-.48a8.24 8.24 0 01-8.21-8.23v-37.69h16.92v37.69a8.24 8.24 0 01-8.23 8.23z'
-        fill='url(#d)'
+        // fill='url(#d)'
+        className='text-yellow-500 fill-current'
       />
       <path
         d='M329.92 482.4h-.44a8.24 8.24 0 01-8.25-8.22v-37.7h16.92v37.69a8.24 8.24 0 01-8.23 8.23z'
-        fill='url(#e)'
+        // fill='url(#e)'
+        className='text-yellow-500 fill-current'
       />
       <path
         d='M262.7 24a9.38 9.38 0 00-14.41 0c-5 5.62-9.56 13-13.55 21C223 68.36 217 94.94 217 121.89v298.47h76.29V120.7a171.67 171.67 0 00-16.85-74.94C271.24 34.9 266.41 28.15 262.7 24z'

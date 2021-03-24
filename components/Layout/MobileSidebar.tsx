@@ -77,7 +77,7 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
             </Transition.Child>
             <div className='flex-1 h-0 pt-5 pb-4 overflow-y-auto'>
               <div className='flex items-center flex-shrink-0 px-2 text-2xl'>
-                <RocketIcon className='w-10 h-10' />
+                <RocketIcon className='inline w-10 h-10' />
                 <span className='ml-3 text-primary'>NASA API Explorer</span>
               </div>
               <nav aria-label='Sidebar' className='mt-5'>
