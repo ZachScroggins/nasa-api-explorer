@@ -10,11 +10,13 @@ export default function ImageSlider({
   year,
   month,
   day,
+  currentIndex,
   setCurrentIndex,
 }) {
   return (
     <Carousel
       infiniteLoop
+      selectedItem={currentIndex}
       renderItem={(
         item: React.ReactNode,
         options?: { isSelected: boolean }

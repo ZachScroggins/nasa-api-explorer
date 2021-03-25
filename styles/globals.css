@@ -6,8 +6,8 @@
   @screen lg {
     html,
     body {
-      /* overscroll-y-behavior: none; */
-      min-height: 100vh;
+      /* overscroll-behavior: none; */
+      height: 100vh;
     }
   }
 }

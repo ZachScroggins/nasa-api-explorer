@@ -57,13 +57,14 @@ export default function epic({ data, type, error }) {
         <Head>
           <title>Earth Polychromatic Imaging Camera | NASA API Explorer</title>
         </Head>
-        <div className='container grid grid-cols-1 p-4 mx-auto lg:grid-cols-2 lg:gap-4'>
+        <div className='container grid grid-cols-1 p-4 pt-24 mx-auto lg:pt-16 lg:grid-cols-2 lg:gap-4'>
           <ImageSlider
             data={data}
             type={type}
             year={year}
             month={month}
             day={day}
+            currentIndex={currentIndex}
             setCurrentIndex={setCurrentIndex}
           />
           <div>
@@ -83,7 +84,12 @@ export default function epic({ data, type, error }) {
                 Enhanced
               </button>
             </div>
-            <Data data={data} type={type} currentIndex={currentIndex} />
+            <Data
+              data={data}
+              type={type}
+              currentIndex={currentIndex}
+              setCurrentIndex={setCurrentIndex}
+            />
           </div>
           {/* {relatedProducts && (
           <div className='mt-16 overflow-hidden lg:col-span-2'>

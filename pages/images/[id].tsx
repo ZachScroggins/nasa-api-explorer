@@ -20,7 +20,7 @@ export default function imageItem({ data, images, error }) {
   }
 
   return (
-    <div className='p-4'>
+    <div className='min-h-screen p-4 pt-20 lg:pt-10'>
       <div className='flex items-center justify-center'>
         <div className='max-w-full bg-black rounded-lg lg:flex lg:bg-transparent'>
           <div className='lg:w-1/2'>

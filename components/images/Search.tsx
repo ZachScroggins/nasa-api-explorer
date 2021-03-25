@@ -20,14 +20,14 @@ export default function Search() {
   };
 
   return (
-    <div className='relative z-10 flex flex-shrink-0 h-16 bg-black border-b border-gray-900'>
+    <div className='fixed left-0 z-10 flex flex-shrink-0 w-full h-16 mr-64 bg-black border-b border-gray-900 lg:right-0 lg:left-64 top-16 lg:top-0'>
       <div className='flex justify-between flex-1 px-4'>
         <div className='flex flex-1'>
           <form className='flex w-full lg:ml-0' onSubmit={e => handleSearch(e)}>
             <label htmlFor='search_field' className='sr-only'>
               Search
             </label>
-            <div className='relative w-full text-gray-300 focus-within:text-gray-100'>
+            <div className='relative w-full text-gray-300 lg:right-0 focus-within:text-gray-100'>
               <div className='absolute inset-y-0 left-0 flex items-center pointer-events-none'>
                 <svg
                   className='w-5 h-5'
@@ -54,7 +54,7 @@ export default function Search() {
                 onChange={e => setQuery(e.target.value)}
               />
             </div>
-            <div className='flex items-center ml-4 lg:ml-6'>
+            <div className='flex items-center ml-4 lg:ml-6 lg:mr-64'>
               <button
                 type='submit'
                 className='inline-flex items-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900'

@@ -43,7 +43,7 @@ const lawOfCosines = (distance1, distance2, angle) => {
   return result;
 };
 
-export default function Data({ data, type, currentIndex }) {
+export default function Data({ data, type, currentIndex, setCurrentIndex }) {
   const router = useRouter();
   const [km, setKm] = useState(true);
   const [curr, setCurr] = useState(data[currentIndex] || null);
@@ -97,6 +97,10 @@ export default function Data({ data, type, currentIndex }) {
   };
 
   useEffect(() => {
+    setCurrentIndex(0);
+  }, [data]);
+
+  useEffect(() => {
     if (data.length) {
       setYearInput(data[currentIndex]?.date?.slice(0, 4));
       setMonthInput(data[currentIndex]?.date?.slice(5, 7));
@@ -108,7 +112,7 @@ export default function Data({ data, type, currentIndex }) {
     <>
       <div className='overflow-auto bg-black border border-gray-700 rounded-lg data-container'>
         <div
-          className='flex items-center justify-center p-1 mt-1 text-2xl cursor-pointer text-primary-light lg:hover:underline'
+          className='flex items-center justify-center p-1 mt-1 text-2xl text-primary-light'
           // onClick={() => setCalendarOpen(!calendarOpen)}
         >
           <FiCalendar className='mr-2' />
