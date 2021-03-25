@@ -47,6 +47,7 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
   const router = useRouter();
   const [km, setKm] = useState(true);
   const [curr, setCurr] = useState(data[currentIndex] || null);
+  const [isPickerOpen, setIsPrickerOpen] = useState(false);
   const year = curr?.date?.slice(0, 4);
   const month = curr?.date?.slice(5, 7);
   const day = curr?.date?.slice(8, 10);
@@ -96,6 +97,18 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
     ).toLocaleString(),
   };
 
+  const switchTypes = (newType: string) => {
+    if (newType === 'natural') {
+      router.push('/epic');
+    }
+    if (newType === 'enhanced') {
+      router.push({
+        pathname: '/epic',
+        query: { type: 'enhanced' },
+      });
+    }
+  };
+
   useEffect(() => {
     setCurrentIndex(0);
   }, [data]);
@@ -110,67 +123,99 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
 
   return (
     <>
-      <div className='overflow-auto bg-black border border-gray-700 rounded-lg data-container'>
-        <div
-          className='flex items-center justify-center p-1 mt-1 text-2xl text-primary-light'
-          // onClick={() => setCalendarOpen(!calendarOpen)}
-        >
-          <FiCalendar className='mr-2' />
-          <p className='flex-shrink'>{data[currentIndex].date.slice(0, 10)}</p>
-        </div>
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            console.log(`${yearInput}-${monthInput}-${dayInput}`);
-            router.push({
-              pathname: '/epic',
-              query: { type, date: `${yearInput}-${monthInput}-${dayInput}` },
-            });
-          }}
-          className='flex justify-center text-black'
-        >
-          <select
-            name='year'
-            id='year'
-            value={yearInput}
-            onChange={e => setYearInput(e.target.value)}
+      <div className='-mx-4 -mb-4 bg-black rounded-lg sm:border sm:border-gray-700 data-container sm:-mx-0 sm:-mb-0'>
+        <div className='flex content-center justify-between mb-2 rounded-t-lg bg-gradient-to-r from-primary via-black to-primary'>
+          <button
+            type='button'
+            className={`h-full py-3 pl-2 sm:pl-6 text-lg rounded-lg ${
+              type === 'natural' ? ' underline' : ''
+            }`}
+            onClick={() => switchTypes('natural')}
           >
-            {Array.from(new Array(year - 2014), (x, i) => i + 2015).map(
-              (date, index) => (
-                <option value={date} key={index}>
-                  {date}
-                </option>
-              )
-            )}
-          </select>
-          <select
-            name='month'
-            id='month'
-            value={monthInput}
-            onChange={e => setMonthInput(e.target.value)}
-          >
-            {Array.from(new Array(12), (x, i) => i + 1).map((date, index) => (
-              <option value={date < 10 ? `0${date}` : date} key={index}>
-                {date < 10 ? `0${date}` : date}
-              </option>
-            ))}
-          </select>
-          <select
-            name='day'
-            id='day'
-            value={dayInput}
-            onChange={e => setDayInput(e.target.value)}
-          >
-            {Array.from(new Array(31), (x, i) => i + 1).map((date, index) => (
-              <option value={date < 10 ? `0${date}` : date} key={index}>
-                {date < 10 ? `0${date}` : date}
-              </option>
-            ))}
-          </select>
-          <button type='submit' className='text-white'>
-            submit
+            Natural
           </button>
-        </form>
+          <button
+            type='button'
+            className='flex items-center justify-center p-1 mt-1 text-2xl text-primary-light hover:underline'
+            onClick={() => setIsPrickerOpen(!isPickerOpen)}
+          >
+            <FiCalendar className='mr-2' />
+            <p className='text-center'>
+              {data[currentIndex].date.slice(0, 10)}
+            </p>
+          </button>
+          <button
+            type='button'
+            className={`h-full py-3 pr-2 sm:pr-6 text-lg rounded-lg ${
+              type === 'enhanced' ? ' underline' : ''
+            }`}
+            onClick={() => switchTypes('enhanced')}
+          >
+            Enhanced
+          </button>
+        </div>
+
+        {isPickerOpen && (
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              console.log(`${yearInput}-${monthInput}-${dayInput}`);
+              router.push({
+                pathname: '/epic',
+                query: { type, date: `${yearInput}-${monthInput}-${dayInput}` },
+              });
+            }}
+            className='flex justify-center'
+          >
+            <select
+              name='year'
+              id='year'
+              value={yearInput}
+              onChange={e => setYearInput(e.target.value)}
+              className='bg-black rounded-l-lg'
+            >
+              {Array.from(new Array(year - 2014), (x, i) => i + 2015).map(
+                (date, index) => (
+                  <option value={date} key={index}>
+                    {date}
+                  </option>
+                )
+              )}
+            </select>
+            <select
+              name='month'
+              id='month'
+              value={monthInput}
+              onChange={e => setMonthInput(e.target.value)}
+              className='bg-black'
+            >
+              {Array.from(new Array(12), (x, i) => i + 1).map((date, index) => (
+                <option value={date < 10 ? `0${date}` : date} key={index}>
+                  {date < 10 ? `0${date}` : date}
+                </option>
+              ))}
+            </select>
+            <select
+              name='day'
+              id='day'
+              value={dayInput}
+              onChange={e => setDayInput(e.target.value)}
+              className='bg-black'
+            >
+              {Array.from(new Array(31), (x, i) => i + 1).map((date, index) => (
+                <option value={date < 10 ? `0${date}` : date} key={index}>
+                  {date < 10 ? `0${date}` : date}
+                </option>
+              ))}
+            </select>
+            <button
+              type='submit'
+              className='px-2 border-2 rounded-r-lg border-primary bg-primary'
+            >
+              Submit
+            </button>
+          </form>
+        )}
         <div className='flex items-center justify-between p-2 text-xl bg-opacity-50 rounded-t-lg text-primary-light'>
           <a
             className='flex items-center justify-center w-full border-r border-gray-700 lg:hover:underline'
@@ -187,8 +232,8 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
             <p className='flex-shrink'>km/mi</p>
           </div>
         </div>
-        <div className='p-4'>
-          <h2 className='flex items-center pb-2 text-2xl font-bold glow'>
+        <div className='p-4 text-center'>
+          <h2 className='flex items-center justify-center pb-2 text-2xl font-bold glow'>
             <BsClipboardData className='mr-2 text-primary' /> Image Data
           </h2>
           <p className='pb-4 text-lg text-gray-300'>
@@ -197,7 +242,7 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
           </p>
           <div className='grid grid-cols-2 grid-rows-3'>
             <div className='my-4'>
-              <div className='flex pb-1 text-xl text-primary'>
+              <div className='flex justify-center pb-1 text-xl text-primary'>
                 <GiEarthAmerica className='mr-3' />
                 <FiArrowRight className='mr-3' />
                 <FiSun />
@@ -210,7 +255,7 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
               </p>
             </div>
             <div className='my-4'>
-              <div className='flex pb-1 text-xl text-primary'>
+              <div className='flex justify-center pb-1 text-xl text-primary'>
                 <GiEarthAmerica className='mr-3' />
                 <FiArrowRight className='mr-3' />
                 <FiMoon />
@@ -223,7 +268,7 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
               </p>
             </div>
             <div className='my-4'>
-              <div className='flex pb-1 text-xl text-primary'>
+              <div className='flex justify-center pb-1 text-xl text-primary'>
                 <FaSatellite className='mr-3' />
                 <FiArrowRight className='mr-3' />
                 <FiSun />
@@ -236,7 +281,7 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
               </p>
             </div>
             <div className='my-4'>
-              <div className='flex pb-1 text-xl text-primary'>
+              <div className='flex justify-center pb-1 text-xl text-primary'>
                 <FaSatellite className='mr-3' />
                 <FiArrowRight className='mr-3' />
                 <FiMoon />
@@ -249,7 +294,7 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
               </p>
             </div>
             <div className='my-4'>
-              <div className='flex pb-1 text-xl text-primary'>
+              <div className='flex justify-center pb-1 text-xl text-primary'>
                 <GiEarthAmerica className='mr-3' />
                 <FiArrowRight className='mr-3' />
                 <FaSatellite />
@@ -262,7 +307,7 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
               </p>
             </div>
             <div className='my-4'>
-              <div className='flex pb-1 text-xl text-primary'>
+              <div className='flex justify-center pb-1 text-xl text-primary'>
                 <FiSun className='mr-3' />
                 <GiEarthAmerica className='mr-3' />
                 <FaSatellite />
@@ -272,7 +317,7 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
             </div>
           </div>
           <div className='mt-4'>
-            <h2 className='flex items-center pb-2 text-2xl font-bold glow'>
+            <h2 className='flex items-center justify-center pb-2 text-2xl font-bold glow'>
               <FiStar className='mr-2 text-primary' /> Notable Events
             </h2>
             <ul className='pl-2 text-lg list-disc list-inside'>
@@ -316,9 +361,6 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
         }
         .data-container::-webkit-scrollbar-track {
           background: #1a202c;
-        }
-        @media (min-width: 640px) {
-          max-height: 90vh;
         }
       `}</style>
     </>

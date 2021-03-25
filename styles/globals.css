@@ -6,8 +6,8 @@
   @screen lg {
     html,
     body {
-      /* overscroll-behavior: none; */
       height: 100vh;
+      -webkit-tap-highlight-color: transparent;
     }
   }
 }

@@ -17,6 +17,7 @@ export default function ImageSlider({
     <Carousel
       infiniteLoop
       selectedItem={currentIndex}
+      swipeable={false}
       renderItem={(
         item: React.ReactNode,
         options?: { isSelected: boolean }

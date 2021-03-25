@@ -29,18 +29,6 @@ export default function epic({ data, type, error }) {
     currImgUrl = `https://epic.gsfc.nasa.gov/archive/${type}/${year}/${month}/${day}/png/${imageName}.png`;
   }
 
-  const switchTypes = (newType: string) => {
-    if (newType === 'natural') {
-      router.push('/epic');
-    }
-    if (newType === 'enhanced') {
-      router.push({
-        pathname: '/epic',
-        query: { type: 'enhanced' },
-      });
-    }
-  };
-
   if (!data || !data.length) {
     console.log(data);
     return <p>no data</p>;
@@ -57,7 +45,7 @@ export default function epic({ data, type, error }) {
         <Head>
           <title>Earth Polychromatic Imaging Camera | NASA API Explorer</title>
         </Head>
-        <div className='container grid grid-cols-1 p-4 pt-24 mx-auto lg:pt-16 lg:grid-cols-2 lg:gap-4'>
+        <div className='container grid grid-cols-1 p-4 pt-20 mx-auto 2xl:px-10 lg:pt-10 lg:grid-cols-2 lg:gap-4'>
           <ImageSlider
             data={data}
             type={type}
@@ -68,22 +56,6 @@ export default function epic({ data, type, error }) {
             setCurrentIndex={setCurrentIndex}
           />
           <div>
-            <div className='flex justify-center pb-2'>
-              <button
-                type='button'
-                className='px-6 py-3 mr-2 text-lg rounded-lg bg-primary'
-                onClick={() => switchTypes('natural')}
-              >
-                Natural
-              </button>
-              <button
-                type='button'
-                className='px-6 py-3 text-lg border rounded-lg border-primary text-primary-light'
-                onClick={() => switchTypes('enhanced')}
-              >
-                Enhanced
-              </button>
-            </div>
             <Data
               data={data}
               type={type}
@@ -91,12 +63,6 @@ export default function epic({ data, type, error }) {
               setCurrentIndex={setCurrentIndex}
             />
           </div>
-          {/* {relatedProducts && (
-          <div className='mt-16 overflow-hidden lg:col-span-2'>
-            <h2 className='text-3xl text-center underline'>Related Products</h2>
-            <RelatedProducts relatedProducts={relatedProducts} />
-          </div>
-        )} */}
         </div>
       </div>
     </div>
