@@ -9,9 +9,10 @@ import { useRouter } from 'next/router';
 
 const fetchImages = async ({ queryKey }) => {
   const [_key, query] = queryKey;
-  const res = await fetch(
-    `https://images-api.nasa.gov/search?q=${query}&media_type=image`
-  );
+  // const res = await fetch(
+  //   `https://images-api.nasa.gov/search?q=${query}&media_type=image`
+  // );
+  const res = await fetch(`/api/images?q=${query}`);
   if (!res.ok) {
     throw new Error('Network response was not ok');
   }
@@ -60,7 +61,17 @@ export const getStaticProps: GetStaticProps = async context => {
 
   const query = 'Supernova';
 
-  await queryClient.prefetchQuery(['images', 'Mars'], fetchImages);
+  await queryClient.prefetchQuery(['images', query], async ({ queryKey }) => {
+    const [_key, query] = queryKey;
+    const res = await fetch(
+      `https://images-api.nasa.gov/search?q=${query}&media_type=image`
+    );
+    // const res = await fetch(`/api/images?q=${query}`);
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return res.json();
+  });
 
   return {
     props: {

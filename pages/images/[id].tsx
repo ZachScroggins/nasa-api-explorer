@@ -47,7 +47,7 @@ export default function imageItem({ data, images, error }) {
             <div>
               <p className='inline mr-1 text-lg text-gray-400'>Keywords:</p>
               <div className='inline'>
-                {data.items[0].data[0].keywords.map((keyword, index) => (
+                {data.items[0].data[0]?.keywords?.map((keyword, index) => (
                   <Link href={`/images?q=${keyword}`} key={index}>
                     <a className='text-lg cursor-pointer text-primary'>
                       {keyword},{' '}
