@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import MobileHeader from './MobileHeader';
 import MobileSidebar from './MobileSidebar';
 import StaticSidebar from './StaticSidebar';
-import RocketIcon from 'components/RocketIcon';
 import { useRouter } from 'next/router';
 
 const regex = RegExp(/^\/images/, 'i');
