@@ -1,13 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-export default function Search() {
+export default function Search({ setQuery }) {
   const router = useRouter();
-  const [query, setQuery] = useState('Supernova');
+  const [input, setInput] = useState(router.query.q || 'Supernova');
+
+  // useEffect(() => {
+  //   if (router.query.q) {
+  //     setInput(router.query.q.toString());
+  //   }
+  // }, [router.query]);
 
   useEffect(() => {
-    if (router.query.q) {
-      setQuery(router.query.q.toString());
+    if (router.query.q && router.query.q !== input) {
+      setInput(router.query.q);
     }
   }, [router.query]);
 
@@ -15,8 +21,9 @@ export default function Search() {
     e.preventDefault();
     router.push({
       pathname: '/images',
-      query: { q: query },
+      query: { q: input },
     });
+    setQuery(input);
   };
 
   return (
@@ -50,8 +57,8 @@ export default function Search() {
                 type='search'
                 name='search'
                 required
-                value={query}
-                onChange={e => setQuery(e.target.value)}
+                value={input}
+                onChange={e => setInput(e.target.value)}
               />
             </div>
             <div className='flex items-center ml-4 lg:ml-6 lg:mr-64'>

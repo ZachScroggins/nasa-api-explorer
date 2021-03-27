@@ -1,17 +1,21 @@
 import Link from 'next/link';
 
-export default function Results({ data, error }) {
-  if (error) {
+export default function Results({ data, isLoading, isError, error }) {
+  if (isLoading) {
+    return <p className='pt-40 lg:pt-20'>loading...</p>;
+  }
+
+  if (isError) {
     return (
-      <div>
-        <p>Oops... Something went wrong</p>
+      <div className='pt-40 lg:pt-20'>
+        <p>Oops... Something went wrong: {`${error}`}</p>
       </div>
     );
   }
 
-  if (!data.items.length) {
+  if (!data.collection.items.length) {
     return (
-      <div>
+      <div className='pt-40 lg:pt-20'>
         <p>No results</p>
       </div>
     );
@@ -24,7 +28,7 @@ export default function Results({ data, error }) {
     >
       <div className='px-4 pt-40 pb-6 mx-auto lg:pt-20 xl:pb-8 max-w-screen-2xl'>
         <ul className='relative grid flex-1 grid-cols-1 gap-6 overflow-y-auto sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
-          {data.items.map(item => (
+          {data.collection.items.map(item => (
             <li
               key={item.data[0].nasa_id}
               className='flex flex-col overflow-hidden rounded-lg shadow-lg cursor-pointer hover:shadow-2xl focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-teal-400'
