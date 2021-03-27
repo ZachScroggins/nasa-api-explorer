@@ -1,19 +1,41 @@
-import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
 
-export default function imageItem({ data, images, error }) {
-  if (error) {
+export default function imageItem() {
+  const router = useRouter();
+  const { data, isLoading, isError, error } = useQuery<any, Error>(
+    ['imageItem', { id: router.asPath.slice(8) }],
+    async ({ queryKey }) => {
+      const [_key, { id }] = queryKey;
+      const res = await fetch(`/api/images?id=${id}`);
+      if (!res.ok) {
+        const json = await res.json();
+        throw new Error(json?.error);
+      }
+      return res.json();
+    }
+  );
+
+  if (isLoading) {
     return (
-      <div>
-        <p>Oops... Something went wrong</p>
+      <div className='min-h-screen p-4 pt-20 lg:pt-10'>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className='min-h-screen p-4 pt-20 lg:pt-10'>
+        <p>{error?.message}</p>
       </div>
     );
   }
 
-  if (!data.items.length || !images.href) {
+  if (!data.items.length || !data.images.href) {
     return (
-      <div>
+      <div className='min-h-screen p-4 pt-20 lg:pt-10'>
         <p>No results</p>
       </div>
     );
@@ -24,7 +46,7 @@ export default function imageItem({ data, images, error }) {
       <div className='flex items-center justify-center'>
         <div className='max-w-full bg-black rounded-lg lg:flex lg:bg-transparent'>
           <div className='lg:w-1/2'>
-            <a href={images.items[0].href}>
+            <a href={data.images.items[0].href}>
               <img
                 src={data.items[0].links[0].href}
                 title={data.items[0].data[0].title}
@@ -90,45 +112,3 @@ export default function imageItem({ data, images, error }) {
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async context => {
-  const { query } = context;
-  let images = null;
-  let data = null;
-  let error = null;
-  const imageUrl = query.id
-    ? `https://images-api.nasa.gov/asset/${query.id}`
-    : `https://images-api.nasa.gov/asset/PIA06907`;
-  const dataUrl = query.id
-    ? `https://images-api.nasa.gov/search?nasa_id=${query.id}`
-    : `https://images-api.nasa.gov/search?nasa_id=PIA06907`;
-
-  try {
-    const res = await fetch(imageUrl);
-    const json = await res.json();
-    if (res.ok) {
-      images = json.collection;
-    } else {
-      throw new Error(`Error ${res.status}: ${json?.reason}`);
-    }
-  } catch (e) {
-    console.log(e.message);
-    error = true;
-  }
-  try {
-    const res = await fetch(dataUrl);
-    const json = await res.json();
-    if (res.ok) {
-      data = json.collection;
-    } else {
-      throw new Error(`Error ${res.status}: ${json?.reason}`);
-    }
-  } catch (e) {
-    console.log(e.message);
-    error = true;
-  }
-
-  return {
-    props: { data, images, error },
-  };
-};

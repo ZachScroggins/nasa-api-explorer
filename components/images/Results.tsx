@@ -9,7 +9,7 @@ export default function Results({ data, isLoading, isError, error }) {
   if (isError) {
     return (
       <div className='pt-40 lg:pt-20'>
-        <p>Oops... Something went wrong: {`${error}`}</p>
+        <p>{`${error}`}</p>
       </div>
     );
   }
@@ -28,8 +28,8 @@ export default function Results({ data, isLoading, isError, error }) {
       tabIndex={-1}
     >
       <div className='px-4 pt-40 pb-6 mx-auto lg:pt-20 xl:pb-8 max-w-screen-2xl'>
-        <ul className='relative grid flex-1 grid-cols-1 gap-6 overflow-y-auto sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
-          {data.collection.items.slice(0, 20).map((item, index) => (
+        <ul className='relative grid flex-1 grid-cols-1 gap-6 p-1 overflow-y-auto sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
+          {data.collection.items.slice(0, 40).map(item => (
             <li
               key={item.data[0].nasa_id}
               className='flex flex-col overflow-hidden rounded-lg shadow-lg cursor-pointer hover:shadow-2xl focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-teal-400'
@@ -37,19 +37,12 @@ export default function Results({ data, isLoading, isError, error }) {
               <Link href={`/images/${item.data[0].nasa_id}`}>
                 <a className='overflow-hidden bg-black h-96'>
                   <div className='relative flex-shrink-0 w-full h-48'>
-                    {/* <img
-                      className='object-cover object-top w-full h-48'
-                      src={item.links[0].href}
-                      alt={`${item.data[0].title}`}
-                      loading='lazy'
-                    /> */}
                     <Image
                       src={item.links[0].href}
                       alt={`${item.data[0].title}`}
                       layout='fill'
                       objectFit='cover'
                       objectPosition='top'
-                      // className='h-48'
                     />
                   </div>
                   <div className='h-48 p-6 bg-black'>

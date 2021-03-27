@@ -9,12 +9,10 @@ import { useRouter } from 'next/router';
 
 const fetchImages = async ({ queryKey }) => {
   const [_key, query] = queryKey;
-  // const res = await fetch(
-  //   `https://images-api.nasa.gov/search?q=${query}&media_type=image`
-  // );
   const res = await fetch(`/api/images?q=${query}`);
   if (!res.ok) {
-    throw new Error('Network response was not ok');
+    const json = await res.json();
+    throw new Error(json?.message);
   }
   return res.json();
 };
@@ -33,8 +31,6 @@ export default function images({ data, error }) {
       setQuery(router.query.q);
     }
   }, [router.query]);
-
-  // console.log({ isLoading, isError, other, err });
 
   return (
     <>
@@ -66,7 +62,6 @@ export const getStaticProps: GetStaticProps = async context => {
     const res = await fetch(
       `https://images-api.nasa.gov/search?q=${query}&media_type=image`
     );
-    // const res = await fetch(`/api/images?q=${query}`);
     if (!res.ok) {
       throw new Error('Network response was not ok');
     }
@@ -79,29 +74,3 @@ export const getStaticProps: GetStaticProps = async context => {
     },
   };
 };
-
-// export const getServerSideProps: GetServerSideProps = async context => {
-//   const { query } = context;
-//   let data = null;
-//   let error = null;
-//   const url = query.q
-//     ? `https://images-api.nasa.gov/search?q=${query.q}&media_type=image`
-//     : `https://images-api.nasa.gov/search?q=Supernova&media_type=image`;
-
-//   try {
-//     const res = await fetch(url);
-//     const json = await res.json();
-//     if (res.ok) {
-//       data = json.collection;
-//     } else {
-//       throw new Error(`Error ${res.status}: ${json?.reason}`);
-//     }
-//   } catch (e) {
-//     console.log(e.message);
-//     error = true;
-//   }
-
-//   return {
-//     props: { data, error },
-//   };
-// };

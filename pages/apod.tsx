@@ -1,11 +1,31 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import { useQuery } from 'react-query';
 
-export default function apod({ data, error }) {
-  if (error || !data) {
+export default function apod() {
+  const { data, isLoading, isError, error } = useQuery<any, Error>(
+    'apod',
+    async () => {
+      const res = await fetch('/api/apod');
+      if (!res.ok) {
+        const json = await res.json();
+        throw new Error(json?.message);
+      }
+      return res.json();
+    }
+  );
+
+  if (isLoading) {
     return (
-      <div>
-        <p>Oops... something went wrong</p>
+      <div className='container h-screen p-4 pt-20 mx-auto sm:px-8 lg:pt-10'>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className='container h-screen p-4 pt-20 mx-auto sm:px-8 lg:pt-10'>
+        <p>{error.message}</p>
       </div>
     );
   }
@@ -56,26 +76,3 @@ export default function apod({ data, error }) {
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async context => {
-  let data = null;
-  let error = null;
-  const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`;
-
-  try {
-    const res = await fetch(url);
-    const json = await res.json();
-    if (res.ok) {
-      data = json;
-    } else {
-      throw new Error(`Error ${res.status}: ${json?.reason}`);
-    }
-  } catch (e) {
-    console.log(e.message);
-    error = true;
-  }
-
-  return {
-    props: { data, error },
-  };
-};
