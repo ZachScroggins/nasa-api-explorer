@@ -52,11 +52,11 @@ export default function Data({
   isFetching,
 }) {
   const [km, setKm] = useState(true);
-  const [curr, setCurr] = useState(data[currentIndex] || null);
   const [isPickerOpen, setIsPrickerOpen] = useState(false);
-  const year = curr?.date?.slice(0, 4);
-  const month = curr?.date?.slice(5, 7);
-  const day = curr?.date?.slice(8, 10);
+  const year = data[currentIndex]?.date?.slice(0, 4);
+  const month = data[currentIndex]?.date?.slice(5, 7);
+  const day = data[currentIndex]?.date?.slice(8, 10);
+  const name = data[currentIndex]?.image;
   const [yearInput, setYearInput] = useState(year);
   const [monthInput, setMonthInput] = useState(month);
   const [dayInput, setDayInput] = useState(day);
@@ -238,7 +238,7 @@ export default function Data({
           <div className='flex items-center justify-between p-2 text-xl bg-opacity-50 rounded-t-lg text-primary-light'>
             <a
               className='flex items-center justify-center w-full border-r border-gray-700 lg:hover:underline'
-              href={`https://epic.gsfc.nasa.gov/archive/////png/.png`}
+              href={`https://epic.gsfc.nasa.gov/archive/${type}/${year}/${month}/${day}/png/${name}.png`}
             >
               <FiZoomIn className='mr-2' />
               <p className='flex-shrink'>Zoom</p>
