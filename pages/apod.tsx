@@ -1,4 +1,3 @@
-import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useQuery } from 'react-query';
 

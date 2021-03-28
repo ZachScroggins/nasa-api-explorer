@@ -1,6 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -18,10 +16,7 @@ export default function ImageSlider({
       infiniteLoop
       selectedItem={currentIndex}
       swipeable={false}
-      renderItem={(
-        item: React.ReactNode,
-        options?: { isSelected: boolean }
-      ) => (
+      renderItem={(item: React.ReactNode) => (
         <a
           href={React.isValidElement(item) && item.props.children.props.src}
           className='cursor-zoom-in'

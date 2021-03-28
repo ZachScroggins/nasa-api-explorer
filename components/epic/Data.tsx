@@ -12,7 +12,6 @@ import { BsClipboardData } from 'react-icons/bs';
 import { GiEarthAmerica } from 'react-icons/gi';
 import { FaSatellite } from 'react-icons/fa';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 // Calculus vector magnitude/distance = sqrt(x^2 + y^2 + z^2)
 const getDistance = (x, y, z) => {
@@ -43,15 +42,21 @@ const lawOfCosines = (distance1, distance2, angle) => {
   return result;
 };
 
-export default function Data({ data, type, currentIndex, setCurrentIndex }) {
-  const router = useRouter();
+export default function Data({
+  data,
+  type,
+  currentIndex,
+  setCurrentIndex,
+  setTypeQuery,
+  setDateQuery,
+  isFetching,
+}) {
   const [km, setKm] = useState(true);
   const [curr, setCurr] = useState(data[currentIndex] || null);
   const [isPickerOpen, setIsPrickerOpen] = useState(false);
   const year = curr?.date?.slice(0, 4);
   const month = curr?.date?.slice(5, 7);
   const day = curr?.date?.slice(8, 10);
-  const imageName = curr?.image;
   const [yearInput, setYearInput] = useState(year);
   const [monthInput, setMonthInput] = useState(month);
   const [dayInput, setDayInput] = useState(day);
@@ -98,15 +103,8 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
   };
 
   const switchTypes = (newType: string) => {
-    if (newType === 'natural') {
-      router.push('/epic');
-    }
-    if (newType === 'enhanced') {
-      router.push({
-        pathname: '/epic',
-        query: { type: 'enhanced' },
-      });
-    }
+    setDateQuery('');
+    setTypeQuery(newType);
   };
 
   useEffect(() => {
@@ -124,7 +122,7 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
   return (
     <>
       <div className='-mx-4 -mb-4 bg-black rounded-lg sm:border sm:border-gray-700 data-container sm:-mx-0 sm:-mb-0'>
-        <div className='flex content-center justify-between mb-2 rounded-t-lg bg-gradient-to-r from-primary via-black to-primary'>
+        <div className='flex content-center justify-between rounded-t-lg bg-gradient-to-r from-primary via-black to-primary'>
           <button
             type='button'
             className={`h-full py-3 pl-2 sm:pl-6 text-lg rounded-lg ${
@@ -154,18 +152,15 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
             Enhanced
           </button>
         </div>
-
         {isPickerOpen && (
           <form
             onSubmit={e => {
               e.preventDefault();
-              console.log(`${yearInput}-${monthInput}-${dayInput}`);
-              router.push({
-                pathname: '/epic',
-                query: { type, date: `${yearInput}-${monthInput}-${dayInput}` },
-              });
+              setTypeQuery(type);
+              setDateQuery(`${yearInput}-${monthInput}-${dayInput}`);
+              setIsPrickerOpen(false);
             }}
-            className='flex justify-center'
+            className='flex justify-center pt-2'
           >
             <select
               name='year'
@@ -216,132 +211,157 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
             </button>
           </form>
         )}
-        <div className='flex items-center justify-between p-2 text-xl bg-opacity-50 rounded-t-lg text-primary-light'>
-          <a
-            className='flex items-center justify-center w-full border-r border-gray-700 lg:hover:underline'
-            href={`https://epic.gsfc.nasa.gov/archive/${type}/${year}/${month}/${day}/png/${imageName}.png`}
-          >
-            <FiZoomIn className='mr-2' />
-            <p className='flex-shrink'>Zoom</p>
-          </a>
-          <div
-            className='flex items-center justify-center w-full cursor-pointer lg:hover:underline'
-            onClick={() => setKm(!km)}
-          >
-            <RiRulerLine className='mr-2' />
-            <p className='flex-shrink'>km/mi</p>
-          </div>
-        </div>
-        <div className='p-4 text-center'>
-          <h2 className='flex items-center justify-center pb-2 text-2xl font-bold glow'>
-            <BsClipboardData className='mr-2 text-primary' /> Image Data
-          </h2>
-          <p className='pb-4 text-lg text-gray-300'>
-            This image was taken by NASA's EPIC camera onboard the NOAA DSCOVR
-            spacecraft.
-          </p>
-          <div className='grid grid-cols-2 grid-rows-3'>
-            <div className='my-4'>
-              <div className='flex justify-center pb-1 text-xl text-primary'>
-                <GiEarthAmerica className='mr-3' />
-                <FiArrowRight className='mr-3' />
-                <FiSun />
-              </div>
-              <h3 className='pb-1 text-lg font-bold'>Earth to Sun</h3>
-              <p className='text-gray-300'>
-                {km
-                  ? `${Math.round(earthToSunDistance).toLocaleString()} km`
-                  : `${miles.earthToSun} mi`}
-              </p>
-            </div>
-            <div className='my-4'>
-              <div className='flex justify-center pb-1 text-xl text-primary'>
-                <GiEarthAmerica className='mr-3' />
-                <FiArrowRight className='mr-3' />
-                <FiMoon />
-              </div>
-              <h3 className='pb-1 text-lg font-bold'>Earth to Moon</h3>
-              <p className='text-gray-300'>
-                {km
-                  ? `${Math.round(earthToMoonDistance).toLocaleString()} km`
-                  : `${miles.earthToMoon} mi`}
-              </p>
-            </div>
-            <div className='my-4'>
-              <div className='flex justify-center pb-1 text-xl text-primary'>
-                <FaSatellite className='mr-3' />
-                <FiArrowRight className='mr-3' />
-                <FiSun />
-              </div>
-              <h3 className='pb-1 text-lg font-bold'>EPIC to Sun</h3>
-              <p className='text-gray-300'>
-                {km
-                  ? `${Math.round(dscovrToSunDistance).toLocaleString()} km`
-                  : `${miles.dscovrToSunDistance} mi`}
-              </p>
-            </div>
-            <div className='my-4'>
-              <div className='flex justify-center pb-1 text-xl text-primary'>
-                <FaSatellite className='mr-3' />
-                <FiArrowRight className='mr-3' />
-                <FiMoon />
-              </div>
-              <h3 className='pb-1 text-lg font-bold'>EPIC to Moon</h3>
-              <p className='text-gray-300'>
-                {km
-                  ? `${Math.round(dscovrToMoonDistance).toLocaleString()} km`
-                  : `${miles.dscovrToMoonDistance} mi`}
-              </p>
-            </div>
-            <div className='my-4'>
-              <div className='flex justify-center pb-1 text-xl text-primary'>
-                <GiEarthAmerica className='mr-3' />
-                <FiArrowRight className='mr-3' />
-                <FaSatellite />
-              </div>
-              <h3 className='pb-1 text-lg font-bold'>Earth to EPIC</h3>
-              <p className='text-gray-300'>
-                {km
-                  ? `${Math.round(earthToDscovrDistance).toLocaleString()} km`
-                  : `${miles.earthToDscovr} mi`}
-              </p>
-            </div>
-            <div className='my-4'>
-              <div className='flex justify-center pb-1 text-xl text-primary'>
-                <FiSun className='mr-3' />
-                <GiEarthAmerica className='mr-3' />
-                <FaSatellite />
-              </div>
-              <h3 className='pb-1 text-lg font-bold'>SEV Angle</h3>
-              <p className='text-gray-300'>{sevAngle.toFixed(2)}&deg;</p>
+        <div className='relative pt-2'>
+          {isFetching ? (
+            <svg
+              className='absolute top-0 left-0 w-6 h-6 mt-4 ml-4 text-primary-light animate-spin'
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+            >
+              <circle
+                className='opacity-25'
+                cx={12}
+                cy={12}
+                r={10}
+                stroke='currentColor'
+                strokeWidth={4}
+              />
+              <path
+                className='opacity-75'
+                fill='currentColor'
+                d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+              />
+            </svg>
+          ) : null}
+
+          <div className='flex items-center justify-between p-2 text-xl bg-opacity-50 rounded-t-lg text-primary-light'>
+            <a
+              className='flex items-center justify-center w-full border-r border-gray-700 lg:hover:underline'
+              href={`https://epic.gsfc.nasa.gov/archive/////png/.png`}
+            >
+              <FiZoomIn className='mr-2' />
+              <p className='flex-shrink'>Zoom</p>
+            </a>
+            <div
+              className='flex items-center justify-center w-full cursor-pointer lg:hover:underline'
+              onClick={() => setKm(!km)}
+            >
+              <RiRulerLine className='mr-2' />
+              <p className='flex-shrink'>km/mi</p>
             </div>
           </div>
-          <div className='mt-4'>
+          <div className='p-4 text-center'>
             <h2 className='flex items-center justify-center pb-2 text-2xl font-bold glow'>
-              <FiStar className='mr-2 text-primary' /> Notable Events
+              <BsClipboardData className='mr-2 text-primary' /> Image Data
             </h2>
-            <ul className='pl-2 text-lg list-disc list-inside'>
-              <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
-                <Link href={'/epic?type=natural&date=2020-06-18'}>
-                  <a>Saharan Dust Storm 2020</a>
-                </Link>
-              </li>
-              <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
-                <Link href={'/epic?type=natural&date=2017-08-21'}>
-                  <a>Total Solar Eclipse 2017</a>
-                </Link>
-              </li>
-              <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
-                <Link href={'/epic?type=natural&date=2017-02-26'}>
-                  <a>Annular Solar Eclipse 2017</a>
-                </Link>
-              </li>
-              <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
-                <Link href={'/epic?type=natural&date=2016-03-09'}>
-                  <a>Solar Eclipse 2016</a>
-                </Link>
-              </li>
-            </ul>
+            <p className='pb-4 text-lg text-gray-300'>
+              This image was taken by NASA's EPIC camera onboard the NOAA DSCOVR
+              spacecraft.
+            </p>
+            <div className='grid grid-cols-2 grid-rows-3'>
+              <div className='my-4'>
+                <div className='flex justify-center pb-1 text-xl text-primary'>
+                  <GiEarthAmerica className='mr-3' />
+                  <FiArrowRight className='mr-3' />
+                  <FiSun />
+                </div>
+                <h3 className='pb-1 text-lg font-bold'>Earth to Sun</h3>
+                <p className='text-gray-300'>
+                  {km
+                    ? `${Math.round(earthToSunDistance).toLocaleString()} km`
+                    : `${miles.earthToSun} mi`}
+                </p>
+              </div>
+              <div className='my-4'>
+                <div className='flex justify-center pb-1 text-xl text-primary'>
+                  <GiEarthAmerica className='mr-3' />
+                  <FiArrowRight className='mr-3' />
+                  <FiMoon />
+                </div>
+                <h3 className='pb-1 text-lg font-bold'>Earth to Moon</h3>
+                <p className='text-gray-300'>
+                  {km
+                    ? `${Math.round(earthToMoonDistance).toLocaleString()} km`
+                    : `${miles.earthToMoon} mi`}
+                </p>
+              </div>
+              <div className='my-4'>
+                <div className='flex justify-center pb-1 text-xl text-primary'>
+                  <FaSatellite className='mr-3' />
+                  <FiArrowRight className='mr-3' />
+                  <FiSun />
+                </div>
+                <h3 className='pb-1 text-lg font-bold'>EPIC to Sun</h3>
+                <p className='text-gray-300'>
+                  {km
+                    ? `${Math.round(dscovrToSunDistance).toLocaleString()} km`
+                    : `${miles.dscovrToSunDistance} mi`}
+                </p>
+              </div>
+              <div className='my-4'>
+                <div className='flex justify-center pb-1 text-xl text-primary'>
+                  <FaSatellite className='mr-3' />
+                  <FiArrowRight className='mr-3' />
+                  <FiMoon />
+                </div>
+                <h3 className='pb-1 text-lg font-bold'>EPIC to Moon</h3>
+                <p className='text-gray-300'>
+                  {km
+                    ? `${Math.round(dscovrToMoonDistance).toLocaleString()} km`
+                    : `${miles.dscovrToMoonDistance} mi`}
+                </p>
+              </div>
+              <div className='my-4'>
+                <div className='flex justify-center pb-1 text-xl text-primary'>
+                  <GiEarthAmerica className='mr-3' />
+                  <FiArrowRight className='mr-3' />
+                  <FaSatellite />
+                </div>
+                <h3 className='pb-1 text-lg font-bold'>Earth to EPIC</h3>
+                <p className='text-gray-300'>
+                  {km
+                    ? `${Math.round(earthToDscovrDistance).toLocaleString()} km`
+                    : `${miles.earthToDscovr} mi`}
+                </p>
+              </div>
+              <div className='my-4'>
+                <div className='flex justify-center pb-1 text-xl text-primary'>
+                  <FiSun className='mr-3' />
+                  <GiEarthAmerica className='mr-3' />
+                  <FaSatellite />
+                </div>
+                <h3 className='pb-1 text-lg font-bold'>SEV Angle</h3>
+                <p className='text-gray-300'>{sevAngle.toFixed(2)}&deg;</p>
+              </div>
+            </div>
+            <div className='mt-4'>
+              <h2 className='flex items-center justify-center pb-2 text-2xl font-bold glow'>
+                <FiStar className='mr-2 text-primary' /> Notable Events
+              </h2>
+              <ul className='pl-2 text-lg list-disc list-inside'>
+                <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
+                  <Link href={'/epic?type=natural&date=2020-06-18'}>
+                    <a>Saharan Dust Storm 2020</a>
+                  </Link>
+                </li>
+                <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
+                  <Link href={'/epic?type=natural&date=2017-08-21'}>
+                    <a>Total Solar Eclipse 2017</a>
+                  </Link>
+                </li>
+                <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
+                  <Link href={'/epic?type=natural&date=2017-02-26'}>
+                    <a>Annular Solar Eclipse 2017</a>
+                  </Link>
+                </li>
+                <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
+                  <Link href={'/epic?type=natural&date=2016-03-09'}>
+                    <a>Solar Eclipse 2016</a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -366,9 +386,3 @@ export default function Data({ data, type, currentIndex, setCurrentIndex }) {
     </>
   );
 }
-
-/*
-@media (min-width: 640px) {
-  max-height: ${imageHeight}px;
-}
-*/
