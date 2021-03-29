@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Rocket from 'components/Rocket';
+import { Rocket } from 'components/ui';
 
 export default function Home() {
   return (

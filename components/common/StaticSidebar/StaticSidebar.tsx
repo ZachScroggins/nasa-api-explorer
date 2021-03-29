@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import RocketIcon from 'components/RocketIcon';
+import { RocketIcon } from 'components/ui';
 import { classNames } from 'lib/classNames';
 import {
   FiCamera,

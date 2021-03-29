@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Transition } from '@headlessui/react';
-import RocketIcon from 'components/RocketIcon';
+import { RocketIcon } from 'components/ui';
 import { classNames } from 'lib/classNames';
 import {
   FiCamera,

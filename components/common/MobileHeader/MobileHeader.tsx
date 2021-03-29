@@ -1,4 +1,4 @@
-import RocketIcon from 'components/RocketIcon';
+import { RocketIcon } from 'components/ui';
 import Link from 'next/link';
 
 export default function MobileHeader({ setIsOpen }) {

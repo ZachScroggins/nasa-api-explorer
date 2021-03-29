@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import ImageSlider from 'components/epic/ImageSlider';
-import Data from 'components/epic/Data';
+import { ImageSlider, Data } from 'components/epic';
 import { useQuery } from 'react-query';
 
 const Inner = ({ data, setTypeQuery, setDateQuery, isFetching }) => {

@@ -2,8 +2,7 @@ import { GetServerSideProps, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
-import Results from 'components/images/Results';
-import Search from 'components/images/Search';
+import { Results, Search } from 'components/images';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
