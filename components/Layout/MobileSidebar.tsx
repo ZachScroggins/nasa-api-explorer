@@ -30,6 +30,7 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
           <div
             className='fixed inset-0 bg-gray-600 bg-opacity-75'
             aria-hidden='true'
+            onClick={() => setIsOpen(false)}
           />
         </Transition.Child>
         <Transition.Child
