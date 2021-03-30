@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const resp = await fetch(url);
+    const resp = await fetch(url, { headers: { accept: 'application/json' } });
     const json = await resp.json();
     if (resp.ok) {
       status = 200;
@@ -32,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
     } else {
       status = resp.status;
-      throw new Error(`Error ${resp.status}: ${json?.reason}`);
+      throw new Error(`Error ${resp.status}: ${resp.statusText}`);
     }
   } catch (e) {
     console.log(e.message);
