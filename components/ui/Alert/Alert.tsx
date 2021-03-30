@@ -1,5 +1,7 @@
+type AlertType = 'danger' | 'warning' | 'success';
+
 interface Props {
-  type: 'danger' | 'warning' | 'success';
+  type: AlertType;
   message: string;
   action: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
