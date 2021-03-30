@@ -6,7 +6,7 @@ const ThumbnailCard: React.FC<{ item: any }> = ({ item }) => {
     <li className='flex flex-col overflow-hidden rounded-lg shadow-lg cursor-pointer hover:shadow-2xl focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-teal-400'>
       <Link href={`/images/${item.data[0].nasa_id}`}>
         <a className='overflow-hidden bg-black h-96'>
-          <div className='relative flex-shrink-0 w-full h-48'>
+          <div className='relative flex-shrink-0 w-full h-48 bg-gray-900'>
             <Image
               src={item.links[0].href}
               alt={`${item.data[0].title}`}
