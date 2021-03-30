@@ -17,7 +17,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       : `https://images-api.nasa.gov/search?nasa_id=PIA06907`;
 
     try {
-      const res = await fetch(dataUrl);
+      const res = await fetch(dataUrl, {
+        headers: { accept: 'application/json' },
+      });
       const json = await res.json();
       if (res.ok) {
         status = 200;

@@ -1,12 +1,7 @@
-import { GetServerSideProps, GetStaticProps } from 'next';
-import Head from 'next/head';
-import { QueryClient, useQuery } from 'react-query';
+import { GetStaticProps } from 'next';
+import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
-import { Results, Search, ImagesPage } from 'components/images';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-
-export default ImagesPage;
+import { ImagesPage } from 'components/images';
 
 export const getStaticProps: GetStaticProps = async context => {
   const queryClient = new QueryClient();
@@ -30,3 +25,5 @@ export const getStaticProps: GetStaticProps = async context => {
     },
   };
 };
+
+export default ImagesPage;
