@@ -177,13 +177,14 @@ export default function Data({
               <FiZoomIn className='mr-2' />
               <p className='flex-shrink'>Zoom</p>
             </a>
-            <div
+            <button
+              type='button'
               className='flex items-center justify-center w-full cursor-pointer lg:hover:underline'
               onClick={() => setKm(!km)}
             >
               <RiRulerLine className='mr-2' />
               <p className='flex-shrink'>km/mi</p>
-            </div>
+            </button>
           </div>
           <div className='p-4 text-center'>
             <h2 className='flex items-center justify-center pb-2 text-2xl font-bold glow'>
@@ -274,25 +275,57 @@ export default function Data({
                 <FiStar className='mr-2 text-primary' /> Notable Events
               </h2>
               <ul className='pl-2 text-lg list-disc list-inside'>
-                <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
-                  <Link href={'/epic?type=natural&date=2020-06-18'}>
-                    <a>Saharan Dust Storm 2020</a>
-                  </Link>
+                <li className='mb-2 text-primary-light'>
+                  <button
+                    type='button'
+                    className='lg:hover:underline'
+                    onClick={() => {
+                      setTypeQuery('natural');
+                      setDateQuery('2020-06-18');
+                      setIsPrickerOpen(false);
+                    }}
+                  >
+                    Saharan Dust Storm 2020
+                  </button>
                 </li>
-                <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
-                  <Link href={'/epic?type=natural&date=2017-08-21'}>
-                    <a>Total Solar Eclipse 2017</a>
-                  </Link>
+                <li className='mb-2 text-primary-light'>
+                  <button
+                    type='button'
+                    className='lg:hover:underline'
+                    onClick={() => {
+                      setTypeQuery('natural');
+                      setDateQuery('2017-08-21');
+                      setIsPrickerOpen(false);
+                    }}
+                  >
+                    Total Solar Eclipse 2017
+                  </button>
                 </li>
-                <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
-                  <Link href={'/epic?type=natural&date=2017-02-26'}>
-                    <a>Annular Solar Eclipse 2017</a>
-                  </Link>
+                <li className='mb-2 text-primary-light'>
+                  <button
+                    type='button'
+                    className='lg:hover:underline'
+                    onClick={() => {
+                      setTypeQuery('natural');
+                      setDateQuery('2017-02-26');
+                      setIsPrickerOpen(false);
+                    }}
+                  >
+                    Annular Solar Eclipse 2017
+                  </button>
                 </li>
-                <li className='mb-2 cursor-pointer text-primary-light lg:hover:underline'>
-                  <Link href={'/epic?type=natural&date=2016-03-09'}>
-                    <a>Solar Eclipse 2016</a>
-                  </Link>
+                <li className='mb-2 text-primary-light'>
+                  <button
+                    type='button'
+                    className='lg:hover:underline'
+                    onClick={() => {
+                      setTypeQuery('natural');
+                      setDateQuery('2016-03-09');
+                      setIsPrickerOpen(false);
+                    }}
+                  >
+                    Solar Eclipse 2016
+                  </button>
                 </li>
               </ul>
             </div>
