@@ -1,6 +1,6 @@
 import { ThumbnailCard } from 'components/images';
 
-export default function Results({ data, status, error }) {
+const Results = ({ data, status, error }) => {
   return (
     <div
       className='relative flex-1 overflow-y-auto focus:outline-none'
@@ -23,4 +23,6 @@ export default function Results({ data, status, error }) {
       </div>
     </div>
   );
-}
+};
+
+export default Results;

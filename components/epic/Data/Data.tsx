@@ -13,7 +13,7 @@ import {
   FiStar,
 } from 'react-icons/fi';
 
-export default function Data({
+const Data = ({
   data,
   type,
   currentIndex,
@@ -21,7 +21,7 @@ export default function Data({
   setTypeQuery,
   setDateQuery,
   isFetching,
-}) {
+}) => {
   const {
     day,
     dayInput,
@@ -352,4 +352,6 @@ export default function Data({
       `}</style>
     </>
   );
-}
+};
+
+export default Data;

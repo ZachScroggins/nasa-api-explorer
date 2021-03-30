@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-export default function ImageSlider({
+const ImageSlider = ({
   data,
   type,
   year,
@@ -10,7 +10,7 @@ export default function ImageSlider({
   day,
   currentIndex,
   setCurrentIndex,
-}) {
+}) => {
   return (
     <Carousel
       infiniteLoop
@@ -38,4 +38,6 @@ export default function ImageSlider({
       ))}
     </Carousel>
   );
-}
+};
+
+export default ImageSlider;

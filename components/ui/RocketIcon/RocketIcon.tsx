@@ -1,4 +1,4 @@
-export default function RocketIcon(props) {
+const RocketIcon = props => {
   return (
     <svg viewBox='0 0 512 512' {...props}>
       <defs>
@@ -154,4 +154,6 @@ export default function RocketIcon(props) {
       <path opacity={0.1} d='M217.45 132.1H292.96V135.03H217.45z' />
     </svg>
   );
-}
+};
+
+export default RocketIcon;

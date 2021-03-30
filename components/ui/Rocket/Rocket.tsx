@@ -1,4 +1,4 @@
-export default function Rocket(props) {
+const Rocket = props => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -313,4 +313,6 @@ export default function Rocket(props) {
       <circle cx='954.9' cy='428.23' r='1.84' fill='#fff'></circle>
     </svg>
   );
-}
+};
+
+export default Rocket;

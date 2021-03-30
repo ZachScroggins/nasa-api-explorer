@@ -1,7 +1,7 @@
 import useLayout from './useLayout';
 import { MobileHeader, MobileSidebar, StaticSidebar } from 'components/common';
 
-export default function Layout({ children }) {
+const Layout = ({ children }) => {
   const { isOpen, setIsOpen, currentIndex } = useLayout();
 
   return (
@@ -28,4 +28,6 @@ export default function Layout({ children }) {
       </div>
     </>
   );
-}
+};
+
+export default Layout;

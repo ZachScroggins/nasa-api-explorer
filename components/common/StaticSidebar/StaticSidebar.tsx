@@ -10,7 +10,7 @@ import {
   FiImage,
 } from 'react-icons/fi';
 
-export default function StaticSidebar({ currentIndex }) {
+const StaticSidebar = ({ currentIndex }) => {
   return (
     <div className='fixed top-0 left-0 z-20 hidden w-64 h-full lg:flex lg:flex-shrink-0'>
       <div className='flex flex-col w-64'>
@@ -107,4 +107,6 @@ export default function StaticSidebar({ currentIndex }) {
       </div>
     </div>
   );
-}
+};
+
+export default StaticSidebar;

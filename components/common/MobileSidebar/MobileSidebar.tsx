@@ -11,7 +11,7 @@ import {
   FiImage,
 } from 'react-icons/fi';
 
-export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
+const MobileSidebar = ({ isOpen, setIsOpen, currentIndex }) => {
   return (
     <Transition show={isOpen}>
       <div
@@ -172,4 +172,6 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
       </div>
     </Transition>
   );
-}
+};
+
+export default MobileSidebar;
