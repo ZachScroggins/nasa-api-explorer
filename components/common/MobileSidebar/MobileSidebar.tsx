@@ -57,7 +57,6 @@ export default function MobileSidebar({ isOpen, setIsOpen, currentIndex }) {
                   onClick={() => setIsOpen(false)}
                 >
                   <span className='sr-only'>Close sidebar</span>
-                  {/* Heroicon name: outline/x */}
                   <svg
                     className='w-6 h-6 text-white'
                     xmlns='http://www.w3.org/2000/svg'

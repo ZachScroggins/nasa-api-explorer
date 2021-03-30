@@ -1,5 +1,5 @@
-import { RocketIcon } from 'components/ui';
 import Link from 'next/link';
+import { RocketIcon } from 'components/ui';
 
 export default function MobileHeader({ setIsOpen }) {
   return (
@@ -20,7 +20,6 @@ export default function MobileHeader({ setIsOpen }) {
             onClick={() => setIsOpen(true)}
           >
             <span className='sr-only'>Open sidebar</span>
-            {/* Heroicon name: outline/menu */}
             <svg
               className='w-6 h-6'
               xmlns='http://www.w3.org/2000/svg'

@@ -1,30 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import useSearch from './useSearch';
 
 export default function Search({ setQuery }) {
-  const router = useRouter();
-  const [input, setInput] = useState(router.query.q || 'Supernova');
-
-  // useEffect(() => {
-  //   if (router.query.q) {
-  //     setInput(router.query.q.toString());
-  //   }
-  // }, [router.query]);
-
-  useEffect(() => {
-    if (router.query.q && router.query.q !== input) {
-      setInput(router.query.q);
-    }
-  }, [router.query]);
-
-  const handleSearch = e => {
-    e.preventDefault();
-    router.push({
-      pathname: '/images',
-      query: { q: input },
-    });
-    setQuery(input);
-  };
+  const { handleSearch, input, setInput } = useSearch({ setQuery });
 
   return (
     <div className='fixed left-0 z-10 flex flex-shrink-0 w-full h-16 mr-64 bg-black border-b border-gray-900 lg:right-0 lg:left-64 top-16 lg:top-0'>

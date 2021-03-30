@@ -14,7 +14,6 @@ export default function StaticSidebar({ currentIndex }) {
   return (
     <div className='fixed top-0 left-0 z-20 hidden w-64 h-full lg:flex lg:flex-shrink-0'>
       <div className='flex flex-col w-64'>
-        {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className='flex flex-col flex-1 h-0 bg-black border-r border-gray-900'>
           <div className='flex flex-col flex-1 pt-5 pb-4 overflow-y-auto'>
             <Link href='/'>
