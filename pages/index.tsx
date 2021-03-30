@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Rocket } from 'components/ui';
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Head>
@@ -88,4 +88,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+export default Home;
