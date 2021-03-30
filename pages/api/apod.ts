@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  let status = 500;
+  let status: number = 500;
 
   try {
     const response = await fetch(

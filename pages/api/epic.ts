@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  let status = 500;
-
   const { query } = req;
+
+  let status: number = 500;
   let items = null;
-  let error = null;
-  let type = 'natural';
-  let url = `https://api.nasa.gov/EPIC/api/natural?api_key=${process.env.NASA_API_KEY}`;
+  let error: string = null;
+  let type: string = 'natural';
+  let url: string = `https://api.nasa.gov/EPIC/api/natural?api_key=${process.env.NASA_API_KEY}`;
   if (!query.date && query.type) {
     if (query.type === 'enhanced') {
       url = `https://api.nasa.gov/EPIC/api/enhanced?api_key=${process.env.NASA_API_KEY}`;

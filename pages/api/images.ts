@@ -3,12 +3,12 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { query } = req;
 
-  let status = 500;
+  let status: number = 500;
 
   if (query.id) {
     let images = null;
     let data = null;
-    let error = null;
+    let error: string = null;
     const imageUrl = query.id
       ? `https://images-api.nasa.gov/asset/${query.id}`
       : `https://images-api.nasa.gov/asset/PIA06907`;

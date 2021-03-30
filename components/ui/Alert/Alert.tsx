@@ -26,13 +26,11 @@ const Alert: React.FC<Props> = ({ type, message, action }) => {
         </div>
         <div className='flex-1 ml-3 md:flex md:justify-between'>
           <p className='text-sm text-red-700'>{message}</p>
-          {/* <p className='text-sm text-red-700'>{error.message}</p> */}
           <p className='mt-3 text-sm md:mt-0 md:ml-6'>
             <button
               type='button'
               className='font-medium text-red-700 whitespace-nowrap hover:text-red-600'
               onClick={action}
-              // onClick={() => router.reload()}
             >
               Reset <span aria-hidden='true'>→</span>
             </button>
