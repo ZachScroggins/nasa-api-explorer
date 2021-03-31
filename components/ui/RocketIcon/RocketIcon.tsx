@@ -1,4 +1,4 @@
-const RocketIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => {
+const RocketIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg viewBox='0 0 512 512' {...props}>
       <defs>

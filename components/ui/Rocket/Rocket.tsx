@@ -1,4 +1,4 @@
-const Rocket: React.FC<React.SVGProps<SVGSVGElement>> = props => {
+const Rocket = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

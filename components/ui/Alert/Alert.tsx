@@ -6,7 +6,7 @@ interface Props {
   action: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-const Alert: React.FC<Props> = ({ type, message, action }) => {
+const Alert = ({ type, message, action }: Props) => {
   return (
     <div className='row-start-2 p-4 mb-2 bg-red-100 rounded-md lg:row-start-1 lg:mb-0 lg:col-span-2'>
       <div className='flex'>
