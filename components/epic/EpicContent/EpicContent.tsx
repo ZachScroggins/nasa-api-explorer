@@ -1,8 +1,22 @@
 import { useState } from 'react';
+import { EpicData } from 'types';
 import { Data, ImageSlider } from 'components/epic';
 
-const EpicContent = ({ data, setTypeQuery, setDateQuery, isFetching }) => {
+interface EpicContentProps {
+  data: EpicData;
+  setDateQuery: React.Dispatch<React.SetStateAction<string>>;
+  setTypeQuery: React.Dispatch<React.SetStateAction<string>>;
+  isFetching: boolean;
+}
+
+const EpicContent = ({
+  data,
+  setTypeQuery,
+  setDateQuery,
+  isFetching,
+}: EpicContentProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
     <>
       <ImageSlider

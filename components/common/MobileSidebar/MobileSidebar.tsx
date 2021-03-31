@@ -11,7 +11,17 @@ import {
   FiImage,
 } from 'react-icons/fi';
 
-const MobileSidebar = ({ isOpen, setIsOpen, currentIndex }) => {
+interface MobileSidebarProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  currentIndex: number;
+}
+
+const MobileSidebar = ({
+  isOpen,
+  setIsOpen,
+  currentIndex,
+}: MobileSidebarProps) => {
   return (
     <Transition show={isOpen}>
       <div

@@ -1,7 +1,7 @@
 import useLayout from './useLayout';
 import { MobileHeader, MobileSidebar, StaticSidebar } from 'components/common';
 
-const Layout = ({ children }) => {
+const Layout: React.FC<{}> = ({ children }) => {
   const { isOpen, setIsOpen, currentIndex } = useLayout();
 
   return (

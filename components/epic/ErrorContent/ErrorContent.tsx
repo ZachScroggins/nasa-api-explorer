@@ -1,5 +1,16 @@
+import { NextRouter } from 'next/router';
+import { EpicData } from 'types';
 import { EpicContent } from 'components/epic';
 import { Alert } from 'components/ui';
+
+interface ErrorContentProps {
+  error: Error;
+  router: NextRouter;
+  prevData: EpicData | null;
+  setDateQuery: React.Dispatch<React.SetStateAction<string>>;
+  setTypeQuery: React.Dispatch<React.SetStateAction<string>>;
+  isFetching: boolean;
+}
 
 const ErrorContent = ({
   error,
@@ -8,7 +19,7 @@ const ErrorContent = ({
   setTypeQuery,
   setDateQuery,
   isFetching,
-}) => {
+}: ErrorContentProps) => {
   return (
     <>
       <Alert

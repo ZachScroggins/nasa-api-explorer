@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { EpicData } from 'types';
 import useData from './useData';
 import { RiRulerLine } from 'react-icons/ri';
 import { BsClipboardData } from 'react-icons/bs';
@@ -13,15 +13,25 @@ import {
   FiStar,
 } from 'react-icons/fi';
 
+interface DataProps {
+  data: EpicData['items'];
+  type: EpicData['type'];
+  currentIndex: number;
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+  setDateQuery: React.Dispatch<React.SetStateAction<string>>;
+  setTypeQuery: React.Dispatch<React.SetStateAction<string>>;
+  isFetching: boolean;
+}
+
 const Data = ({
   data,
   type,
   currentIndex,
   setCurrentIndex,
-  setTypeQuery,
   setDateQuery,
+  setTypeQuery,
   isFetching,
-}) => {
+}: DataProps) => {
   const {
     day,
     dayInput,
@@ -103,13 +113,14 @@ const Data = ({
               onChange={e => setYearInput(e.target.value)}
               className='bg-black rounded-l-lg'
             >
-              {Array.from(new Array(year - 2014), (x, i) => i + 2015).map(
-                (date, index) => (
-                  <option value={date} key={index}>
-                    {date}
-                  </option>
-                )
-              )}
+              {Array.from(
+                new Array(parseInt(year) - 2014),
+                (x, i) => i + 2015
+              ).map((date, index) => (
+                <option value={date} key={index}>
+                  {date}
+                </option>
+              ))}
             </select>
             <select
               name='month'

@@ -1,6 +1,17 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { EpicData } from 'types';
+
+interface ImageSliderProps {
+  data: EpicData['items'];
+  type: EpicData['type'];
+  year: string;
+  month: string;
+  day: string;
+  currentIndex: number;
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+}
 
 const ImageSlider = ({
   data,
@@ -10,7 +21,7 @@ const ImageSlider = ({
   day,
   currentIndex,
   setCurrentIndex,
-}) => {
+}: ImageSliderProps) => {
   return (
     <Carousel
       infiniteLoop

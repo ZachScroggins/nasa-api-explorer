@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import { RocketIcon } from 'components/ui';
+import React from 'react';
 
-const MobileHeader = ({ setIsOpen }) => {
+interface MobileHeaderProps {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const MobileHeader = ({ setIsOpen }: MobileHeaderProps) => {
   return (
     <div className='fixed top-0 left-0 z-10 w-full lg:hidden'>
       <div className='flex items-center justify-between px-4 py-2 bg-black border-b border-black'>
