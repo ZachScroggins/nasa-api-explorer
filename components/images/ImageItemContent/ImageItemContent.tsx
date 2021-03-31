@@ -1,6 +1,11 @@
 import Link from 'next/link';
+import { ImageItemData } from 'types';
 
-const ImageItemContent = ({ data }) => {
+interface ImageItemContentProps {
+  data: ImageItemData;
+}
+
+const ImageItemContent = ({ data }: ImageItemContentProps) => {
   return (
     <div className='flex items-center justify-center'>
       <div className='max-w-full bg-black rounded-lg lg:flex lg:bg-transparent'>

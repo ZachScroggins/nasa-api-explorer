@@ -1,7 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { ImageDataItem } from 'types';
 
-const ThumbnailCard: React.FC<{ item: any }> = ({ item }) => {
+interface ThumbnailCardProps {
+  item: ImageDataItem;
+}
+
+const ThumbnailCard = ({ item }: ThumbnailCardProps) => {
   return (
     <li className='flex flex-col overflow-hidden rounded-lg shadow-lg cursor-pointer hover:shadow-2xl focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-teal-400'>
       <Link href={`/images/${item.data[0].nasa_id}`}>

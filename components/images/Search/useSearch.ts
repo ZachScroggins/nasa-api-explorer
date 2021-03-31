@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-const useSearch = ({ setQuery }) => {
+type SearchHook = (
+  setQuery: React.Dispatch<React.SetStateAction<string | string[]>>
+) => {
+  handleSearch: React.FormEventHandler<HTMLFormElement>;
+  input: string | string[];
+  setInput: React.Dispatch<React.SetStateAction<string | string[]>>;
+};
+
+const useSearch: SearchHook = setQuery => {
   const router = useRouter();
   const [input, setInput] = useState(router.query.q || 'Supernova');
 
-  const handleSearch = e => {
+  const handleSearch: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
     router.push({
       pathname: '/images',

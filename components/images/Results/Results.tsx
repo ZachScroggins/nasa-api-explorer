@@ -1,6 +1,13 @@
 import { ThumbnailCard } from 'components/images';
+import { ImagesData } from 'types';
 
-const Results = ({ data, status, error }) => {
+interface ResultsProps {
+  data: ImagesData;
+  status: 'error' | 'idle' | 'loading' | 'success';
+  error: Error;
+}
+
+const Results = ({ data, status, error }: ResultsProps) => {
   return (
     <div
       className='relative flex-1 overflow-y-auto focus:outline-none'

@@ -1,14 +1,21 @@
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
+import { ImageItemData } from 'types';
 
-const useImageItemPage = () => {
+type ImageItemPageHook = () => {
+  data: ImageItemData;
+  status: 'idle' | 'error' | 'loading' | 'success';
+  error: Error;
+};
+
+const useImageItemPage: ImageItemPageHook = () => {
   const router = useRouter();
 
-  const id = router.asPath.slice(8);
+  const id: string = router.asPath.slice(8);
 
-  const { data, status, error } = useQuery<any, Error>(
+  const { data, status, error } = useQuery<ImageItemData, Error>(
     ['imageItem', { id }],
-    async ({ queryKey }) => {
+    async ({ queryKey }: { queryKey: [string, { id: string }] }) => {
       const [_key, { id }] = queryKey;
       const res = await fetch(`/api/images?id=${id}`);
       if (!res.ok) {

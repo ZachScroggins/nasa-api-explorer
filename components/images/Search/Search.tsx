@@ -1,7 +1,11 @@
 import useSearch from './useSearch';
 
-export default function Search({ setQuery }) {
-  const { handleSearch, input, setInput } = useSearch({ setQuery });
+interface SearchProps {
+  setQuery: React.Dispatch<React.SetStateAction<string | string[]>>;
+}
+
+const Search = ({ setQuery }: SearchProps) => {
+  const { handleSearch, input, setInput } = useSearch(setQuery);
 
   return (
     <div className='fixed left-0 z-10 flex flex-shrink-0 w-full h-16 mr-64 bg-black border-b border-gray-900 lg:right-0 lg:left-64 top-16 lg:top-0'>
@@ -51,4 +55,6 @@ export default function Search({ setQuery }) {
       </div>
     </div>
   );
-}
+};
+
+export default Search;

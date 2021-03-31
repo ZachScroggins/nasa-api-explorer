@@ -1,9 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
+import { ImagesData } from 'types';
 
-const fetchImages = async ({ queryKey }) => {
-  const [_key, query] = queryKey;
+type ImagesPageHook = () => {
+  setQuery: React.Dispatch<React.SetStateAction<string | string[]>>;
+  data: ImagesData;
+  error: Error;
+  status: 'idle' | 'error' | 'loading' | 'success';
+};
+
+type QueryParams = {
+  queryKey: [string, string | string[]];
+};
+
+const fetchImages = async (params: QueryParams) => {
+  const [_key, query] = params.queryKey;
   const res = await fetch(`/api/images?q=${query}`);
   if (!res.ok) {
     const json = await res.json();
@@ -12,11 +24,14 @@ const fetchImages = async ({ queryKey }) => {
   return res.json();
 };
 
-const useImagesPage = () => {
+const useImagesPage: ImagesPageHook = () => {
   const router = useRouter();
   const [query, setQuery] = useState(router.query.q || 'Supernova');
 
-  const { data, error, status } = useQuery(['images', query], fetchImages);
+  const { data, error, status } = useQuery<ImagesData, Error>(
+    ['images', query],
+    fetchImages
+  );
 
   useEffect(() => {
     if (router.query.q && router.query.q !== query) {

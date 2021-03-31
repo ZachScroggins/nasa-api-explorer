@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 
-type Hook = (
+type ClickAwayHook = (
   ref: React.RefObject<HTMLElement>,
   setState: React.Dispatch<React.SetStateAction<boolean>>
 ) => null;
 
 type AnyEvent = MouseEvent | TouchEvent;
 
-const useClickAway: Hook = (ref, setState) => {
+const useClickAway: ClickAwayHook = (ref, setState) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const handleClickOutside = (event: AnyEvent) => {
