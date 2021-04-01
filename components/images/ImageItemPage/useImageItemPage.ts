@@ -17,10 +17,10 @@ const useImageItemPage: ImageItemPageHook = () => {
     ['imageItem', { id }],
     async ({ queryKey }: { queryKey: [string, { id: string }] }) => {
       const [_key, { id }] = queryKey;
-      const res = await fetch(`/api/images?id=${id}`);
+      const res = await fetch(`/api/images/${id}`);
       if (!res.ok) {
         const json = await res.json();
-        throw new Error(json?.error);
+        throw new Error(json?.message);
       }
       return res.json();
     }

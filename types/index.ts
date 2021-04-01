@@ -20,7 +20,6 @@ export type ImagesData =
 
 export type ImageItemData =
   | {
-      error: string | null;
       href: string;
       images: {
         href: string;
@@ -57,9 +56,8 @@ export interface ImageDataItem {
 
 export type EpicData =
   | {
-      items: EpicDataItem[];
       type: 'natural' | 'enhanced';
-      error: string | null;
+      items: EpicDataItem[];
     }
   | undefined;
 

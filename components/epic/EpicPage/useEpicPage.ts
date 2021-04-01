@@ -35,7 +35,7 @@ const useEpicPage: EpicPageHook = () => {
       );
       if (!res.ok) {
         const json = await res.json();
-        throw new Error(json?.error);
+        throw new Error(json.message);
       }
       return res.json();
     },

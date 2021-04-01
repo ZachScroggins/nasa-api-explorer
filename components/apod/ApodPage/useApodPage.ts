@@ -14,7 +14,7 @@ const useApodPage: ApodPageHook = () => {
       const res = await fetch('/api/apod');
       if (!res.ok) {
         const json = await res.json();
-        throw new Error(json?.message);
+        throw new Error(json.message);
       }
       return res.json();
     }

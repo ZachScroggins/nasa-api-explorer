@@ -17,8 +17,6 @@ const ImageItemPage = () => {
           <p>Loading...</p>
         ) : status === 'error' ? (
           <p>{error.message}</p>
-        ) : !data.items.length || !data.images.href ? (
-          <p>No results</p>
         ) : (
           <ImageItemContent data={data} />
         )}
