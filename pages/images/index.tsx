@@ -8,16 +8,19 @@ export const getStaticProps: GetStaticProps = async context => {
 
   const query = 'Supernova';
 
-  await queryClient.prefetchQuery(['images', query], async ({ queryKey }) => {
-    const [_key, query] = queryKey;
-    const res = await fetch(
-      `https://images-api.nasa.gov/search?q=${query}&media_type=image`
-    );
-    if (!res.ok) {
-      throw new Error('Network response was not ok');
+  await queryClient.prefetchQuery(
+    ['images', query],
+    async ({ queryKey }: { queryKey: string[] }) => {
+      const [_key, query] = queryKey;
+      const res = await fetch(
+        `https://images-api.nasa.gov/search?q=${query}&media_type=image`
+      );
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
     }
-    return res.json();
-  });
+  );
 
   return {
     props: {
