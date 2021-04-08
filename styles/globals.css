@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  a,
+  button {
+    @apply focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75;
+  }
   @screen lg {
     html,
     body {

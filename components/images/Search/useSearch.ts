@@ -20,6 +20,10 @@ const useSearch: SearchHook = setQuery => {
       query: { q: input },
     });
     setQuery(input);
+    const target = e.target as typeof e.target & {
+      search: HTMLInputElement;
+    };
+    if (typeof window !== 'undefined') target.search.blur();
   };
 
   useEffect(() => {

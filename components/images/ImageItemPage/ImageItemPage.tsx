@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import useImageItemPage from './useImageItemPage';
 import { ImageItemContent } from 'components/images';
+import ImageItemSkeleton from '../ImageItemSkeleton';
 
 const ImageItemPage = () => {
   const { data, status, error } = useImageItemPage();
-
+  // const status: string = 'success';
   return (
     <>
       <Head>
@@ -14,7 +15,7 @@ const ImageItemPage = () => {
       </Head>
       <div className='min-h-screen p-4 pt-20 lg:pt-10'>
         {status === 'loading' ? (
-          <p>Loading...</p>
+          <ImageItemSkeleton />
         ) : status === 'error' ? (
           <p>{error.message}</p>
         ) : (

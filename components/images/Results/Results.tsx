@@ -1,4 +1,4 @@
-import { ThumbnailCard } from 'components/images';
+import { ResultsSkeleton, ThumbnailCard } from 'components/images';
 import { ImagesData } from 'types';
 
 interface ResultsProps {
@@ -15,7 +15,7 @@ const Results = ({ data, status, error }: ResultsProps) => {
     >
       <div className='px-4 pt-40 pb-6 mx-auto lg:pt-20 xl:pb-8 max-w-screen-2xl'>
         {status === 'loading' ? (
-          <p>Loading...</p>
+          <ResultsSkeleton />
         ) : status === 'error' ? (
           <p>{error.message}</p>
         ) : (

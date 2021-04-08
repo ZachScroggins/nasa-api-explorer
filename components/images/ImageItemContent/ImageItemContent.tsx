@@ -9,7 +9,7 @@ const ImageItemContent = ({ data }: ImageItemContentProps) => {
   return (
     <div className='flex items-center justify-center'>
       <div className='max-w-full bg-black rounded-lg lg:flex lg:bg-transparent'>
-        <div className='lg:w-1/2'>
+        <div className='overflow-auto aspect-w-9 aspect-h-9 lg:h-auto lg:w-1/2'>
           <a href={data.images.items[0].href}>
             <img
               src={data.items[0].links[0].href}
