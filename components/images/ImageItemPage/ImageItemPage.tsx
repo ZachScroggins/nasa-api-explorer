@@ -5,7 +5,7 @@ import ImageItemSkeleton from '../ImageItemSkeleton';
 
 const ImageItemPage = () => {
   const { data, status, error } = useImageItemPage();
-  // const status: string = 'loading';
+
   return (
     <>
       <Head>

@@ -21,20 +21,6 @@ const ImageItemSkeleton = () => {
                 />
               );
             })}
-            {/* <p className='text-lg leading-loose'>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
-              nesciunt tempore iusto, animi temporibus optio obcaecati iure
-              ipsum commodi, velit amet odio officiis. Provident reiciendis
-              cupiditate eius harum assumenda numquam delectus accusamus nobis,
-              magni iure voluptates voluptatibus atque a, quod amet asperiores
-              ratione totam expedita quos dolorum fugit unde quo fugiat! Qui
-              illo eaque repudiandae facilis totam a ratione quidem possimus
-              aliquid? Voluptas expedita ea odit temporibus hic ex saepe
-              quaerat, nam quibusdam distinctio molestias necessitatibus
-              accusantium minima unde quam reprehenderit. Laborum quo velit
-              labore ducimus error quis asperiores magni! Dolores laboriosam
-              recusandae nemo. Ex at quas dignissimos id reprehenderit.
-            </p> */}
           </div>
         </div>
       </div>
