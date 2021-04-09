@@ -27,6 +27,7 @@ const ImageSlider = ({
       infiniteLoop
       selectedItem={currentIndex}
       swipeable={false}
+      onChange={index => setCurrentIndex(index)}
       renderItem={(item: React.ReactNode) => (
         <a
           href={React.isValidElement(item) && item.props.children.props.src}
@@ -36,7 +37,6 @@ const ImageSlider = ({
           {item}
         </a>
       )}
-      onChange={index => setCurrentIndex(index)}
     >
       {data?.map((image, index) => (
         <div key={index}>
@@ -44,6 +44,8 @@ const ImageSlider = ({
             src={`https://epic.gsfc.nasa.gov/archive/${type}/${year}/${month}/${day}/png/${image.image}.png`}
             alt={image.caption}
             className='rounded-lg'
+            width='2048px'
+            height='2048px'
           />
         </div>
       ))}

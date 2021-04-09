@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { EpicContent, ErrorContent } from 'components/epic';
+import { EpicContent, ErrorContent, EpicSkeleton } from 'components/epic';
 import useEpicPage from './useEpicPage';
 
 const EpicPage = () => {
@@ -22,7 +22,7 @@ const EpicPage = () => {
         </Head>
         <div className='container grid grid-cols-1 p-4 pt-20 mx-auto 2xl:px-10 lg:pt-10 lg:grid-cols-2 lg:gap-4'>
           {status === 'loading' ? (
-            <span>Loading...</span>
+            <EpicSkeleton />
           ) : status === 'error' ? (
             <ErrorContent
               error={error}
