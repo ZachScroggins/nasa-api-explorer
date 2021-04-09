@@ -13,10 +13,10 @@ const ImageItemSkeleton = () => {
           <div className='w-24 h-6 my-4 bg-gray-900 rounded animate-pulse' />
           <hr className='pt-1 pb-2 border-gray-900' />
           <div>
-            {Array.from(new Array(12)).map(index => {
+            {Array.from(new Array(12)).map(number => {
               return (
                 <div
-                  key={index}
+                  key={number}
                   className='h-6 mb-4 bg-gray-900 rounded animate-pulse'
                 />
               );

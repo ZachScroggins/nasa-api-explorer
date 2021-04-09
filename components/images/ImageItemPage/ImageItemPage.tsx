@@ -16,8 +16,7 @@ const ImageItemPage = () => {
       <div className='min-h-screen p-4 pt-20 lg:pt-10'>
         {status === 'loading' ? (
           <ImageItemSkeleton />
-        ) : // <p>loading...</p>
-        status === 'error' ? (
+        ) : status === 'error' ? (
           <p>{error.message}</p>
         ) : (
           <ImageItemContent data={data} />
