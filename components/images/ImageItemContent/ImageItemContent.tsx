@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ImageItemData } from 'types';
 
@@ -8,17 +9,20 @@ interface ImageItemContentProps {
 const ImageItemContent = ({ data }: ImageItemContentProps) => {
   return (
     <div className='flex items-center justify-center'>
-      <div className='max-w-full bg-black rounded-lg lg:flex lg:bg-transparent'>
-        <div className='overflow-auto aspect-w-9 aspect-h-9 lg:h-auto lg:w-1/2'>
-          <a href={data.images.items[0].href}>
-            <img
+      <div className='container rounded-lg lg:flex lg:bg-transparent'>
+        <div className='relative w-full h-[50vh] mb-4 lg:mb-0 lg:h-auto lg:w-1/2 rounded-lg'>
+          <a href={data.images.items[0].href} className='rounded-lg'>
+            <Image
               src={data.items[0].links[0].href}
               title={data.items[0].data[0].title}
-              className='w-full h-auto rounded-lg cursor-pointer'
+              className='object-contain object-center rounded-lg lg:object-top'
+              layout='fill'
+              priority={true}
+              quality={100}
             />
           </a>
         </div>
-        <div className='p-4 overflow-auto lg:pt-0 lg:w-1/2'>
+        <div className='p-4 overflow-auto bg-black lg:bg-transparent lg:pt-0 lg:w-1/2'>
           <div>
             <p className='text-2xl font-bold'>{data.items[0].data[0].title}</p>
           </div>

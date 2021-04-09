@@ -1,25 +1,27 @@
 const ImageItemSkeleton = () => {
   return (
     <div className='flex items-center justify-center'>
-      <div className='container bg-black rounded-lg lg:flex lg:bg-transparent'>
-        <div className='w-full bg-gray-900 rounded-lg h-72 animate-pulse' />
-        <div className='w-full p-4 overflow-auto lg:pt-0'>
-          <p className='text-2xl font-bold'>A Whole Bunch Of Words</p>
-          <p className='py-2 font-light text-gray-500'>2008-08-08</p>
-          <hr className='pt-1 pb-2 border-gray-900' />
-          <p className='inline mr-1 text-lg text-gray-400'>Keywords:</p>
-          <div className='py-4'>
-            <p className='inline text-lg text-gray-400'>Secondary Creator:</p>
-          </div>
-          <div className='pb-4'>
-            <p className='inline text-lg text-gray-400'>NASA ID: </p>
-          </div>
-          <div className='pb-4'>
-            <p className='inline text-lg text-gray-400'>Center: </p>
-          </div>
+      <div className='container rounded-lg lg:flex lg:bg-transparent'>
+        <div className='w-full bg-gray-900 rounded-lg h-[50vh] mb-4 lg:mb-0 animate-pulse' />
+        <div className='w-full p-4 overflow-auto bg-black lg:bg-transparent lg:pt-0'>
+          <div className='h-8 bg-gray-900 rounded animate-pulse' />
+          <div className='w-24 h-4 my-2 bg-gray-900 rounded animate-pulse' />
+          <hr className='mt-1 mb-2 border-gray-900' />
+          <div className='h-6 my-4 bg-gray-900 rounded animate-pulse' />
+          <div className='w-4/5 h-6 my-4 bg-gray-900 rounded animate-pulse' />
+          <div className='h-6 my-4 bg-gray-900 rounded w-44 animate-pulse' />
+          <div className='w-24 h-6 my-4 bg-gray-900 rounded animate-pulse' />
           <hr className='pt-1 pb-2 border-gray-900' />
           <div>
-            <p className='text-lg leading-loose'>
+            {Array.from(new Array(12)).map(index => {
+              return (
+                <div
+                  key={index}
+                  className='h-6 mb-4 bg-gray-900 rounded animate-pulse'
+                />
+              );
+            })}
+            {/* <p className='text-lg leading-loose'>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
               nesciunt tempore iusto, animi temporibus optio obcaecati iure
               ipsum commodi, velit amet odio officiis. Provident reiciendis
@@ -32,7 +34,7 @@ const ImageItemSkeleton = () => {
               accusantium minima unde quam reprehenderit. Laborum quo velit
               labore ducimus error quis asperiores magni! Dolores laboriosam
               recusandae nemo. Ex at quas dignissimos id reprehenderit.
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

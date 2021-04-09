@@ -5,7 +5,7 @@ import ImageItemSkeleton from '../ImageItemSkeleton';
 
 const ImageItemPage = () => {
   const { data, status, error } = useImageItemPage();
-  // const status: string = 'success';
+  // const status: string = 'loading';
   return (
     <>
       <Head>
@@ -16,7 +16,8 @@ const ImageItemPage = () => {
       <div className='min-h-screen p-4 pt-20 lg:pt-10'>
         {status === 'loading' ? (
           <ImageItemSkeleton />
-        ) : status === 'error' ? (
+        ) : // <p>loading...</p>
+        status === 'error' ? (
           <p>{error.message}</p>
         ) : (
           <ImageItemContent data={data} />
