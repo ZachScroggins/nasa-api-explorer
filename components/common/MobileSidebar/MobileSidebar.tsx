@@ -63,7 +63,7 @@ const MobileSidebar = ({
               <div className='absolute top-0 right-0 pt-2 -mr-12'>
                 <button
                   type='button'
-                  className='flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
+                  className='flex items-center justify-center w-10 h-10 ml-1 rounded-full'
                   onClick={() => setIsOpen(false)}
                 >
                   <span className='sr-only'>Close sidebar</span>

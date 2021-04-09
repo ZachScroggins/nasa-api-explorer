@@ -11,7 +11,7 @@ const MobileHeader = ({ setIsOpen }: MobileHeaderProps) => {
     <div className='fixed top-0 left-0 z-10 w-full lg:hidden'>
       <div className='flex items-center justify-between px-4 py-2 bg-black border-b border-black'>
         <Link href='/'>
-          <a className='flex items-center flex-shrink-0 text-2xl font-medium'>
+          <a className='flex items-center flex-shrink-0 text-2xl font-medium rounded-md'>
             <RocketIcon className='inline w-11 h-11' />
             <span className='ml-3 text-2xl font-medium text-primary'>
               NASA API Explorer
@@ -21,7 +21,7 @@ const MobileHeader = ({ setIsOpen }: MobileHeaderProps) => {
         <div>
           <button
             type='button'
-            className='inline-flex items-center justify-center w-12 h-12 -mr-3 text-gray-300 rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-600'
+            className='inline-flex items-center justify-center w-12 h-12 -mr-3 text-gray-300 rounded-md hover:text-gray-900'
             onClick={() => setIsOpen(true)}
           >
             <span className='sr-only'>Open sidebar</span>

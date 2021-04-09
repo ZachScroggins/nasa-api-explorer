@@ -8,7 +8,7 @@ interface ThumbnailCardProps {
 
 const ThumbnailCard = ({ item }: ThumbnailCardProps) => {
   return (
-    <li className='flex flex-col overflow-hidden rounded-lg shadow-lg cursor-pointer hover:shadow-2xl focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-teal-400'>
+    <li className='flex flex-col overflow-hidden rounded-lg shadow-lg cursor-pointer hover:shadow-2xl focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-0 focus-within:ring-indigo-400'>
       <Link href={`/images/${item.data[0].nasa_id}`}>
         <a className='overflow-hidden bg-black h-96'>
           <div className='relative flex-shrink-0 w-full h-48 bg-gray-900'>

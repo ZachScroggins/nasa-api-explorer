@@ -25,7 +25,10 @@ const Home = () => {
               </h2>
               <h3 className='mt-2 text-2xl font-light text-white text-opacity-75 lg:mt-4 lg:w-2/3 xl:w-3/5 xl:mt-6 xl:text-3xl'>
                 A free and open source project, built with REST APIs from{' '}
-                <a href='https://api.nasa.gov' className='lg:hover:underline'>
+                <a
+                  href='https://api.nasa.gov'
+                  className='rounded-md lg:hover:underline'
+                >
                   api.nasa.gov
                 </a>
               </h3>

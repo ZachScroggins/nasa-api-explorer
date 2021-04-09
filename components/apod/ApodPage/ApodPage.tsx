@@ -31,8 +31,11 @@ const ApodPage = () => {
                 />
               </div>
             ) : (
-              <div className='relative h-[50vh] mb-4 lg:mb-0 lg:h-auto'>
-                <a href={data?.hdurl}>
+              <div className='relative h-[50vh] mb-4 lg:mb-0 lg:h-auto focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-0 focus-within:ring-indigo-400'>
+                <a
+                  href={data?.hdurl}
+                  className='rounded-lg focus:ring-0 focus:ring-offset-0 focus:ring-transparent'
+                >
                   <Image
                     src={data?.url}
                     alt={data?.title}

@@ -78,7 +78,7 @@ const Data = ({
           </button>
           <button
             type='button'
-            className='flex items-center justify-center p-1 mt-1 text-2xl text-primary-light hover:underline'
+            className='flex items-center justify-center p-1 mt-1 text-2xl rounded-md text-primary-light hover:underline'
             onClick={() => setIsPrickerOpen(!isPickerOpen)}
           >
             <FiCalendar className='mr-2' />
@@ -182,7 +182,7 @@ const Data = ({
 
           <div className='flex items-center justify-between p-2 text-xl bg-opacity-50 rounded-t-lg text-primary-light'>
             <a
-              className='flex items-center justify-center w-full border-r border-gray-700 lg:hover:underline'
+              className='flex items-center justify-center w-full border-r border-gray-700 rounded-md lg:hover:underline'
               href={`https://epic.gsfc.nasa.gov/archive/${type}/${year}/${month}/${day}/png/${name}.png`}
             >
               <FiZoomIn className='mr-2' />
@@ -190,7 +190,7 @@ const Data = ({
             </a>
             <button
               type='button'
-              className='flex items-center justify-center w-full cursor-pointer lg:hover:underline'
+              className='flex items-center justify-center w-full rounded-md cursor-pointer lg:hover:underline'
               onClick={() => setKm(!km)}
             >
               <RiRulerLine className='mr-2' />
@@ -289,7 +289,7 @@ const Data = ({
                 <li className='mb-2 text-primary-light'>
                   <button
                     type='button'
-                    className='lg:hover:underline'
+                    className='rounded-md lg:hover:underline'
                     onClick={() => {
                       setTypeQuery('natural');
                       setDateQuery('2020-06-18');
@@ -302,7 +302,7 @@ const Data = ({
                 <li className='mb-2 text-primary-light'>
                   <button
                     type='button'
-                    className='lg:hover:underline'
+                    className='rounded-md lg:hover:underline'
                     onClick={() => {
                       setTypeQuery('natural');
                       setDateQuery('2017-08-21');
@@ -315,7 +315,7 @@ const Data = ({
                 <li className='mb-2 text-primary-light'>
                   <button
                     type='button'
-                    className='lg:hover:underline'
+                    className='rounded-md lg:hover:underline'
                     onClick={() => {
                       setTypeQuery('natural');
                       setDateQuery('2017-02-26');
@@ -328,7 +328,7 @@ const Data = ({
                 <li className='mb-2 text-primary-light'>
                   <button
                     type='button'
-                    className='lg:hover:underline'
+                    className='rounded-md lg:hover:underline'
                     onClick={() => {
                       setTypeQuery('natural');
                       setDateQuery('2016-03-09');

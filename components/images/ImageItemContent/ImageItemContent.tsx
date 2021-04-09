@@ -10,8 +10,11 @@ const ImageItemContent = ({ data }: ImageItemContentProps) => {
   return (
     <div className='flex items-center justify-center'>
       <div className='container rounded-lg lg:flex lg:bg-transparent'>
-        <div className='relative w-full h-[50vh] mb-4 lg:mb-0 lg:h-auto lg:w-1/2 rounded-lg'>
-          <a href={data.images.items[0].href} className='rounded-lg'>
+        <div className='relative w-full h-[50vh] mb-4 lg:mb-0 lg:h-auto lg:w-1/2 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-0 focus-within:ring-indigo-400'>
+          <a
+            href={data.images.items[0].href}
+            className='rounded-lg focus:ring-0 focus:ring-offset-0 focus:ring-transparent'
+          >
             <Image
               src={data.items[0].links[0].href}
               title={data.items[0].data[0].title}
@@ -37,7 +40,7 @@ const ImageItemContent = ({ data }: ImageItemContentProps) => {
             <div className='inline'>
               {data.items[0].data[0]?.keywords?.map((keyword, index) => (
                 <Link href={`/images?q=${keyword}`} key={index}>
-                  <a className='text-lg cursor-pointer text-primary'>
+                  <a className='text-lg rounded-md cursor-pointer text-primary'>
                     {keyword},{' '}
                   </a>
                 </Link>
