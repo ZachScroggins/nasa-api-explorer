@@ -5,7 +5,7 @@ const TechStack = () => {
     <div className='px-4 -mx-4'>
       <div className='container py-10 mx-auto lg:px-5 xl:px-20'>
         <h2 className='text-4xl font-bold text-center glow xl:text-5xl'>
-          Tech Stack
+          Technologies
         </h2>
         <div className='mt-6 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-8 text-white'>
           <a
