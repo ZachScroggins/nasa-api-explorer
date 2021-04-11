@@ -1,6 +1,8 @@
 {
-  "name": "with-tailwindcss",
+  "name": "nasa-api-explorer",
   "version": "0.1.0",
+  "description": "A free and open source project, built with REST APIs from api.nasa.gov",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
