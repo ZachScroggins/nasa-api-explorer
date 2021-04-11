@@ -1,7 +1,7 @@
 {
   "name": "nasa-api-explorer",
   "version": "0.1.0",
-  "description": "A free and open source project, built with REST APIs from api.nasa.gov",
+  "description": "Explore the public APIs of The National Aeronautics and Space Administration.",
   "license": "MIT",
   "private": true,
   "scripts": {
