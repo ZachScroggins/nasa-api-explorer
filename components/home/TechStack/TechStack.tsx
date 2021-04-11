@@ -18,7 +18,7 @@ const TechStack = () => {
           </a>
           <a
             href='https://nextjs.org/'
-            className='flex items-center content-center justify-center col-span-1 px-8 py-6 text-2xl bg-black bg-opacity-50 '
+            className='flex items-center content-center justify-center col-span-1 px-8 py-6 text-2xl bg-black bg-opacity-50'
           >
             <svg
               viewBox='0 0 207 124'
@@ -45,7 +45,7 @@ const TechStack = () => {
           </a>
           <a
             href='https://vercel.com/home'
-            className='flex items-center content-center justify-center col-span-1 px-8 py-8 text-2xl bg-black bg-opacity-50 '
+            className='flex items-center content-center justify-center col-span-1 px-8 py-6 text-2xl bg-black bg-opacity-50'
           >
             <svg
               className='flex-shrink-0 w-full fill-current max-h-12'
@@ -56,14 +56,12 @@ const TechStack = () => {
           </a>
           <a
             href='https://www.typescriptlang.org/'
-            className='flex items-center content-center justify-center col-span-1 px-8 py-8 text-2xl bg-black bg-opacity-50 '
+            className='flex items-center content-center justify-center col-span-1 px-8 py-6 text-2xl bg-black bg-opacity-50'
           >
             <svg
-              className='flex-shrink-0 h-6 sm:h-auto sm:max-h-12'
+              className='flex-shrink-0 w-6 h-6 sm:w-10 sm:h-10 md:h-9'
               viewBox='0 0 26 26'
               fill='#3178C6'
-              height='26'
-              width='26'
             >
               <path
                 clipRule='evenodd'
@@ -73,9 +71,7 @@ const TechStack = () => {
             </svg>
             <svg
               viewBox='0 0 105 25'
-              className='flex-shrink-0 fill-current max-h-12'
-              height='25'
-              width='105'
+              className='flex-shrink-0 w-auto h-6 fill-current sm:h-10 md:h-9'
             >
               <path
                 clipRule='evenodd'
@@ -88,7 +84,10 @@ const TechStack = () => {
             href='https://tailwindcss.com/'
             className='flex items-center content-center justify-center col-span-1 px-6 py-8 text-2xl bg-black bg-opacity-50 sm:px-8 '
           >
-            <svg className='flex-shrink-0 w-full max-h-12' viewBox='0 0 247 31'>
+            <svg
+              className='flex-shrink-0 w-full max-h-12 lg:max-h-10'
+              viewBox='0 0 247 31'
+            >
               <path
                 fill='#06B6D4'
                 fillRule='evenodd'
