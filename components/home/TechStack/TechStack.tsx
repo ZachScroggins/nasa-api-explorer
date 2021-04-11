@@ -23,6 +23,8 @@ const TechStack = () => {
             <svg
               viewBox='0 0 207 124'
               className='flex-shrink-0 max-h-10 sm:max-h-16'
+              width='207px'
+              height='124px'
             >
               <g
                 className='fill-current'
@@ -46,7 +48,7 @@ const TechStack = () => {
             className='flex items-center content-center justify-center col-span-1 px-8 py-8 text-2xl bg-black bg-opacity-50 '
           >
             <svg
-              className='flex-shrink-0 fill-current max-h-12'
+              className='flex-shrink-0 w-full fill-current max-h-12'
               viewBox='0 0 283 64'
             >
               <path d='M141.04 16c-11.04 0-19 7.2-19 18s8.96 18 20 18c6.67 0 12.55-2.64 16.19-7.09l-7.65-4.42c-2.02 2.21-5.09 3.5-8.54 3.5-4.79 0-8.86-2.5-10.37-6.5h28.02c.22-1.12.35-2.28.35-3.5 0-10.79-7.96-17.99-19-17.99zm-9.46 14.5c1.25-3.99 4.67-6.5 9.45-6.5 4.79 0 8.21 2.51 9.45 6.5h-18.9zM248.72 16c-11.04 0-19 7.2-19 18s8.96 18 20 18c6.67 0 12.55-2.64 16.19-7.09l-7.65-4.42c-2.02 2.21-5.09 3.5-8.54 3.5-4.79 0-8.86-2.5-10.37-6.5h28.02c.22-1.12.35-2.28.35-3.5 0-10.79-7.96-17.99-19-17.99zm-9.45 14.5c1.25-3.99 4.67-6.5 9.45-6.5 4.79 0 8.21 2.51 9.45 6.5h-18.9zM200.24 34c0 6 3.92 10 10 10 4.12 0 7.21-1.87 8.8-4.92l7.68 4.43c-3.18 5.3-9.14 8.49-16.48 8.49-11.05 0-19-7.2-19-18s7.96-18 19-18c7.34 0 13.29 3.19 16.48 8.49l-7.68 4.43c-1.59-3.05-4.68-4.92-8.8-4.92-6.07 0-10 4-10 10zm82.48-29v46h-9V5h9zM36.95 0L73.9 64H0L36.95 0zm92.38 5l-27.71 48L73.91 5H84.3l17.32 30 17.32-30h10.39zm58.91 12v9.69c-1-.29-2.06-.49-3.2-.49-5.81 0-10 4-10 10V51h-9V17h9v9.2c0-5.08 5.91-9.2 13.2-9.2z' />
@@ -60,6 +62,8 @@ const TechStack = () => {
               className='flex-shrink-0 h-6 sm:h-auto sm:max-h-12'
               viewBox='0 0 26 26'
               fill='#3178C6'
+              height='26'
+              width='26'
             >
               <path
                 clipRule='evenodd'
@@ -70,6 +74,8 @@ const TechStack = () => {
             <svg
               viewBox='0 0 105 25'
               className='flex-shrink-0 fill-current max-h-12'
+              height='25'
+              width='105'
             >
               <path
                 clipRule='evenodd'
@@ -82,7 +88,7 @@ const TechStack = () => {
             href='https://tailwindcss.com/'
             className='flex items-center content-center justify-center col-span-1 px-6 py-8 text-2xl bg-black bg-opacity-50 sm:px-8 '
           >
-            <svg className='flex-shrink-0 max-h-12' viewBox='0 0 247 31'>
+            <svg className='flex-shrink-0 w-full max-h-12' viewBox='0 0 247 31'>
               <path
                 fill='#06B6D4'
                 fillRule='evenodd'
@@ -101,7 +107,10 @@ const TechStack = () => {
             href='https://react-query.tanstack.com/'
             className='flex items-center content-center justify-center col-span-1 px-6 py-8 text-2xl bg-black bg-opacity-50 sm:px-8 '
           >
-            <svg className='flex-shrink-0 max-h-12' viewBox='0 0 2552 498'>
+            <svg
+              className='flex-shrink-0 w-full max-h-12'
+              viewBox='0 0 2552 498'
+            >
               <g stroke='none' strokeWidth={1} fill='none' fillRule='evenodd'>
                 <path
                   d='M343.113 309.464l-10.665 18.519A18 18 0 01316.85 337h-81.7a18 18 0 01-15.598-9.017l-10.666-18.519h134.227zm29.857-51.843l-18.805 32.652H197.834l-18.804-32.652h193.94zm-18.114-50.696L373 238.431H179l18.144-31.506h157.712zM316.85 159a18 18 0 0115.598 9.017l11.356 19.717H208.196l11.356-19.717A18 18 0 01235.15 159h81.7z'

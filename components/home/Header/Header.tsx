@@ -6,7 +6,8 @@ const Header = () => {
     <div className='container grid pb-10 mx-auto sm:px-32 lg:grid-cols-2 lg:px-5 xl:px-20'>
       <div className='flex items-center justify-center'>
         <div className='w-64 max-w-screen-md lg:w-3/4'>
-          <Rocket />
+          {/* <Rocket /> */}
+          <img src='/M81.png' alt='M81 Galaxy' width={795} height={614} />
         </div>
       </div>
       <div className='flex-col justify-center mt-4 text-center lg:text-left lg:row-start-1 lg:flex lg:mt-0 xl:items-center'>

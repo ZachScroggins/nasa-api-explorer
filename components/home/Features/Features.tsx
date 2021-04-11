@@ -57,89 +57,23 @@ const Features = () => {
           </p>
         </div>
 
-        <div className='relative mt-8 lg:col-span-2'>
-          <div className='lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
-            <div className=''>
-              <h3 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl'>
-                Fullstack
-              </h3>
-              <p className='mt-3 text-lg text-gray-500'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-                ex obcaecati natus eligendi delectus, cum deleniti sunt in
-                labore nihil quod quibusdam expedita nemo.
-              </p>
-              <dl className='mt-10 space-y-10'>
-                <div className='relative'>
-                  <dt>
-                    <div className='absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md'>
-                      {/* Heroicon name: outline/annotation */}
-                      <svg
-                        className='w-6 h-6'
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='none'
-                        viewBox='0 0 24 24'
-                        stroke='currentColor'
-                        aria-hidden='true'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeWidth={2}
-                          d='M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z'
-                        />
-                      </svg>
-                    </div>
-                    <p className='ml-16 text-lg font-medium leading-6'>
-                      Mobile notifications
-                    </p>
-                  </dt>
-                  <dd className='mt-2 ml-16 text-base text-gray-500'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Maiores impedit perferendis suscipit eaque, iste dolor
-                    cupiditate blanditiis ratione.
-                  </dd>
-                </div>
-                <div className='relative'>
-                  <dt>
-                    <div className='absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md'>
-                      {/* Heroicon name: outline/mail */}
-                      <svg
-                        className='w-6 h-6'
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='none'
-                        viewBox='0 0 24 24'
-                        stroke='currentColor'
-                        aria-hidden='true'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeWidth={2}
-                          d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
-                        />
-                      </svg>
-                    </div>
-                    <p className='ml-16 text-lg font-medium leading-6'>
-                      Reminder emails
-                    </p>
-                  </dt>
-                  <dd className='mt-2 ml-16 text-base text-gray-500'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Maiores impedit perferendis suscipit eaque, iste dolor
-                    cupiditate blanditiis ratione.
-                  </dd>
-                </div>
-              </dl>
-            </div>
-            <div className='relative mt-10 -mx-4 lg:mt-0'>
-              <img
-                className='relative mx-auto'
-                width={490}
-                src='/M81.png'
-                alt='Galaxy Image'
-              />
-            </div>
-          </div>
+        <div className='relative mb-2 lg:col-span-2'>
+          <h2 className='text-3xl font-extrabold leading-8 tracking-tight text-center lg:text-4xl glow'>
+            Technical Details
+          </h2>
+          <p className='max-w-3xl mx-auto mt-4 text-xl text-center text-gray-400'>
+            The goal of this application is to create a front-end for the REST
+            APIs that are found in the{' '}
+            <a
+              href='https://api.nasa.gov'
+              className='underline text-primary-light'
+            >
+              api.nasa.gov
+            </a>{' '}
+            catalog. These APIs expose a wealth of images and information, such
+            as data on comets, measurements of mars, and real-time imagery of
+            earth.
+          </p>
         </div>
 
         <div className='lg:col-start-2'>
@@ -278,10 +212,97 @@ const Features = () => {
         <div className='relative mt-10 -mx-4 lg:mt-0 lg:col-start-1'>
           <img
             className='relative mx-auto'
-            width={490}
-            src='https://tailwindui.com/img/features/feature-example-1.png'
-            alt=''
+            src='/AlertComponent.png'
+            alt='Alert Component Screenshot'
+            width='1396 '
+            height=' 1776'
           />
+        </div>
+
+        <div className='relative mt-8 lg:col-span-2'>
+          <div className='lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
+            <div className=''>
+              <h3 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl'>
+                Fullstack
+              </h3>
+              <p className='mt-3 text-lg text-gray-500'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+                ex obcaecati natus eligendi delectus, cum deleniti sunt in
+                labore nihil quod quibusdam expedita nemo.
+              </p>
+              <dl className='mt-10 space-y-10'>
+                <div className='relative'>
+                  <dt>
+                    <div className='absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md'>
+                      {/* Heroicon name: outline/annotation */}
+                      <svg
+                        className='w-6 h-6'
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
+                        aria-hidden='true'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth={2}
+                          d='M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z'
+                        />
+                      </svg>
+                    </div>
+                    <p className='ml-16 text-lg font-medium leading-6'>
+                      Next.js API Routes
+                    </p>
+                  </dt>
+                  <dd className='mt-2 ml-16 text-base text-gray-500'>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Maiores impedit perferendis suscipit eaque, iste dolor
+                    cupiditate blanditiis ratione.
+                  </dd>
+                </div>
+                <div className='relative'>
+                  <dt>
+                    <div className='absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md'>
+                      {/* Heroicon name: outline/mail */}
+                      <svg
+                        className='w-6 h-6'
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
+                        aria-hidden='true'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth={2}
+                          d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+                        />
+                      </svg>
+                    </div>
+                    <p className='ml-16 text-lg font-medium leading-6'>
+                      JSON REST API
+                    </p>
+                  </dt>
+                  <dd className='mt-2 ml-16 text-base text-gray-500'>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Maiores impedit perferendis suscipit eaque, iste dolor
+                    cupiditate blanditiis ratione.
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <div className='relative mt-10 -mx-4 lg:mt-0'>
+              <img
+                className='relative mx-auto'
+                width={1716}
+                height={1704}
+                src='/ApiRoute.png'
+                alt='API Route Image Image'
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
