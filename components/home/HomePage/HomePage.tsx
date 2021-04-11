@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Features, Header, TechStack } from 'components/home';
+import { Details, Features, Header, TechStack } from 'components/home';
 
 const Home = () => {
   return (
@@ -10,6 +10,7 @@ const Home = () => {
       <div className='min-h-screen px-4 pt-20 lg:pt-16'>
         <Header />
         <Features />
+        <Details />
         <TechStack />
       </div>
     </>
