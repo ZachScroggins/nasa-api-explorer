@@ -44,8 +44,8 @@ const ImageSlider = ({
             src={`https://epic.gsfc.nasa.gov/archive/${type}/${year}/${month}/${day}/png/${image.image}.png`}
             alt={image.caption}
             className='rounded-lg'
-            width='2048px'
-            height='2048px'
+            width='800'
+            height='800'
           />
         </div>
       ))}
