@@ -18,12 +18,12 @@ const FeatureCard = ({
   imgUrl,
 }: FeatureCardProps) => {
   return (
-    <div className='flex flex-col overflow-hidden rounded-lg shadow-lg cursor-pointer hover:shadow-2xl focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary'>
+    <div className='flex flex-col overflow-hidden border shadow-lg cursor-pointer border-opacity-30 border-primary rounded-2xl hover:shadow-2xl focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary'>
       <Link href={url}>
         <a className='overflow-hidden bg-black h-96'>
           <div className='flex-shrink-0'>
             <img
-              className='object-cover object-top w-full h-48'
+              className='object-cover object-top w-full h-48 rounded-t-lg'
               src={imgUrl}
               alt={`${title} Screenshot`}
             />
@@ -42,7 +42,7 @@ const FeatureCard = ({
           </div>
         </a>
       </Link>
-      <div className='flex bg-black border-t border-gray-800 divide-x divide-gray-800'>
+      <div className='flex bg-black border-t border-opacity-25 divide-x border-primary divide-primary divide-opacity-25'>
         <div className='flex flex-1 w-0'>
           <Link href={url}>
             <a className='relative inline-flex items-center justify-center flex-1 w-0 py-4 -mr-px text-sm font-medium border border-transparent rounded-bl-lg text-primary-light hover:text-primary'>

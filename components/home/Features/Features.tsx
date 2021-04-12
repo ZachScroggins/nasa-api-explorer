@@ -20,27 +20,27 @@ const Features = () => {
           data on comets, measurements of mars, and real-time imagery of earth.
         </p>
       </div>
-      <div className='grid max-w-md gap-8 px-4 mx-auto my-12 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl'>
+      <div className='grid gap-8 mx-auto my-12 sm:grid-cols-2 xl:grid-cols-3 lg:max-w-7xl'>
         <FeatureCard
           title='NASA Image and Video Library'
-          description='API to access the NASA Image and Video Library site at images.nasa.gov'
+          description="Search NASA's official database of over 140,000 photos. Browse stunning images of outer space, astronauts, rocket launches, and much more."
           url='/images'
           aboutUrl='/about#images'
-          imgUrl=''
+          imgUrl='/ImagesScreenshot.png'
         />
         <FeatureCard
           title='Earth Polychromatic Imaging Camera'
-          description='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, dolorum beatae! Voluptatem libero doloribus iste consequatur sit? Repudiandae, qui debitis.'
+          description="Daily imagery and data collected by the DSCOVR satellite's Earth Polychromatic Imaging Camera (EPIC) instrument."
           url='/epic'
           aboutUrl='/about#epic'
-          imgUrl=''
+          imgUrl='/EpicScreenshot.png'
         />
         <FeatureCard
           title='Astronomy Picture of the Day'
-          description='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, dolorum beatae!'
+          description='Each day a different image or video of our fascinating universe is featured, along with a brief explanation written by a professional astronomer.'
           url='/apod'
           aboutUrl='/about#apod'
-          imgUrl=''
+          imgUrl='/ApodScreenshot.png'
         />
       </div>
     </section>
