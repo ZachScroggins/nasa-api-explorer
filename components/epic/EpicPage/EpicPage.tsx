@@ -33,12 +33,15 @@ const EpicPage = () => {
               setTypeQuery={setTypeQuery}
             />
           ) : (
-            <EpicContent
-              data={data}
-              setTypeQuery={setTypeQuery}
-              setDateQuery={setDateQuery}
-              isFetching={isFetching}
-            />
+            <>
+              <EpicContent
+                data={data}
+                setTypeQuery={setTypeQuery}
+                setDateQuery={setDateQuery}
+                isFetching={isFetching}
+              />
+              <span className='hidden' data-cy='success'></span>
+            </>
           )}
         </div>
       </div>

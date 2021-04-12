@@ -12,9 +12,9 @@ const Header = () => {
       />
       <div className='flex-col justify-center mt-4 text-center lg:text-left lg:row-start-1 lg:flex lg:mt-0 xl:items-center'>
         <div>
-          <h2 className='text-4xl font-bold glow xl:text-5xl'>
+          <h1 className='text-4xl font-bold glow xl:text-5xl'>
             Explore NASA Imagery and Data
-          </h2>
+          </h1>
           <h3 className='mt-2 text-2xl font-light text-white text-opacity-75 lg:mt-4 lg:w-2/3 xl:w-3/5 xl:mt-6 xl:text-3xl'>
             A free and open source project, built with REST APIs from{' '}
             <a
