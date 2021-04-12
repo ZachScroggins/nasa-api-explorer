@@ -56,3 +56,5 @@ describe('The App', () => {
     cy.contains('Home').should('have.class', 'bg-gray-200');
   });
 });
+
+export {};
