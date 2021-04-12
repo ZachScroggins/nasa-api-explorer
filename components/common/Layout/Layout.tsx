@@ -17,7 +17,13 @@ const Layout: React.FC<{}> = ({ children }) => {
           <MobileHeader setIsOpen={setIsOpen} />
           <div className='relative top-0 z-0 flex flex-1 lg:left-64 lg:mr-64'>
             <main
-              className='relative z-0 flex-1 text-white bg-fixed bg-background focus:outline-none xl:order-last'
+              className='relative z-0 flex-1 overflow-x-hidden overflow-y-scroll text-white bg-fixed lg:hidden bg-background focus:outline-none xl:order-last'
+              style={{ backgroundImage: 'url(/topography.svg)' }}
+            >
+              {children}
+            </main>
+            <main
+              className='relative z-0 flex-1 hidden text-white bg-fixed lg:block bg-background focus:outline-none xl:order-last'
               style={{ backgroundImage: 'url(/topography.svg)' }}
             >
               {children}

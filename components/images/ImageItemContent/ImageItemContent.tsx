@@ -10,20 +10,28 @@ const ImageItemContent = ({ data }: ImageItemContentProps) => {
   return (
     <div className='flex items-center justify-center'>
       <div className='container rounded-lg lg:flex lg:bg-transparent'>
-        <div className='relative w-full h-[50vh] mb-4 lg:mb-0 lg:h-auto lg:w-1/2 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-0 focus-within:ring-indigo-400'>
-          <a
-            href={data.images.items[0].href}
-            className='rounded-lg focus:ring-0 focus:ring-offset-0 focus:ring-transparent'
-          >
-            <Image
-              src={data.items[0].links[0].href}
-              title={data.items[0].data[0].title}
-              className='object-contain object-center rounded-lg lg:object-top'
-              layout='fill'
-              priority={true}
-              quality={100}
-            />
-          </a>
+        <div className='relative h-[50vh] mb-4 lg:mb-0 lg:h-auto lg:w-1/2 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-0 focus-within:ring-indigo-400'>
+          <div className='lg:sticky lg:self-start lg:top-10'>
+            <a
+              href={data.images.items[0].href}
+              className='flex-shrink rounded-lg focus:ring-0 focus:ring-offset-0 focus:ring-transparent'
+            >
+              <img
+                src={data.items[0].links[0].href}
+                title={data.items[0].data[0].title}
+                loading='eager'
+                className='rounded-lg'
+              />
+              {/* <Image
+                src={data.items[0].links[0].href}
+                title={data.items[0].data[0].title}
+                className='object-contain object-center rounded-lg lg:object-top'
+                layout='fill'
+                priority={true}
+                quality={100}
+              /> */}
+            </a>
+          </div>
         </div>
         <div className='p-4 overflow-auto bg-black lg:bg-transparent lg:pt-0 lg:w-1/2'>
           <div>

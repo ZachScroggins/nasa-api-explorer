@@ -34,7 +34,7 @@ const ApodPage = () => {
               <div className='relative h-[50vh] mb-4 lg:mb-0 lg:h-auto focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-0 focus-within:ring-indigo-400'>
                 <a
                   href={data?.hdurl}
-                  className='rounded-lg focus:ring-0 focus:ring-offset-0 focus:ring-transparent'
+                  className='rounded-lg lg:hidden focus:ring-0 focus:ring-offset-0 focus:ring-transparent'
                 >
                   <Image
                     src={data?.url}
@@ -45,6 +45,27 @@ const ApodPage = () => {
                     quality={100}
                   />
                 </a>
+                <div className='hidden lg:sticky lg:block lg:top-10'>
+                  <a
+                    href={data?.hdurl}
+                    className='rounded-lg focus:ring-0 focus:ring-offset-0 focus:ring-transparent'
+                  >
+                    {/* <Image
+                    src={data?.url}
+                    alt={data?.title}
+                    className='object-contain object-center rounded-t-lg lg:object-top lg:rounded-lg'
+                    layout='fill'
+                    priority={true}
+                    quality={100}
+                  /> */}
+                    <img
+                      src={data?.url}
+                      alt={data?.title}
+                      loading='eager'
+                      className='rounded-lg'
+                    />
+                  </a>
+                </div>
               </div>
             )}
 
