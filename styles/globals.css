@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  *[id] {
+    scroll-margin-top: 6rem;
+  }
   a,
   button {
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-indigo-400 focus:ring-opacity-75;

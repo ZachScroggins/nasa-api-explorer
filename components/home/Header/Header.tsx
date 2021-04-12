@@ -12,29 +12,30 @@ const Header = () => {
       />
       <div className='flex-col justify-center mt-4 text-center lg:text-left lg:row-start-1 lg:flex lg:mt-0 xl:items-center'>
         <div>
-          <h1 className='text-4xl font-bold glow xl:text-5xl'>
+          <h1 className='text-4xl font-bold glow sm:text-5xl 2xl:text-6xl'>
             Explore NASA Imagery and Data
           </h1>
-          <h2 className='mt-2 text-2xl font-light text-white text-opacity-75 lg:mt-4 xl:mt-6 xl:text-3xl'>
+          <h2 className='mt-2 text-2xl font-light text-white text-opacity-75 lg:mt-4 sm:mt-6 sm:text-3xl 2xl:text-4xl'>
             A free and open source project, built with REST APIs from{' '}
             <a
               href='https://api.nasa.gov'
-              className='rounded-md lg:hover:underline'
+              className='rounded-md lg:hover:underline text-primary-light'
             >
               api.nasa.gov
             </a>
           </h2>
-          <div className='sm:flex sm:mt-4 xl:mt-8'>
+          <div className='sm:flex sm:mt-4 xl:mt-8 sm:text-lg 2xl:text-xl'>
             <Link href='/images?q=Supernova'>
               <a className='block px-4 py-2 mt-4 text-center rounded bg-primary sm:w-full'>
                 START EXPLORING
               </a>
             </Link>
             <a
-              href='https://github.com/ZachScroggins/nasa-api-explorer'
+              // href='https://github.com/ZachScroggins/nasa-api-explorer'
+              href='/#about-app'
               className='block px-4 py-2 mt-4 text-center border rounded border-primary text-primary-light sm:ml-4 sm:w-full'
             >
-              CONTRIBURE
+              FEATURES
             </a>
           </div>
         </div>

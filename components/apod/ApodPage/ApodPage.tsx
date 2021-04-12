@@ -7,7 +7,7 @@ const ApodPage = () => {
   const { data, error, status } = useApodPage();
 
   return (
-    <div className='h-screen'>
+    <div className='min-h-screen'>
       <Head>
         <title>Astronomy Picture of the Day | NASA API Explorer</title>
       </Head>

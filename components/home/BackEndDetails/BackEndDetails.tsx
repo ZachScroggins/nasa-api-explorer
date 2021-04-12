@@ -8,10 +8,10 @@ const BackEndDetails = () => {
       <section className='relative mt-8 lg:col-span-2'>
         <div className='lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
           <div className=''>
-            <h4 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl'>
+            <h4 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl 2xl:text-4xl'>
               Fullstack
             </h4>
-            <p className='mt-3 text-lg text-gray-400'>
+            <p className='mt-3 text-lg text-gray-400 sm:text-xl 2xl:text-2xl'>
               Along with the Jamstack front-end, this application includes a
               serverless JSON <a href='https://restfulapi.net/'>REST API</a> as
               the back-end. The application API fetches and returns data from
@@ -23,11 +23,11 @@ const BackEndDetails = () => {
                   <div className='absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md'>
                     <FiGitPullRequest className='w-6 h-6' aria-hidden='true' />
                   </div>
-                  <p className='ml-16 text-lg font-medium leading-6'>
+                  <p className='ml-16 text-lg font-medium leading-6 sm:text-xl 2xl:text-2xl'>
                     Next.js API Routes
                   </p>
                 </dt>
-                <dd className='mt-2 ml-16 text-base leading-relaxed text-gray-400'>
+                <dd className='mt-2 ml-16 text-base leading-relaxed text-gray-400 sm:text-lg 2xl:text-xl'>
                   The request (req) object is an instance of{' '}
                   <a href='https://nodejs.org/api/http.html#http_class_http_incomingmessage'>
                     http.IncomingMessage
@@ -52,11 +52,11 @@ const BackEndDetails = () => {
                   <div className='absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md'>
                     <FiDownloadCloud className='w-6 h-6' aria-hidden='true' />
                   </div>
-                  <p className='ml-16 text-lg font-medium leading-6'>
+                  <p className='ml-16 text-lg font-medium leading-6 sm:text-xl 2xl:text-2xl'>
                     Serverless Functions
                   </p>
                 </dt>
-                <dd className='mt-2 ml-16 text-base leading-relaxed text-gray-400'>
+                <dd className='mt-2 ml-16 text-base leading-relaxed text-gray-400 sm:text-lg 2xl:text-xl'>
                   <a href='https://www.cloudflare.com/learning/serverless/what-is-serverless/'>
                     Serverless computing
                   </a>{' '}
@@ -69,24 +69,28 @@ const BackEndDetails = () => {
               </div>
             </dl>
           </div>
-          <div className='mt-10 lg:mt-0'>
-            <a href='/ApiRoute.png' className='cursor-zoom-in'>
-              <Image
-                width={1716}
-                height={1704}
-                src='/ApiRoute.png'
-                alt='API Route Image Image'
-                quality={100}
-              />
-            </a>
+          <div className='mt-10 lg:mt-0 lg:relative lg:h-full'>
+            <div className='lg:sticky lg:top-0'>
+              <a href='/ApiRoute.png' className='cursor-zoom-in'>
+                <Image
+                  width={1716}
+                  height={1704}
+                  src='/ApiRoute.png'
+                  alt='API Route Image Image'
+                  quality={100}
+                />
+              </a>
+            </div>
           </div>
         </div>
       </section>
       <style jsx>{`
         a {
           color: #8c7dd8;
-          text-decoration: underline;
           border-radius: 0.25rem;
+        }
+        a:hover {
+          text-decoration: underline;
         }
       `}</style>
     </>

@@ -4,15 +4,18 @@ const Features = () => {
   return (
     <section className=''>
       <div className='relative mb-2 lg:col-span-2'>
-        <h3 className='text-3xl font-extrabold leading-8 tracking-tight text-center lg:text-4xl glow'>
+        <h3
+          id='about-app'
+          className='text-3xl font-extrabold leading-8 tracking-tight text-center sm:text-4xl 2xl:text-5xl glow'
+        >
           About This App
         </h3>
-        <p className='max-w-3xl mx-auto mt-4 text-xl text-center text-gray-400'>
+        <p className='max-w-5xl mx-auto mt-4 text-xl text-center text-gray-400 sm:text-2xl 2xl:text-3xl'>
           The goal of this application is to create a front-end for the REST
           APIs that are found in the{' '}
           <a
             href='https://api.nasa.gov'
-            className='underline text-primary-light'
+            className='hover:underline text-primary-light'
           >
             api.nasa.gov
           </a>{' '}
