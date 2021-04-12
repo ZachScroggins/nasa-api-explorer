@@ -19,14 +19,17 @@ const useLayout: LayoutHook = () => {
     if (router.pathname === '/') {
       setCurrentIndex(0);
     }
-    if (regex.test(router.pathname)) {
+    if (router.pathname === '/about') {
       setCurrentIndex(1);
     }
-    if (router.pathname === '/epic') {
+    if (regex.test(router.pathname)) {
       setCurrentIndex(2);
     }
-    if (router.pathname === '/apod') {
+    if (router.pathname === '/epic') {
       setCurrentIndex(3);
+    }
+    if (router.pathname === '/apod') {
+      setCurrentIndex(4);
     }
   }, [router.pathname]);
 

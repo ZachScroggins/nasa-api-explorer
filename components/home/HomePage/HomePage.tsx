@@ -7,7 +7,7 @@ const Home = () => {
       <Head>
         <title>NASA API Explorer</title>
       </Head>
-      <div className='min-h-screen px-4 pt-20 lg:pt-16'>
+      <div className='container grid min-h-screen gap-12 px-4 pt-20 mx-auto sm:px-6 md:px-8 lg:pt-0'>
         <Header />
         <Features />
         <Details />

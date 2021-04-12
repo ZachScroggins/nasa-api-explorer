@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { Rocket } from 'components/ui';
 
 const Header = () => {
   return (
-    <div className='container grid pb-10 mx-auto sm:px-32 lg:grid-cols-2 lg:px-5 xl:px-20'>
-      <div className='flex items-center justify-center'>
-        <div className='w-64 max-w-screen-md lg:w-3/4'>
-          {/* <Rocket /> */}
-          <img src='/M81.png' alt='M81 Galaxy' width={795} height={614} />
-        </div>
-      </div>
+    <header className='grid lg:grid-cols-2'>
+      <img
+        src='/M81.png'
+        alt='M81 Galaxy'
+        width={795}
+        height={614}
+        className=''
+      />
       <div className='flex-col justify-center mt-4 text-center lg:text-left lg:row-start-1 lg:flex lg:mt-0 xl:items-center'>
         <div>
           <h2 className='text-4xl font-bold glow xl:text-5xl'>
@@ -39,7 +39,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

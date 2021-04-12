@@ -107,11 +107,26 @@ const MobileSidebar = ({
                       Home
                     </a>
                   </Link>
-                  <Link href='/images?q=Supernova'>
+                  <Link href='/about'>
                     <a
                       className={classNames(
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
                         currentIndex === 1
+                          ? 'bg-gray-100 text-gray-900'
+                          : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                      )}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {/* Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" */}
+                      <FiHome className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
+                      About the APIs
+                    </a>
+                  </Link>
+                  <Link href='/images?q=Supernova'>
+                    <a
+                      className={classNames(
+                        'flex items-center px-2 py-2 text-base font-medium rounded-md group',
+                        currentIndex === 2
                           ? 'bg-gray-100 text-gray-900'
                           : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
                       )}
@@ -125,7 +140,7 @@ const MobileSidebar = ({
                     <a
                       className={classNames(
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
-                        currentIndex === 2
+                        currentIndex === 3
                           ? 'bg-gray-100 text-gray-900'
                           : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
                       )}
@@ -139,7 +154,7 @@ const MobileSidebar = ({
                     <a
                       className={classNames(
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
-                        currentIndex === 3
+                        currentIndex === 4
                           ? 'bg-gray-100 text-gray-900'
                           : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
                       )}

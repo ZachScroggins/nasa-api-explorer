@@ -5,7 +5,7 @@ import { FiDownloadCloud, FiGitPullRequest } from 'react-icons/fi';
 const BackEndDetails = () => {
   return (
     <>
-      <div className='relative mt-8 lg:col-span-2'>
+      <section className='relative mt-8 lg:col-span-2'>
         <div className='lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
           <div className=''>
             <h3 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl'>
@@ -81,11 +81,12 @@ const BackEndDetails = () => {
             </a>
           </div>
         </div>
-      </div>
+      </section>
       <style jsx>{`
         a {
           color: #8c7dd8;
           text-decoration: underline;
+          border-radius: 0.25rem;
         }
       `}</style>
     </>

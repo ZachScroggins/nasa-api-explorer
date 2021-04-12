@@ -6,7 +6,7 @@ import { SiJavascript } from 'react-icons/si';
 const FrontEndDetails = () => {
   return (
     <>
-      <div className='lg:col-start-2'>
+      <section className='lg:col-start-2'>
         <h3 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl'>
           Jamstack
         </h3>
@@ -91,7 +91,7 @@ const FrontEndDetails = () => {
             </dd>
           </div>
         </dl>
-      </div>
+      </section>
       <div className='mt-10 lg:mt-0 lg:col-start-1'>
         <a href='/AlertComponent.png'>
           <Image
@@ -107,6 +107,7 @@ const FrontEndDetails = () => {
         a {
           color: #8c7dd8;
           text-decoration: underline;
+          border-radius: 0.25rem;
         }
       `}</style>
     </>

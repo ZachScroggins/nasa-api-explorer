@@ -5,3 +5,4 @@ export { default as TechStack } from './TechStack';
 export { default as Details } from './Details';
 export { default as FrontEndDetails } from './FrontEndDetails';
 export { default as BackEndDetails } from './BackEndDetails';
+export { default as FeatureCard } from './FeatureCard';

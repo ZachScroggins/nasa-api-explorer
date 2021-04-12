@@ -4,7 +4,7 @@ import { FrontEndDetails, BackEndDetails } from 'components/home';
 const Details = () => {
   return (
     <>
-      <div className='container py-6 mx-auto lg:grid lg:grid-flow-row-dense lg:px-5 xl:px-20 lg:grid-cols-2 lg:gap-8 lg:items-center'>
+      <section className='lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
         <div className='relative mb-2 lg:col-span-2'>
           <h2 className='text-3xl font-extrabold leading-8 tracking-tight text-center lg:text-4xl glow'>
             Technical Details
@@ -18,11 +18,12 @@ const Details = () => {
         </div>
         <FrontEndDetails />
         <BackEndDetails />
-      </div>
+      </section>
       <style jsx>{`
         a {
           color: #8c7dd8;
           text-decoration: underline;
+          border-radius: 0.25rem;
         }
       `}</style>
     </>
