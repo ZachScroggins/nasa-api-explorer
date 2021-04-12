@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FiArrowRight, FiInfo } from 'react-icons/fi';
@@ -21,11 +22,15 @@ const FeatureCard = ({
     <div className='flex flex-col overflow-hidden border shadow-lg cursor-pointer border-opacity-30 border-primary rounded-2xl hover:shadow-2xl focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary'>
       <Link href={url}>
         <a className='overflow-hidden bg-black h-96'>
-          <div className='flex-shrink-0'>
-            <img
-              className='object-cover object-top w-full h-48 rounded-t-lg'
+          <div className='relative flex-shrink-0 h-48'>
+            <Image
+              className='rounded-t-lg'
               src={imgUrl}
               alt={`${title} Screenshot`}
+              layout='fill'
+              objectFit='cover'
+              objectPosition='top'
+              priority={true}
             />
           </div>
           <div className='flex flex-col justify-between flex-1 p-6 bg-black'>
