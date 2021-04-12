@@ -11,7 +11,7 @@ const BackEndDetails = () => {
             <h4 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl'>
               Fullstack
             </h4>
-            <p className='mt-3 text-lg text-gray-500'>
+            <p className='mt-3 text-lg text-gray-400'>
               Along with the Jamstack front-end, this application includes a
               serverless JSON <a href='https://restfulapi.net/'>REST API</a> as
               the back-end. The application API fetches and returns data from
@@ -27,7 +27,7 @@ const BackEndDetails = () => {
                     Next.js API Routes
                   </p>
                 </dt>
-                <dd className='mt-2 ml-16 text-base text-gray-500'>
+                <dd className='mt-2 ml-16 text-base leading-relaxed text-gray-400'>
                   The request (req) object is an instance of{' '}
                   <a href='https://nodejs.org/api/http.html#http_class_http_incomingmessage'>
                     http.IncomingMessage
@@ -56,7 +56,7 @@ const BackEndDetails = () => {
                     Serverless Functions
                   </p>
                 </dt>
-                <dd className='mt-2 ml-16 text-base text-gray-500'>
+                <dd className='mt-2 ml-16 text-base leading-relaxed text-gray-400'>
                   <a href='https://www.cloudflare.com/learning/serverless/what-is-serverless/'>
                     Serverless computing
                   </a>{' '}

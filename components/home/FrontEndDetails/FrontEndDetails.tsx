@@ -31,7 +31,7 @@ const FrontEndDetails = () => {
                 Pre-rendering
               </p>
             </dt>
-            <dd className='mt-2 ml-16 text-base text-gray-400'>
+            <dd className='mt-2 ml-16 text-base leading-relaxed text-gray-400'>
               With Jamstack, the entire front end is prebuilt into highly
               optimized static pages and assets during a build process. This
               process of pre-rendering results in sites which can be served
@@ -58,7 +58,7 @@ const FrontEndDetails = () => {
                 Enhancing with JavaScript
               </p>
             </dt>
-            <dd className='mt-2 ml-16 text-base text-gray-400'>
+            <dd className='mt-2 ml-16 text-base leading-relaxed text-gray-400'>
               With the markup and other user interface assets of Jamstack sites
               served directly from a CDN, they can be delivered very quickly and
               securely. On this foundation, Jamstack sites can use JavaScript
@@ -75,7 +75,7 @@ const FrontEndDetails = () => {
                 Supercharging with services
               </p>
             </dt>
-            <dd className='mt-2 ml-16 text-base text-gray-400'>
+            <dd className='mt-2 ml-16 text-base leading-relaxed text-gray-400'>
               The thriving{' '}
               <a
                 href='https://jamstack.org/glossary/api-economy/'

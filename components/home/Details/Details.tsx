@@ -4,8 +4,8 @@ import { FrontEndDetails, BackEndDetails } from 'components/home';
 const Details = () => {
   return (
     <>
-      <section className='lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
-        <div className='relative mb-2 lg:col-span-2'>
+      <section className='space-y-10 lg:space-y-0 lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
+        <div className='relative lg:col-span-2'>
           <h3 className='text-3xl font-extrabold leading-8 tracking-tight text-center lg:text-4xl glow'>
             Technical Details
           </h3>

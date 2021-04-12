@@ -31,7 +31,7 @@ const FeatureCard = ({
           <div className='flex flex-col justify-between flex-1 p-6 bg-black'>
             <div className='flex-1'>
               <div className='mt-2'>
-                <p className='text-xl font-semibold truncate hover:underline'>
+                <p className='text-xl font-semibold line-clamp-2 hover:underline'>
                   {title}
                 </p>
                 <p className='mt-3 text-base text-gray-400 line-clamp-3'>

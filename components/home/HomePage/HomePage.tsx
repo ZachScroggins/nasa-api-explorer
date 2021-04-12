@@ -11,7 +11,7 @@ const Home = () => {
           content='Explore the public APIs of The National Aeronautics and Space Administration. A free and open source project, built with REST APIs from api.nasa.gov.'
         />
       </Head>
-      <div className='container grid min-h-screen gap-12 px-4 pt-20 mx-auto sm:px-6 md:px-8 lg:pt-0'>
+      <div className='container grid min-h-screen gap-12 px-4 pt-20 pb-12 mx-auto sm:px-6 md:px-8 lg:pt-0'>
         <Header />
         <Features />
         <Details />
