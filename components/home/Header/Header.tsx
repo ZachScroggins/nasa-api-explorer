@@ -15,7 +15,7 @@ const Header = () => {
           <h1 className='text-4xl font-bold glow xl:text-5xl'>
             Explore NASA Imagery and Data
           </h1>
-          <h3 className='mt-2 text-2xl font-light text-white text-opacity-75 lg:mt-4 lg:w-2/3 xl:w-3/5 xl:mt-6 xl:text-3xl'>
+          <h2 className='mt-2 text-2xl font-light text-white text-opacity-75 lg:mt-4 lg:w-2/3 xl:w-3/5 xl:mt-6 xl:text-3xl'>
             A free and open source project, built with REST APIs from{' '}
             <a
               href='https://api.nasa.gov'
@@ -23,7 +23,7 @@ const Header = () => {
             >
               api.nasa.gov
             </a>
-          </h3>
+          </h2>
           <div className='lg:flex lg:mt-4 xl:mt-8'>
             <Link href='/images?q=Supernova'>
               <a className='block px-4 py-2 mt-4 text-center rounded bg-primary lg:w-64'>

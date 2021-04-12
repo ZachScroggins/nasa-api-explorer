@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { FiNavigation, FiCode } from 'react-icons/fi';
+import { FiArrowRight, FiInfo } from 'react-icons/fi';
 
 interface FeatureCardProps {
   title: string;
@@ -46,7 +46,7 @@ const FeatureCard = ({
         <div className='flex flex-1 w-0'>
           <Link href={url}>
             <a className='relative inline-flex items-center justify-center flex-1 w-0 py-4 -mr-px text-sm font-medium border border-transparent rounded-bl-lg text-primary-light hover:text-primary'>
-              <FiNavigation className='inline text-lg align-middle' />
+              <FiArrowRight className='inline text-lg align-middle' />
               <span className='ml-3'>Check it out</span>
             </a>
           </Link>
@@ -54,8 +54,8 @@ const FeatureCard = ({
         <div className='flex flex-1 w-0 -ml-px'>
           <Link href={aboutUrl}>
             <a className='relative inline-flex items-center justify-center flex-1 w-0 py-4 text-sm font-medium border border-transparent rounded-br-lg text-primary-light hover:text-primary'>
-              <FiCode className='inline text-lg align-middle' />
-              <span className='ml-3'>Learn more</span>
+              <FiInfo className='inline text-lg align-middle' />
+              <span className='ml-3'>About API</span>
             </a>
           </Link>
         </div>

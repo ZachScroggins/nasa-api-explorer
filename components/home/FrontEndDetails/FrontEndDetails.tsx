@@ -7,9 +7,9 @@ const FrontEndDetails = () => {
   return (
     <>
       <section className='lg:col-start-2'>
-        <h3 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl'>
+        <h4 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl'>
           Jamstack
-        </h3>
+        </h4>
         <p className='mt-3 text-lg text-gray-400'>
           <a
             href='https://jamstack.org/'

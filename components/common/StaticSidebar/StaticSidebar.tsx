@@ -23,7 +23,7 @@ const StaticSidebar = ({ currentIndex }: StaticSidebarProps) => {
             <Link href='/'>
               <a className='flex items-center flex-shrink-0 px-2 text-2xl font-medium'>
                 <RocketIcon className='inline w-10 h-10' />
-                <span className='ml-3 text-xl font-medium text-primary'>
+                <span className='ml-3 text-xl font-medium text-primary-light'>
                   NASA API Explorer
                 </span>
               </a>

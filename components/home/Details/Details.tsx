@@ -6,9 +6,9 @@ const Details = () => {
     <>
       <section className='lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
         <div className='relative mb-2 lg:col-span-2'>
-          <h2 className='text-3xl font-extrabold leading-8 tracking-tight text-center lg:text-4xl glow'>
+          <h3 className='text-3xl font-extrabold leading-8 tracking-tight text-center lg:text-4xl glow'>
             Technical Details
-          </h2>
+          </h3>
           <p className='max-w-3xl mx-auto mt-4 text-xl text-center text-gray-400'>
             The NASA API Explorer consists of a Jamstack React app as the
             front-end and a serverless, Node.js REST API as the back-end. It is

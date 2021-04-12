@@ -3,9 +3,9 @@ import { FaReact } from 'react-icons/fa';
 const TechStack = () => {
   return (
     <section className=''>
-      <h2 className='text-3xl font-extrabold leading-8 tracking-tight text-center lg:text-4xl glow'>
+      <h4 className='text-3xl font-extrabold leading-8 tracking-tight text-center lg:text-4xl glow'>
         Technologies
-      </h2>
+      </h4>
       <div className='mt-6 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-8 text-white'>
         <a
           href='https://reactjs.org/'
@@ -18,6 +18,7 @@ const TechStack = () => {
         <a
           href='https://nextjs.org/'
           className='flex items-center content-center justify-center col-span-1 px-8 py-6 text-2xl bg-black bg-opacity-50'
+          title='Next.js Home Page'
         >
           <svg
             viewBox='0 0 207 124'
@@ -45,6 +46,7 @@ const TechStack = () => {
         <a
           href='https://vercel.com/home'
           className='flex items-center content-center justify-center col-span-1 px-8 py-6 text-2xl bg-black bg-opacity-50'
+          title='Vercel Home Page'
         >
           <svg
             className='flex-shrink-0 w-full fill-current max-h-12'
@@ -56,6 +58,7 @@ const TechStack = () => {
         <a
           href='https://www.typescriptlang.org/'
           className='flex items-center content-center justify-center col-span-1 px-8 py-6 text-2xl bg-black bg-opacity-50'
+          title='TypeScript Home Page'
         >
           <svg
             className='flex-shrink-0 w-6 h-6 sm:w-10 sm:h-10 md:h-9'
@@ -82,6 +85,7 @@ const TechStack = () => {
         <a
           href='https://tailwindcss.com/'
           className='flex items-center content-center justify-center col-span-1 px-6 py-8 text-2xl bg-black bg-opacity-50 sm:px-8 '
+          title='Tailwindcss Home Page'
         >
           <svg
             className='flex-shrink-0 w-full max-h-12 lg:max-h-10'
@@ -104,6 +108,7 @@ const TechStack = () => {
         <a
           href='https://react-query.tanstack.com/'
           className='flex items-center content-center justify-center col-span-1 px-6 py-8 text-2xl bg-black bg-opacity-50 sm:px-8 '
+          title='React Query Home Page'
         >
           <svg className='flex-shrink-0 w-full max-h-12' viewBox='0 0 2552 498'>
             <g stroke='none' strokeWidth={1} fill='none' fillRule='evenodd'>

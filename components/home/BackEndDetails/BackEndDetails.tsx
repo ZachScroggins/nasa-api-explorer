@@ -8,9 +8,9 @@ const BackEndDetails = () => {
       <section className='relative mt-8 lg:col-span-2'>
         <div className='lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
           <div className=''>
-            <h3 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl'>
+            <h4 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl'>
               Fullstack
-            </h3>
+            </h4>
             <p className='mt-3 text-lg text-gray-500'>
               Along with the Jamstack front-end, this application includes a
               serverless JSON <a href='https://restfulapi.net/'>REST API</a> as
@@ -32,17 +32,17 @@ const BackEndDetails = () => {
                   <a href='https://nodejs.org/api/http.html#http_class_http_incomingmessage'>
                     http.IncomingMessage
                   </a>
-                  , plus some pre-built middlewares you can see{' '}
+                  , plus some{' '}
                   <a href='https://nextjs.org/docs/api-routes/api-middlewares'>
-                    here
+                    pre-built middlewares
                   </a>
                   . The response (res) object is an instance of{' '}
                   <a href='https://nodejs.org/api/http.html#http_class_http_serverresponse'>
                     http.ServerResponse
                   </a>
-                  , plus some Express.js-like helper functions you can see{' '}
+                  , plus some Express.js-like{' '}
                   <a href='https://nextjs.org/docs/api-routes/response-helpers'>
-                    here
+                    helper functions
                   </a>
                   .
                 </dd>
