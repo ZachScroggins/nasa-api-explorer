@@ -23,7 +23,7 @@ const Layout: React.FC<{}> = ({ children }) => {
               {children}
             </main>
             <main
-              className='relative z-0 flex-1 hidden text-white bg-fixed lg:block bg-background focus:outline-none xl:order-last'
+              className='relative z-0 flex-1 hidden text-white lg:block bg-background focus:outline-none xl:order-last'
               style={{ backgroundImage: 'url(/topography.svg)' }}
             >
               {children}

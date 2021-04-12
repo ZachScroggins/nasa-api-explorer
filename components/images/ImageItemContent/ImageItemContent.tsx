@@ -24,6 +24,7 @@ const ImageItemContent = ({ data }: ImageItemContentProps) => {
                 className='object-contain object-center rounded-lg lg:object-top'
                 layout='fill'
                 priority={true}
+                loading='eager'
                 quality={100}
               />
             </a>
