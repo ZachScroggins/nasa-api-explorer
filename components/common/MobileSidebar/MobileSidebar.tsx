@@ -9,6 +9,7 @@ import {
   FiGlobe,
   FiHome,
   FiImage,
+  FiInfo,
 } from 'react-icons/fi';
 
 interface MobileSidebarProps {
@@ -102,7 +103,6 @@ const MobileSidebar = ({
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      {/* Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" */}
                       <FiHome className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
                       Home
                     </a>
@@ -117,8 +117,7 @@ const MobileSidebar = ({
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      {/* Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" */}
-                      <FiHome className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
+                      <FiInfo className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
                       About the APIs
                     </a>
                   </Link>

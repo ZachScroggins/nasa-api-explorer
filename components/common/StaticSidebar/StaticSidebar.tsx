@@ -8,6 +8,7 @@ import {
   FiGlobe,
   FiHome,
   FiImage,
+  FiInfo,
 } from 'react-icons/fi';
 
 interface StaticSidebarProps {
@@ -30,7 +31,6 @@ const StaticSidebar = ({ currentIndex }: StaticSidebarProps) => {
             </Link>
             <nav className='flex-1 mt-5' aria-label='Sidebar'>
               <div className='px-2 space-y-1'>
-                {/* Current: "bg-gray-200 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" */}
                 <Link href='/'>
                   <a
                     className={classNames(
@@ -40,7 +40,6 @@ const StaticSidebar = ({ currentIndex }: StaticSidebarProps) => {
                         : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
                     )}
                   >
-                    {/* Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" */}
                     <FiHome className='flex-shrink-0 w-6 h-6 mr-3 text-gray-500' />
                     Home
                   </a>
@@ -54,8 +53,7 @@ const StaticSidebar = ({ currentIndex }: StaticSidebarProps) => {
                         : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
                     )}
                   >
-                    {/* Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" */}
-                    <FiHome className='flex-shrink-0 w-6 h-6 mr-3 text-gray-500' />
+                    <FiInfo className='flex-shrink-0 w-6 h-6 mr-3 text-gray-500' />
                     About the APIs
                   </a>
                 </Link>
