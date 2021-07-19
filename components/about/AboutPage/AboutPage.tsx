@@ -4,42 +4,38 @@ const AboutPage = () => {
   return (
     <div className='container min-h-screen px-4 pt-20 mx-auto prose-sm prose sm:prose lg:prose-lg xl:prose-2xl lg:pt-10'>
       <h1>About</h1>
-      <p>
+      {/* <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque optio
         aliquid deleniti nisi quo, et placeat sed nihil numquam aspernatur,
         delectus harum porro unde ullam. Aliquid accusantium blanditiis nisi
         quia!
-      </p>
+      </p> */}
       <div className='space-y-8'>
         <section>
           <h2 id='images'>NASA Image and Video Library</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque optio
-            aliquid deleniti nisi quo, et placeat sed nihil numquam aspernatur,
-            delectus harum porro unde ullam. Aliquid accusantium blanditiis nisi
-            quia! <a href='#'>asdf</a>
+            Search NASA's official database of over 140,000 photos. Browse
+            stunning images of outer space, astronauts, rocket launches, and
+            much more.
           </p>
         </section>
         <section>
           <h2 id='epic'>EPIC: Earth Polychromatic Imaging Camera</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque optio
-            aliquid deleniti nisi quo, et placeat sed nihil numquam aspernatur,
-            delectus harum porro unde ullam. Aliquid accusantium blanditiis nisi
-            quia!
+            Daily imagery and data collected by the DSCOVR satellite's Earth
+            Polychromatic Imaging Camera (EPIC) instrument.
           </p>
         </section>
         <section>
           <h2 id='apod'>Astronomy Picture of the Day</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque optio
-            aliquid deleniti nisi quo, et placeat sed nihil numquam aspernatur,
-            delectus harum porro unde ullam. Aliquid accusantium blanditiis nisi
-            quia!
+            Each day a different image or video of our fascinating universe is
+            featured, along with a brief explanation written by a professional
+            astronomer.
           </p>
         </section>
       </div>
-      <div className='mx-auto prose-sm prose sm:prose lg:prose-lg xl:prose-2xl'>
+      {/* <div className='mx-auto prose-sm prose sm:prose lg:prose-lg xl:prose-2xl'>
         <p className='lead'>
           Until now, trying to style an article, document, or blog post with
           Tailwind has been a tedious task that required a keen eye for
@@ -466,7 +462,7 @@ const AboutPage = () => {
           What I've written here is probably long enough, but adding this final
           sentence can't hurt.
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };
