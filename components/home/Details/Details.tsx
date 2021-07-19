@@ -4,12 +4,12 @@ import { FrontEndDetails, BackEndDetails } from 'components/home';
 const Details = () => {
   return (
     <>
-      <section className='relative space-y-10 lg:space-y-0 lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
+      <section className='relative space-y-10 lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
         <div className='relative lg:col-span-2'>
           <h3 className='text-3xl font-extrabold leading-8 tracking-tight text-center sm:text-4xl 2xl:text-5xl glow'>
             Technical Details
           </h3>
-          <p className='max-w-5xl mx-auto mt-4 text-xl text-center text-gray-400 sm:text-2xl 2xl:text-3xl'>
+          <p className='max-w-6xl mx-auto mt-4 text-xl text-center text-gray-400 sm:text-2xl 2xl:text-3xl'>
             The NASA API Explorer consists of a Jamstack React app as the{' '}
             <a href='https://airfocus.com/glossary/what-is-a-front-end/'>
               front-end

@@ -2,7 +2,7 @@ import { FaReact } from 'react-icons/fa';
 
 const TechStack = () => {
   return (
-    <section className=''>
+    <section className='lg:mt-6'>
       <h4 className='text-3xl font-extrabold leading-8 tracking-tight text-center sm:text-4xl 2xl:text-5xl glow'>
         Technologies
       </h4>

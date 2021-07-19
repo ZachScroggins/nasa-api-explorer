@@ -10,7 +10,7 @@ const Features = () => {
         >
           About This App
         </h3>
-        <p className='max-w-5xl mx-auto mt-4 text-xl text-center text-gray-400 sm:text-2xl 2xl:text-3xl'>
+        <p className='max-w-6xl mx-auto mt-4 text-xl text-center text-gray-400 sm:text-2xl 2xl:text-3xl'>
           The goal of this application is to create a front-end for the REST
           APIs that are found in the{' '}
           <a
@@ -23,7 +23,7 @@ const Features = () => {
           data on comets, measurements of mars, and real-time imagery of earth.
         </p>
       </div>
-      <div className='grid gap-8 mx-auto my-12 sm:grid-cols-2 xl:grid-cols-3 lg:max-w-7xl'>
+      <div className='grid gap-8 mx-auto my-16 sm:grid-cols-2 xl:grid-cols-3'>
         <FeatureCard
           title='NASA Image and Video Library'
           description="Search NASA's official database of over 140,000 photos. Browse stunning images of outer space, astronauts, rocket launches, and much more."

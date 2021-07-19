@@ -2,11 +2,12 @@ import Image from 'next/image';
 import React from 'react';
 import { FiServer, FiZap } from 'react-icons/fi';
 import { SiJavascript } from 'react-icons/si';
+import AlertPic from 'public/AlertComponent.png';
 
 const FrontEndDetails = () => {
   return (
     <>
-      <section className='lg:col-start-2'>
+      <section className='lg:col-start-2 lg:ml-4'>
         <h4 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl 2xl:text-4xl'>
           Jamstack
         </h4>
@@ -84,14 +85,13 @@ const FrontEndDetails = () => {
         </dl>
       </section>
       <div className='mt-10 lg:relative lg:h-full lg:mt-0 lg:col-start-1'>
-        <div className='lg:sticky lg:top-0'>
+        <div className='lg:sticky lg:top-10'>
           <a href='/AlertComponent.png' className='cursor-zoom-in'>
             <Image
-              src='/AlertComponent.png'
+              src={AlertPic}
               alt='Alert Component Screenshot'
-              width={1396}
-              height={1776}
               quality={100}
+              placeholder='blur'
             />
           </a>
         </div>

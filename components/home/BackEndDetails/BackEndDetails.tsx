@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import React from 'react';
 import { FiDownloadCloud, FiGitPullRequest } from 'react-icons/fi';
+import ApiPic from 'public/ApiRoute.png';
 
 const BackEndDetails = () => {
   return (
     <>
       <section className='relative mt-8 lg:col-span-2'>
         <div className='lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center'>
-          <div className=''>
+          <div className='lg:mr-4'>
             <h4 className='text-2xl font-extrabold tracking-tight text-white glow sm:text-3xl 2xl:text-4xl'>
               Fullstack
             </h4>
@@ -70,14 +71,13 @@ const BackEndDetails = () => {
             </dl>
           </div>
           <div className='mt-10 lg:mt-0 lg:relative lg:h-full'>
-            <div className='lg:sticky lg:top-0'>
+            <div className='lg:sticky lg:top-10'>
               <a href='/ApiRoute.png' className='cursor-zoom-in'>
                 <Image
-                  width={1716}
-                  height={1704}
-                  src='/ApiRoute.png'
+                  src={ApiPic}
                   alt='API Route Image Image'
                   quality={100}
+                  placeholder='blur'
                 />
               </a>
             </div>
