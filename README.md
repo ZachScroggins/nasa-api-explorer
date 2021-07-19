@@ -1,3 +1,3 @@
-# NASA API Explorer
+# NASA API Explore
 
 ![Screenshot](./screenshot.png)
