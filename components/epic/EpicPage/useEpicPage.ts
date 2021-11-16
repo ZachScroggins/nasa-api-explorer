@@ -22,11 +22,7 @@ const useEpicPage: EpicPageHook = () => {
 
   const { data, error, isFetching, status } = useQuery<EpicData, Error>(
     ['epic', { typeQuery, dateQuery }],
-    async ({
-      queryKey,
-    }: {
-      queryKey: [string, { typeQuery: string; dateQuery: string }];
-    }) => {
+    async ({ queryKey }: { queryKey: any }) => {
       const [_key, { typeQuery, dateQuery }] = queryKey;
       const res = await fetch(
         `/api/epic${typeQuery && `?type=${typeQuery}`}${
