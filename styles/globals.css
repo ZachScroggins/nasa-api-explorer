@@ -8,7 +8,8 @@
   }
   a,
   button {
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-indigo-400 focus:ring-opacity-75;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-gray-900 focus:ring-indigo-400 focus:ring-opacity-75;
+    -webkit-tap-highlight-color: transparent;
   }
   @screen lg {
     html,
