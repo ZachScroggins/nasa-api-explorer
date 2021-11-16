@@ -97,13 +97,11 @@ const MobileSidebar = ({
                     <a
                       className={classNames(
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
-                        currentIndex === 0
-                          ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                        currentIndex === 0 ? 'text-white' : 'text-primary-light'
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      <FiHome className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
+                      <FiHome className='flex-shrink-0 w-6 h-6 mr-4' />
                       Home
                     </a>
                   </Link>
@@ -111,13 +109,11 @@ const MobileSidebar = ({
                     <a
                       className={classNames(
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
-                        currentIndex === 1
-                          ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                        currentIndex === 1 ? 'text-white' : 'text-primary-light'
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      <FiInfo className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
+                      <FiInfo className='flex-shrink-0 w-6 h-6 mr-4' />
                       About the APIs
                     </a>
                   </Link>
@@ -125,13 +121,11 @@ const MobileSidebar = ({
                     <a
                       className={classNames(
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
-                        currentIndex === 2
-                          ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                        currentIndex === 2 ? 'text-white' : 'text-primary-light'
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      <FiImage className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
+                      <FiImage className='flex-shrink-0 w-6 h-6 mr-4' />
                       Image Library
                     </a>
                   </Link>
@@ -139,13 +133,11 @@ const MobileSidebar = ({
                     <a
                       className={classNames(
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
-                        currentIndex === 3
-                          ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                        currentIndex === 3 ? 'text-white' : 'text-primary-light'
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      <FiGlobe className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
+                      <FiGlobe className='flex-shrink-0 w-6 h-6 mr-4' />
                       Earth Polychromatic Imaging Camera
                     </a>
                   </Link>
@@ -153,13 +145,11 @@ const MobileSidebar = ({
                     <a
                       className={classNames(
                         'flex items-center px-2 py-2 text-base font-medium rounded-md group',
-                        currentIndex === 4
-                          ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                        currentIndex === 4 ? 'text-white' : 'text-primary-light'
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      <FiCamera className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
+                      <FiCamera className='flex-shrink-0 w-6 h-6 mr-4' />
                       Astronomy Picture of the Day
                     </a>
                   </Link>
@@ -171,18 +161,18 @@ const MobileSidebar = ({
                 <div className='px-2 space-y-1'>
                   <a
                     href='https://github.com/ZachScroggins/nasa-api-explorer'
-                    className='flex items-center px-2 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-50 hover:text-gray-900 group'
+                    className='flex items-center px-2 py-2 text-base font-medium rounded-md text-primary-light group'
                     onClick={() => setIsOpen(false)}
                   >
-                    <FiGithub className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
+                    <FiGithub className='flex-shrink-0 w-6 h-6 mr-4' />
                     GitHub
                   </a>
                   <a
                     href='https://zachscroggins.com'
-                    className='flex items-center px-2 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-50 hover:text-gray-900 group'
+                    className='flex items-center px-2 py-2 text-base font-medium rounded-md text-primary-light group'
                     onClick={() => setIsOpen(false)}
                   >
-                    <FiCode className='flex-shrink-0 w-6 h-6 mr-4 text-gray-400 group-hover:text-gray-500' />
+                    <FiCode className='flex-shrink-0 w-6 h-6 mr-4' />
                     My Work
                   </a>
                 </div>

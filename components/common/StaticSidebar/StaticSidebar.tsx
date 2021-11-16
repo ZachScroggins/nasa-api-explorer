@@ -34,65 +34,55 @@ const StaticSidebar = ({ currentIndex }: StaticSidebarProps) => {
                 <Link href='/'>
                   <a
                     className={classNames(
-                      'flex items-center px-2 py-2 text-sm font-medium rounded-md group',
-                      currentIndex === 0
-                        ? 'bg-gray-200 text-gray-900'
-                        : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                      'flex items-center px-2 py-2 text-sm font-medium rounded-md group hover:text-primary',
+                      currentIndex === 0 ? 'text-white' : 'text-primary-light'
                     )}
                   >
-                    <FiHome className='flex-shrink-0 w-6 h-6 mr-3 text-gray-500' />
+                    <FiHome className='flex-shrink-0 w-6 h-6 mr-3' />
                     Home
                   </a>
                 </Link>
                 <Link href='/about'>
                   <a
                     className={classNames(
-                      'flex items-center px-2 py-2 text-sm font-medium rounded-md group',
-                      currentIndex === 1
-                        ? 'bg-gray-200 text-gray-900'
-                        : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                      'flex items-center px-2 py-2 text-sm font-medium rounded-md group hover:text-primary',
+                      currentIndex === 1 ? 'text-white' : 'text-primary-light'
                     )}
                   >
-                    <FiInfo className='flex-shrink-0 w-6 h-6 mr-3 text-gray-500' />
+                    <FiInfo className='flex-shrink-0 w-6 h-6 mr-3' />
                     About the APIs
                   </a>
                 </Link>
                 <Link href='/images?q=Supernova'>
                   <a
                     className={classNames(
-                      'flex items-center px-2 py-2 text-sm font-medium rounded-md group',
-                      currentIndex === 2
-                        ? 'bg-gray-200 text-gray-900'
-                        : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                      'flex items-center px-2 py-2 text-sm font-medium rounded-md group hover:text-primary',
+                      currentIndex === 2 ? 'text-white' : 'text-primary-light'
                     )}
                   >
-                    <FiImage className='flex-shrink-0 w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500' />
+                    <FiImage className='flex-shrink-0 w-6 h-6 mr-3' />
                     Image Library
                   </a>
                 </Link>
                 <Link href='/epic'>
                   <a
                     className={classNames(
-                      'flex items-center px-2 py-2 text-sm font-medium rounded-md group',
-                      currentIndex === 3
-                        ? 'bg-gray-200 text-gray-900'
-                        : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                      'flex items-center px-2 py-2 text-sm font-medium rounded-md group hover:text-primary',
+                      currentIndex === 3 ? 'text-white' : 'text-primary-light'
                     )}
                   >
-                    <FiGlobe className='flex-shrink-0 w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500' />
+                    <FiGlobe className='flex-shrink-0 w-6 h-6 mr-3' />
                     Earth Polychromatic Imaging Camera
                   </a>
                 </Link>
                 <Link href='/apod'>
                   <a
                     className={classNames(
-                      'flex items-center px-2 py-2 text-sm font-medium rounded-md group',
-                      currentIndex === 4
-                        ? 'bg-gray-200 text-gray-900'
-                        : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                      'flex items-center px-2 py-2 text-sm font-medium rounded-md group hover:text-primary',
+                      currentIndex === 4 ? 'text-white' : 'text-primary-light'
                     )}
                   >
-                    <FiCamera className='flex-shrink-0 w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500' />
+                    <FiCamera className='flex-shrink-0 w-6 h-6 mr-3' />
                     Astronomy Picture of the Day
                   </a>
                 </Link>
@@ -104,16 +94,16 @@ const StaticSidebar = ({ currentIndex }: StaticSidebarProps) => {
               <div className='flex-1 px-2 space-y-1'>
                 <a
                   href='https://github.com/ZachScroggins/nasa-api-explorer'
-                  className='flex items-center px-2 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-50 hover:text-gray-900 group'
+                  className='flex items-center px-2 py-2 text-sm font-medium rounded-md text-primary-light hover:text-primary'
                 >
-                  <FiGithub className='flex-shrink-0 w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500' />
+                  <FiGithub className='flex-shrink-0 w-6 h-6 mr-3' />
                   GitHub
                 </a>
                 <a
                   href='https://zachscroggins.com'
-                  className='flex items-center px-2 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-50 hover:text-gray-900 group'
+                  className='flex items-center px-2 py-2 text-sm font-medium rounded-md text-primary-light hover:text-primary'
                 >
-                  <FiCode className='flex-shrink-0 w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500' />
+                  <FiCode className='flex-shrink-0 w-6 h-6 mr-3' />
                   My Work
                 </a>
               </div>

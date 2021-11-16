@@ -33,13 +33,11 @@ const Header = () => {
                 START EXPLORING
               </a>
             </Link>
-            <a
-              // href='https://github.com/ZachScroggins/nasa-api-explorer'
-              href='/#about-app'
-              className='block px-4 py-2 mt-4 text-center border rounded border-primary text-primary-light sm:ml-4 sm:w-full'
-            >
-              FEATURES
-            </a>
+            <Link href='/#about-app'>
+              <a className='block px-4 py-2 mt-4 text-center border rounded border-primary text-primary-light sm:ml-4 sm:w-full'>
+                FEATURES
+              </a>
+            </Link>
           </div>
         </div>
       </div>
