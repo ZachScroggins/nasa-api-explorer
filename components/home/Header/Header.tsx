@@ -34,7 +34,7 @@ const Header = () => {
               </a>
             </Link>
             <Link href='/#about-app'>
-              <a className='block px-4 py-2 mt-4 text-center border rounded border-primary text-primary-light sm:ml-4 sm:w-full'>
+              <a className='flex items-center justify-center px-4 py-2 mt-4 border rounded border-primary text-primary-light sm:ml-4 sm:w-full'>
                 FEATURES
               </a>
             </Link>

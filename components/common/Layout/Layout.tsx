@@ -2,7 +2,7 @@ import useLayout from './useLayout';
 import { MobileHeader, MobileSidebar, StaticSidebar } from 'components/common';
 
 const Layout: React.FC<{}> = ({ children }) => {
-  const { isOpen, setIsOpen, currentIndex } = useLayout();
+  const { isOpen, setIsOpen, currentIndex, mainClasses } = useLayout();
 
   return (
     <>
@@ -17,7 +17,7 @@ const Layout: React.FC<{}> = ({ children }) => {
           <MobileHeader setIsOpen={setIsOpen} />
           <div className='relative top-0 z-0 flex flex-1 lg:left-64 lg:mr-64'>
             <main
-              className='relative z-0 flex-1 overflow-x-hidden overflow-y-scroll text-white lg:overflow-x-auto lg:overflow-y-auto bg-background focus:outline-none xl:order-last'
+              className={mainClasses}
               style={{ backgroundImage: 'url(/topography.svg)' }}
             >
               {children}
