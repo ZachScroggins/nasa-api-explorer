@@ -28,10 +28,23 @@ const useImagesPage: ImagesPageHook = () => {
   const router = useRouter();
   const [query, setQuery] = useState(router.query.q || 'Supernova');
 
-  const { data, error, status } = useQuery<ImagesData, Error>(
-    ['images', query],
-    fetchImages
-  );
+  const {
+    data,
+    error,
+    status,
+  }: {
+    data: any;
+    error: Error;
+    status: 'idle' | 'error' | 'loading' | 'success';
+  } = useQuery<ImagesData, Error>(['images', query], async ({ queryKey }) => {
+    const [_key, query] = queryKey;
+    const res = await fetch(`/api/images?q=${query}`);
+    if (!res.ok) {
+      const json = await res.json();
+      throw new Error(json?.message);
+    }
+    return res.json();
+  });
 
   useEffect(() => {
     if (router.query.q && router.query.q !== query) {
