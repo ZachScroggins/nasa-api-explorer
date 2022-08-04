@@ -28,3 +28,7 @@
     cursor: zoom-in;
   }
 }
+
+div.carousel > *:focus {
+  box-shadow: none !important;
+}
