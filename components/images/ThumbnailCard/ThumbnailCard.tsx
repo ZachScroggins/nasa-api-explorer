@@ -1,9 +1,8 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { ImageDataItem } from 'types';
+import Link from 'next/link'
+import { ImageDataItem } from 'types'
 
 interface ThumbnailCardProps {
-  item: ImageDataItem;
+  item: ImageDataItem
 }
 
 const ThumbnailCard = ({ item }: ThumbnailCardProps) => {
@@ -12,12 +11,10 @@ const ThumbnailCard = ({ item }: ThumbnailCardProps) => {
       <Link href={`/images/${item.data[0].nasa_id}`}>
         <a className='overflow-hidden bg-black h-96'>
           <div className='relative flex-shrink-0 w-full h-48 bg-gray-900'>
-            <Image
+            <img
               src={item.links[0].href}
               alt={`${item.data[0].title}`}
-              layout='fill'
-              objectFit='cover'
-              objectPosition='top'
+              className='object-cover object-center w-full h-full transition duration-300 ease-in-out transform hover:scale-110'
             />
           </div>
           <div className='h-48 p-6 bg-black'>
@@ -36,7 +33,7 @@ const ThumbnailCard = ({ item }: ThumbnailCardProps) => {
         </a>
       </Link>
     </li>
-  );
-};
+  )
+}
 
-export default ThumbnailCard;
+export default ThumbnailCard

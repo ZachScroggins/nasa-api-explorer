@@ -1,7 +1,4 @@
-import Image from 'next/image';
-import React from 'react';
-import { FiDownloadCloud, FiGitPullRequest } from 'react-icons/fi';
-import ApiPic from 'public/ApiRoute.png';
+import { FiDownloadCloud, FiGitPullRequest } from 'react-icons/fi'
 
 const BackEndDetails = () => {
   return (
@@ -73,12 +70,7 @@ const BackEndDetails = () => {
           <div className='mt-10 lg:mt-0 lg:relative lg:h-full'>
             <div className='lg:sticky lg:top-10'>
               <a href='/ApiRoute.png' className='cursor-zoom-in'>
-                <Image
-                  src={ApiPic}
-                  alt='API Route Image Image'
-                  quality={100}
-                  placeholder='blur'
-                />
+                <img src='/ApiRoute.png' alt='API Route Image Image' />
               </a>
             </div>
           </div>
@@ -94,7 +86,7 @@ const BackEndDetails = () => {
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
-export default BackEndDetails;
+export default BackEndDetails

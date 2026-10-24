@@ -1,14 +1,12 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { FiArrowRight, FiInfo } from 'react-icons/fi';
+import Link from 'next/link'
+import { FiArrowRight, FiInfo } from 'react-icons/fi'
 
 interface FeatureCardProps {
-  title: string;
-  description: string;
-  url: string;
-  aboutUrl: string;
-  imgUrl: string;
+  title: string
+  description: string
+  url: string
+  aboutUrl: string
+  imgUrl: string
 }
 
 const FeatureCard = ({
@@ -16,21 +14,17 @@ const FeatureCard = ({
   description,
   url,
   aboutUrl,
-  imgUrl,
+  imgUrl
 }: FeatureCardProps) => {
   return (
     <div className='flex flex-col overflow-hidden border shadow-lg cursor-pointer border-opacity-30 border-primary rounded-2xl hover:shadow-2xl focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary'>
       <Link href={url}>
         <a className='overflow-hidden bg-black h-96'>
-          <div className='relative flex-shrink-0 h-48'>
-            <Image
-              className='rounded-t-lg'
+          <div className='relative flex-shrink-0 h-48 overflow-hidden'>
+            <img
+              className='rounded-t-lg w-full'
               src={imgUrl}
               alt={`${title} Screenshot`}
-              layout='fill'
-              objectFit='cover'
-              objectPosition='top'
-              priority={true}
             />
           </div>
           <div className='flex flex-col justify-between flex-1 p-6 bg-black'>
@@ -66,7 +60,7 @@ const FeatureCard = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FeatureCard;
+export default FeatureCard

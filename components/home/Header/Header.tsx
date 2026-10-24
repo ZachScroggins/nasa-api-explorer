@@ -1,18 +1,9 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Link from 'next/link'
 
 const Header = () => {
   return (
     <header className='grid lg:grid-cols-2 md:max-w-2xl lg:max-w-max'>
-      <Image
-        src='/M81.png'
-        alt='M81 Galaxy'
-        width={795}
-        height={614}
-        quality={90}
-        priority={true}
-        loading='eager'
-      />
+      <img src='/M81.png' alt='M81 Galaxy' width={795} height={614} />
       <div className='flex-col justify-center mt-4 text-center lg:text-left lg:row-start-1 lg:flex lg:mt-0 xl:items-center'>
         <div>
           <h1 className='text-4xl font-bold glow sm:text-5xl 2xl:text-6xl'>
@@ -42,7 +33,7 @@ const Header = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

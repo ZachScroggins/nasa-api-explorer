@@ -34,5 +34,10 @@
     "postcss": "^8.3.5",
     "tailwindcss": "^2.2.4",
     "typescript": "^4.3.5"
+  },
+  "allowScripts": {
+    "core-js-pure@3.24.1": true,
+    "cypress@7.7.0": true,
+    "fsevents@2.3.2": true
   }
 }
