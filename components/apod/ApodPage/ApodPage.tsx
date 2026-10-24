@@ -1,10 +1,9 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import useApodPage from './useApodPage';
-import { ApodSkeleton } from 'components/apod';
+import { ApodSkeleton } from 'components/apod'
+import Head from 'next/head'
+import useApodPage from './useApodPage'
 
 const ApodPage = () => {
-  const { data, error, status } = useApodPage();
+  const { data, error, status } = useApodPage()
 
   return (
     <div className='min-h-screen'>
@@ -36,14 +35,11 @@ const ApodPage = () => {
                   href={data?.hdurl}
                   className='rounded-lg lg:hidden focus:ring-0 focus:ring-offset-0 focus:ring-transparent'
                 >
-                  <Image
+                  <img
                     src={data?.url}
                     alt={data?.title}
-                    className='object-contain object-center rounded-lg lg:object-top'
-                    layout='fill'
-                    priority={true}
+                    className='rounded-lg w-full h-auto'
                     loading='eager'
-                    quality={100}
                   />
                 </a>
                 <div className='hidden lg:sticky lg:block lg:top-10'>
@@ -78,7 +74,7 @@ const ApodPage = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ApodPage;
+export default ApodPage

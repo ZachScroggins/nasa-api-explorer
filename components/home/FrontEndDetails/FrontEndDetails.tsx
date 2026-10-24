@@ -1,8 +1,5 @@
-import Image from 'next/image';
-import React from 'react';
-import { FiServer, FiZap } from 'react-icons/fi';
-import { SiJavascript } from 'react-icons/si';
-import AlertPic from 'public/AlertComponent.png';
+import { FiServer, FiZap } from 'react-icons/fi'
+import { SiJavascript } from 'react-icons/si'
 
 const FrontEndDetails = () => {
   return (
@@ -87,12 +84,7 @@ const FrontEndDetails = () => {
       <div className='mt-10 lg:relative lg:h-full lg:mt-0 lg:col-start-1'>
         <div className='lg:sticky lg:top-10'>
           <a href='/AlertComponent.png' className='cursor-zoom-in'>
-            <Image
-              src={AlertPic}
-              alt='Alert Component Screenshot'
-              quality={100}
-              placeholder='blur'
-            />
+            <img src='/AlertComponent.png' alt='Alert Component Screenshot' />
           </a>
         </div>
       </div>
@@ -106,7 +98,7 @@ const FrontEndDetails = () => {
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
-export default FrontEndDetails;
+export default FrontEndDetails

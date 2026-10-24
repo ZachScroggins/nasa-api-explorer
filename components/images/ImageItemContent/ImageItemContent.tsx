@@ -1,13 +1,12 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { ImageItemData } from 'types';
+import Link from 'next/link'
+import { ImageItemData } from 'types'
 
 interface ImageItemContentProps {
-  data: ImageItemData;
+  data: ImageItemData
 }
 
 const ImageItemContent = ({ data }: ImageItemContentProps) => {
-  const htmlString = data?.items[0]?.data[0]?.description;
+  const htmlString = data?.items[0]?.data[0]?.description
 
   return (
     <>
@@ -18,14 +17,10 @@ const ImageItemContent = ({ data }: ImageItemContentProps) => {
               href={data.images.items[0].href}
               className='rounded-lg lg:hidden focus:ring-0 focus:ring-offset-0 focus:ring-transparent'
             >
-              <Image
+              <img
                 src={data.items[0].links[0].href}
                 title={data.items[0].data[0].title}
-                className='object-contain object-center rounded-lg lg:object-top'
-                layout='fill'
-                priority={true}
-                loading='eager'
-                quality={100}
+                className='object-cover object-center w-full h-full'
               />
             </a>
             <div className='hidden lg:sticky lg:block lg:self-start lg:top-10'>
@@ -98,7 +93,7 @@ const ImageItemContent = ({ data }: ImageItemContentProps) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ImageItemContent;
+export default ImageItemContent
