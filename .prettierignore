@@ -4,4 +4,8 @@ node_modules/
 .turbo/
 coverage/
 pnpm-lock.yaml
-.pnpm-store/
+.pnpm-store/.agents/
+.claude/
+package-lock.json
+skills-lock.json
+next-env.d.ts

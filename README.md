@@ -33,11 +33,11 @@ Open <http://localhost:3000>. No API key is needed: APOD, EPIC and the image lib
 
 ## Data sources
 
-| Feature       | Endpoint                                             |
-| ------------- | ---------------------------------------------------- |
-| APOD          | `https://science.nasa.gov/wp-json/wp/v2/apod-basic`  |
-| EPIC          | `https://epic.gsfc.nasa.gov/api`                     |
-| Image Library | `https://images-api.nasa.gov`                        |
+| Feature       | Endpoint                                            |
+| ------------- | --------------------------------------------------- |
+| APOD          | `https://science.nasa.gov/wp-json/wp/v2/apod-basic` |
+| EPIC          | `https://epic.gsfc.nasa.gov/api`                    |
+| Image Library | `https://images-api.nasa.gov`                       |
 
 APOD moved to NASA Science on September 10, 2026. The legacy `api.nasa.gov/planetary/apod` endpoint now returns a placeholder and goes offline December 1, 2026.
 

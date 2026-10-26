@@ -69,7 +69,7 @@ export function L1Diagram({ className }: { className?: string }) {
       {/* Sun, half off the left edge */}
       <circle cx="-30" cy="190" r="190" fill="url(#l1-sun)" />
       <circle cx="-30" cy="190" r="96" className="fill-chart-3" />
-      <text x="24" y="352" className="fill-muted-foreground text-[13px]">
+      <text x="90" y="300" className="fill-muted-foreground text-[13px]">
         Sun
       </text>
 
@@ -94,12 +94,36 @@ export function L1Diagram({ className }: { className?: string }) {
           strokeDasharray="4 4"
         />
         {/* SVG motion keeps DSCOVR on the true ellipse; CSS rotation can't. */}
-        <g>
+        <g className="motion-reduce:hidden">
           <animateMotion
             dur="12s"
             repeatCount="indefinite"
             path="M0-58a34 58 0 1 1 0 116a34 58 0 1 1 0-116Z"
           />
+          <rect
+            x="-5"
+            y="-5"
+            width="10"
+            height="10"
+            rx="2"
+            className="fill-primary"
+          />
+          <rect
+            x="-17"
+            y="-2"
+            width="10"
+            height="4"
+            className="fill-primary/60"
+          />
+          <rect
+            x="7"
+            y="-2"
+            width="10"
+            height="4"
+            className="fill-primary/60"
+          />
+        </g>
+        <g className="hidden motion-reduce:inline" transform="translate(0 -58)">
           <rect
             x="-5"
             y="-5"

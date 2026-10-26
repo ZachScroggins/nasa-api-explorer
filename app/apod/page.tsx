@@ -177,13 +177,13 @@ function ApodEntry({ apod }: { apod: Apod }) {
           </h1>
           {apod.creditHtml && (
             <p
-              className="text-sm text-muted-foreground [&_a]:underline [&_a]:underline-offset-4"
+              className="text-sm text-muted-foreground [&_a[href]]:underline [&_a[href]]:underline-offset-4"
               dangerouslySetInnerHTML={{ __html: `Credit: ${apod.creditHtml}` }}
             />
           )}
         </div>
         <div
-          className="text-lg leading-relaxed text-pretty text-foreground/90 [&_a]:text-primary [&_a]:underline [&_a]:decoration-primary/40 [&_a]:underline-offset-4 [&_a:hover]:decoration-primary"
+          className="text-lg leading-relaxed text-pretty text-foreground/90 [&_a[href]]:text-primary [&_a[href]]:underline [&_a[href]]:decoration-primary/40 [&_a[href]]:underline-offset-4 [&_a[href]:hover]:decoration-primary"
           dangerouslySetInnerHTML={{ __html: apod.explanationHtml }}
         />
         <div>

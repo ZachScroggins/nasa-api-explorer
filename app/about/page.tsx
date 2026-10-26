@@ -20,6 +20,8 @@ type Fact = { label: string; value: React.ReactNode }
 type Section = {
   id: string
   title: string
+  /** Label in the page's table of contents. */
+  short: string
   icon: IconType
   href: Route
   cta: string
@@ -39,6 +41,7 @@ const sections: Section[] = [
   {
     id: "apod",
     title: "Astronomy Picture of the Day",
+    short: "Picture of the Day",
     icon: LuCamera,
     href: "/apod",
     cta: "Open today's picture",
@@ -80,6 +83,7 @@ const sections: Section[] = [
   {
     id: "epic",
     title: "EPIC: Earth Polychromatic Imaging Camera",
+    short: "EPIC",
     icon: LuEarth,
     href: "/epic",
     cta: "See the latest Earth images",
@@ -120,6 +124,7 @@ const sections: Section[] = [
   {
     id: "images",
     title: "NASA Image and Video Library",
+    short: "Image Library",
     icon: LuImages,
     href: "/images",
     cta: "Search the library",
@@ -163,15 +168,15 @@ export default function AboutPage() {
           <ul className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
             {[
               ...sections,
-              { id: "project", title: "About this project", icon: LuInfo },
-            ].map(({ id, title, icon: Icon }) => (
+              { id: "project", short: "About this project", icon: LuInfo },
+            ].map(({ id, short, icon: Icon }) => (
               <li key={id}>
                 <a
                   href={`#${id}`}
                   className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
                   <Icon className="size-4 shrink-0" aria-hidden="true" />
-                  <span className="truncate">{title}</span>
+                  <span className="truncate">{short}</span>
                 </a>
               </li>
             ))}

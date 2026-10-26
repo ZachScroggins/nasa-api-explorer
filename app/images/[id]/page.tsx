@@ -184,7 +184,7 @@ function ImageDetailView({ image }: { image: ImageDetail }) {
           <Separator />
 
           <div
-            className="flex flex-col gap-4 leading-relaxed text-pretty break-words text-foreground/90 [&_a]:font-medium [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4"
+            className="flex flex-col gap-4 leading-relaxed text-pretty break-words text-foreground/90 [&_a[href]]:font-medium [&_a[href]]:text-primary [&_a[href]]:underline [&_a[href]]:underline-offset-4"
             dangerouslySetInnerHTML={{ __html: image.descriptionHtml }}
           />
         </article>
