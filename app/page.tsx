@@ -83,7 +83,7 @@ export default function HomePage() {
       <section className="relative isolate overflow-hidden border-b">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-14 md:px-8 lg:grid-cols-[1fr_1.1fr] lg:py-20">
           <div className="flex animate-rise flex-col items-start gap-6">
-            <h1 className="text-4xl leading-[1.05] font-bold tracking-tight [font-stretch:125%] sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl leading-[1.05] font-bold tracking-tight font-stretch-125% sm:text-5xl lg:text-6xl">
               See what NASA saw today.
             </h1>
             <p className="max-w-xl text-lg text-pretty text-muted-foreground">

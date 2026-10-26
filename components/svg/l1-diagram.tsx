@@ -27,7 +27,7 @@ export function L1Diagram({ className }: { className?: string }) {
       role="img"
       aria-labelledby="l1-title l1-desc"
       className={cn(
-        "h-auto w-full [mask-image:linear-gradient(to_right,transparent,black_22%)]",
+        "h-auto w-full mask-[linear-gradient(to_right,transparent,black_22%)]",
         className
       )}
     >
@@ -178,7 +178,7 @@ export function L1Diagram({ className }: { className?: string }) {
           strokeDasharray="1 5"
         />
         {/* The transparent circle centers the box the rotation pivots on. */}
-        <g className="origin-center animate-orbit [--orbit-duration:27s] [transform-box:fill-box]">
+        <g className="origin-center animate-orbit [--orbit-duration:27s] transform-fill">
           <circle r="103" className="fill-transparent" />
           <circle cx="96" r="7" className="fill-chart-4" />
         </g>
