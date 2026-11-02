@@ -43,7 +43,7 @@ async function ApodView({
     date ? getApod(date) : null,
   ])
   const result = entry ?? latest
-  const latestDate = latest.ok ? latest.data.date : (date ?? "")
+  const latestDate = latest.ok ? latest.data.date : (date ?? null)
 
   const notice = invalidDate && <InvalidDateAlert value={invalidDate} />
 
@@ -90,7 +90,7 @@ async function ApodView({
       {notice}
       <ApodControls
         date={result.data.date}
-        latest={latestDate || result.data.date}
+        latest={latestDate ?? result.data.date}
       />
       <ApodEntry apod={result.data} />
     </>

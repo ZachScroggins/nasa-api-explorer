@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/item"
 import { Spinner } from "@/components/ui/spinner"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { formatDate } from "@/lib/dates"
+import { formatDate, type IsoDate } from "@/lib/dates"
 import { epicEvents } from "@/lib/epic-events"
 import type { EpicFrame, EpicType } from "@/lib/nasa/epic"
 import type { Result } from "@/lib/nasa/result"
@@ -46,10 +46,10 @@ export function EpicExplorer({
 }: {
   type: EpicType
   /** The requested day, or undefined for the latest. */
-  date: string | undefined
-  frames: Result<EpicFrame[]>
+  date: IsoDate | undefined
+  frames: Result<[EpicFrame, ...EpicFrame[]]>
   /** Days with imagery of this type, newest first. */
-  dates: string[]
+  dates: IsoDate[]
   /** Set when the list of days failed to load, which disables day navigation. */
   datesError?: string
 }) {
@@ -57,7 +57,7 @@ export function EpicExplorer({
   const [isPending, startTransition] = useTransition()
   const available = useMemo(() => new Set(dates), [dates])
 
-  const shownDate = frames.ok ? frames.data[0].timestamp.slice(0, 10) : date
+  const shownDate = frames.ok ? frames.data[0].day : date
   const position = shownDate ? dates.indexOf(shownDate) : -1
   // `dates` is newest first, so the previous day is further along the list.
   const previousDay = position >= 0 ? dates[position + 1] : undefined
@@ -189,7 +189,7 @@ function EventsCard({
   shownDate,
 }: {
   type: EpicType
-  shownDate: string | undefined
+  shownDate: IsoDate | undefined
 }) {
   return (
     <Card>

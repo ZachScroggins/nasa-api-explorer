@@ -117,8 +117,7 @@ export async function TodayEpic() {
       </div>
       <CardHeader>
         <CardDescription>
-          Latest EPIC images,{" "}
-          {formatDate(latest.timestamp.slice(0, 10), "medium")}
+          Latest EPIC images, {formatDate(latest.day, "medium")}
         </CardDescription>
         <CardTitle className="text-xl">
           {frames.length} views of the whole sunlit Earth

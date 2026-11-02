@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { isIsoDate } from "@/lib/dates"
+import { isIsoDate, type IsoDate } from "@/lib/dates"
 
 export const imageSearchSchema = z.object({
   q: z
@@ -11,6 +11,9 @@ export const imageSearchSchema = z.object({
 })
 
 export type ImageSearchValues = z.infer<typeof imageSearchSchema>
+
+/** A YYYY-MM-DD date in an API response. */
+export const isoDate = z.custom<IsoDate>(isIsoDate, "Expected YYYY-MM-DD")
 
 export const DEFAULT_QUERY = "Supernova"
 export const PAGE_SIZE = 24
@@ -44,7 +47,7 @@ const dateParam = z.preprocess(
 /** Moves a date that isn't YYYY-MM-DD to `invalidDate`, so pages can say so. */
 function splitDate<T extends { date?: string }>(params: T) {
   return params.date === undefined || isIsoDate(params.date)
-    ? { ...params, invalidDate: undefined }
+    ? { ...params, date: params.date, invalidDate: undefined }
     : { ...params, date: undefined, invalidDate: params.date }
 }
 

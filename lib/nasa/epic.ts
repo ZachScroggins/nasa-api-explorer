@@ -3,8 +3,9 @@ import "server-only"
 import { cacheLife, cacheTag } from "next/cache"
 import { z } from "zod"
 
-import { isIsoDate } from "@/lib/dates"
+import type { IsoDate } from "@/lib/dates"
 import { fail, getJson, ok, type Result } from "@/lib/nasa/result"
+import { isoDate } from "@/lib/schemas"
 
 // EPIC's own API needs no key and has no rate limit, unlike the api.nasa.gov proxy.
 const EPIC_API = "https://epic.gsfc.nasa.gov/api"
@@ -32,12 +33,15 @@ const epicImage = z.object({
 })
 
 const epicImages = z.array(epicImage)
-const epicDates = z.array(z.object({ date: z.iso.date() }))
+type EpicImage = z.infer<typeof epicImage>
+const epicDates = z.array(z.object({ date: isoDate }))
 
 export type EpicFrame = {
   id: string
   /** UTC timestamp, "YYYY-MM-DD HH:MM:SS". */
   timestamp: string
+  /** The UTC day of `timestamp`. */
+  day: IsoDate
   caption: string
   centroid: { lat: number; lon: number }
   /** About 200 KB; used in the viewer. */
@@ -59,8 +63,27 @@ function archiveUrl(
   return `${EPIC_ARCHIVE}/${type}/${year}/${month}/${day}/${format}/${image}.${extension}`
 }
 
+function toEpicFrame(type: EpicType, frame: EpicImage): EpicFrame {
+  return {
+    id: frame.identifier,
+    timestamp: frame.date,
+    // The schema guarantees "YYYY-MM-DD HH:MM:SS", so the first 10 are the day.
+    day: frame.date.slice(0, 10) as IsoDate,
+    caption: frame.caption,
+    centroid: frame.centroid_coordinates,
+    jpg: archiveUrl(type, frame.date, "jpg", frame.image),
+    png: archiveUrl(type, frame.date, "png", frame.image),
+    thumb: archiveUrl(type, frame.date, "thumbs", frame.image),
+    positions: {
+      dscovr: frame.dscovr_j2000_position,
+      moon: frame.lunar_j2000_position,
+      sun: frame.sun_j2000_position,
+    },
+  }
+}
+
 /** Every date that has imagery of `type`, newest first. */
-export async function getEpicDates(type: EpicType): Promise<Result<string[]>> {
+export async function getEpicDates(type: EpicType): Promise<Result<IsoDate[]>> {
   "use cache"
   cacheTag("epic")
 
@@ -76,14 +99,10 @@ export async function getEpicDates(type: EpicType): Promise<Result<string[]>> {
 /** The frames for `date`, or the most recent day when `date` is omitted. */
 export async function getEpicFrames(
   type: EpicType,
-  date?: string
-): Promise<Result<EpicFrame[]>> {
+  date?: IsoDate
+): Promise<Result<[EpicFrame, ...EpicFrame[]]>> {
   "use cache"
   cacheTag("epic")
-
-  if (date !== undefined && !isIsoDate(date)) {
-    return fail(400, "Dates look like 2026-10-26.")
-  }
 
   const url = date ? `${EPIC_API}/${type}/date/${date}` : `${EPIC_API}/${type}`
   const result = await getJson(url, epicImages)
@@ -92,24 +111,11 @@ export async function getEpicFrames(
     return result
   }
   cacheLife("hours")
-  if (result.data.length === 0) {
+  const [first, ...rest] = result.data
+  if (!first) {
     return fail(404, `EPIC has no ${type} images for that day.`)
   }
 
-  return ok(
-    result.data.map((frame) => ({
-      id: frame.identifier,
-      timestamp: frame.date,
-      caption: frame.caption,
-      centroid: frame.centroid_coordinates,
-      jpg: archiveUrl(type, frame.date, "jpg", frame.image),
-      png: archiveUrl(type, frame.date, "png", frame.image),
-      thumb: archiveUrl(type, frame.date, "thumbs", frame.image),
-      positions: {
-        dscovr: frame.dscovr_j2000_position,
-        moon: frame.lunar_j2000_position,
-        sun: frame.sun_j2000_position,
-      },
-    }))
-  )
+  const toFrame = (frame: EpicImage) => toEpicFrame(type, frame)
+  return ok<[EpicFrame, ...EpicFrame[]]>([toFrame(first), ...rest.map(toFrame)])
 }

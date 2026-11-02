@@ -8,9 +8,15 @@ import { LuChevronLeft, LuChevronRight, LuShuffle } from "react-icons/lu"
 import { DatePicker } from "@/components/date-picker"
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
-import { addDays, APOD_FIRST_DATE, fromIsoDate, toIsoDate } from "@/lib/dates"
+import {
+  addDays,
+  APOD_FIRST_DATE,
+  fromIsoDate,
+  toIsoDate,
+  type IsoDate,
+} from "@/lib/dates"
 
-function apodHref(date: string, latest: string) {
+function apodHref(date: IsoDate, latest: IsoDate) {
   return date === latest ? ("/apod" as const) : (`/apod?date=${date}` as const)
 }
 
@@ -19,16 +25,16 @@ export function ApodControls({
   latest,
 }: {
   /** The day on screen. */
-  date: string
+  date: IsoDate
   /** The newest published day. */
-  latest: string
+  latest: IsoDate
 }) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const previous = date > APOD_FIRST_DATE ? addDays(date, -1) : null
   const next = date < latest ? addDays(date, 1) : null
 
-  function go(day: string) {
+  function go(day: IsoDate) {
     startTransition(() => router.push(apodHref(day, latest)))
   }
 

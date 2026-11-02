@@ -3,9 +3,10 @@ import "server-only"
 import { cacheLife, cacheTag } from "next/cache"
 import { z } from "zod"
 
-import { APOD_FIRST_DATE, isIsoDate } from "@/lib/dates"
+import { APOD_FIRST_DATE, type IsoDate } from "@/lib/dates"
 import { fail, getJson, ok, type Result } from "@/lib/nasa/result"
 import { decodeEntities, sanitizeHtml, stripHtml } from "@/lib/sanitize"
+import { isoDate } from "@/lib/schemas"
 
 // APOD moved to science.nasa.gov on 2026-09-10. The legacy
 // api.nasa.gov/planetary/apod endpoint now returns a placeholder.
@@ -18,7 +19,7 @@ export type ApodMedia =
   | { kind: "link"; poster: string | null }
 
 export type Apod = {
-  date: string
+  date: IsoDate
   title: string
   permalink: string
   alt: string
@@ -32,7 +33,7 @@ export type Apod = {
 }
 
 const apodEntry = z.object({
-  date: z.iso.date(),
+  date: isoDate,
   title: z.string(),
   permalink: z.url(),
   media_type: z.string(),
@@ -56,7 +57,7 @@ const apodResponse = z.union([
 ])
 
 /** YYYY-MM-DD → YYMMDD, the id the new endpoint uses for a date. */
-function toApodId(date: string) {
+function toApodId(date: IsoDate) {
   return date.slice(2).replaceAll("-", "")
 }
 
@@ -115,13 +116,10 @@ function toApod(entry: ApodResponse): Apod {
 }
 
 /** Today's picture, or the picture for `date` (YYYY-MM-DD). */
-export async function getApod(date?: string): Promise<Result<Apod>> {
+export async function getApod(date?: IsoDate): Promise<Result<Apod>> {
   "use cache"
   cacheTag("apod")
 
-  if (date !== undefined && !isIsoDate(date)) {
-    return fail(400, "Dates look like 2026-10-26.")
-  }
   if (date && date < APOD_FIRST_DATE) {
     return fail(404, "APOD started on June 16, 1995. Pick a later date.")
   }

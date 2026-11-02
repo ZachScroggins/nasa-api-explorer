@@ -10,7 +10,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { formatDate, isoToLocalDate, localDateToIso } from "@/lib/dates"
+import {
+  formatDate,
+  isoToLocalDate,
+  localDateToIso,
+  type IsoDate,
+} from "@/lib/dates"
 
 export function DatePicker({
   value,
@@ -21,13 +26,12 @@ export function DatePicker({
   disabled,
   label = "Choose a date",
 }: {
-  /** YYYY-MM-DD */
-  value: string
-  min: string
-  max: string
+  value: IsoDate
+  min: IsoDate
+  max: IsoDate
   /** Extra filter, e.g. days that have imagery. */
-  isAvailable?: (date: string) => boolean
-  onChange: (date: string) => void
+  isAvailable?: (date: IsoDate) => boolean
+  onChange: (date: IsoDate) => void
   disabled?: boolean
   label?: string
 }) {
