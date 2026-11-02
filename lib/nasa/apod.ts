@@ -3,7 +3,7 @@ import "server-only"
 import { cacheLife, cacheTag } from "next/cache"
 import { z } from "zod"
 
-import { APOD_FIRST_DATE, type IsoDate } from "@/lib/dates"
+import { APOD_FIRST_DATE, isIsoDate, type IsoDate } from "@/lib/dates"
 import { fail, getJson, ok, type Result } from "@/lib/nasa/result"
 import { decodeEntities, sanitizeHtml, stripHtml } from "@/lib/sanitize"
 import { isoDate } from "@/lib/schemas"
@@ -120,6 +120,10 @@ export async function getApod(date?: IsoDate): Promise<Result<Apod>> {
   "use cache"
   cacheTag("apod")
 
+  // IsoDate is only checked at compile time, and this goes into a URL path.
+  if (date !== undefined && !isIsoDate(date)) {
+    return fail(400, "Dates look like 2026-10-26.")
+  }
   if (date && date < APOD_FIRST_DATE) {
     return fail(404, "APOD started on June 16, 1995. Pick a later date.")
   }

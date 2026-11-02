@@ -28,7 +28,7 @@ import { Spinner } from "@/components/ui/spinner"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { formatDate, type IsoDate } from "@/lib/dates"
 import { epicEvents } from "@/lib/epic-events"
-import type { EpicFrame, EpicType } from "@/lib/nasa/epic"
+import type { EpicFrame, EpicFrames, EpicType } from "@/lib/nasa/epic"
 import type { Result } from "@/lib/nasa/result"
 
 function epicHref(type: EpicType, date?: string) {
@@ -47,7 +47,7 @@ export function EpicExplorer({
   type: EpicType
   /** The requested day, or undefined for the latest. */
   date: IsoDate | undefined
-  frames: Result<[EpicFrame, ...EpicFrame[]]>
+  frames: Result<EpicFrames>
   /** Days with imagery of this type, newest first. */
   dates: IsoDate[]
   /** Set when the list of days failed to load, which disables day navigation. */
@@ -63,7 +63,7 @@ export function EpicExplorer({
   const previousDay = position >= 0 ? dates[position + 1] : undefined
   const nextDay = position > 0 ? dates[position - 1] : undefined
 
-  function go(nextType: EpicType, nextDate?: string) {
+  function go(nextType: EpicType, nextDate?: IsoDate) {
     startTransition(() => router.push(epicHref(nextType, nextDate)))
   }
 

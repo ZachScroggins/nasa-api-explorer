@@ -3,7 +3,7 @@ import "server-only"
 import { cacheLife, cacheTag } from "next/cache"
 import { z } from "zod"
 
-import type { IsoDate } from "@/lib/dates"
+import { isIsoDate, type IsoDate } from "@/lib/dates"
 import { fail, getJson, ok, type Result } from "@/lib/nasa/result"
 import { isoDate } from "@/lib/schemas"
 
@@ -25,7 +25,10 @@ const epicImage = z.object({
   identifier: z.string(),
   caption: z.string(),
   image: z.string(),
-  date: z.string().regex(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/),
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/)
+    .refine((value) => isIsoDate(value.slice(0, 10))),
   centroid_coordinates: z.object({ lat: z.number(), lon: z.number() }),
   dscovr_j2000_position: vector,
   lunar_j2000_position: vector,
@@ -52,28 +55,32 @@ export type EpicFrame = {
   positions: { dscovr: Vector; moon: Vector; sun: Vector }
 }
 
+/** A day's frames; a day with none is a failed Result instead. */
+export type EpicFrames = [EpicFrame, ...EpicFrame[]]
+
 function archiveUrl(
   type: EpicType,
-  timestamp: string,
+  date: IsoDate,
   format: "jpg" | "png" | "thumbs",
   image: string
 ) {
-  const [year, month, day] = timestamp.slice(0, 10).split("-")
+  const [year, month, day] = date.split("-")
   const extension = format === "png" ? "png" : "jpg"
   return `${EPIC_ARCHIVE}/${type}/${year}/${month}/${day}/${format}/${image}.${extension}`
 }
 
 function toEpicFrame(type: EpicType, frame: EpicImage): EpicFrame {
+  // The schema checked that the first 10 characters are a real date.
+  const day = frame.date.slice(0, 10) as IsoDate
   return {
     id: frame.identifier,
     timestamp: frame.date,
-    // The schema guarantees "YYYY-MM-DD HH:MM:SS", so the first 10 are the day.
-    day: frame.date.slice(0, 10) as IsoDate,
+    day,
     caption: frame.caption,
     centroid: frame.centroid_coordinates,
-    jpg: archiveUrl(type, frame.date, "jpg", frame.image),
-    png: archiveUrl(type, frame.date, "png", frame.image),
-    thumb: archiveUrl(type, frame.date, "thumbs", frame.image),
+    jpg: archiveUrl(type, day, "jpg", frame.image),
+    png: archiveUrl(type, day, "png", frame.image),
+    thumb: archiveUrl(type, day, "thumbs", frame.image),
     positions: {
       dscovr: frame.dscovr_j2000_position,
       moon: frame.lunar_j2000_position,
@@ -100,9 +107,14 @@ export async function getEpicDates(type: EpicType): Promise<Result<IsoDate[]>> {
 export async function getEpicFrames(
   type: EpicType,
   date?: IsoDate
-): Promise<Result<[EpicFrame, ...EpicFrame[]]>> {
+): Promise<Result<EpicFrames>> {
   "use cache"
   cacheTag("epic")
+
+  // IsoDate is only checked at compile time, and this goes into a URL path.
+  if (date !== undefined && !isIsoDate(date)) {
+    return fail(400, "Dates look like 2026-10-26.")
+  }
 
   const url = date ? `${EPIC_API}/${type}/date/${date}` : `${EPIC_API}/${type}`
   const result = await getJson(url, epicImages)
@@ -110,12 +122,14 @@ export async function getEpicFrames(
     cacheLife("seconds")
     return result
   }
-  cacheLife("hours")
-  const [first, ...rest] = result.data
+
+  const [first, ...rest] = result.data.map((frame) => toEpicFrame(type, frame))
   if (!first) {
+    // Today's frames may still be processing, so check again soon.
+    cacheLife("seconds")
     return fail(404, `EPIC has no ${type} images for that day.`)
   }
 
-  const toFrame = (frame: EpicImage) => toEpicFrame(type, frame)
-  return ok<[EpicFrame, ...EpicFrame[]]>([toFrame(first), ...rest.map(toFrame)])
+  cacheLife("hours")
+  return ok([first, ...rest])
 }

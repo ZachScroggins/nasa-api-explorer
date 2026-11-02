@@ -19,6 +19,11 @@ export function fromIsoDate(value: string): Date {
   return new Date(`${value}T00:00:00Z`)
 }
 
+export function clampDate(value: IsoDate, min: IsoDate, max: IsoDate): IsoDate {
+  if (value < min) return min
+  return value > max ? max : value
+}
+
 export function addDays(value: IsoDate, days: number): IsoDate {
   const date = fromIsoDate(value)
   date.setUTCDate(date.getUTCDate() + days)

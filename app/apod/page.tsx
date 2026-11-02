@@ -14,7 +14,7 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty"
 import { Skeleton } from "@/components/ui/skeleton"
-import { formatDate } from "@/lib/dates"
+import { APOD_FIRST_DATE, clampDate, formatDate } from "@/lib/dates"
 import { getApod, type Apod } from "@/lib/nasa/apod"
 import { apodParamsSchema } from "@/lib/schemas"
 
@@ -53,7 +53,7 @@ async function ApodView({
         {notice}
         {latestDate && (
           <ApodControls
-            date={date && date <= latestDate ? date : latestDate}
+            date={clampDate(date ?? latestDate, APOD_FIRST_DATE, latestDate)}
             latest={latestDate}
           />
         )}
@@ -90,7 +90,8 @@ async function ApodView({
       {notice}
       <ApodControls
         date={result.data.date}
-        latest={latestDate ?? result.data.date}
+        // If the latest lookup failed, the day on screen is the newest we know.
+        latest={latest.ok ? latest.data.date : result.data.date}
       />
       <ApodEntry apod={result.data} />
     </>
