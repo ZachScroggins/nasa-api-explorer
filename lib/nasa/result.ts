@@ -33,13 +33,17 @@ export async function getJson<T>(
   let response: Response
   try {
     response = await fetch(url, { headers: { accept: "application/json" } })
-  } catch {
+  } catch (error) {
+    console.error(`NASA request failed: ${url}`, error)
     return fail(503, "NASA's servers didn't respond. Try again in a minute.")
   }
 
   const body: unknown = await response.json().catch(() => null)
 
   if (!response.ok) {
+    // 4xx are often expected (a day with no picture), so they only warn.
+    const log = response.status >= 500 ? console.error : console.warn
+    log(`NASA returned ${response.status} for ${url}`, body)
     const parsed = errorBody.safeParse(body)
     const reason = parsed.success
       ? (parsed.data.message ??
@@ -51,7 +55,7 @@ export async function getJson<T>(
 
   const parsed = schema.safeParse(body)
   if (!parsed.success) {
-    console.error(`Unexpected response from ${new URL(url).host}`, parsed.error)
+    console.error(`Unexpected response from ${url}`, parsed.error)
     return fail(502, "NASA sent data in a format this app doesn't recognize.")
   }
 
