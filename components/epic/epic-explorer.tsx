@@ -42,6 +42,7 @@ export function EpicExplorer({
   date,
   frames,
   dates,
+  datesError,
 }: {
   type: EpicType
   /** The requested day, or undefined for the latest. */
@@ -49,6 +50,8 @@ export function EpicExplorer({
   frames: Result<EpicFrame[]>
   /** Days with imagery of this type, newest first. */
   dates: string[]
+  /** Set when the list of days failed to load, which disables day navigation. */
+  datesError?: string
 }) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
@@ -120,6 +123,16 @@ export function EpicExplorer({
           </span>
         )}
       </div>
+
+      {datesError && (
+        <Alert>
+          <LuCircleAlert />
+          <AlertTitle>Day navigation is unavailable</AlertTitle>
+          <AlertDescription>
+            The list of days with images didn&apos;t load: {datesError}
+          </AlertDescription>
+        </Alert>
+      )}
 
       {frames.ok ? (
         <div

@@ -42,6 +42,7 @@ async function EpicView({
       date={date}
       frames={frames}
       dates={dates.ok ? dates.data : []}
+      datesError={dates.ok ? undefined : dates.message}
     />
   )
 }
