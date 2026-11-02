@@ -10,6 +10,10 @@ export const imageSearchSchema = z.object({
 
 export type ImageSearchValues = z.infer<typeof imageSearchSchema>
 
+export const PAGE_SIZE = 24
+// images-api.nasa.gov returns a 400 for any page reaching past result 10,000.
+export const MAX_PAGE = Math.floor(10_000 / PAGE_SIZE)
+
 /** URL params arrive as string | string[] | undefined; use the first value. */
 const firstValue = (value: unknown) => (Array.isArray(value) ? value[0] : value)
 
@@ -20,7 +24,7 @@ export const imagesParamsSchema = z.object({
   ),
   page: z.preprocess(
     firstValue,
-    z.coerce.number().int().min(1).max(500).catch(1)
+    z.coerce.number().int().min(1).max(MAX_PAGE).catch(1)
   ),
 })
 

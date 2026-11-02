@@ -27,7 +27,8 @@ import {
 } from "@/components/ui/pagination"
 import { Skeleton } from "@/components/ui/skeleton"
 import { formatDate } from "@/lib/dates"
-import { PAGE_SIZE, searchImages, type ImageSummary } from "@/lib/nasa/images"
+import { searchImages, type ImageSummary } from "@/lib/nasa/images"
+import { PAGE_SIZE } from "@/lib/schemas"
 
 function ImageCard({ image }: { image: ImageSummary }) {
   return (

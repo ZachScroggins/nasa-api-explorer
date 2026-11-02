@@ -5,13 +5,11 @@ import { z } from "zod"
 
 import { fail, getJson, ok, type Result } from "@/lib/nasa/result"
 import { decodeEntities, sanitizeHtml, stripHtml } from "@/lib/sanitize"
+import { MAX_PAGE, PAGE_SIZE } from "@/lib/schemas"
 
 const IMAGES_API = "https://images-api.nasa.gov"
 
 export const DEFAULT_QUERY = "Supernova"
-export const PAGE_SIZE = 24
-// The API stops paging after 10,000 results.
-const MAX_RESULTS = 10_000
 
 const itemData = z.object({
   nasa_id: z.string(),
@@ -93,7 +91,6 @@ export async function searchImages(
   page: number
 ): Promise<Result<ImageSearch>> {
   "use cache"
-  cacheLife("days")
   cacheTag("images")
 
   const params = new URLSearchParams({
@@ -103,7 +100,11 @@ export async function searchImages(
     page_size: String(PAGE_SIZE),
   })
   const result = await getJson(`${IMAGES_API}/search?${params}`, searchResponse)
-  if (!result.ok) return result
+  if (!result.ok) {
+    cacheLife("seconds")
+    return result
+  }
+  cacheLife("days")
 
   const { items, metadata } = result.data.collection
   const totalHits = metadata.total_hits
@@ -112,7 +113,7 @@ export async function searchImages(
     query,
     page,
     totalHits,
-    pageCount: Math.ceil(Math.min(totalHits, MAX_RESULTS) / PAGE_SIZE),
+    pageCount: Math.min(Math.ceil(totalHits / PAGE_SIZE), MAX_PAGE),
     items: items.map(({ data: [data], links }) => {
       const preview =
         links?.find((link) => link.href.includes("~medium")) ??
@@ -133,7 +134,6 @@ export async function searchImages(
 /** One image with its full metadata and the largest available file. */
 export async function getImage(nasaId: string): Promise<Result<ImageDetail>> {
   "use cache"
-  cacheLife("weeks")
   cacheTag("images", `image-${nasaId}`)
 
   const id = encodeURIComponent(nasaId)
@@ -141,6 +141,9 @@ export async function getImage(nasaId: string): Promise<Result<ImageDetail>> {
     getJson(`${IMAGES_API}/search?nasa_id=${id}`, searchResponse),
     getJson(`${IMAGES_API}/asset/${id}`, assetResponse),
   ])
+  // Without assets the page falls back to a smaller file, so retry soon.
+  if (search.ok && assets.ok) cacheLife("weeks")
+  else cacheLife("seconds")
 
   if (!search.ok) return search
   const item = search.data.collection.items[0]

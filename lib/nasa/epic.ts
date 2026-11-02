@@ -62,11 +62,14 @@ function archiveUrl(
 /** Every date that has imagery of `type`, newest first. */
 export async function getEpicDates(type: EpicType): Promise<Result<string[]>> {
   "use cache"
-  cacheLife("hours")
   cacheTag("epic")
 
   const result = await getJson(`${EPIC_API}/${type}/all`, epicDates)
-  if (!result.ok) return result
+  if (!result.ok) {
+    cacheLife("seconds")
+    return result
+  }
+  cacheLife("hours")
   return ok(result.data.map(({ date }) => date))
 }
 
@@ -76,7 +79,6 @@ export async function getEpicFrames(
   date?: string
 ): Promise<Result<EpicFrame[]>> {
   "use cache"
-  cacheLife("hours")
   cacheTag("epic")
 
   if (date !== undefined && !isIsoDate(date)) {
@@ -85,7 +87,11 @@ export async function getEpicFrames(
 
   const url = date ? `${EPIC_API}/${type}/date/${date}` : `${EPIC_API}/${type}`
   const result = await getJson(url, epicImages)
-  if (!result.ok) return result
+  if (!result.ok) {
+    cacheLife("seconds")
+    return result
+  }
+  cacheLife("hours")
   if (result.data.length === 0) {
     return fail(404, `EPIC has no ${type} images for that day.`)
   }

@@ -117,7 +117,6 @@ function toApod(entry: ApodResponse): Apod {
 /** Today's picture, or the picture for `date` (YYYY-MM-DD). */
 export async function getApod(date?: string): Promise<Result<Apod>> {
   "use cache"
-  cacheLife("hours")
   cacheTag("apod")
 
   if (date !== undefined && !isIsoDate(date)) {
@@ -129,12 +128,13 @@ export async function getApod(date?: string): Promise<Result<Apod>> {
 
   const url = date ? `${APOD_API}/${toApodId(date)}` : `${APOD_API}?per_page=1`
   const result = await getJson(url, apodResponse)
-
   if (!result.ok) {
+    cacheLife("seconds")
     return result.status === 404
       ? fail(404, "There's no picture for that date yet.")
       : result
   }
 
+  cacheLife("hours")
   return ok(toApod(result.data))
 }

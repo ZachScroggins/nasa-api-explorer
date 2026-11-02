@@ -3,6 +3,8 @@ import { z } from "zod"
 /**
  * NASA requests return a result instead of throwing, so pages can show a
  * helpful message. Thrown errors lose their message in production builds.
+ * Callers run under "use cache", which stores failures too, so they give a
+ * failed result the short "seconds" lifetime to keep an outage from sticking.
  */
 export type Result<T> =
   { ok: true; data: T } | { ok: false; status: number; message: string }
