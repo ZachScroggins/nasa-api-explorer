@@ -35,12 +35,9 @@ export function DatePicker({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger
-        render={
-          <Button variant="outline" disabled={disabled} aria-label={label} />
-        }
-      >
+      <PopoverTrigger render={<Button variant="outline" disabled={disabled} />}>
         <LuCalendar data-icon="inline-start" />
+        <span className="sr-only">{label}: </span>
         {formatDate(value, "medium")}
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">

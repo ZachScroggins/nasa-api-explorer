@@ -13,7 +13,6 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Kbd } from "@/components/ui/kbd"
 
 const themes = [
   { value: "light", label: "Light", icon: LuSun },
@@ -36,9 +35,7 @@ export function ThemeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuGroup>
-          <DropdownMenuLabel className="flex items-center justify-between">
-            Theme <Kbd>D</Kbd>
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>Theme</DropdownMenuLabel>
           <DropdownMenuRadioGroup
             value={theme ?? "system"}
             onValueChange={(value) => setTheme(value)}
