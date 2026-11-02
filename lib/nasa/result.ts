@@ -25,6 +25,8 @@ const errorBody = z
   })
   .loose()
 
+const REQUEST_TIMEOUT_MS = 10_000
+
 /** Fetches JSON and validates it against `schema` before returning it. */
 export async function getJson<T>(
   url: string,
@@ -32,10 +34,16 @@ export async function getJson<T>(
 ): Promise<Result<T>> {
   let response: Response
   try {
-    response = await fetch(url, { headers: { accept: "application/json" } })
+    response = await fetch(url, {
+      headers: { accept: "application/json" },
+      // A stalled request would hold the page's loading state (or a build) open.
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+    })
   } catch (error) {
     console.error(`NASA request failed: ${url}`, error)
-    return fail(503, "NASA's servers didn't respond. Try again in a minute.")
+    return error instanceof DOMException && error.name === "TimeoutError"
+      ? fail(504, "NASA took too long to respond. Try again in a minute.")
+      : fail(503, "NASA's servers didn't respond. Try again in a minute.")
   }
 
   const body: unknown = await response.json().catch(() => null)
