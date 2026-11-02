@@ -98,7 +98,8 @@ export function EpicCarousel({
           </Button>
           <p
             className="text-sm text-muted-foreground tabular-nums"
-            aria-live="polite"
+            // Announcing every autoplay step would talk over everything else.
+            aria-live={playing ? "off" : "polite"}
           >
             {formatUtcTime(current.timestamp)}, image {index + 1} of{" "}
             {frames.length}
