@@ -24,7 +24,7 @@ const epicImage = z.object({
   identifier: z.string(),
   caption: z.string(),
   image: z.string(),
-  date: z.string(),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/),
   centroid_coordinates: z.object({ lat: z.number(), lon: z.number() }),
   dscovr_j2000_position: vector,
   lunar_j2000_position: vector,
@@ -32,7 +32,7 @@ const epicImage = z.object({
 })
 
 const epicImages = z.array(epicImage)
-const epicDates = z.array(z.object({ date: z.string() }))
+const epicDates = z.array(z.object({ date: z.iso.date() }))
 
 export type EpicFrame = {
   id: string

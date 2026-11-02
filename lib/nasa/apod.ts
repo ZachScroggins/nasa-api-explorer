@@ -32,7 +32,7 @@ export type Apod = {
 }
 
 const apodEntry = z.object({
-  date: z.string(),
+  date: z.iso.date(),
   title: z.string(),
   permalink: z.url(),
   media_type: z.string(),

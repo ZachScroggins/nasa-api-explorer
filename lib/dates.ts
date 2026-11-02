@@ -34,14 +34,18 @@ export function localDateToIso(date: Date): string {
   return `${date.getFullYear()}-${month}-${day}`
 }
 
+/** Formats YYYY-MM-DD for display; anything else is shown as given. */
 export function formatDate(
   value: string,
   style: "long" | "medium" | "short" = "long"
 ): string {
+  const date = fromIsoDate(value)
+  // Intl throws on an invalid date, which would take down the whole page.
+  if (Number.isNaN(date.getTime())) return value
   return new Intl.DateTimeFormat("en-US", {
     dateStyle: style === "long" ? "full" : style,
     timeZone: "UTC",
-  }).format(fromIsoDate(value))
+  }).format(date)
 }
 
 /** EPIC timestamps look like "2026-10-23 00:22:24" and are UTC. */
