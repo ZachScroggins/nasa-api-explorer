@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Suspense } from "react"
 
 import { EpicExplorer } from "@/components/epic/epic-explorer"
+import { InvalidDateAlert } from "@/components/invalid-date-alert"
 import { PageHeader } from "@/components/page-header"
 import { Skeleton } from "@/components/ui/skeleton"
 import { getEpicDates, getEpicFrames } from "@/lib/nasa/epic"
@@ -30,20 +31,23 @@ export default function EpicPage({ searchParams }: PageProps<"/epic">) {
 async function EpicView({
   searchParams,
 }: Pick<PageProps<"/epic">, "searchParams">) {
-  const { type, date } = epicParamsSchema.parse(await searchParams)
+  const { type, date, invalidDate } = epicParamsSchema.parse(await searchParams)
   const [dates, frames] = await Promise.all([
     getEpicDates(type),
     getEpicFrames(type, date),
   ])
 
   return (
-    <EpicExplorer
-      type={type}
-      date={date}
-      frames={frames}
-      dates={dates.ok ? dates.data : []}
-      datesError={dates.ok ? undefined : dates.message}
-    />
+    <>
+      {invalidDate && <InvalidDateAlert value={invalidDate} />}
+      <EpicExplorer
+        type={type}
+        date={date}
+        frames={frames}
+        dates={dates.ok ? dates.data : []}
+        datesError={dates.ok ? undefined : dates.message}
+      />
+    </>
   )
 }
 

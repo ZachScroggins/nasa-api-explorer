@@ -3,6 +3,7 @@ import { Suspense } from "react"
 import { LuCalendarX, LuExternalLink } from "react-icons/lu"
 
 import { ApodControls } from "@/components/apod/apod-controls"
+import { InvalidDateAlert } from "@/components/invalid-date-alert"
 import { Button } from "@/components/ui/button"
 import {
   Empty,
@@ -36,7 +37,7 @@ export default function ApodPage({ searchParams }: PageProps<"/apod">) {
 async function ApodView({
   searchParams,
 }: Pick<PageProps<"/apod">, "searchParams">) {
-  const { date } = apodParamsSchema.parse(await searchParams)
+  const { date, invalidDate } = apodParamsSchema.parse(await searchParams)
   const [latest, entry] = await Promise.all([
     getApod(),
     date ? getApod(date) : null,
@@ -44,9 +45,12 @@ async function ApodView({
   const result = entry ?? latest
   const latestDate = latest.ok ? latest.data.date : (date ?? "")
 
+  const notice = invalidDate && <InvalidDateAlert value={invalidDate} />
+
   if (!result.ok) {
     return (
       <>
+        {notice}
         {latestDate && (
           <ApodControls
             date={date && date <= latestDate ? date : latestDate}
@@ -83,6 +87,7 @@ async function ApodView({
 
   return (
     <>
+      {notice}
       <ApodControls
         date={result.data.date}
         latest={latestDate || result.data.date}

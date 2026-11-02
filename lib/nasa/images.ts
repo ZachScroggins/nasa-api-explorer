@@ -9,8 +9,6 @@ import { MAX_PAGE, PAGE_SIZE } from "@/lib/schemas"
 
 const IMAGES_API = "https://images-api.nasa.gov"
 
-export const DEFAULT_QUERY = "Supernova"
-
 const itemData = z.object({
   nasa_id: z.string(),
   title: z.string(),

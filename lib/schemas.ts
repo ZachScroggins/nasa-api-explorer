@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+import { isIsoDate } from "@/lib/dates"
+
 export const imageSearchSchema = z.object({
   q: z
     .string()
@@ -10,6 +12,7 @@ export const imageSearchSchema = z.object({
 
 export type ImageSearchValues = z.infer<typeof imageSearchSchema>
 
+export const DEFAULT_QUERY = "Supernova"
 export const PAGE_SIZE = 24
 // images-api.nasa.gov returns a 400 for any page reaching past result 10,000.
 export const MAX_PAGE = Math.floor(10_000 / PAGE_SIZE)
@@ -20,7 +23,12 @@ const firstValue = (value: unknown) => (Array.isArray(value) ? value[0] : value)
 export const imagesParamsSchema = z.object({
   q: z.preprocess(
     firstValue,
-    z.string().trim().min(1).max(100).catch("Supernova")
+    z
+      .string()
+      .trim()
+      .min(1)
+      .transform((q) => q.slice(0, 100))
+      .catch(DEFAULT_QUERY)
   ),
   page: z.preprocess(
     firstValue,
@@ -28,14 +36,28 @@ export const imagesParamsSchema = z.object({
   ),
 })
 
-export const epicParamsSchema = z.object({
-  type: z.preprocess(
-    firstValue,
-    z.enum(["natural", "enhanced"]).catch("natural")
-  ),
-  date: z.preprocess(firstValue, z.iso.date().optional().catch(undefined)),
-})
+const dateParam = z.preprocess(
+  firstValue,
+  z.string().min(1).optional().catch(undefined)
+)
 
-export const apodParamsSchema = z.object({
-  date: z.preprocess(firstValue, z.iso.date().optional().catch(undefined)),
-})
+/** Moves a date that isn't YYYY-MM-DD to `invalidDate`, so pages can say so. */
+function splitDate<T extends { date?: string }>(params: T) {
+  return params.date === undefined || isIsoDate(params.date)
+    ? { ...params, invalidDate: undefined }
+    : { ...params, date: undefined, invalidDate: params.date }
+}
+
+export const epicParamsSchema = z
+  .object({
+    type: z.preprocess(
+      firstValue,
+      z.enum(["natural", "enhanced"]).catch("natural")
+    ),
+    date: dateParam,
+  })
+  .transform(splitDate)
+
+export const apodParamsSchema = z
+  .object({ date: dateParam })
+  .transform(splitDate)
