@@ -1,14 +1,14 @@
-import Link from "next/link"
+import Link from 'next/link';
 
-import { LostSatellite } from "@/components/svg/lost-satellite"
-import { Button } from "@/components/ui/button"
+import { LostSatellite } from '@/components/svg/lost-satellite';
+import { Button } from '@/components/ui/button';
 import {
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyTitle,
-} from "@/components/ui/empty"
+} from '@/components/ui/empty';
 
 export default function NotFound() {
   return (
@@ -17,9 +17,7 @@ export default function NotFound() {
         <LostSatellite />
         <EmptyHeader>
           <EmptyTitle>This page drifted out of range</EmptyTitle>
-          <EmptyDescription>
-            The link may be old, or the address has a typo.
-          </EmptyDescription>
+          <EmptyDescription>The link may be old, or the address has a typo.</EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
           <Button nativeButton={false} render={<Link href="/" />}>
@@ -28,5 +26,5 @@ export default function NotFound() {
         </EmptyContent>
       </Empty>
     </div>
-  )
+  );
 }

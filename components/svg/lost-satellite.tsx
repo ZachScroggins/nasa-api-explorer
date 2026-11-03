@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils';
 
 /** A satellite tumbling slowly past a small planet. */
 export function LostSatellite({ className }: { className?: string }) {
@@ -6,7 +6,7 @@ export function LostSatellite({ className }: { className?: string }) {
     <svg
       viewBox="0 0 240 160"
       aria-hidden="true"
-      className={cn("h-auto w-full max-w-xs", className)}
+      className={cn('h-auto w-full max-w-xs', className)}
     >
       {[
         [20, 30, 0],
@@ -36,41 +36,13 @@ export function LostSatellite({ className }: { className?: string }) {
       />
       <g className="animate-drift">
         <g className="origin-center animate-orbit [--orbit-duration:40s] [transform-box:fill-box]">
-          <rect
-            x="146"
-            y="52"
-            width="20"
-            height="20"
-            rx="3"
-            className="fill-primary"
-          />
-          <rect
-            x="118"
-            y="57"
-            width="24"
-            height="10"
-            rx="1"
-            className="fill-primary/50"
-          />
-          <rect
-            x="170"
-            y="57"
-            width="24"
-            height="10"
-            rx="1"
-            className="fill-primary/50"
-          />
-          <line
-            x1="156"
-            y1="52"
-            x2="156"
-            y2="42"
-            className="stroke-primary"
-            strokeWidth="2"
-          />
+          <rect x="146" y="52" width="20" height="20" rx="3" className="fill-primary" />
+          <rect x="118" y="57" width="24" height="10" rx="1" className="fill-primary/50" />
+          <rect x="170" y="57" width="24" height="10" rx="1" className="fill-primary/50" />
+          <line x1="156" y1="52" x2="156" y2="42" className="stroke-primary" strokeWidth="2" />
           <circle cx="156" cy="40" r="3" className="fill-chart-3" />
         </g>
       </g>
     </svg>
-  )
+  );
 }

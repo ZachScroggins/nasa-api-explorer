@@ -1,36 +1,36 @@
-import "server-only"
+import 'server-only';
 
-import { cacheLife, cacheTag } from "next/cache"
-import { z } from "zod"
+import { cacheLife, cacheTag } from 'next/cache';
+import { z } from 'zod';
 
-import { APOD_FIRST_DATE, isIsoDate, type IsoDate } from "@/lib/dates"
-import { fail, getJson, ok, type Result } from "@/lib/nasa/result"
-import { decodeEntities, sanitizeHtml, stripHtml } from "@/lib/sanitize"
-import { isoDate } from "@/lib/schemas"
+import { APOD_FIRST_DATE, isIsoDate, type IsoDate } from '@/lib/dates';
+import { fail, getJson, ok, type Result } from '@/lib/nasa/result';
+import { decodeEntities, sanitizeHtml, stripHtml } from '@/lib/sanitize';
+import { isoDate } from '@/lib/schemas';
 
 // APOD moved to science.nasa.gov on 2026-09-10. The legacy
 // api.nasa.gov/planetary/apod endpoint now returns a placeholder.
-const APOD_API = "https://science.nasa.gov/wp-json/wp/v2/apod-basic"
+const APOD_API = 'https://science.nasa.gov/wp-json/wp/v2/apod-basic';
 
 export type ApodMedia =
-  | { kind: "image"; src: string }
-  | { kind: "embed"; src: string; poster: string | null }
-  | { kind: "video"; src: string; poster: string | null }
-  | { kind: "link"; poster: string | null }
+  | { kind: 'image'; src: string }
+  | { kind: 'embed'; src: string; poster: string | null }
+  | { kind: 'video'; src: string; poster: string | null }
+  | { kind: 'link'; poster: string | null };
 
 export type Apod = {
-  date: IsoDate
-  title: string
-  permalink: string
-  alt: string
-  media: ApodMedia
+  date: IsoDate;
+  title: string;
+  permalink: string;
+  alt: string;
+  media: ApodMedia;
   /** Sanitized HTML: links and emphasis only. */
-  explanationHtml: string
+  explanationHtml: string;
   /** Sanitized HTML, or null when the picture has no listed credit. */
-  creditHtml: string | null
+  creditHtml: string | null;
   /** Plain-text explanation for metadata and previews. */
-  summary: string
-}
+  summary: string;
+};
 
 const apodEntry = z.object({
   date: isoDate,
@@ -43,9 +43,9 @@ const apodEntry = z.object({
   alt: z.string().nullish(),
   hdurl: z.string().nullish(),
   basic_html: z.string().nullish(),
-})
+});
 
-type ApodResponse = z.infer<typeof apodEntry>
+type ApodResponse = z.infer<typeof apodEntry>;
 
 // The latest picture comes back as a one-item list; a dated one as an object.
 const apodResponse = z.union([
@@ -54,55 +54,52 @@ const apodResponse = z.union([
     .array(apodEntry)
     .nonempty()
     .transform(([first]) => first),
-])
+]);
 
 /** YYYY-MM-DD → YYMMDD, the id the new endpoint uses for a date. */
 function toApodId(date: IsoDate) {
-  return date.slice(2).replaceAll("-", "")
+  return date.slice(2).replaceAll('-', '');
 }
 
 function cleanExplanation(html: string) {
   return sanitizeHtml(
     html
-      .replace(/^\s*<strong>\s*Explanation:?\s*<\/strong>\s*/i, "")
+      .replace(/^\s*<strong>\s*Explanation:?\s*<\/strong>\s*/i, '')
       // The archive appends a teaser for the next day; it is stale here.
-      .replace(/(<br\s*\/?>\s*)*<strong>\s*Tomorrow['’]s picture:[\s\S]*$/i, "")
-  )
+      .replace(/(<br\s*\/?>\s*)*<strong>\s*Tomorrow['’]s picture:[\s\S]*$/i, '')
+  );
 }
 
 function cleanCredit(html: string | null | undefined) {
-  if (!html) return null
-  const credit = sanitizeHtml(
-    html.replace(/^\s*<(b|em|strong)>[^<]*Credit[^<]*<\/\1>:?\s*/i, "")
-  )
-  return stripHtml(credit) ? credit : null
+  if (!html) return null;
+  const credit = sanitizeHtml(html.replace(/^\s*<(b|em|strong)>[^<]*Credit[^<]*<\/\1>:?\s*/i, ''));
+  return stripHtml(credit) ? credit : null;
 }
 
 function https(url: string) {
-  return url.replace(/^\/\//, "https://").replace(/^http:\/\//, "https://")
+  return url.replace(/^\/\//, 'https://').replace(/^http:\/\//, 'https://');
 }
 
 function findMedia(entry: ApodResponse): ApodMedia {
-  const poster = entry.hdurl ? https(entry.hdurl) : null
-  if (entry.media_type === "image" && poster) {
-    return { kind: "image", src: poster }
+  const poster = entry.hdurl ? https(entry.hdurl) : null;
+  if (entry.media_type === 'image' && poster) {
+    return { kind: 'image', src: poster };
   }
 
-  const html = entry.basic_html ?? ""
-  const iframe = /<iframe[^>]+src=["']([^"']+)["']/i.exec(html)?.[1]
-  if (iframe)
-    return { kind: "embed", src: https(decodeEntities(iframe)), poster }
+  const html = entry.basic_html ?? '';
+  const iframe = /<iframe[^>]+src=["']([^"']+)["']/i.exec(html)?.[1];
+  if (iframe) return { kind: 'embed', src: https(decodeEntities(iframe)), poster };
 
   const file =
     /<source[^>]+src=["']([^"']+)["']/i.exec(html)?.[1] ??
-    /<video[^>]+src=["']([^"']+)["']/i.exec(html)?.[1]
-  if (file) return { kind: "video", src: https(decodeEntities(file)), poster }
+    /<video[^>]+src=["']([^"']+)["']/i.exec(html)?.[1];
+  if (file) return { kind: 'video', src: https(decodeEntities(file)), poster };
 
-  return { kind: "link", poster }
+  return { kind: 'link', poster };
 }
 
 function toApod(entry: ApodResponse): Apod {
-  const explanationHtml = cleanExplanation(entry.explanation ?? "")
+  const explanationHtml = cleanExplanation(entry.explanation ?? '');
   return {
     date: entry.date,
     title: decodeEntities(entry.title),
@@ -112,31 +109,29 @@ function toApod(entry: ApodResponse): Apod {
     explanationHtml,
     creditHtml: cleanCredit(entry.copyright ?? entry.credit),
     summary: stripHtml(explanationHtml),
-  }
+  };
 }
 
 /** Today's picture, or the picture for `date` (YYYY-MM-DD). */
 export async function getApod(date?: IsoDate): Promise<Result<Apod>> {
-  "use cache"
-  cacheTag("apod")
+  'use cache';
+  cacheTag('apod');
 
   // IsoDate is only checked at compile time, and this goes into a URL path.
   if (date !== undefined && !isIsoDate(date)) {
-    return fail(400, "Dates look like 2026-10-26.")
+    return fail(400, 'Dates look like 2026-10-26.');
   }
   if (date && date < APOD_FIRST_DATE) {
-    return fail(404, "APOD started on June 16, 1995. Pick a later date.")
+    return fail(404, 'APOD started on June 16, 1995. Pick a later date.');
   }
 
-  const url = date ? `${APOD_API}/${toApodId(date)}` : `${APOD_API}?per_page=1`
-  const result = await getJson(url, apodResponse)
+  const url = date ? `${APOD_API}/${toApodId(date)}` : `${APOD_API}?per_page=1`;
+  const result = await getJson(url, apodResponse);
   if (!result.ok) {
-    cacheLife("seconds")
-    return result.status === 404
-      ? fail(404, "There's no picture for that date yet.")
-      : result
+    cacheLife('seconds');
+    return result.status === 404 ? fail(404, "There's no picture for that date yet.") : result;
   }
 
-  cacheLife("hours")
-  return ok(toApod(result.data))
+  cacheLife('hours');
+  return ok(toApod(result.data));
 }

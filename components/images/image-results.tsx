@@ -1,21 +1,16 @@
-import Link from "next/link"
-import { LuSearchX } from "react-icons/lu"
+import Link from 'next/link';
+import { LuSearchX } from 'react-icons/lu';
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Badge } from "@/components/ui/badge"
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Empty,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty"
+} from '@/components/ui/empty';
 import {
   Pagination,
   PaginationContent,
@@ -24,11 +19,11 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"
-import { Skeleton } from "@/components/ui/skeleton"
-import { formatDate } from "@/lib/dates"
-import { searchImages, type ImageSummary } from "@/lib/nasa/images"
-import { PAGE_SIZE } from "@/lib/schemas"
+} from '@/components/ui/pagination';
+import { Skeleton } from '@/components/ui/skeleton';
+import { formatDate } from '@/lib/dates';
+import { searchImages, type ImageSummary } from '@/lib/nasa/images';
+import { PAGE_SIZE } from '@/lib/schemas';
 
 function ImageCard({ image }: { image: ImageSummary }) {
   return (
@@ -52,32 +47,22 @@ function ImageCard({ image }: { image: ImageSummary }) {
           </div>
           <CardHeader>
             <CardDescription className="flex items-center justify-between gap-2">
-              <time dateTime={image.date}>
-                {formatDate(image.date, "medium")}
-              </time>
-              {image.center && (
-                <Badge variant="secondary">{image.center}</Badge>
-              )}
+              <time dateTime={image.date}>{formatDate(image.date, 'medium')}</time>
+              {image.center && <Badge variant="secondary">{image.center}</Badge>}
             </CardDescription>
-            <CardTitle className="line-clamp-2 leading-snug">
-              {image.title}
-            </CardTitle>
+            <CardTitle className="line-clamp-2 leading-snug">{image.title}</CardTitle>
           </CardHeader>
         </Card>
       </Link>
     </li>
-  )
+  );
 }
 
 /** Page numbers around the current page, with null marking a gap. */
 function pageWindow(page: number, pageCount: number): (number | null)[] {
-  const pages = new Set([1, pageCount, page - 1, page, page + 1])
-  const sorted = [...pages]
-    .filter((n) => n >= 1 && n <= pageCount)
-    .sort((a, b) => a - b)
-  return sorted.flatMap((n, i) =>
-    i > 0 && n - sorted[i - 1] > 1 ? [null, n] : [n]
-  )
+  const pages = new Set([1, pageCount, page - 1, page, page + 1]);
+  const sorted = [...pages].filter((n) => n >= 1 && n <= pageCount).sort((a, b) => a - b);
+  return sorted.flatMap((n, i) => (i > 0 && n - sorted[i - 1] > 1 ? [null, n] : [n]));
 }
 
 function ResultsPagination({
@@ -85,13 +70,13 @@ function ResultsPagination({
   page,
   pageCount,
 }: {
-  query: string
-  page: number
-  pageCount: number
+  query: string;
+  page: number;
+  pageCount: number;
 }) {
-  if (pageCount <= 1) return null
+  if (pageCount <= 1) return null;
   const href = (n: number) =>
-    `/images?${new URLSearchParams({ q: query, page: String(n) })}` as const
+    `/images?${new URLSearchParams({ q: query, page: String(n) })}` as const;
 
   return (
     <Pagination>
@@ -121,17 +106,11 @@ function ResultsPagination({
         )}
       </PaginationContent>
     </Pagination>
-  )
+  );
 }
 
-export async function ImageResults({
-  query,
-  page,
-}: {
-  query: string
-  page: number
-}) {
-  const result = await searchImages(query, page)
+export async function ImageResults({ query, page }: { query: string; page: number }) {
+  const result = await searchImages(query, page);
 
   if (!result.ok) {
     return (
@@ -139,10 +118,10 @@ export async function ImageResults({
         <AlertTitle>The search didn&apos;t go through</AlertTitle>
         <AlertDescription>{result.message}</AlertDescription>
       </Alert>
-    )
+    );
   }
 
-  const { items, totalHits, pageCount } = result.data
+  const { items, totalHits, pageCount } = result.data;
 
   if (items.length === 0) {
     return (
@@ -154,22 +133,22 @@ export async function ImageResults({
           <EmptyTitle>No images match “{query}”</EmptyTitle>
           <EmptyDescription>
             {page > 1
-              ? "There are no more results. Go back a page or try a new search."
-              : "Check the spelling, or try a broader word like “Mars” or “Hubble.”"}
+              ? 'There are no more results. Go back a page or try a new search.'
+              : 'Check the spelling, or try a broader word like “Mars” or “Hubble.”'}
           </EmptyDescription>
         </EmptyHeader>
       </Empty>
-    )
+    );
   }
 
-  const first = (page - 1) * PAGE_SIZE + 1
-  const last = first + items.length - 1
+  const first = (page - 1) * PAGE_SIZE + 1;
+  const last = first + items.length - 1;
 
   return (
     <div className="flex flex-col gap-6">
       <p className="text-sm text-muted-foreground" aria-live="polite">
-        Showing {first.toLocaleString("en-US")}–{last.toLocaleString("en-US")}{" "}
-        of {totalHits.toLocaleString("en-US")} images for “{query}”
+        Showing {first.toLocaleString('en-US')}–{last.toLocaleString('en-US')} of{' '}
+        {totalHits.toLocaleString('en-US')} images for “{query}”
       </p>
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {items.map((image) => (
@@ -178,7 +157,7 @@ export async function ImageResults({
       </ul>
       <ResultsPagination query={query} page={page} pageCount={pageCount} />
     </div>
-  )
+  );
 }
 
 export function ImageResultsSkeleton() {
@@ -199,5 +178,5 @@ export function ImageResultsSkeleton() {
         ))}
       </ul>
     </div>
-  )
+  );
 }

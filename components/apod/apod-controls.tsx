@@ -1,23 +1,17 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useTransition } from "react"
-import { LuChevronLeft, LuChevronRight, LuShuffle } from "react-icons/lu"
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+import { LuChevronLeft, LuChevronRight, LuShuffle } from 'react-icons/lu';
 
-import { DatePicker } from "@/components/date-picker"
-import { Button } from "@/components/ui/button"
-import { Spinner } from "@/components/ui/spinner"
-import {
-  addDays,
-  APOD_FIRST_DATE,
-  fromIsoDate,
-  toIsoDate,
-  type IsoDate,
-} from "@/lib/dates"
+import { DatePicker } from '@/components/date-picker';
+import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
+import { addDays, APOD_FIRST_DATE, fromIsoDate, toIsoDate, type IsoDate } from '@/lib/dates';
 
 function apodHref(date: IsoDate, latest: IsoDate) {
-  return date === latest ? ("/apod" as const) : (`/apod?date=${date}` as const)
+  return date === latest ? ('/apod' as const) : (`/apod?date=${date}` as const);
 }
 
 export function ApodControls({
@@ -25,23 +19,23 @@ export function ApodControls({
   latest,
 }: {
   /** The day on screen. */
-  date: IsoDate
+  date: IsoDate;
   /** The newest published day. */
-  latest: IsoDate
+  latest: IsoDate;
 }) {
-  const router = useRouter()
-  const [isPending, startTransition] = useTransition()
-  const previous = date > APOD_FIRST_DATE ? addDays(date, -1) : null
-  const next = date < latest ? addDays(date, 1) : null
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const previous = date > APOD_FIRST_DATE ? addDays(date, -1) : null;
+  const next = date < latest ? addDays(date, 1) : null;
 
   function go(day: IsoDate) {
-    startTransition(() => router.push(apodHref(day, latest)))
+    startTransition(() => router.push(apodHref(day, latest)));
   }
 
   function goRandom() {
-    const start = fromIsoDate(APOD_FIRST_DATE).getTime()
-    const end = fromIsoDate(latest).getTime()
-    go(toIsoDate(new Date(start + Math.random() * (end - start))))
+    const start = fromIsoDate(APOD_FIRST_DATE).getTime();
+    const end = fromIsoDate(latest).getTime();
+    go(toIsoDate(new Date(start + Math.random() * (end - start))));
   }
 
   return (
@@ -75,22 +69,14 @@ export function ApodControls({
         </Button>
       </div>
       <Button variant="outline" onClick={goRandom} disabled={isPending}>
-        {isPending ? (
-          <Spinner data-icon="inline-start" />
-        ) : (
-          <LuShuffle data-icon="inline-start" />
-        )}
+        {isPending ? <Spinner data-icon="inline-start" /> : <LuShuffle data-icon="inline-start" />}
         Random day
       </Button>
       {date !== latest && (
-        <Button
-          variant="ghost"
-          nativeButton={false}
-          render={<Link href="/apod" />}
-        >
+        <Button variant="ghost" nativeButton={false} render={<Link href="/apod" />}>
           Back to today
         </Button>
       )}
     </div>
-  )
+  );
 }

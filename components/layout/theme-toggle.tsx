@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
-import { useTheme } from "next-themes"
-import { LuMonitor, LuMoon, LuSun } from "react-icons/lu"
+import { useTheme } from 'next-themes';
+import { LuMonitor, LuMoon, LuSun } from 'react-icons/lu';
 
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,23 +12,21 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu';
 
 const themes = [
-  { value: "light", label: "Light", icon: LuSun },
-  { value: "dark", label: "Dark", icon: LuMoon },
-  { value: "system", label: "System", icon: LuMonitor },
-] as const
+  { value: 'light', label: 'Light', icon: LuSun },
+  { value: 'dark', label: 'Dark', icon: LuMoon },
+  { value: 'system', label: 'System', icon: LuMonitor },
+] as const;
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        render={
-          <Button variant="ghost" size="icon" aria-label="Change theme" />
-        }
+        render={<Button variant="ghost" size="icon" aria-label="Change theme" />}
       >
         <LuSun className="scale-100 rotate-0 transition-transform duration-500 dark:scale-0 dark:-rotate-90" />
         <LuMoon className="absolute scale-0 rotate-90 transition-transform duration-500 dark:scale-100 dark:rotate-0" />
@@ -37,7 +35,7 @@ export function ThemeToggle() {
         <DropdownMenuGroup>
           <DropdownMenuLabel>Theme</DropdownMenuLabel>
           <DropdownMenuRadioGroup
-            value={theme ?? "system"}
+            value={theme ?? 'system'}
             onValueChange={(value) => setTheme(value)}
           >
             {themes.map(({ value, label, icon: Icon }) => (
@@ -50,5 +48,5 @@ export function ThemeToggle() {
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

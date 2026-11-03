@@ -1,6 +1,6 @@
-import { LuCircleAlert } from "react-icons/lu"
+import { LuCircleAlert } from 'react-icons/lu';
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 /** Says a bad `?date=` was ignored, so the page doesn't change without a reason. */
 export function InvalidDateAlert({ value }: { value: string }) {
@@ -12,5 +12,5 @@ export function InvalidDateAlert({ value }: { value: string }) {
         Dates look like 2026-10-26, so this shows the latest day instead.
       </AlertDescription>
     </Alert>
-  )
+  );
 }

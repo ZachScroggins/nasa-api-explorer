@@ -1,17 +1,17 @@
-"use client"
+'use client';
 
-import { usePathname } from "next/navigation"
-import { Suspense } from "react"
+import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
 
-import { ThemeToggle } from "@/components/layout/theme-toggle"
-import { Separator } from "@/components/ui/separator"
-import { SidebarTrigger } from "@/components/ui/sidebar"
-import { allNav, isActive } from "@/lib/nav"
+import { ThemeToggle } from '@/components/layout/theme-toggle';
+import { Separator } from '@/components/ui/separator';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { allNav, isActive } from '@/lib/nav';
 
 function CurrentPageTitle() {
-  const pathname = usePathname()
-  const current = allNav.find((item) => isActive(item, pathname))
-  return current?.title ?? "NASA API Explorer"
+  const pathname = usePathname();
+  const current = allNav.find((item) => isActive(item, pathname));
+  return current?.title ?? 'NASA API Explorer';
 }
 
 export function SiteHeader() {
@@ -31,5 +31,5 @@ export function SiteHeader() {
         <ThemeToggle />
       </div>
     </header>
-  )
+  );
 }

@@ -95,23 +95,23 @@ Chat components nest in a fixed order (`MessageScrollerProvider` → `MessageScr
 For Base UI projects, use the `toast` component:
 
 ```tsx
-import { toast } from "@/components/ui/toast"
+import { toast } from '@/components/ui/toast';
 
 toast.add({
-  title: "Changes saved.",
-})
+  title: 'Changes saved.',
+});
 ```
 
 For Radix and React Aria projects, use Sonner:
 
 ```tsx
-import { toast } from "sonner"
+import { toast } from 'sonner';
 
-toast.success("Changes saved.")
-toast.error("Something went wrong.")
-toast("File deleted.", {
-  action: { label: "Undo", onClick: () => undoDelete() },
-})
+toast.success('Changes saved.');
+toast.error('Something went wrong.');
+toast('File deleted.', {
+  action: { label: 'Undo', onClick: () => undoDelete() },
+});
 ```
 
 ---

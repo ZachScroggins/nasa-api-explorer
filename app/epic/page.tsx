@@ -1,20 +1,20 @@
-import type { Metadata } from "next"
-import { Suspense } from "react"
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
 
-import { EpicExplorer } from "@/components/epic/epic-explorer"
-import { InvalidDateAlert } from "@/components/invalid-date-alert"
-import { PageHeader } from "@/components/page-header"
-import { Skeleton } from "@/components/ui/skeleton"
-import { getEpicDates, getEpicFrames } from "@/lib/nasa/epic"
-import { epicParamsSchema } from "@/lib/schemas"
+import { EpicExplorer } from '@/components/epic/epic-explorer';
+import { InvalidDateAlert } from '@/components/invalid-date-alert';
+import { PageHeader } from '@/components/page-header';
+import { Skeleton } from '@/components/ui/skeleton';
+import { getEpicDates, getEpicFrames } from '@/lib/nasa/epic';
+import { epicParamsSchema } from '@/lib/schemas';
 
 export const metadata: Metadata = {
-  title: "Earth from EPIC",
+  title: 'Earth from EPIC',
   description:
     "Full-disc images of Earth from the EPIC camera on NOAA's DSCOVR spacecraft at the Sun–Earth L1 point.",
-}
+};
 
-export default function EpicPage({ searchParams }: PageProps<"/epic">) {
+export default function EpicPage({ searchParams }: PageProps<'/epic'>) {
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-8 md:px-8">
       <PageHeader
@@ -25,17 +25,12 @@ export default function EpicPage({ searchParams }: PageProps<"/epic">) {
         <EpicView searchParams={searchParams} />
       </Suspense>
     </div>
-  )
+  );
 }
 
-async function EpicView({
-  searchParams,
-}: Pick<PageProps<"/epic">, "searchParams">) {
-  const { type, date, invalidDate } = epicParamsSchema.parse(await searchParams)
-  const [dates, frames] = await Promise.all([
-    getEpicDates(type),
-    getEpicFrames(type, date),
-  ])
+async function EpicView({ searchParams }: Pick<PageProps<'/epic'>, 'searchParams'>) {
+  const { type, date, invalidDate } = epicParamsSchema.parse(await searchParams);
+  const [dates, frames] = await Promise.all([getEpicDates(type), getEpicFrames(type, date)]);
 
   return (
     <>
@@ -48,7 +43,7 @@ async function EpicView({
         datesError={dates.ok ? undefined : dates.message}
       />
     </>
-  )
+  );
 }
 
 function EpicSkeleton() {
@@ -63,5 +58,5 @@ function EpicSkeleton() {
         <Skeleton className="h-96 w-full rounded-xl" />
       </div>
     </div>
-  )
+  );
 }

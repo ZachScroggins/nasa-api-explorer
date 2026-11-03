@@ -66,9 +66,7 @@ If you need a success/positive color that doesn't exist as a semantic token, use
 **Incorrect:**
 
 ```tsx
-<Button className="border border-input bg-transparent hover:bg-accent">
-  Click me
-</Button>
+<Button className="border border-input bg-transparent hover:bg-accent">Click me</Button>
 ```
 
 **Correct:**

@@ -1,9 +1,9 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import { Suspense } from "react"
-import { LuExternalLink, LuImageOff } from "react-icons/lu"
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { Suspense } from 'react';
+import { LuExternalLink, LuImageOff } from 'react-icons/lu';
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from '@/components/ui/badge';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,8 +11,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Button } from "@/components/ui/button"
+} from '@/components/ui/breadcrumb';
+import { Button } from '@/components/ui/button';
 import {
   Empty,
   EmptyContent,
@@ -20,22 +20,20 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty"
-import { Separator } from "@/components/ui/separator"
-import { Skeleton } from "@/components/ui/skeleton"
-import { formatDate } from "@/lib/dates"
-import { getImage, type ImageDetail } from "@/lib/nasa/images"
+} from '@/components/ui/empty';
+import { Separator } from '@/components/ui/separator';
+import { Skeleton } from '@/components/ui/skeleton';
+import { formatDate } from '@/lib/dates';
+import { getImage, type ImageDetail } from '@/lib/nasa/images';
 
-export async function generateMetadata({
-  params,
-}: PageProps<"/images/[id]">): Promise<Metadata> {
-  const { id } = await params
-  const result = await getImage(decodeURIComponent(id))
-  if (!result.ok) return { title: "Image not found" }
-  return { title: result.data.title, description: result.data.summary }
+export async function generateMetadata({ params }: PageProps<'/images/[id]'>): Promise<Metadata> {
+  const { id } = await params;
+  const result = await getImage(decodeURIComponent(id));
+  if (!result.ok) return { title: 'Image not found' };
+  return { title: result.data.title, description: result.data.summary };
 }
 
-export default function ImagePage({ params }: PageProps<"/images/[id]">) {
+export default function ImagePage({ params }: PageProps<'/images/[id]'>) {
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 md:px-8">
       <Suspense fallback={<ImageDetailSkeleton />}>
@@ -44,11 +42,11 @@ export default function ImagePage({ params }: PageProps<"/images/[id]">) {
         ))}
       </Suspense>
     </div>
-  )
+  );
 }
 
 async function ImageView({ nasaId }: { nasaId: string }) {
-  const result = await getImage(nasaId)
+  const result = await getImage(nasaId);
 
   if (!result.ok) {
     return (
@@ -66,20 +64,20 @@ async function ImageView({ nasaId }: { nasaId: string }) {
           </Button>
         </EmptyContent>
       </Empty>
-    )
+    );
   }
 
-  return <ImageDetailView image={result.data} />
+  return <ImageDetailView image={result.data} />;
 }
 
 function MetaRow({ label, value }: { label: string; value: string | null }) {
-  if (!value) return null
+  if (!value) return null;
   return (
     <div className="grid grid-cols-[8rem_1fr] gap-3 py-2 text-sm">
       <dt className="text-muted-foreground">{label}</dt>
       <dd className="min-w-0 break-words">{value}</dd>
     </div>
-  )
+  );
 }
 
 function ImageDetailView({ image }: { image: ImageDetail }) {
@@ -88,9 +86,7 @@ function ImageDetailView({ image }: { image: ImageDetail }) {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink render={<Link href="/images" />}>
-              Image Library
-            </BreadcrumbLink>
+            <BreadcrumbLink render={<Link href="/images" />}>Image Library</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem className="min-w-0">
@@ -117,23 +113,16 @@ function ImageDetailView({ image }: { image: ImageDetail }) {
 
         <article className="flex min-w-0 flex-col gap-5">
           <div className="flex flex-col gap-2">
-            <time
-              dateTime={image.date}
-              className="text-sm text-muted-foreground"
-            >
+            <time dateTime={image.date} className="text-sm text-muted-foreground">
               {formatDate(image.date)}
             </time>
-            <h1 className="text-3xl font-bold tracking-tight [font-stretch:110%]">
-              {image.title}
-            </h1>
+            <h1 className="text-3xl font-bold tracking-tight [font-stretch:110%]">{image.title}</h1>
           </div>
 
           <div className="flex flex-wrap gap-2">
             <Button
               nativeButton={false}
-              render={
-                <a href={image.original} target="_blank" rel="noreferrer" />
-              }
+              render={<a href={image.original} target="_blank" rel="noreferrer" />}
             >
               <LuExternalLink data-icon="inline-start" />
               Open full resolution
@@ -168,11 +157,7 @@ function ImageDetailView({ image }: { image: ImageDetail }) {
                   <Badge
                     key={keyword}
                     variant="outline"
-                    render={
-                      <Link
-                        href={`/images?${new URLSearchParams({ q: keyword })}`}
-                      />
-                    }
+                    render={<Link href={`/images?${new URLSearchParams({ q: keyword })}`} />}
                   >
                     {keyword}
                   </Badge>
@@ -190,7 +175,7 @@ function ImageDetailView({ image }: { image: ImageDetail }) {
         </article>
       </div>
     </>
-  )
+  );
 }
 
 function ImageDetailSkeleton() {
@@ -207,5 +192,5 @@ function ImageDetailSkeleton() {
         </div>
       </div>
     </>
-  )
+  );
 }

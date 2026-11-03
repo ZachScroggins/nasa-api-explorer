@@ -1,10 +1,10 @@
-import type { Metadata } from "next"
-import { Suspense } from "react"
-import { LuCalendarX, LuExternalLink } from "react-icons/lu"
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import { LuCalendarX, LuExternalLink } from 'react-icons/lu';
 
-import { ApodControls } from "@/components/apod/apod-controls"
-import { InvalidDateAlert } from "@/components/invalid-date-alert"
-import { Button } from "@/components/ui/button"
+import { ApodControls } from '@/components/apod/apod-controls';
+import { InvalidDateAlert } from '@/components/invalid-date-alert';
+import { Button } from '@/components/ui/button';
 import {
   Empty,
   EmptyContent,
@@ -12,40 +12,35 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty"
-import { Skeleton } from "@/components/ui/skeleton"
-import { APOD_FIRST_DATE, clampDate, formatDate } from "@/lib/dates"
-import { getApod, type Apod } from "@/lib/nasa/apod"
-import { apodParamsSchema } from "@/lib/schemas"
+} from '@/components/ui/empty';
+import { Skeleton } from '@/components/ui/skeleton';
+import { APOD_FIRST_DATE, clampDate, formatDate } from '@/lib/dates';
+import { getApod, type Apod } from '@/lib/nasa/apod';
+import { apodParamsSchema } from '@/lib/schemas';
 
 export const metadata: Metadata = {
-  title: "Astronomy Picture of the Day",
+  title: 'Astronomy Picture of the Day',
   description:
-    "A different image or video of the universe every day since 1995, explained by a professional astronomer.",
-}
+    'A different image or video of the universe every day since 1995, explained by a professional astronomer.',
+};
 
-export default function ApodPage({ searchParams }: PageProps<"/apod">) {
+export default function ApodPage({ searchParams }: PageProps<'/apod'>) {
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 md:px-8">
       <Suspense fallback={<ApodSkeleton />}>
         <ApodView searchParams={searchParams} />
       </Suspense>
     </div>
-  )
+  );
 }
 
-async function ApodView({
-  searchParams,
-}: Pick<PageProps<"/apod">, "searchParams">) {
-  const { date, invalidDate } = apodParamsSchema.parse(await searchParams)
-  const [latest, entry] = await Promise.all([
-    getApod(),
-    date ? getApod(date) : null,
-  ])
-  const result = entry ?? latest
-  const latestDate = latest.ok ? latest.data.date : (date ?? null)
+async function ApodView({ searchParams }: Pick<PageProps<'/apod'>, 'searchParams'>) {
+  const { date, invalidDate } = apodParamsSchema.parse(await searchParams);
+  const [latest, entry] = await Promise.all([getApod(), date ? getApod(date) : null]);
+  const result = entry ?? latest;
+  const latestDate = latest.ok ? latest.data.date : (date ?? null);
 
-  const notice = invalidDate && <InvalidDateAlert value={invalidDate} />
+  const notice = invalidDate && <InvalidDateAlert value={invalidDate} />;
 
   if (!result.ok) {
     return (
@@ -70,11 +65,7 @@ async function ApodView({
               variant="outline"
               nativeButton={false}
               render={
-                <a
-                  href="https://science.nasa.gov/apod/archive/"
-                  target="_blank"
-                  rel="noreferrer"
-                />
+                <a href="https://science.nasa.gov/apod/archive/" target="_blank" rel="noreferrer" />
               }
             >
               Browse the archive on NASA Science
@@ -82,7 +73,7 @@ async function ApodView({
           </EmptyContent>
         </Empty>
       </>
-    )
+    );
   }
 
   return (
@@ -95,14 +86,14 @@ async function ApodView({
       />
       <ApodEntry apod={result.data} />
     </>
-  )
+  );
 }
 
 function ApodMedia({ apod }: { apod: Apod }) {
-  const { media } = apod
+  const { media } = apod;
 
   switch (media.kind) {
-    case "image":
+    case 'image':
       return (
         <a
           href={media.src}
@@ -116,8 +107,8 @@ function ApodMedia({ apod }: { apod: Apod }) {
             className="mx-auto max-h-[80vh] w-full animate-rise object-contain"
           />
         </a>
-      )
-    case "embed":
+      );
+    case 'embed':
       return (
         <div className="aspect-video overflow-hidden rounded-xl bg-black">
           <iframe
@@ -129,8 +120,8 @@ function ApodMedia({ apod }: { apod: Apod }) {
             referrerPolicy="strict-origin-when-cross-origin"
           />
         </div>
-      )
-    case "video":
+      );
+    case 'video':
       return (
         <video
           controls
@@ -141,8 +132,8 @@ function ApodMedia({ apod }: { apod: Apod }) {
         >
           <source src={media.src} type="video/mp4" />
         </video>
-      )
-    case "link":
+      );
+    case 'link':
       return (
         <a
           href={apod.permalink}
@@ -151,16 +142,12 @@ function ApodMedia({ apod }: { apod: Apod }) {
           className="flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-muted text-sm font-medium"
         >
           {media.poster ? (
-            <img
-              src={media.poster}
-              alt={apod.alt}
-              className="size-full object-cover"
-            />
+            <img src={media.poster} alt={apod.alt} className="size-full object-cover" />
           ) : (
-            "This one plays on NASA Science"
+            'This one plays on NASA Science'
           )}
         </a>
-      )
+      );
   }
 }
 
@@ -172,10 +159,7 @@ function ApodEntry({ apod }: { apod: Apod }) {
       </div>
       <article className="flex min-w-0 flex-col gap-5">
         <div className="flex flex-col gap-2">
-          <time
-            dateTime={apod.date}
-            className="text-sm font-medium text-primary"
-          >
+          <time dateTime={apod.date} className="text-sm font-medium text-primary">
             {formatDate(apod.date)}
           </time>
           <h1 className="text-3xl font-bold tracking-tight [font-stretch:115%] sm:text-4xl">
@@ -196,9 +180,7 @@ function ApodEntry({ apod }: { apod: Apod }) {
           <Button
             variant="outline"
             nativeButton={false}
-            render={
-              <a href={apod.permalink} target="_blank" rel="noreferrer" />
-            }
+            render={<a href={apod.permalink} target="_blank" rel="noreferrer" />}
           >
             <LuExternalLink data-icon="inline-start" />
             Open on NASA Science
@@ -206,7 +188,7 @@ function ApodEntry({ apod }: { apod: Apod }) {
         </div>
       </article>
     </div>
-  )
+  );
 }
 
 function ApodSkeleton() {
@@ -223,5 +205,5 @@ function ApodSkeleton() {
         </div>
       </div>
     </>
-  )
+  );
 }
