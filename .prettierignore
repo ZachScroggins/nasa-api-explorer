@@ -9,3 +9,5 @@ pnpm-lock.yaml
 package-lock.json
 skills-lock.json
 next-env.d.ts
+.agents/
+.claude/
