@@ -164,8 +164,8 @@ export default function HomePage() {
             How it&apos;s built
           </h2>
           <p className="max-w-2xl text-muted-foreground">
-            This app started in 2021 on Next.js 12. In 2026 it was rebuilt from scratch on the
-            current versions of the same tools.
+            This app started in 2021 on Next.js 12. In 2026 it was rebuilt on the latest versions of
+            the same tools, along with a few new ones.
           </p>
         </div>
         <ItemGroup className="grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">

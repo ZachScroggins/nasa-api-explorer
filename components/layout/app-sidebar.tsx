@@ -95,7 +95,7 @@ export function AppSidebar() {
               render={<a href={PORTFOLIO_URL} target="_blank" rel="noreferrer" />}
             >
               <LuCode />
-              <span>More of Zach&apos;s work</span>
+              <span>More of my work</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

@@ -22,14 +22,27 @@ const archivo = Archivo({
 
 const fontMono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
+const SITE_TITLE = 'NASA API Explorer';
+const SITE_DESCRIPTION =
+  "Browse NASA's open data: the Astronomy Picture of the Day, full-disc Earth images from DSCOVR's EPIC camera, and the NASA Image and Video Library.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://nasa-api-explorer.zachscroggins.com'),
   title: {
-    default: 'NASA API Explorer',
-    template: '%s | NASA API Explorer',
+    default: SITE_TITLE,
+    template: `%s | ${SITE_TITLE}`,
   },
-  description:
-    "Browse NASA's open data: the Astronomy Picture of the Day, full-disc Earth images from DSCOVR's EPIC camera, and the NASA Image and Video Library.",
+  alternates: { canonical: '/' },
+  description: SITE_DESCRIPTION,
   robots: { index: false, follow: false },
+  twitter: { creator: '@scroggins_zach', card: 'summary' },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: SITE_TITLE,
+    siteName: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export const viewport: Viewport = {

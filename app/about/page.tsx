@@ -217,10 +217,9 @@ export default function AboutPage() {
               About this project
             </h2>
             <p>
-              Zach Scroggins built the first version in 2021 with Next.js 12, React Query and
-              Tailwind 2. In October 2026 it was rebuilt from scratch on Next.js 16 with Cache
-              Components, React 19, Tailwind 4 and shadcn/ui, and the APOD page was moved to
-              NASA&apos;s new endpoint.
+              I built the first version in 2021 with Next.js 12, React Query and Tailwind 2. In
+              October 2026 it was rebuilt on Next.js 16 with Cache &amp; Server Components, React
+              19, Tailwind 4 and shadcn/ui, and the APOD page was moved to NASA&apos;s new endpoint.
             </p>
             <p>
               Pages render on the server and fetch from NASA directly. Each response is checked
