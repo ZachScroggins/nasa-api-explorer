@@ -1,7 +1,7 @@
-import Link from "next/link"
-import { LuArrowRight } from "react-icons/lu"
+import Link from 'next/link';
+import { LuArrowRight } from 'react-icons/lu';
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from '@/components/ui/badge';
 import {
   Card,
   CardContent,
@@ -9,19 +9,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
-import { formatDate, formatUtcTime } from "@/lib/dates"
-import { getApod } from "@/lib/nasa/apod"
-import { getEpicFrames } from "@/lib/nasa/epic"
+} from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { formatDate, formatUtcTime } from '@/lib/dates';
+import { getApod } from '@/lib/nasa/apod';
+import { getEpicFrames } from '@/lib/nasa/epic';
 
-function PanelLink({
-  href,
-  children,
-}: {
-  href: "/apod" | "/epic"
-  children: React.ReactNode
-}) {
+function PanelLink({ href, children }: { href: '/apod' | '/epic'; children: React.ReactNode }) {
   return (
     <Link
       href={href}
@@ -30,11 +24,11 @@ function PanelLink({
       {children}
       <LuArrowRight aria-hidden="true" />
     </Link>
-  )
+  );
 }
 
 export async function TodayApod() {
-  const result = await getApod()
+  const result = await getApod();
 
   if (!result.ok) {
     return (
@@ -47,12 +41,11 @@ export async function TodayApod() {
           <PanelLink href="/apod">Open APOD</PanelLink>
         </CardFooter>
       </Card>
-    )
+    );
   }
 
-  const apod = result.data
-  const poster =
-    apod.media.kind === "image" ? apod.media.src : apod.media.poster
+  const apod = result.data;
+  const poster = apod.media.kind === 'image' ? apod.media.src : apod.media.poster;
 
   return (
     <Card className="h-full overflow-hidden pt-0">
@@ -64,30 +57,24 @@ export async function TodayApod() {
             className="size-full object-cover transition-transform duration-700 hover:scale-105"
           />
         )}
-        {apod.media.kind !== "image" && (
-          <Badge className="absolute top-3 left-3">Video</Badge>
-        )}
+        {apod.media.kind !== 'image' && <Badge className="absolute top-3 left-3">Video</Badge>}
       </div>
       <CardHeader>
-        <CardDescription>
-          Picture of the Day, {formatDate(apod.date, "medium")}
-        </CardDescription>
+        <CardDescription>Picture of the Day, {formatDate(apod.date, 'medium')}</CardDescription>
         <CardTitle className="text-xl">{apod.title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="line-clamp-3 text-sm text-muted-foreground">
-          {apod.summary}
-        </p>
+        <p className="line-clamp-3 text-sm text-muted-foreground">{apod.summary}</p>
       </CardContent>
       <CardFooter className="mt-auto">
         <PanelLink href="/apod">Read the full explanation</PanelLink>
       </CardFooter>
     </Card>
-  )
+  );
 }
 
 export async function TodayEpic() {
-  const result = await getEpicFrames("natural")
+  const result = await getEpicFrames('natural');
 
   if (!result.ok) {
     return (
@@ -100,11 +87,11 @@ export async function TodayEpic() {
           <PanelLink href="/epic">Open EPIC</PanelLink>
         </CardFooter>
       </Card>
-    )
+    );
   }
 
-  const frames = result.data
-  const latest = frames[frames.length - 1]
+  const frames = result.data;
+  const latest = frames[frames.length - 1];
 
   return (
     <Card className="h-full overflow-hidden pt-0">
@@ -116,24 +103,19 @@ export async function TodayEpic() {
         />
       </div>
       <CardHeader>
-        <CardDescription>
-          Latest EPIC images, {formatDate(latest.day, "medium")}
-        </CardDescription>
-        <CardTitle className="text-xl">
-          {frames.length} views of the whole sunlit Earth
-        </CardTitle>
+        <CardDescription>Latest EPIC images, {formatDate(latest.day, 'medium')}</CardDescription>
+        <CardTitle className="text-xl">{frames.length} views of the whole sunlit Earth</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="text-sm text-muted-foreground">
-          Taken through the day from a million miles away, as the planet turns
-          beneath the camera.
+          Taken through the day from a million miles away, as the planet turns beneath the camera.
         </p>
       </CardContent>
       <CardFooter className="mt-auto">
         <PanelLink href="/epic">Watch the day go by</PanelLink>
       </CardFooter>
     </Card>
-  )
+  );
 }
 
 export function TodayPanelSkeleton() {
@@ -149,5 +131,5 @@ export function TodayPanelSkeleton() {
         <Skeleton className="h-4 w-5/6" />
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils';
 
 // Fixed star positions so server and client render the same SVG.
 const stars = [
@@ -14,7 +14,7 @@ const stars = [
   [150, 120, 0.7, 3.4],
   [500, 190, 0.6, 0.9],
   [300, 120, 0.7, 2.8],
-] as const
+] as const;
 
 /**
  * Not to scale: the Sun–Earth L1 point, where DSCOVR's EPIC camera keeps the
@@ -27,16 +27,15 @@ export function L1Diagram({ className }: { className?: string }) {
       role="img"
       aria-labelledby="l1-title l1-desc"
       className={cn(
-        "h-auto w-full mask-[linear-gradient(to_right,transparent,black_22%)]",
+        'h-auto w-full mask-[linear-gradient(to_right,transparent,black_22%)]',
         className
       )}
     >
       <title id="l1-title">DSCOVR at the Sun–Earth L1 point</title>
       <desc id="l1-desc">
-        A diagram, not to scale. The Sun is on the left. Earth is on the right
-        with the Moon circling it. Between them, at the L1 point, the DSCOVR
-        spacecraft loops in a halo orbit and points its EPIC camera back at
-        Earth.
+        A diagram, not to scale. The Sun is on the left. Earth is on the right with the Moon
+        circling it. Between them, at the L1 point, the DSCOVR spacecraft loops in a halo orbit and
+        points its EPIC camera back at Earth.
       </desc>
       <defs>
         <radialGradient id="l1-sun" cx="0" cy="0.5" r="1">
@@ -100,59 +99,17 @@ export function L1Diagram({ className }: { className?: string }) {
             repeatCount="indefinite"
             path="M0-58a34 58 0 1 1 0 116a34 58 0 1 1 0-116Z"
           />
-          <rect
-            x="-5"
-            y="-5"
-            width="10"
-            height="10"
-            rx="2"
-            className="fill-primary"
-          />
-          <rect
-            x="-17"
-            y="-2"
-            width="10"
-            height="4"
-            className="fill-primary/60"
-          />
-          <rect
-            x="7"
-            y="-2"
-            width="10"
-            height="4"
-            className="fill-primary/60"
-          />
+          <rect x="-5" y="-5" width="10" height="10" rx="2" className="fill-primary" />
+          <rect x="-17" y="-2" width="10" height="4" className="fill-primary/60" />
+          <rect x="7" y="-2" width="10" height="4" className="fill-primary/60" />
         </g>
         <g className="hidden motion-reduce:inline" transform="translate(0 -58)">
-          <rect
-            x="-5"
-            y="-5"
-            width="10"
-            height="10"
-            rx="2"
-            className="fill-primary"
-          />
-          <rect
-            x="-17"
-            y="-2"
-            width="10"
-            height="4"
-            className="fill-primary/60"
-          />
-          <rect
-            x="7"
-            y="-2"
-            width="10"
-            height="4"
-            className="fill-primary/60"
-          />
+          <rect x="-5" y="-5" width="10" height="10" rx="2" className="fill-primary" />
+          <rect x="-17" y="-2" width="10" height="4" className="fill-primary/60" />
+          <rect x="7" y="-2" width="10" height="4" className="fill-primary/60" />
         </g>
         <circle r="2.5" className="fill-foreground" />
-        <text
-          y="88"
-          textAnchor="middle"
-          className="fill-muted-foreground text-[13px]"
-        >
+        <text y="88" textAnchor="middle" className="fill-muted-foreground text-[13px]">
           L1, 1.5 million km from Earth
         </text>
       </g>
@@ -171,12 +128,7 @@ export function L1Diagram({ className }: { className?: string }) {
 
       {/* Earth and the Moon's orbit */}
       <g transform="translate(486 190)">
-        <circle
-          r="96"
-          className="fill-none stroke-border"
-          strokeWidth="1"
-          strokeDasharray="1 5"
-        />
+        <circle r="96" className="fill-none stroke-border" strokeWidth="1" strokeDasharray="1 5" />
         {/* The transparent circle centers the box the rotation pivots on. */}
         <g className="origin-center animate-orbit [--orbit-duration:27s] transform-fill">
           <circle r="103" className="fill-transparent" />
@@ -188,14 +140,10 @@ export function L1Diagram({ className }: { className?: string }) {
           d="M-22-18c8-6 18-4 22 2s-4 12 2 18-10 10-16 4-14-14-8-24Z"
           className="fill-chart-5/70"
         />
-        <text
-          y="64"
-          textAnchor="middle"
-          className="fill-muted-foreground text-[13px]"
-        >
+        <text y="64" textAnchor="middle" className="fill-muted-foreground text-[13px]">
           Earth
         </text>
       </g>
     </svg>
-  )
+  );
 }

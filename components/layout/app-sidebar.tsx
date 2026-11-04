@@ -1,11 +1,11 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Suspense } from "react"
-import { LuCode, LuGithub } from "react-icons/lu"
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
+import { LuCode, LuGithub } from 'react-icons/lu';
 
-import { RocketMark } from "@/components/svg/rocket-mark"
+import { RocketMark } from '@/components/svg/rocket-mark';
 import {
   Sidebar,
   SidebarContent,
@@ -19,24 +19,11 @@ import {
   SidebarMenuItem,
   SidebarRail,
   useSidebar,
-} from "@/components/ui/sidebar"
-import {
-  explorerNav,
-  GITHUB_URL,
-  isActive,
-  mainNav,
-  PORTFOLIO_URL,
-  type NavItem,
-} from "@/lib/nav"
+} from '@/components/ui/sidebar';
+import { explorerNav, GITHUB_URL, isActive, mainNav, PORTFOLIO_URL, type NavItem } from '@/lib/nav';
 
-function NavItems({
-  items,
-  pathname,
-}: {
-  items: readonly NavItem[]
-  pathname: string | null
-}) {
-  const { setOpenMobile } = useSidebar()
+function NavItems({ items, pathname }: { items: readonly NavItem[]; pathname: string | null }) {
+  const { setOpenMobile } = useSidebar();
 
   return items.map((item) => (
     <SidebarMenuItem key={item.href}>
@@ -49,20 +36,14 @@ function NavItems({
         <span>{item.title}</span>
       </SidebarMenuButton>
     </SidebarMenuItem>
-  ))
+  ));
 }
 
 function ActiveNavItems({ items }: { items: readonly NavItem[] }) {
-  return <NavItems items={items} pathname={usePathname()} />
+  return <NavItems items={items} pathname={usePathname()} />;
 }
 
-function NavGroup({
-  label,
-  items,
-}: {
-  label: string
-  items: readonly NavItem[]
-}) {
+function NavGroup({ label, items }: { label: string; items: readonly NavItem[] }) {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>{label}</SidebarGroupLabel>
@@ -75,7 +56,7 @@ function NavGroup({
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
-  )
+  );
 }
 
 export function AppSidebar() {
@@ -84,11 +65,7 @@ export function AppSidebar() {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              size="lg"
-              tooltip="NASA API Explorer"
-              render={<Link href="/" />}
-            >
+            <SidebarMenuButton size="lg" tooltip="NASA API Explorer" render={<Link href="/" />}>
               <RocketMark className="size-8!" />
               <span className="font-heading text-base font-semibold tracking-tight">
                 NASA API Explorer
@@ -115,17 +92,15 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton
               tooltip="More of Zach's work"
-              render={
-                <a href={PORTFOLIO_URL} target="_blank" rel="noreferrer" />
-              }
+              render={<a href={PORTFOLIO_URL} target="_blank" rel="noreferrer" />}
             >
               <LuCode />
-              <span>More of Zach&apos;s work</span>
+              <span>More of my work</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import type { NextConfig } from "next"
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
@@ -8,6 +8,6 @@ const nextConfig: NextConfig = {
   experimental: {
     turbopackRustReactCompiler: true,
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
